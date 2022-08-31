@@ -1,2 +1,11 @@
 <!--pages/message/index.wxml-->
-<text>pages/message/index.wxml</text>
+<view class="app-container">
+  <custom-nav-bar placeholder="{{false}}" customStyle="background: rgba(255, 255, 255, 0)" isSlot="{{true}}">
+    <view class="navbar">自定义navbar</view>
+  </custom-nav-bar>
+  <view class="content">
+    <view wx:for="{{10}}" wx:key="index" style="height: 200rpx; padding-bottom: 40rpx"
+      >我是自定义navbar的插槽内容，不占位且固定在顶部-{{index}}</view
+    >
+  </view>
+</view>
