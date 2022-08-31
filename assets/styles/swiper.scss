@@ -1,0 +1,85 @@
+// 原生swiper黑色样式
+.swiper-dot-black {
+  .wx-swiper-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50%;
+    height: 8rpx;
+    width: 8rpx;
+    background-color: #031c24;
+  }
+  .wx-swiper-dot::before {
+    content: '';
+    flex-grow: 1;
+    border-radius: 50%;
+  }
+  .wx-swiper-dot-active {
+    width: 16rpx;
+    height: 16rpx;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2rpx solid #031c24;
+  }
+  .wx-swiper-dot-active::before {
+    border-radius: 50%;
+  }
+}
+
+// 原生swiper白色样式一
+.swiper-dot-white {
+  .wx-swiper-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50%;
+    height: 8rpx;
+    width: 8rpx;
+    background-color: #ffffff;
+  }
+  .wx-swiper-dot::before {
+    content: '';
+    flex-grow: 1;
+    border-radius: 50%;
+  }
+  .wx-swiper-dot-active {
+    width: 16rpx;
+    height: 16rpx;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2rpx solid #ffffff;
+  }
+  .wx-swiper-dot-active::before {
+    border-radius: 50%;
+  }
+}
+
+// 原生swiper白色样式二
+.swiper-line-white {
+  .wx-swiper-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rpx;
+    width: 10rpx;
+    margin-left: 0 !important;
+    margin-right: 10rpx !important;
+    background-color: #ffffff;
+    border-radius: 0;
+    opacity: 0.5;
+  }
+  .wx-swiper-dot::before {
+    content: '';
+    flex-grow: 1;
+    opacity: 0.5;
+  }
+  .wx-swiper-dot-active {
+    width: 30rpx;
+    height: 4rpx;
+    background-color: #ffffff;
+    opacity: 1;
+  }
+  .wx-swiper-dot-active::before {
+    opacity: 1;
+  }
+}
