@@ -2,14 +2,6 @@
   "name": "miniprogram-template",
   "version": "1.0.0",
   "description": "🎉 A magical miniprogram template",
-  "main": "",
-  "scripts": {
-    "prepare": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
-    "prettier": "prettier --write",
-    "prettier-lint": "prettier --write .",
-    "eslint": "eslint --ext .ts,.js",
-    "eslint-lint": "eslint --ext .ts,.js ."
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhihuifanqiechaodan/miniprogram-template.git"
@@ -20,13 +12,24 @@
     "url": "https://github.com/zhihuifanqiechaodan/miniprogram-template/issues"
   },
   "homepage": "https://github.com/zhihuifanqiechaodan/miniprogram-template#readme",
+  "main": "",
+  "scripts": {
+    "prepare": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
+    "prettier": "prettier --write",
+    "prettier-lint": "prettier --write .",
+    "eslint": "eslint --ext .ts,.js",
+    "eslint-lint": "eslint --ext .ts,.js ."
+  },
+  "dependencies": {
+    "dayjs": "^1.11.5"
+  },
   "devDependencies": {
     "eslint": "^8.23.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "miniprogram-ci": "^1.8.35",
     "prettier": "^2.7.1"
   },
-  "type": "module",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -39,5 +42,6 @@
     "*.{js,wxs,wxml,wxss,json}": [
       "npm run prettier"
     ]
-  }
+  },
+  "type": "module"
 }
