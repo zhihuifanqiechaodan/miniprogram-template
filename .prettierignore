@@ -1,0 +1,10 @@
+.vscode
+node_modules
+miniprogram_npm
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+project.private.config.json
+project.config.json
+
+# 业务代码

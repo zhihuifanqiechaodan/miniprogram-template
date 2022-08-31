@@ -13,7 +13,7 @@ module.exports = {
     modules: true,
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
   globals: {
@@ -26,6 +26,8 @@ module.exports = {
     requirePlugin: true,
     requireMiniProgram: true,
   },
-  // extends: 'eslint:recommended',
-  rules: {},
+  extends: 'eslint:recommended',
+  rules: {
+    'no-async-promise-executor': 'off',
+	},
 }
