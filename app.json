@@ -6,6 +6,7 @@
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
+  "lazyCodeLoading": "requiredComponents",
   "resolveAlias": {
     "~/*": "/*"
   },
