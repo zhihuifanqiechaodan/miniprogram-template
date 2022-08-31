@@ -39,8 +39,7 @@
 			"outputPath": ""
 		},
 		"useCompilerPlugins": [
-			"sass",
-			"less"
+			"sass"
 		]
 	},
 	"compileType": "miniprogram",
