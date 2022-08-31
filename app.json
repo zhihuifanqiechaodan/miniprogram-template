@@ -17,6 +17,13 @@
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
+  "subPackages": [
+    {
+      "root": "packageA",
+      "name": "packageA",
+      "pages": ["logs/index"]
+    }
+  ],
   "tabBar": {
     "borderStyle": "black",
     "list": [
