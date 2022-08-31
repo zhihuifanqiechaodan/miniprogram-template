@@ -1,4 +1,21 @@
 {
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "miniprogram-template",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "resolveAlias": {
+    "~/*": "/*"
+  },
+  "usingComponents": {
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
   "tabBar": {
     "borderStyle": "black",
     "list": [
@@ -27,16 +44,5 @@
         "text": ""
       }
     ]
-  },
-  "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "resolveAlias": {
-    "~/*": "/*"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
