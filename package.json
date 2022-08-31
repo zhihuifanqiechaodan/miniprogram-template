@@ -21,6 +21,7 @@
     "eslint-lint": "eslint --ext .ts,.js ."
   },
   "dependencies": {
+    "@vant/weapp": "^1.10.4",
     "dayjs": "^1.11.5"
   },
   "devDependencies": {
