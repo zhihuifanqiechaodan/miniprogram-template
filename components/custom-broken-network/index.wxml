@@ -1,0 +1,10 @@
+<!--components/custom-broken-network/index.wxml-->
+<view class="custom-broken-network" style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;">
+  <view class="title-wrapper">
+    <view class="title">似乎已断开与互联网的连接</view>
+    <view class="subtitle">请稍后再试</view>
+  </view>
+  <view class="refresh">
+    <van-button catchtap="refresh" block square plain type="primary" custom-class="custom-refresh">刷新</van-button>
+  </view>
+</view>
