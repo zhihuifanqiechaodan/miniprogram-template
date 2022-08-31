@@ -1,4 +1,33 @@
 {
+  "tabBar": {
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "assets/images/tabbar/home.png",
+        "selectedIconPath": "/assets/images/tabbar/selected-home.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/goods/index",
+        "iconPath": "assets/images/tabbar/goods.png",
+        "selectedIconPath": "/assets/images/tabbar/selected-goods.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/message/index",
+        "iconPath": "assets/images/tabbar/message.png",
+        "selectedIconPath": "/assets/images/tabbar/selected-message.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "assets/images/tabbar/user.png",
+        "selectedIconPath": "/assets/images/tabbar/selected-user.png",
+        "text": ""
+      }
+    ]
+  },
   "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,6 +38,5 @@
   "resolveAlias": {
     "~/*": "/*"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
