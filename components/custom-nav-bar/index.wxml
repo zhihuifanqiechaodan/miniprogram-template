@@ -1,15 +1,14 @@
 <!--components/custom-navbar/index.wxml-->
-<view catchtap="handleBackTop" class="custom-navbar">
+<view catchtap="handleBackTop" class="custom-nav-bar">
   <van-nav-bar
     fixed="{{fixed}}"
     placeholder="{{placeholder}}"
     border="{{border}}"
     custom-style="{{customStyle}}"
-    title-class="title-class"
     title="{{title}}"
     z-index="100"
   >
-    <view slot="left" class="left-container">
+    <view slot="left" class="solt-left">
       <view wx:if="{{isHome}}" catchtap="reLaunchHome" class="home">
         <custom-image
           src="/assets/images/custom-nav-bar/home.png"
@@ -26,7 +25,7 @@
           show-loading="{{false}}"
         />
       </view>
-      <view wx:if="{{isClose}}" catchtap="navigateBack" class="back">
+      <view wx:if="{{isClose}}" catchtap="navigateBack" class="close">
         <custom-image
           src="/assets/images/custom-nav-bar/close.png"
           width="48rpx"
@@ -34,14 +33,12 @@
           show-loading="{{false}}"
         />
       </view>
-      <view wx:if="{{isSlot}}" class="navbar-comp-slot">
+      <view wx:if="{{isSlot}}" class="solt">
         <slot />
       </view>
     </view>
-    <view slot="title">
-      <view>
-        <slot name="title" />
-      </view>
+    <view slot="title" class="solt-title">
+      <slot />
     </view>
   </van-nav-bar>
 </view>

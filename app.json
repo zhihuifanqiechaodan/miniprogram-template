@@ -13,7 +13,9 @@
   "usingComponents": {
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-toast": "@vant/weapp/toast/index",
-    "custom-nav-bar": "/components/custom-nav-bar/index"
+    "van-button": "@vant/weapp/button/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index",
+    "custom-broken-network": "/components/custom-broken-network/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],

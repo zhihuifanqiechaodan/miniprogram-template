@@ -3,9 +3,7 @@ import { navigateBack, reLaunch } from '~/utils/util';
 import { Home, Goods, Message, User } from '~/utils/router';
 
 Component({
-  options: {
-    multipleSlots: true,
-  },
+  options: {},
   /**
    * 组件的属性列表
    */

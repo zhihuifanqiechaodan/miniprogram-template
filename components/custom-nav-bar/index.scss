@@ -1,0 +1,17 @@
+/* components/custom-navbar/index.wxss */
+.custom-nav-bar {
+  .solt-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .home,
+    .back,
+    .close,
+    .solt {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 40rpx;
+    }
+  }
+}
