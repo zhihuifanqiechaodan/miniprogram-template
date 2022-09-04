@@ -8,20 +8,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.title-wrapper {
-  text-align: center;
-  .subtitle {
-    padding-top: 20rpx;
+  .title-wrapper {
+    text-align: center;
+    .subtitle {
+      padding-top: 20rpx;
+    }
   }
-}
 
-.refresh {
-  padding-top: 60rpx;
-
-  .custom-refresh {
-    width: 240rpx;
-    height: 72rpx;
+  .refresh {
+    padding-top: 60rpx;
+    .custom-refresh {
+      width: 240rpx;
+    }
   }
 }

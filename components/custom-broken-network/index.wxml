@@ -5,6 +5,8 @@
     <view class="subtitle">请稍后再试</view>
   </view>
   <view class="refresh">
-    <van-button catchtap="refresh" block square plain type="primary" custom-class="custom-refresh">刷新</van-button>
+    <van-button catchtap="handleRefresh" block square plain type="primary" custom-class="custom-refresh"
+      >刷新</van-button
+    >
   </view>
 </view>

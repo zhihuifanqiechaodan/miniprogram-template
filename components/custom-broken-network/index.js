@@ -1,5 +1,5 @@
 // components/custom-broken-network/index.js
-const { globalData } = getApp();
+const { systemInfo } = getApp();
 
 Component({
   /**
@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    systemInfo: globalData.systemInfo, // 设备信息
+    systemInfo, // 设备信息
   },
 
   /**
@@ -19,10 +19,10 @@ Component({
    */
   methods: {
     /**
-     * @method refresh 刷新
+     * @method handleRefresh 刷新
      */
-    refresh() {
-      this.triggerEvent('refresh');
+    handleRefresh() {
+      this.triggerEvent('handleRefresh');
     },
   },
 });

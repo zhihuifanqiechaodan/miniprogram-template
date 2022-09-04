@@ -40,7 +40,7 @@
     "*.js": [
       "npm run eslint"
     ],
-    "*.{js,wxs,wxml,wxss,json}": [
+    "*.{js,wxs,wxml,wxss,json,scss}": [
       "npm run prettier"
     ]
   },

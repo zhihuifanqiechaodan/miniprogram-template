@@ -27,8 +27,6 @@ App({
       success: (value) => {
         const { networkType } = value;
         this.globalData.networkType = networkType;
-        // 网络，WIFI、4G
-        this.requestHeader.net = networkType;
         if (networkType === 'none') {
           this.globalData.isConnected = false;
         } else {
@@ -54,7 +52,7 @@ App({
     systemInfo.safeAreaInsetBottom = systemInfo.screenHeight - systemInfo.safeArea.height - systemInfo.safeArea.top;
 
     // 全局存储设备信息
-    this.globalData.systemInfo = systemInfo;
+    this.systemInfo = systemInfo;
   },
 
   onShow() {
@@ -62,8 +60,6 @@ App({
     wx.onNetworkStatusChange((value) => {
       const { isConnected, networkType } = value;
       this.globalData.networkType = networkType;
-      // 网络，WIFI、4G
-      this.requestHeader.net = networkType;
       this.globalData.isConnected = isConnected;
       log && console.log('========================👇 网络类型 👇========================\n\n', networkType, '\n\n');
       log && console.log('========================👇 网络状态 👇========================\n\n', isConnected, '\n\n');
@@ -92,4 +88,5 @@ App({
     isConnected: true,
     userInfo: null,
   },
+  systemInfo: null, // 设备信息
 });
