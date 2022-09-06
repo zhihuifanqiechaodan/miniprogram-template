@@ -5,7 +5,6 @@
     placeholder="{{placeholder}}"
     border="{{border}}"
     custom-style="{{customStyle}}"
-    title="{{title}}"
     z-index="100"
   >
     <view slot="left" class="solt-left">
@@ -37,8 +36,6 @@
         <slot />
       </view>
     </view>
-    <view slot="title" class="solt-title">
-      <slot />
-    </view>
+    <view wx:if="{{title}}" slot="title" class="solt-title ^van-ellipsis">{{title}}</view>
   </van-nav-bar>
 </view>
