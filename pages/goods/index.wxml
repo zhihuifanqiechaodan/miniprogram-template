@@ -6,7 +6,10 @@
     customStyle="background: rgba(255, 255, 255, 0)"
     isSlot="{{true}}"
   >
-    <view class="navbar">自定义navbar</view>
+    <view class="custom-navbar">
+      <view>自定义navbar</view>
+      <view>我是自定义标题插槽</view>
+    </view>
   </custom-nav-bar>
   <view class="content">
     <view wx:for="{{10}}" wx:key="index" style="height: 200rpx; padding-bottom: 40rpx"

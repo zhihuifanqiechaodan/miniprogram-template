@@ -1,9 +1,4 @@
-// import config from "./local.js";       // 本地环境
-// import config from './development.js'; // 开发环境
-import config from './test.js'; // 测试环境
-// import config from './preview.js'      // 预发环境
-// import config from './production.js'; // 生产环境
-
+import config from './env.js'; // 测试环境
 /**
  * 环境
  */

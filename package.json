@@ -14,11 +14,19 @@
   "homepage": "https://github.com/zhihuifanqiechaodan/miniprogram-template#readme",
   "main": "",
   "scripts": {
+    "build:dev": "cross-env NODE_ENV=development run-s switch-env miniprogram-ci",
+    "build:dev02": "cross-env NODE_ENV=development02 node miniprogram-ci.js",
+    "build:test": "cross-env NODE_ENV=test run-s switch-env miniprogram-ci",
+    "build:test02": "cross-env NODE_ENV=test02 node miniprogram-ci.js",
+    "build:pre": "cross-env NODE_ENV=preview node miniprogram-ci.js",
+    "build:prod": "cross-env NODE_ENV=production node miniprogram-ci.js",
     "prepare": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'",
     "prettier": "prettier --write",
     "prettier-lint": "prettier --write .",
     "eslint": "eslint --ext .ts,.js",
-    "eslint-lint": "eslint --ext .ts,.js ."
+    "eslint-lint": "eslint --ext .ts,.js .",
+    "switch-env": "node switch-env.js",
+    "miniprogram-ci": "node miniprogram-ci.js"
   },
   "dependencies": {
     "@vant/weapp": "^1.10.4",
@@ -29,7 +37,9 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "miniprogram-ci": "^1.8.35",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5"
   },
   "husky": {
     "hooks": {
