@@ -1,6 +1,6 @@
 <!--pages/user/index.wxml-->
 <view class="app-container">
-  <custom-nav-bar placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 0)" isSlot="{{true}}">
+  <custom-nav-bar placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 0)" showSlot="{{true}}">
     <view class="navbar">自定义navbar</view>
   </custom-nav-bar>
   <view class="content">

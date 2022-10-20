@@ -8,31 +8,16 @@
     z-index="100"
   >
     <view slot="left" class="solt-left">
-      <view wx:if="{{isHome}}" catchtap="reLaunchHome" class="home">
-        <custom-image
-          src="/assets/images/custom-nav-bar/home.png"
-          width="48rpx"
-          height="48rpx"
-          show-loading="{{false}}"
-        />
+      <view wx:if="{{showHome}}" catchtap="reLaunchHome" class="home">
+        <custom-iconfont icon="icon-home" size="48rpx" />
       </view>
-      <view wx:if="{{isBack}}" catchtap="navigateBack" class="back">
-        <custom-image
-          src="/assets/images/custom-nav-bar/back.png"
-          width="48rpx"
-          height="48rpx"
-          show-loading="{{false}}"
-        />
+      <view wx:if="{{showBack}}" catchtap="navigateBack" class="back">
+        <custom-iconfont icon="icon-leftarrow" size="48rpx" />
       </view>
-      <view wx:if="{{isClose}}" catchtap="navigateBack" class="close">
-        <custom-image
-          src="/assets/images/custom-nav-bar/close.png"
-          width="48rpx"
-          height="48rpx"
-          show-loading="{{false}}"
-        />
+      <view wx:if="{{showClose}}" catchtap="navigateBack" class="close">
+        <custom-iconfont icon="icon-close" size="48rpx" />
       </view>
-      <view wx:if="{{isSlot}}" class="solt">
+      <view wx:if="{{showSlot}}" class="solt">
         <slot />
       </view>
     </view>

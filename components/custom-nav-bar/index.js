@@ -1,5 +1,5 @@
 // components/custom-navbar/custom-navbar.js
-import { navigateBack, reLaunch } from '~/utils/util';
+import { navigateBack, redirectTo } from '~/utils/util';
 import { Home, Goods, Message, User } from '~/utils/router';
 
 Component({
@@ -8,6 +8,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    // 是否显示中间文案
+    title: {
+      type: String,
+      value: '',
+    },
+    // 是否开启点击滚动到顶部, 仅支持页面滚动
+    backTop: {
+      type: Boolean,
+      value: false,
+    },
     // 是否固定在顶部
     fixed: {
       type: Boolean,
@@ -29,32 +39,22 @@ Component({
       value: 'background: rgba(255, 255, 255, 0)',
     },
     // 是否显示左侧首页图标
-    isHome: {
+    showHome: {
       type: Boolean,
       value: false,
     },
     //是否显示左侧返回图标
-    isBack: {
+    showBack: {
       type: Boolean,
       value: false,
     },
     //是否显示左侧关闭图标
-    isClose: {
+    showClose: {
       type: Boolean,
       value: false,
     },
     // 是否开启左侧插槽
-    isSlot: {
-      type: Boolean,
-      value: false,
-    },
-    // 是否显示中间文案
-    title: {
-      type: String,
-      value: '',
-    },
-    // 是否开启点击滚动到顶部
-    backTop: {
+    showSlot: {
       type: Boolean,
       value: false,
     },
@@ -93,9 +93,7 @@ Component({
      * @method reLaunchHome 返回首页
      */
     reLaunchHome() {
-      reLaunch({
-        url: Home.path,
-      });
+      redirectTo({ url: Home.path });
     },
   },
   lifetimes: {
@@ -110,8 +108,8 @@ Component({
         // 不是tabbar页面则显示返回首页
         if (!tabbarRoute.includes('/' + route)) {
           this.setData({
-            isHome: true,
-            isBack: false,
+            showHome: true,
+            showBack: false,
           });
         }
       }

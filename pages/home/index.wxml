@@ -3,7 +3,7 @@
   <custom-nav-bar
     placeholder="{{true}}"
     customStyle="background: rgba(255, 255, 255, 1)"
-    isSlot="{{true}}"
+    showSlot="{{true}}"
     title="我是标题我是标题我是标题我是标题我是标题我是标题我是标题"
   >
     <view class="navbar">自定义navbar</view>

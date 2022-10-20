@@ -15,7 +15,9 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-button": "@vant/weapp/button/index",
     "custom-nav-bar": "/components/custom-nav-bar/index",
-    "custom-broken-network": "/components/custom-broken-network/index"
+    "custom-broken-network": "/components/custom-broken-network/index",
+    "custom-image": "/components/custom-image/index",
+    "custom-iconfont": "/components/custom-iconfont/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
