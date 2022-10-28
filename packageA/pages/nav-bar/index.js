@@ -1,4 +1,4 @@
-// packageA/logs/index.js
+// packageA/pages/nav-bar/index.js
 Page({
   /**
    * 页面的初始数据

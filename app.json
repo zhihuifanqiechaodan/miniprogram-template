@@ -26,7 +26,13 @@
     {
       "root": "packageA",
       "name": "packageA",
-      "pages": ["logs/index"]
+      "pages": [
+        "pages/broken-network/index",
+        "pages/iconfot/index",
+        "pages/image/index",
+        "pages/nav-bar/index",
+        "pages/rich-text/index"
+      ]
     }
   ]
 }

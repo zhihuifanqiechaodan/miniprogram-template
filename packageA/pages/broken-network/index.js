@@ -1,34 +1,12 @@
-// pages/home/index.js
-import { BrokenNetwork, Iconfont, Image, NavBar, RichText } from '~/utils/router';
-import { navigateTo } from '~/utils/util';
+// packageA/pages/broken-network/index.js
+import { BrokenNetwork } from '~/utils/router';
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    introduceList: [
-      {
-        label: 'BrokenNetwork 断网',
-        path: BrokenNetwork.path,
-      },
-      {
-        label: 'Iconfont 阿里图标',
-        path: Iconfont.path,
-      },
-      {
-        label: 'Image 图片',
-        path: Image.path,
-      },
-      {
-        label: 'NavBar 导航栏',
-        path: NavBar.path,
-      },
-      {
-        label: 'RichText 富文本',
-        path: RichText.path,
-      },
-    ],
+    title: BrokenNetwork.name,
   },
 
   /**
@@ -70,9 +48,4 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
-
-  navigateTo(e) {
-    const { path } = e.currentTarget.dataset;
-    navigateTo({ url: path });
-  },
 });

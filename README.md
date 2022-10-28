@@ -9,7 +9,7 @@
 ## 功能
 
 ```js
-- 默认tabBar中有4个，且放置在主包中
+- tabBar放置在主包中, 其他页面放置到对应的分包中
 
 - 多环境发布
     - dev test pre prod
@@ -18,7 +18,8 @@
     - 断网
     - iconfot字体图标
     - 图片
-    - 导航
+    - 导航栏
+    - 富文本
 
 - 全局配置
     - eslist + prettier 代码规范
@@ -73,10 +74,7 @@
 ├── packageA
 │   └── logs
 ├── pages
-│   ├── goods
 │   ├── home
-│   ├── message
-│   └── user
 ├── private.wx2f3fed2106f72ceb.key
 ├── project.config.json
 ├── project.private.config.json

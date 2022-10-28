@@ -1,0 +1,6 @@
+<!--packageA/pages/broken-network/index.wxml-->
+<view class="app-container">
+  <custom-nav-bar isBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <view class="introduce">默认垂直居中展示</view>
+  <custom-broken-network verticalCenter="{{false}}" external-custom-broken-network="external-custom-broken-network" />
+</view>

@@ -1,10 +1,12 @@
 <!--components/custom-broken-network/index.wxml-->
-<view class="custom-broken-network" style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;">
-  <view class="title-wrapper">
-    <view class="title">似乎已断开与互联网的连接</view>
-    <view class="subtitle">请稍后再试</view>
+<view
+  style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;"
+  class="{{verticalCenter ? 'custom-broken-network-vertical-center' : ''}} external-custom-broken-network"
+>
+  <view class="message external-custom-broken-network_message">
+    <text space="nbsp">{{message}}</text>
   </view>
-  <view class="refresh">
+  <view class="refresh external-custom-broken-network_refresh">
     <van-button catchtap="handleRefresh" block square plain type="primary" custom-class="custom-refresh"
       >刷新</van-button
     >

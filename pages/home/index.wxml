@@ -1,6 +1,33 @@
 <!--pages/home/index.wxml-->
 <view class="app-container">
-  <custom-nav-bar placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" title="MiniProgram-Template">
-  </custom-nav-bar>
-  <custom-rich-text content="{{content}}" markdown="{{true}}" />
+  <custom-nav-bar placeholder="{{true}}" customStyle="background: #f4f5f5" title="MiniProgram-Template" />
+  <view class="title-wrapper">
+    <custom-iconfont icon="icon-xiaochengxu" size="60rpx" />
+    <view class="title">MiniProgram-Template</view>
+  </view>
+  <view class="subtitle">基础配置完善、可靠的小程序开发模版</view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">关于项目</view>
+    <view class="introduce-list">
+      <view class="introduce-item">
+        <view class="introduce-label">模版介绍</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">公共组件</view>
+    <view class="introduce-list">
+      <view
+        wx:for="{{introduceList}}"
+        wx:key="index"
+        catchtap="navigateTo"
+        data-path="{{item.path}}"
+        class="introduce-item {{index !== introduceList.length -1  ? 'van-hairline--bottom' : ''}}"
+      >
+        <view class="introduce-label">{{item.label}}</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
 </view>

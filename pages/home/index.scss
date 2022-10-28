@@ -1,1 +1,39 @@
 /* pages/home/index.wxss */
+.app-container {
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 40rpx;
+    margin-top: 40rpx;
+
+    .title {
+      margin-left: 40rpx;
+      font-size: 36rpx;
+      font-weight: 500;
+    }
+  }
+
+  .subtitle {
+    padding: 0 40rpx;
+    margin-bottom: 80rpx;
+  }
+
+  .introduce-list-wrapper {
+    margin: 60rpx 40rpx;
+
+    .introduce-title {
+      padding: 0 20rpx;
+      color: #999999;
+    }
+    .introduce-list {
+      margin-top: 20rpx;
+      background-color: #ffffff;
+      .introduce-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30rpx 20rpx;
+      }
+    }
+  }
+}
