@@ -20,3 +20,7 @@ text {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.safeAreaInsetBottom {
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}

@@ -14,6 +14,8 @@
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-button": "@vant/weapp/button/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-field": "@vant/weapp/field/index",
     "custom-nav-bar": "/components/custom-nav-bar/index",
     "custom-broken-network": "/components/custom-broken-network/index",
     "custom-image": "/components/custom-image/index",

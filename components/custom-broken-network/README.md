@@ -17,5 +17,5 @@
 | 类名                                   | 说明           |
 | -------------------------------------- | -------------- |
 | external-custom-broken-network         | 根结点样式类   |
-| external-custom-broken-network_message | 内容演示类     |
+| external-custom-broken-network_message | 内容样式类     |
 | external-custom-broken-network_refresh | 按钮容器样式类 |

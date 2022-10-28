@@ -7,12 +7,27 @@ Page({
    */
   data: {
     title: BrokenNetwork.name,
+    verticalCenter: false,
+    message: '似乎已断开与互联网的连接',
+    buttonText: '刷新',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    wx.request({
+      url: 'https://raw.githubusercontent.com/zhihuifanqiechaodan/miniprogram-template/master/components/custom-broken-network/README.md',
+      success: (value) => {
+        this.setData({
+          content: value.data,
+        });
+      },
+      fail: (reason) => {
+        console.log(reason);
+      },
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -48,4 +63,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
+
+  handleMessageChange(e) {
+    this.setData({
+      message: e.detail,
+    });
+  },
+  handleButtonTextChange(e) {
+    this.setData({
+      buttonText: e.detail,
+    });
+  },
+  handleVerticalCenterChange(e) {
+    this.setData({
+      verticalCenter: e.detail,
+    });
+  },
 });
