@@ -1,6 +1,6 @@
 // components/custom-navbar/custom-navbar.js
 import { navigateBack, redirectTo } from '~/utils/util';
-import { Home, Goods, Message, User } from '~/utils/router';
+import { Home } from '~/utils/router';
 
 Component({
   options: {},
@@ -99,7 +99,7 @@ Component({
   lifetimes: {
     attached() {
       // 过滤路由列表
-      const tabbarRoute = [Home.path, Goods.path, Message.path, User.path];
+      const tabbarRoute = [Home.path];
       // 获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
       const pages = getCurrentPages();
       // 如果当前页面栈只有一层

@@ -8,7 +8,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    wx.request({
+      url: 'https://raw.githubusercontent.com/zhihuifanqiechaodan/miniprogram-template/master/README.md',
+      success: (value) => {
+        console.log(value);
+        this.setData({
+          content: value.data,
+        });
+      },
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

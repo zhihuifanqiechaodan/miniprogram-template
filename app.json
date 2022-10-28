@@ -17,44 +17,16 @@
     "custom-nav-bar": "/components/custom-nav-bar/index",
     "custom-broken-network": "/components/custom-broken-network/index",
     "custom-image": "/components/custom-image/index",
-    "custom-iconfont": "/components/custom-iconfont/index"
+    "custom-iconfont": "/components/custom-iconfont/index",
+    "custom-rich-text": "/components/custom-rich-text/index"
   },
   "sitemapLocation": "sitemap.json",
-  "pages": ["pages/home/index", "pages/goods/index", "pages/user/index", "pages/message/index"],
+  "pages": ["pages/home/index"],
   "subPackages": [
     {
       "root": "packageA",
       "name": "packageA",
       "pages": ["logs/index"]
     }
-  ],
-  "tabBar": {
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/home/index",
-        "iconPath": "assets/images/tabbar/home.png",
-        "selectedIconPath": "/assets/images/tabbar/selected-home.png",
-        "text": ""
-      },
-      {
-        "pagePath": "pages/goods/index",
-        "iconPath": "assets/images/tabbar/goods.png",
-        "selectedIconPath": "/assets/images/tabbar/selected-goods.png",
-        "text": ""
-      },
-      {
-        "pagePath": "pages/message/index",
-        "iconPath": "assets/images/tabbar/message.png",
-        "selectedIconPath": "/assets/images/tabbar/selected-message.png",
-        "text": ""
-      },
-      {
-        "pagePath": "pages/user/index",
-        "iconPath": "assets/images/tabbar/user.png",
-        "selectedIconPath": "/assets/images/tabbar/selected-user.png",
-        "text": ""
-      }
-    ]
-  }
+  ]
 }

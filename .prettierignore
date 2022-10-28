@@ -8,3 +8,4 @@ project.private.config.json
 project.config.json
 
 # 业务代码
+components/mp-weixin

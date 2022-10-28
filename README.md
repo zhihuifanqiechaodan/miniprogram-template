@@ -1,26 +1,25 @@
 # 介绍
 
-[miniprogram-template](https://github.com/zhihuifanqiechaodan/miniprogram-template.git)是一个快速开发小程序的解决方案，它基于 [vant-weapp](https://github.com/youzan/vant-weapp.git) 实现。它使用了小程序目前支持的最新配置和api，内置了 eslist + prettier 代码规范，husky + lint-staged Git 提交代码规范验证，提供了丰富的功能组件，它可以帮助你快速搭建企业级小程序产品原型，希望本项目都能帮助你敏捷开发企业需求。
+[miniprogram-template](https://github.com/zhihuifanqiechaodan/miniprogram-template.git)是一个快速开发小程序的解决方案，它基于  [vant-weapp](https://github.com/youzan/vant-weapp.git)  实现。它使用了小程序目前支持的最新配置和 api，内置了 eslist + prettier 代码规范，husky + lint-staged Git 提交代码规范验证，提供了丰富的功能组件，它可以帮助你快速搭建企业级小程序产品原型，希望本项目都能帮助你敏捷开发企业需求。
 
 > 建议
-> 
-> 本项目的定位是小程序开发模版，适合当基础模板来进行二次开发，公共组件指在各种类型的小程序中都会使用到，后续会持续迭代，欢迎提issues。
-
+>
+> 本项目的定位是小程序开发模版，适合当基础模板来进行二次开发，公共组件指在各种类型的小程序中都会使用到，后续会持续迭代，欢迎提 issues。
 
 ## 功能
 
 ```js
 - 默认tabBar中有4个，且放置在主包中
- 
+
 - 多环境发布
     - dev test pre prod
-    
+
 - 组件
     - 断网
     - iconfot字体图标
     - 图片
     - 导航
-    
+
 - 全局配置
     - eslist + prettier 代码规范
     - husky + lint-staged git提交代码规范验证
@@ -33,10 +32,13 @@
     - 数据请求在 api 文件夹中
     - 小程序发布后提示更新
 ```
+
 ## 前序准备
-你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)。本项目技术栈基于 [ES2015+](http://es6.ruanyifeng.com/)、[vant-weapp](https://github.com/youzan/vant-weapp.git)和[dayjs](https://github.com/iamkun/dayjs.git)，提前了解和学习这些知识会对使用本项目有很大的帮助。
+
+你需要在本地安装  [node](http://nodejs.org/)  和  [git](https://git-scm.com/)。本项目技术栈基于  [ES2015+](http://es6.ruanyifeng.com/)、[vant-weapp](https://github.com/youzan/vant-weapp.git)和[dayjs](https://github.com/iamkun/dayjs.git)，提前了解和学习这些知识会对使用本项目有很大的帮助。
 
 ## 目录结构
+
 本项目已经为你生成了一个完整的开发框架，提供了涵盖小程序开发的各类封装和规范，下面是整个项目的目录结构。
 
 ```js
@@ -106,8 +108,8 @@ yarn install
 ```
 
 > TIP
-> 
-> 强烈建议使用yarn安装依赖，避免使用npm或者cnpm安装，可能会有各种诡异的 bug。
+>
+> 强烈建议使用 yarn 安装依赖，避免使用 npm 或者 cnpm 安装，可能会有各种诡异的 bug。
 
 完成上述安装 构建 编译后即可看到小程序内容，当你看到下面的页面说明你操作成功了。
 
@@ -116,19 +118,23 @@ yarn install
 接下来你可以修改代码进行业务开发了，本项目内建了常用公共组件、全局路由管理等等各种实用的功能来辅助开发，你可以通过查看已有的工具类和封装方法来使用。
 
 > 建议
-> 
+>
 > 使用前建议将目前项目中已有的配置和文件夹工具类先行查看一番，方便后续使用，其次小程序路由和跳转都进行了封装，方便统一管理，后续需要自行维护。
 
 ## 其它
-基于[miniprogram-template](https://github.com/zhihuifanqiechaodan/miniprogram-template.git)模版开发上线的小程序已有多个，可参考 Fabrique精品店 / 番茄博客园等。
+
+基于[miniprogram-template](https://github.com/zhihuifanqiechaodan/miniprogram-template.git)模版开发上线的小程序已有多个，可参考 Fabrique 精品店 / 番茄博客园等。
 
 对于一些小程序开发中常遇到的问题和解决方案欢迎讨论。
 
-欢迎您提供宝贵的意见和建议，也欢迎提issues增加和修改功能或组件，另外如果可以的话请给个start，感谢～
-
+欢迎您提供宝贵的意见和建议，也欢迎提 issues 增加和修改功能或组件，另外如果可以的话请给个 start，感谢～
 
 ## 更新日志
 
+- v1.0.2(20221028)
+
+  1.  新增 custom-rich-text 公共组件，基于 [mp-html](https://github.com/jin-yufeng/mp-html.git)封装，目前支持识别富文本以及 markdown 格式内容如需其他插件功能，可查看 [mp-html](https://github.com/jin-yufeng/mp-html.git) 文档，通过配置打包后将生成的 mp-weixin 文件夹放置到 components 文件件中覆盖原有的 mp-weixin 文件夹
+
 - v1.0.1 (20221020)
   1. 新增 custom-image 公共组件，属性同 [van-image](https://vant-contrib.gitee.io/vant-weapp/#/image)，图片裁剪模式同原生小程序 [image](https://developers.weixin.qq.com/miniprogram/dev/component/image.html) 组件的 mode 属性。
-  2. 新增 custom-iconfont 公共组件，支持设置大小，颜色，图标（需要提前引入使用的 iconfont），支持接收外部样式。
+  2. 新增 custom-iconfont 公共组件，支持设置大小，颜色，图标（需要在/assets/styles/iconfont.scss 文件中提前引入使用的 iconfont），支持接收组件外部样式 external-iconfont。
