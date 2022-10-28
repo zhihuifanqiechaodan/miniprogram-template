@@ -119,6 +119,10 @@ yarn install
 >
 > 使用前建议将目前项目中已有的配置和文件夹工具类先行查看一番，方便后续使用，其次小程序路由和跳转都进行了封装，方便统一管理，后续需要自行维护。
 
+## 公共组件
+
+关于公共组件的介绍和使用请查看对应组件文件夹下的 README.md
+
 ## 其它
 
 基于[miniprogram-template](https://github.com/zhihuifanqiechaodan/miniprogram-template.git)模版开发上线的小程序已有多个，可参考 Fabrique 精品店 / 番茄博客园等。

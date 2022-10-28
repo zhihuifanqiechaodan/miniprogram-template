@@ -1,2 +1,52 @@
 <!--packageA/pages/iconfot/index.wxml-->
-<text>packageA/pages/iconfot/index.wxml</text>
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <view class="title">API</view>
+  <custom-rich-text content="{{content}}" markdown="{{true}}" />
+  <view class="title">演示</view>
+  <view class="demo-list">
+    <view class="demo-item">
+      <view class="demo-item-label">图标</view>
+      <view class="demo-item-value">
+        <van-field
+          value="{{ icon}}"
+          border="{{ false }}"
+          bind:change="handleIconChange"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <view class="demo-item">
+      <view class="demo-item-label">大小</view>
+      <view class="demo-item-value">
+        <van-field
+          value="{{ size }}"
+          border="{{ false }}"
+          bind:change="handleSizeChange"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <view class="demo-item">
+      <view class="demo-item-label">颜色</view>
+      <van-field
+        value="{{ color }}"
+        border="{{ false }}"
+        bind:change="handleColorsChange"
+        input-align="right"
+        custom-style="padding: 0;"
+      />
+    </view>
+  </view>
+  <view class="tips">
+    icon示例: icon-pullright、icon-xiaochengxu、icon-close、icon-leftarrow、icon-home、icon-search、icon-leftalignment
+  </view>
+  <custom-iconfont
+    icon="{{icon || 'icon-xiaochengxu'}}"
+    size="{{size || '80rpx'}}"
+    color="{{color || '#031c24'}}"
+    external-custom-iconfont="external-custom-iconfont"
+  />
+</view>

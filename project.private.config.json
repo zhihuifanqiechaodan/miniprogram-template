@@ -3,7 +3,7 @@
 	"projectname": "miniprogram-template",
 	"setting": {
 		"compileHotReLoad": false,
-		"urlCheck": true
+		"urlCheck": false
 	},
 	"libVersion": "2.25.4",
 	"condition": {
@@ -19,6 +19,13 @@
 				{
 					"name": "",
 					"pathName": "packageA/pages/broken-network/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/iconfot/index",
 					"query": "",
 					"launchMode": "default",
 					"scene": null
