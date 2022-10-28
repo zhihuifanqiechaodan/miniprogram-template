@@ -39,5 +39,7 @@
     buttonText="{{buttonText}}"
     verticalCenter="{{verticalCenter}}"
     external-custom-broken-network="external-custom-broken-network"
+    external-custom-broken-network_message="external-custom-broken-network_message"
+    external-custom-broken-network_refresh="external-custom-broken-network_refresh"
   />
 </view>

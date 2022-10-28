@@ -1,6 +1,7 @@
 <!--components/custom-iconfont/index.wxml-->
 <wxs src="/utils/wxs.wxs" module="computed" />
 
-<view class="custom-iconfot">
-  <view class="iconfont {{icon}} external-iconfont" style="font-size: {{computed.addUnit(size)}}; color: {{color}};" />
-</view>
+<view
+  class="iconfont {{icon}} external-custom-iconfont"
+  style="font-size: {{computed.addUnit(size)}}; color: {{color}};"
+/>

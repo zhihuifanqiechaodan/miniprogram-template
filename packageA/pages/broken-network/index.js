@@ -23,9 +23,6 @@ Page({
           content: value.data,
         });
       },
-      fail: (reason) => {
-        console.log(reason);
-      },
     });
   },
 
