@@ -19,6 +19,10 @@ export const appId = config.appId;
  * 根域名
  */
 export const baseUrl = config.baseUrl + 'xxx';
+/**
+ * gitee根域名
+ */
+export const giteeBaseUrl = config.giteeBaseUrl;
 
 export default {
   env,
@@ -26,4 +30,5 @@ export default {
   version,
   appId,
   baseUrl,
+  giteeBaseUrl,
 };

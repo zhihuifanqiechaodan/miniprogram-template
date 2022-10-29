@@ -94,3 +94,9 @@ export const post = ({ url, data }) => _request({ method: 'POST', url, data });
  * @param {*} { url, data }
  */
 export const nativePost = ({ url, data }) => _nativeRequest({ method: 'POST', url, data });
+
+/**
+ * @method nativePost 原生get请求
+ * @param {*} { url, data }
+ */
+export const nativeGet = ({ url, data }) => _nativeRequest({ method: 'GET', url, data });

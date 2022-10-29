@@ -1,7 +1,7 @@
 {
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#f4f5f5",
     "navigationBarTitleText": "miniprogram-template",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
@@ -20,7 +20,8 @@
     "custom-broken-network": "/components/custom-broken-network/index",
     "custom-image": "/components/custom-image/index",
     "custom-iconfont": "/components/custom-iconfont/index",
-    "custom-rich-text": "/components/custom-rich-text/index"
+    "custom-rich-text": "/components/custom-rich-text/index",
+    "custom-loading": "/components/custom-loading/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index"],

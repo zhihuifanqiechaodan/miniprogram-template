@@ -14,9 +14,9 @@ const configInfo = {
 
 // const NODE_ENV = 'local';
 // const NODE_ENV = 'development';
-const NODE_ENV = 'test';
+// const NODE_ENV = 'test';
 // const NODE_ENV = 'preview';
-// const NODE_ENV = 'production';
+const NODE_ENV = 'production';
 const config = configInfo[NODE_ENV];
 
 export default config;

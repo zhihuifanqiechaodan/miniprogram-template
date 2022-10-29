@@ -1,29 +1,33 @@
 // packageA/pages/broken-network/index.js
+import { getMiniprogramTemplateContentsComponentsCustomBrokenNetwork } from '~/api/gitee-service';
 import { BrokenNetwork } from '~/utils/router';
+import { Loading } from '~/components/custom-loading/loading';
+import { checkNetwork } from '~/utils/util';
 
 Page({
+  /**
+   * 页面的私有数据，不涉及到页面渲染的数据
+   */
+  _data: {
+    _refreshInfo: null, // 刷新详情
+  },
   /**
    * 页面的初始数据
    */
   data: {
+    brokenNetwork: false,
     title: BrokenNetwork.name,
     verticalCenter: false,
     message: '似乎已断开与互联网的连接',
     buttonText: '刷新',
+    readmeContent: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    wx.request({
-      url: 'https://raw.githubusercontent.com/zhihuifanqiechaodan/miniprogram-template/master/components/custom-broken-network/README.md',
-      success: (value) => {
-        this.setData({
-          content: value.data,
-        });
-      },
-    });
+    this.initData();
   },
 
   /**
@@ -60,7 +64,41 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
-
+  getMiniprogramTemplateContentsComponentsCustomBrokenNetwork() {
+    return new Promise(async (resolve) => {
+      try {
+        const response = await getMiniprogramTemplateContentsComponentsCustomBrokenNetwork();
+        resolve(response);
+      } catch (error) {
+        // 正常加载
+        this._data._refreshInfo = {
+          method: 'initData',
+          params: {},
+        };
+        this.setData(
+          {
+            brokenNetwork: true,
+          },
+          () => {
+            Loading.clear();
+          }
+        );
+        console.error('========================👇 请求错误 👇========================\n\n', error, '\n\n');
+      }
+    });
+  },
+  async initData() {
+    Loading.show();
+    const readmeContent = await this.getMiniprogramTemplateContentsComponentsCustomBrokenNetwork();
+    this.setData(
+      {
+        readmeContent,
+      },
+      () => {
+        Loading.clear();
+      }
+    );
+  },
   handleMessageChange(e) {
     this.setData({
       message: e.detail,
@@ -75,5 +113,18 @@ Page({
     this.setData({
       verticalCenter: e.detail,
     });
+  },
+  /**
+   * @method refresh 断网刷新
+   */
+  async refresh() {
+    await checkNetwork();
+    const { _refreshInfo } = this._data;
+    // 刷新详情，方法和参数
+    const { method, params } = _refreshInfo;
+    this.setData({
+      brokenNetwork: false,
+    });
+    this[method](params);
   },
 });
