@@ -1,6 +1,6 @@
 <!--components/custom-rich-text/index.wxml-->
 <!-- https://github.com/jin-yufeng/mp-html -->
-<view class="custom-html">
+<view class="custom-rich-text">
   <mp-html
     container-style="{{containerStyle}}"
     content="{{content}}"

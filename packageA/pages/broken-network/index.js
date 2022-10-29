@@ -1,5 +1,5 @@
 // packageA/pages/broken-network/index.js
-import { getMiniprogramTemplateContentsComponentsCustomBrokenNetwork } from '~/api/gitee-service';
+import { getCustomBrokenNetwork } from '~/api/gitee-service';
 import { BrokenNetwork } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork } from '~/utils/util';
@@ -64,10 +64,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
-  getMiniprogramTemplateContentsComponentsCustomBrokenNetwork() {
+  getCustomBrokenNetwork() {
     return new Promise(async (resolve) => {
       try {
-        const response = await getMiniprogramTemplateContentsComponentsCustomBrokenNetwork();
+        const response = await getCustomBrokenNetwork();
         resolve(response);
       } catch (error) {
         // 正常加载
@@ -89,7 +89,7 @@ Page({
   },
   async initData() {
     Loading.show();
-    const readmeContent = await this.getMiniprogramTemplateContentsComponentsCustomBrokenNetwork();
+    const readmeContent = await this.getCustomBrokenNetwork();
     this.setData(
       {
         readmeContent,

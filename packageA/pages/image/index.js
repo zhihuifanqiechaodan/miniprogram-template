@@ -1,9 +1,13 @@
 // packageA/pages/image/index.js
+import { Image } from '~/utils/router';
+
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    title: Image.name,
+  },
 
   /**
    * 生命周期函数--监听页面加载

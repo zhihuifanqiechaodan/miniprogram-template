@@ -1,5 +1,5 @@
 // pages/home/index.js
-import { BrokenNetwork, Iconfont, Image, NavBar, RichText } from '~/utils/router';
+import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText } from '~/utils/router';
 import { navigateTo } from '~/utils/util';
 
 Page({
@@ -29,6 +29,7 @@ Page({
         path: RichText.path,
       },
     ],
+    Readme,
   },
 
   /**

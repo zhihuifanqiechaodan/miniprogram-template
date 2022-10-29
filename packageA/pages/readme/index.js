@@ -1,6 +1,6 @@
-// packageA/pages/iconfot/index.js
-import { getCustomIconfont } from '~/api/gitee-service';
-import { Iconfont } from '~/utils/router';
+// packageA/pages/readme/index.js
+import { getMiniprogramTemplate } from '~/api/gitee-service';
+import { Readme } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork } from '~/utils/util';
 
@@ -16,10 +16,10 @@ Page({
    */
   data: {
     brokenNetwork: false,
-    title: Iconfont.name,
-    icon: 'icon-xiaochengxu',
-    size: '80rpx',
-    color: '#031c24',
+    title: Readme.name,
+    verticalCenter: false,
+    message: '似乎已断开与互联网的连接',
+    buttonText: '刷新',
     readmeContent: null,
   },
 
@@ -33,9 +33,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-    this.initData();
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
@@ -66,10 +64,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
-  getCustomIconfont() {
+  getMiniprogramTemplate() {
     return new Promise(async (resolve) => {
       try {
-        const response = await getCustomIconfont();
+        const response = await getMiniprogramTemplate();
         resolve(response);
       } catch (error) {
         // 正常加载
@@ -91,7 +89,7 @@ Page({
   },
   async initData() {
     Loading.show();
-    const readmeContent = await this.getCustomIconfont();
+    const readmeContent = await this.getMiniprogramTemplate();
     this.setData(
       {
         readmeContent,
@@ -100,21 +98,6 @@ Page({
         Loading.clear();
       }
     );
-  },
-  handleIconChange(e) {
-    this.setData({
-      icon: e.detail,
-    });
-  },
-  handleSizeChange(e) {
-    this.setData({
-      size: e.detail,
-    });
-  },
-  handleColorsChange(e) {
-    this.setData({
-      color: e.detail,
-    });
   },
   /**
    * @method refresh 断网刷新

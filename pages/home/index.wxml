@@ -9,7 +9,7 @@
   <view class="introduce-list-wrapper">
     <view class="introduce-title">关于项目</view>
     <view class="introduce-list">
-      <view class="introduce-item">
+      <view catchtap="navigateTo" data-path="{{Readme.path}}" class="introduce-item">
         <view class="introduce-label">模版介绍</view>
         <custom-iconfont icon="icon-pullright" size="36rpx" />
       </view>

@@ -29,6 +29,13 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/readme/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}

@@ -1,9 +1,13 @@
 // packageA/pages/nav-bar/index.js
+import { NavBar } from '~/utils/router';
+
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    title: NavBar.name,
+  },
 
   /**
    * 生命周期函数--监听页面加载

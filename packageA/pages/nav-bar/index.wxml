@@ -1,2 +1,5 @@
 <!--packageA/pages/nav-bar/index.wxml-->
-<text>packageA/pages/nav-bar/index.wxml</text>
+<view class="app-container">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <view>敬请期待</view>
+</view>

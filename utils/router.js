@@ -22,3 +22,7 @@ export const RichText = {
   path: '/packageA/pages/rich-text/index',
   name: 'RichText 富文本',
 };
+export const Readme = {
+  path: '/packageA/pages/readme/index',
+  name: 'MiniProgram-Template 模版介绍',
+};
