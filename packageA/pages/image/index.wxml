@@ -13,7 +13,8 @@
           <van-field
             value="{{ src }}"
             border="{{ false }}"
-            bind:change="handleSrcChange"
+            bind:change="handleSettingChange"
+            data-type="src"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -25,7 +26,8 @@
           <van-field
             value="{{ width }}"
             border="{{ false }}"
-            bind:change="handleWidthChange"
+            bind:change="handleSettingChange"
+            data-type="width"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -36,7 +38,8 @@
         <van-field
           value="{{ height }}"
           border="{{ false }}"
-          bind:change="handleHeightChange"
+          bind:change="handleSettingChange"
+          data-type="height"
           input-align="right"
           custom-style="padding: 0;"
         />
@@ -46,7 +49,8 @@
         <van-field
           value="{{ mode }}"
           border="{{ false }}"
-          bind:change="handleModeChange"
+          bind:change="handleSettingChange"
+          data-type="mode"
           input-align="right"
           custom-style="padding: 0;"
         />
@@ -56,20 +60,27 @@
         <van-field
           value="{{ radius }}"
           border="{{ false }}"
-          bind:change="handleRadiusChange"
+          bind:change="handleSettingChange"
+          data-type="radius"
           input-align="right"
           custom-style="padding: 0;"
         />
       </view>
       <view class="demo-item">
         <view class="demo-item-label">是否显示为圆形</view>
-        <van-checkbox value="{{ round }}" bind:change="handleRoundChange" custom-style="padding: 0;" />
+        <van-checkbox
+          value="{{ round }}"
+          bind:change="handleSettingChange"
+          data-type="round"
+          custom-style="padding: 0;"
+        />
       </view>
       <view class="demo-item">
         <view class="demo-item-label">是否开启长按图片显示识别小程序码菜单</view>
         <van-checkbox
           value="{{ showMenuByLongpress }}"
-          bind:change="handleShowMenuByLongpressChange"
+          bind:change="handleSettingChange"
+          data-type="showMenuByLongpress"
           custom-style="padding: 0;"
         />
       </view>

@@ -99,19 +99,11 @@ Page({
       }
     );
   },
-  handleMessageChange(e) {
+  handleSettingChange(e) {
+    const { type } = e.currentTarget.dataset;
+    const value = e.detail;
     this.setData({
-      message: e.detail,
-    });
-  },
-  handleButtonTextChange(e) {
-    this.setData({
-      buttonText: e.detail,
-    });
-  },
-  handleVerticalCenterChange(e) {
-    this.setData({
-      verticalCenter: e.detail,
+      [`${type}`]: value,
     });
   },
   /**

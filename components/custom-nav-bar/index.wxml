@@ -5,8 +5,9 @@
     placeholder="{{placeholder}}"
     border="{{border}}"
     custom-style="{{customStyle}}"
-    z-index="100"
+    z-index="{{zIndex}}"
     title="{{title}}"
+    safe-area-inset-top="{{safeAreaInsetTop}}"
   >
     <view slot="left" class="solt-left">
       <view wx:if="{{showHome}}" catchtap="handleReLaunchHome" class="home">

@@ -41,3 +41,13 @@ export const getCustomImage = (data) => {
     data,
   });
 };
+/**
+ * @method getCustomNavBar custom-nav-bar说明文件
+ * @param {*} data
+ */
+export const getCustomNavBar = (data) => {
+  return nativeGet({
+    url: `${giteeBaseUrl}/zhihuifanqiechaodan/miniprogram-template/raw/master/components/custom-nav-bar/README.md`,
+    data,
+  });
+};

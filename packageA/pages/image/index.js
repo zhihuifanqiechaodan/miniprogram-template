@@ -18,9 +18,9 @@ Page({
     brokenNetwork: false,
     title: Image.name,
     readmeContent: null,
-    src: 'https://oss.fabrique.cn/6b01c1f2-80c4-4356-aa33-567c27914c3d.png',
-    width: '100rpx',
-    height: '100rpx',
+    src: 'https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c46317ddada24e0c9662fe62845b7439~tplv-k3u1fbpfcp-zoom-crop-mark:3024:3024:3024:1702.awebp?',
+    width: '100vw',
+    height: '100vw',
     mode: 'aspectFill',
     radius: '0rpx',
     round: false,
@@ -105,39 +105,11 @@ Page({
       }
     );
   },
-  handleSrcChange(e) {
+  handleSettingChange(e) {
+    const { type } = e.currentTarget.dataset;
+    const value = e.detail;
     this.setData({
-      src: e.detail,
-    });
-  },
-  handleWidthChange(e) {
-    this.setData({
-      width: e.detail,
-    });
-  },
-  handleHeightChange(e) {
-    this.setData({
-      height: e.detail,
-    });
-  },
-  handleModeChange(e) {
-    this.setData({
-      mode: e.detail,
-    });
-  },
-  handleRadiusChange(e) {
-    this.setData({
-      radius: e.detail,
-    });
-  },
-  handleRoundChange(e) {
-    this.setData({
-      round: e.detail,
-    });
-  },
-  handleShowMenuByLongpressChange(e) {
-    this.setData({
-      showMenuByLongpress: e.detail,
+      [`${type}`]: value,
     });
   },
   /**

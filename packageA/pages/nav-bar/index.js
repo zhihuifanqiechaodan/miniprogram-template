@@ -1,5 +1,5 @@
 // packageA/pages/nav-bar/index.js
-import { getCustomBrokenNetwork } from '~/api/gitee-service';
+import { getCustomNavBar } from '~/api/gitee-service';
 import { NavBar } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork } from '~/utils/util';
@@ -18,6 +18,13 @@ Page({
     brokenNetwork: false,
     title: NavBar.name,
     readmeContent: null,
+    backTop: true,
+    border: false,
+    showHome: false,
+    showBack: false,
+    showClose: false,
+    safeAreaInsetTop: false,
+    customStyle: 'background-color: #ffffff;',
   },
 
   /**
@@ -61,10 +68,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
-  getCustomBrokenNetwork() {
+  getCustomNavBar() {
     return new Promise(async (resolve) => {
       try {
-        const response = await getCustomBrokenNetwork();
+        const response = await getCustomNavBar();
         resolve(response);
       } catch (error) {
         // 正常加载
@@ -86,7 +93,7 @@ Page({
   },
   async initData() {
     Loading.show();
-    const readmeContent = await this.getCustomBrokenNetwork();
+    const readmeContent = await this.getCustomNavBar();
     this.setData(
       {
         readmeContent,
@@ -96,19 +103,11 @@ Page({
       }
     );
   },
-  handleMessageChange(e) {
+  handleSettingChange(e) {
+    const { type } = e.currentTarget.dataset;
+    const value = e.detail;
     this.setData({
-      message: e.detail,
-    });
-  },
-  handleButtonTextChange(e) {
-    this.setData({
-      buttonText: e.detail,
-    });
-  },
-  handleVerticalCenterChange(e) {
-    this.setData({
-      verticalCenter: e.detail,
+      [`${type}`]: value,
     });
   },
   /**

@@ -13,7 +13,8 @@
           <van-field
             value="{{ message }}"
             border="{{ false }}"
-            bind:change="handleMessageChange"
+            bind:change="handleSettingChange"
+            data-type="message"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -25,7 +26,8 @@
           <van-field
             value="{{ buttonText }}"
             border="{{ false }}"
-            bind:change="handleButtonTextChange"
+            bind:change="handleSettingChange"
+            data-type="buttonText"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -35,7 +37,8 @@
         <view class="demo-item-label">基于屏幕垂直居中布局</view>
         <van-checkbox
           value="{{ verticalCenter }}"
-          bind:change="handleVerticalCenterChange"
+          bind:change="handleSettingChange"
+          data-type="verticalCenter"
           custom-style="padding: 0;"
         />
       </view>

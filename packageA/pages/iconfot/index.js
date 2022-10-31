@@ -101,19 +101,11 @@ Page({
       }
     );
   },
-  handleIconChange(e) {
+  handleSettingChange(e) {
+    const { type } = e.currentTarget.dataset;
+    const value = e.detail;
     this.setData({
-      icon: e.detail,
-    });
-  },
-  handleSizeChange(e) {
-    this.setData({
-      size: e.detail,
-    });
-  },
-  handleColorChange(e) {
-    this.setData({
-      color: e.detail,
+      [`${type}`]: value,
     });
   },
   /**

@@ -60,6 +60,15 @@ Component({
       type: Boolean,
       value: false,
     },
+    // 是否留出顶部安全距离（状态栏高度）
+    safeAreaInsetTop: {
+      type: Boolean,
+      value: true,
+    },
+    zIndex: {
+      type: Number,
+      value: 100,
+    },
   },
 
   /**

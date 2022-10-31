@@ -13,7 +13,8 @@
           <van-field
             value="{{ icon}}"
             border="{{ false }}"
-            bind:change="handleIconChange"
+            bind:change="handleSettingChange"
+            data-type="icon"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -25,7 +26,8 @@
           <van-field
             value="{{ size }}"
             border="{{ false }}"
-            bind:change="handleSizeChange"
+            bind:change="handleSettingChange"
+            data-type="size"
             input-align="right"
             custom-style="padding: 0;"
           />
@@ -36,7 +38,8 @@
         <van-field
           value="{{ color }}"
           border="{{ false }}"
-          bind:change="handleColorChange"
+          bind:change="handleSettingChange"
+          data-type="color"
           input-align="right"
           custom-style="padding: 0;"
         />
