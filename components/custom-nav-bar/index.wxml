@@ -6,21 +6,24 @@
     border="{{border}}"
     custom-style="{{customStyle}}"
     z-index="100"
+    title="{{title}}"
   >
     <view slot="left" class="solt-left">
-      <view wx:if="{{showHome}}" catchtap="reLaunchHome" class="home">
+      <view wx:if="{{showHome}}" catchtap="handleReLaunchHome" class="home">
         <custom-iconfont icon="icon-home" size="48rpx" />
       </view>
-      <view wx:if="{{showBack}}" catchtap="navigateBack" class="back">
+      <view wx:if="{{showBack}}" catchtap="handleNavigateBack" class="back">
         <custom-iconfont icon="icon-leftarrow" size="48rpx" />
       </view>
-      <view wx:if="{{showClose}}" catchtap="navigateBack" class="close">
+      <view wx:if="{{showClose}}" catchtap="handleNavigateBack" class="close">
         <custom-iconfont icon="icon-close" size="48rpx" />
       </view>
       <view wx:if="{{showSlot}}" class="solt">
         <slot />
       </view>
     </view>
-    <view wx:if="{{title}}" slot="title" class="solt-title ^van-ellipsis">{{title}}</view>
+    <view slot="title" class="solt-title ^van-ellipsis">
+      <slot name="title" />
+    </view>
   </van-nav-bar>
 </view>

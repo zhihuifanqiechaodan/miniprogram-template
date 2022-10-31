@@ -10,7 +10,7 @@
 
 | 事件名称      | 说明                                              |
 | ------------- | ------------------------------------------------- |
-| handleRefresh | 点击按钮会触发 this.triggerEvent('handleRefresh') |
+| bind:handleRefresh | 点击按钮时触发 |
 
 ### 外部样式类
 

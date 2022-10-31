@@ -1,5 +1,13 @@
 <!--packageA/pages/nav-bar/index.wxml-->
-<view class="app-container">
+<view class="app-container safeAreaInsetBottom">
   <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
-  <view>敬请期待</view>
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" markdown="{{true}}" />
+    <view class="title">演示</view>
+  </block>
 </view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

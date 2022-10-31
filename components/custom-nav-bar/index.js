@@ -1,9 +1,11 @@
 // components/custom-navbar/custom-navbar.js
-import { navigateBack, redirectTo } from '~/utils/util';
+import { navigateBack, reLaunch } from '~/utils/util';
 import { Home } from '~/utils/router';
 
 Component({
-  options: {},
+  options: {
+    multipleSlots: true, // 在组件定义时的选项中启用多 slot 支持
+  },
   /**
    * 组件的属性列表
    */
@@ -72,28 +74,30 @@ Component({
     /**
      * @method handleBackTop 回到顶部
      */
-    handleBackTop() {
+    handleBackTop(e) {
       const { backTop } = this.data;
       // 将页面滚动到目标位置
       backTop &&
         wx.pageScrollTo({
           scrollTop: 0,
         });
+      this.triggerEvent('handleBackTop', e);
     },
 
     /**
-     * @method navigateBack 返回上一页
+     * @method handleNavigateBack 返回上一页
      */
-    navigateBack() {
+    handleNavigateBack(e) {
       navigateBack();
-      this.triggerEvent('back');
+      this.triggerEvent('handleNavigateBack', e);
     },
 
     /**
-     * @method reLaunchHome 返回首页
+     * @method handleReLaunchHome 返回首页, 通常配置为tabbar的第一个页面
      */
-    reLaunchHome() {
-      redirectTo({ url: Home.path });
+    handleReLaunchHome(e) {
+      reLaunch({ url: Home.path });
+      this.triggerEvent('handleReLaunchHome', e);
     },
   },
   lifetimes: {

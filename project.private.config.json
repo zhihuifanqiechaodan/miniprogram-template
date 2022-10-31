@@ -43,6 +43,13 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/nav-bar/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}
