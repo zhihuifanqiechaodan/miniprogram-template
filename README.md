@@ -111,8 +111,7 @@ yarn install
 
 完成上述安装 构建 编译后即可看到小程序内容，当你看到下面的页面说明你操作成功了。
 
-
-![2011667053703_.pic.jpg](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04d944b71ad3459787f3a69e2cd6fcac~tplv-k3u1fbpfcp-watermark.image?)
+![2081667222419_.pic.jpg](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a55b8f2edbce4172a97b02e634822982~tplv-k3u1fbpfcp-watermark.image?)
 
 接下来你可以修改代码进行业务开发了，本项目内建了常用公共组件、全局路由管理等等各种实用的功能来辅助开发，你可以通过查看已有的工具类和封装方法来使用。
 

@@ -30,7 +30,7 @@ Component({
     previewImg: true, // 是否允许图片被点击时自动预览
     scrollTable: true, // 是否给每个表格添加一个滚动层使其能单独横向滚动
     selectable: true, // 是否开启文本长按复制
-    setTitle: true, // 是否将 title 标签的内容设置到页面标题
+    setTitle: false, // 是否将 title 标签的内容设置到页面标题
     showImgMenu: true, // 是否允许图片被长按时显示菜单
     tagStyle: {}, // 设置标签的默认样式
     useAnchor: false, // 是否使用锚点链接
