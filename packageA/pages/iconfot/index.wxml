@@ -36,7 +36,7 @@
         <van-field
           value="{{ color }}"
           border="{{ false }}"
-          bind:change="handleColorsChange"
+          bind:change="handleColorChange"
           input-align="right"
           custom-style="padding: 0;"
         />

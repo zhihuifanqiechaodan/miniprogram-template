@@ -7,8 +7,7 @@
   overflow: hidden;
 }
 .custom-image--round {
-  border-radius: 50%;
-  overflow: hidden;
+  border-radius: 50% !important;
 }
 .custom-image--round .custom-image__img {
   border-radius: inherit;

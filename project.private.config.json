@@ -36,6 +36,13 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/image/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}

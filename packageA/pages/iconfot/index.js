@@ -111,7 +111,7 @@ Page({
       size: e.detail,
     });
   },
-  handleColorsChange(e) {
+  handleColorChange(e) {
     this.setData({
       color: e.detail,
     });

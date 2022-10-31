@@ -10,6 +10,7 @@
     wx:if="{{ !error }}"
     src="{{ src }}"
     mode="{{ mode }}"
+    webp="{{webp}}"
     lazy-load="{{ lazyLoad }}"
     class="image-class custom-image__img"
     show-menu-by-longpress="{{ showMenuByLongpress }}"

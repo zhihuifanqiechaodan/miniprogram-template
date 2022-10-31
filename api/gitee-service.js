@@ -31,3 +31,13 @@ export const getCustomIconfont = (data) => {
     data,
   });
 };
+/**
+ * @method getCustomImage custom-image说明文件
+ * @param {*} data
+ */
+export const getCustomImage = (data) => {
+  return nativeGet({
+    url: `${giteeBaseUrl}/zhihuifanqiechaodan/miniprogram-template/raw/master/components/custom-image/README.md`,
+    data,
+  });
+};

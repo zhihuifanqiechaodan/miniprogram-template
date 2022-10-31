@@ -13,6 +13,14 @@ Component({
         });
       },
     },
+    mode: {
+      type: String,
+      value: 'aspectFill',
+    },
+    webp: {
+      type: Boolean,
+      value: true,
+    },
     width: null,
     height: null,
     radius: null,
@@ -21,10 +29,6 @@ Component({
     useErrorSlot: Boolean,
     useLoadingSlot: Boolean,
     showMenuByLongpress: Boolean,
-    mode: {
-      type: String,
-      value: 'aspectFill',
-    },
     showError: {
       type: Boolean,
       value: true,
@@ -56,22 +60,22 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onLoad(event) {
+    onLoad(e) {
       this.setData({
         loading: false,
       });
-      this.triggerEvent('load', event.detail);
+      this.triggerEvent('load', e);
     },
-    onError(event) {
+    onError(e) {
       this.setData({
         loading: false,
         error: true,
       });
-      this.triggerEvent('error', event.detail);
-      console.error('========================👇 custom-image加载错误 👇========================\n\n', event, '\n\n');
+      this.triggerEvent('error', e);
+      console.error('========================👇 custom-image加载错误 👇========================\n\n', e, '\n\n');
     },
-    onClick(event) {
-      this.triggerEvent('click', event.detail);
+    onClick(e) {
+      this.triggerEvent('click', e);
     },
   },
 });

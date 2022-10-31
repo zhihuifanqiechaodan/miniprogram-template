@@ -18,6 +18,35 @@
     margin-bottom: 80rpx;
   }
 
+  .self-introduction {
+    padding: 0 40rpx;
+
+    .title {
+      font-weight: 500;
+    }
+
+    .introduction {
+      margin-top: 20rpx;
+      line-height: 40rpx;
+      font-size: 24rpx;
+    }
+  }
+
+  .about-project {
+    padding: 0 40rpx;
+    margin-top: 40rpx;
+
+    .title {
+      font-weight: 500;
+    }
+
+    .introduction {
+      margin-top: 20rpx;
+      line-height: 40rpx;
+      font-size: 24rpx;
+    }
+  }
+
   .introduce-list-wrapper {
     margin: 60rpx 40rpx;
 
