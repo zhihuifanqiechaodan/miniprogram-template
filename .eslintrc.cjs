@@ -26,8 +26,10 @@ module.exports = {
     requirePlugin: true,
     requireMiniProgram: true,
   },
-  extends: 'eslint:recommended',
+  extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  plugins: ['prettier'],
   rules: {
     'no-async-promise-executor': 'off',
-	},
-}
+    'prettier/prettier': 'error',
+  },
+};
