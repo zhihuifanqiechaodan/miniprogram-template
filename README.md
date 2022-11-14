@@ -6,6 +6,12 @@
 >
 > 本项目的定位是小程序开发模版，适合当基础模板来进行二次开发，公共组件指在各种类型的小程序中都会使用到，后续会持续迭代，欢迎提 issues。
 
+## 预览
+
+扫描下方小程序二维码，体验小程序模版示例：
+
+![gh_c23588506ec6_258.jpg](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c98aaa2cb7ad44549a064f1db037b84b~tplv-k3u1fbpfcp-watermark.image?)
+
 ## 功能
 
 ```js
