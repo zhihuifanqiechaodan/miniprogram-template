@@ -21,8 +21,7 @@
     "custom-image": "/components/custom-image/index",
     "custom-iconfont": "/components/custom-iconfont/index",
     "custom-rich-text": "/components/custom-rich-text/index",
-    "custom-loading": "/components/custom-loading/index",
-    "custom-video": "/components/custom-video/index"
+    "custom-loading": "/components/custom-loading/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index"],
@@ -36,8 +35,7 @@
         "pages/image/index",
         "pages/nav-bar/index",
         "pages/rich-text/index",
-        "pages/readme/index",
-        "pages/video/index"
+        "pages/readme/index"
       ]
     }
   ]

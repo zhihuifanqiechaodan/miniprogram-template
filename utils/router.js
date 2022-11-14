@@ -26,7 +26,3 @@ export const Readme = {
   path: '/packageA/pages/readme/index',
   name: 'MiniProgram-Template 模版介绍',
 };
-export const Video = {
-  path: '/packageA/pages/video/index',
-  name: '视频组件',
-};
