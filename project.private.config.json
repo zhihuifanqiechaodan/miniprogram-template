@@ -50,6 +50,13 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/video/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}

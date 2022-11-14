@@ -3,7 +3,7 @@
 
 <view
   bindtap="onClick"
-  style="{{computed.rootStyle({ width, height, radius })}}"
+  style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}}; border-radius: {{radius ? computed.addRpxUnit(radius) : 0}}; {{customStyle}}"
   class="custom-image {{round ? 'custom-image--round' : ''}}"
 >
   <image

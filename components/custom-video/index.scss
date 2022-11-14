@@ -1,0 +1,38 @@
+/* components/custom-video/index.wxss */
+.custom-video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .init-load-wrapper {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .poster-wrapper {
+    z-index: 9;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+}

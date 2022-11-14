@@ -1,0 +1,29 @@
+<!--components/custom-video/index.wxml-->
+<wxs src="/utils/wxs.wxs" module="computed" />
+
+<view style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};" class="custom-video">
+  <view wx:if="{{init_load}}" class="init-load-wrapper">
+    <van-loading size="48rpx" vertical>加载中...</van-loading>
+  </view>
+  <custom-image wx:if="{{show_placeholder}}" src="{{poster}}" class="poster-wrapper" />
+  <video
+    wx:if="{{show_video}}"
+    bindplay="play"
+    bindpause="pause"
+    binderror="error"
+    bindended="ended"
+    bindtimeupdate="timeupdate"
+    bindfullscreenchange="fullscreenchange"
+    bindloadedmetadata="loadedmetadata"
+    bindprogress="progress"
+    src="{{videoSrc}}"
+    object-fit="{{object_fit}}"
+    muted="{{muted}}"
+    show-progress="{{isFullScreen}}"
+    show-play-btn="{{isFullScreen}}"
+    show-fullscreen-btn="{{isFullScreen}}"
+    show-center-play-btn="{{false}}"
+    loop="{{loop}}"
+    class="video-wrapper"
+  />
+</view>

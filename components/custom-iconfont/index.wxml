@@ -3,5 +3,5 @@
 
 <view
   class="iconfont {{icon}} external-custom-iconfont"
-  style="font-size: {{computed.addUnit(size)}}; color: {{color}};"
+  style="font-size: {{computed.addRpxUnit(size)}}; color: {{color}};"
 />

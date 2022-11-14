@@ -1,5 +1,5 @@
 // pages/home/index.js
-import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText } from '~/utils/router';
+import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText, Video } from '~/utils/router';
 import { navigateTo } from '~/utils/util';
 
 Page({
@@ -27,6 +27,10 @@ Page({
       {
         label: 'RichText 富文本',
         path: RichText.path,
+      },
+      {
+        label: 'Video 视频',
+        path: Video.path,
       },
     ],
     Readme,

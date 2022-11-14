@@ -21,9 +21,18 @@ Component({
       type: Boolean,
       value: true,
     },
-    width: null,
-    height: null,
-    radius: null,
+    width: {
+      optionalTypes: [String, Number],
+      value: '100%',
+    },
+    height: {
+      optionalTypes: [String, Number],
+      value: '100%',
+    },
+    radius: {
+      optionalTypes: [String, Number],
+      value: 0,
+    },
     round: Boolean,
     lazyLoad: Boolean,
     useErrorSlot: Boolean,
@@ -36,6 +45,10 @@ Component({
     showLoading: {
       type: Boolean,
       value: true,
+    },
+    customStyle: {
+      type: String,
+      value: '',
     },
   },
 

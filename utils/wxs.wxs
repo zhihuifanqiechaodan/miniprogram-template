@@ -1,88 +1,14 @@
 /**
- * @method keys 对象属性处理
- * @param obj
- */
-function keys(obj) {
-  var REGEXP = getRegExp('{|}|"', 'g');
-  return JSON.stringify(obj)
-    .replace(REGEXP, '')
-    .split(',')
-    .map(function (item) {
-      return item.split(':')[0];
-    });
-}
-/**
- * @method addUnit 添加单位
+ * @method addRpxUnit 添加单位
  * @param value
  */
-function addUnit(value) {
+function addRpxUnit(value) {
   if (value == null) {
     return undefined;
   }
-  return value.constructor === 'Number' ? value + 'px' : value;
-}
-
-/**
- * @method kebabCase 字段处理 fontSize: 14px => font-size: 14px
- * @param word
- */
-function kebabCase(word) {
-  var newWord = word
-    .replace(getRegExp('[A-Z]', 'g'), function (i) {
-      return '-' + i;
-    })
-    .toLowerCase();
-
-  return newWord;
-}
-
-/**
- * @method style 样式处理
- * @param styles
- */
-function style(styles) {
-  if (styles && styles.constructor === 'Array') {
-    return styles
-      .filter(function (item) {
-        return item != null && item !== '';
-      })
-      .map(function (item) {
-        return style(item);
-      })
-      .join(';');
-  }
-
-  if (styles.constructor === 'Object') {
-    return keys(styles)
-      .filter(function (key) {
-        return styles[key] != null && styles[key] !== '';
-      })
-      .map(function (key) {
-        return [kebabCase(key), [styles[key]]].join(':');
-      })
-      .join(';');
-  }
-
-  return styles;
-}
-
-function rootStyle(data) {
-  return style([
-    {
-      width: addUnit(data.width),
-      height: addUnit(data.height),
-      'border-radius': addUnit(data.radius),
-    },
-    data.radius ? 'overflow: hidden' : null,
-  ]);
-}
-
-function slice(data) {
-  return data.data.slice(0, data.length);
+  return value.constructor === 'Number' ? value * 2 + 'rpx' : value;
 }
 
 module.exports = {
-  rootStyle: rootStyle,
-  addUnit: addUnit,
-  slice: slice,
+  addRpxUnit: addRpxUnit,
 };
