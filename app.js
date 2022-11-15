@@ -84,9 +84,12 @@ App({
   },
 
   globalData: {
-    networkType: '',
-    isConnected: true,
-    userInfo: null,
+    networkType: '', // 网络类型
+    isConnected: true, // 网络状态
+    userInfo: null, // 用户信息
+    mutedStatus: false, // 静音状态
+    isAutoPlayVideo: false, // 非wifi网络播放状态，用于展示提示信息，提示过一次后当前小程序没有重新load不会在提示
+    VideoContextComponent: null, // VideoContextComponent，VideoContext实例所在的组件，用于处理视频播放相关业务
   },
   systemInfo: null, // 设备信息
 });

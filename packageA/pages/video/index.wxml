@@ -48,11 +48,9 @@
     <view class="tips">
       icon示例: icon-pullright、icon-xiaochengxu、icon-close、icon-leftarrow、icon-home、icon-search、icon-leftalignment
     </view> -->
-    <custom-video
-      width="100vw"
-      height="150vw"
-      poster="https://oss.fabrique.cn/67a44967-32f3-4fa8-9481-ceb7a8fde958.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_0,h_0,m_fast,ar_auto"
-    />
+    <block wx:for="{{videoList}}" wx:key="index">
+      <custom-video autoplay="{{false}}" width="100vw" height="100vw" poster="{{item.poster}}" src="{{item.src}}" />
+    </block>
   </block>
 </view>
 

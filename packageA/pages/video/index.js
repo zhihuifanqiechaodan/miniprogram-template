@@ -21,6 +21,23 @@ Page({
     size: '80rpx',
     color: '#031c24',
     readmeContent: null,
+    videoList: [
+      {
+        poster:
+          'https://oss.fabrique.cn/67a44967-32f3-4fa8-9481-ceb7a8fde958.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_0,h_0,m_fast,ar_auto',
+        src: 'https://oss.fabrique.cn/offwebsite/mp4/%E6%B7%B7%E5%89%AA6-%E6%94%B9%E5%AD%97%E4%BD%93.mp4',
+      },
+      {
+        poster:
+          'http://oss.cogo.club/2c64c928-38db-436c-ba4f-a9307b19d489.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_0,h_0,m_fast,ar_auto',
+        src: 'http://oss.cogo.club/2c64c928-38db-436c-ba4f-a9307b19d489.mp4',
+      },
+      {
+        poster:
+          'https://oss.fabrique.cn/290664dc-c0ce-4223-b8f0-24ba5aec6332.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_0,h_0,m_fast,ar_auto',
+        src: 'https://oss.fabrique.cn/290664dc-c0ce-4223-b8f0-24ba5aec6332.mp4',
+      },
+    ],
   },
 
   /**
