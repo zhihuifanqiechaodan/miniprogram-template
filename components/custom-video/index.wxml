@@ -46,7 +46,7 @@
   <!-- 暂停遮罩层 -->
   <view wx:if="{{!show_play}}" catchtap="handlePause" class="pause-wrapper"></view>
   <!-- 封面图 -->
-  <custom-image wx:if="{{show_placeholder}}" src="{{poster}}" class="poster-wrapper" />
+  <custom-image src="{{poster}}" class="poster-wrapper" style="left: {{show_placeholder ? 0 : '-100%'}}" />
   <!-- 视频组件 -->
   <video
     wx:if="{{show_video}}"

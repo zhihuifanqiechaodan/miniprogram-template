@@ -209,8 +209,13 @@ Component({
       const { _is_first_play, id } = this.data;
       const { VideoContextComponent = null, mutedStatus = false } = globalData;
       // 播放之前先处理上一个视频的业务逻辑（非当前播放视频组件）
-      if (VideoContextComponent && VideoContextComponent.data.id !== id) {
-        VideoContextComponent.initializationData();
+      if (VideoContextComponent) {
+        if (VideoContextComponent.data.id !== id) {
+          VideoContextComponent.initializationData();
+          globalData.VideoContextComponent = this;
+        }
+      } else {
+        globalData.VideoContextComponent = this;
       }
       if (_is_first_play) {
         this.setData({
@@ -259,7 +264,6 @@ Component({
         globalData.isAutoPlayVideo = true;
         Toast(unWifiToastMessage);
       }
-      globalData.VideoContextComponent = this;
     },
     /**
      * @method handlePause 点击暂停
@@ -341,18 +345,24 @@ Component({
      * @method initializationData 初始化data数据
      */
     initializationData() {
-      this.setData({
-        _eventType: '', // 事件类型，autoplay、play、pause
-        _is_first_play: true, // 标记，用于处理加载进度中自动播放场景
-        init_load: false, // 初始化视频加载
-        show_placeholder: true, // 是否展示封面图片站位
-        show_video: false, // 是否展示视频标签
-        show_play: true, // 是否展示播放icon
-        buffered_status: false, // 视频缓冲状态, 未缓冲之前只展示播放按钮
-        percentage: '0%', // 播放进度百分比
-        object_fit: 'cover', // 当视频大小与 video 容器大小不一致时，视频的表现形式
-        is_full_screen: false, // 全屏状态
-      });
+      this.setData(
+        {
+          _eventType: '', // 事件类型，autoplay、play、pause
+          _is_first_play: true, // 标记，用于处理加载进度中自动播放场景
+          init_load: false, // 初始化视频加载
+          show_placeholder: true, // 是否展示封面图片站位
+          show_play: true, // 是否展示播放icon
+          buffered_status: false, // 视频缓冲状态, 未缓冲之前只展示播放按钮
+          percentage: '0%', // 播放进度百分比
+          object_fit: 'cover', // 当视频大小与 video 容器大小不一致时，视频的表现形式
+          is_full_screen: false, // 全屏状态
+        },
+        () => {
+          this.setData({
+            show_video: false, // 是否展示视频标签
+          });
+        }
+      );
     },
   },
   lifetimes: {
