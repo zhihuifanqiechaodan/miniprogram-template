@@ -243,6 +243,8 @@ Page({
         src: 'http://oss.cogo.club/3f95173c-5cb2-44db-978a-7a59d9d11883.mp4',
       },
     ],
+    richTextContent: '<div>我是富文本内容</div>',
+    markdownContent: '# 我是markdown内容',
   },
 
   /**

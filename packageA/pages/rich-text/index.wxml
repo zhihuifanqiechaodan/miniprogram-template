@@ -9,17 +9,13 @@
     <view class="case-wrapper">
       <view class="case-item">
         <view class="rich-text-title">解析富文本</view>
-        <view class="analysis"
-          >{{'
-          <div>我是富文本内容</div>
-          '}}</view
-        >
-        <custom-rich-text content="{{'<div>我是富文本内容</div>'}}" />
+        <view class="analysis">{{richTextContent}}</view>
+        <custom-rich-text content="{{richTextContent}}" />
       </view>
       <view class="case-item">
         <view class="rich-text-title">解析markdown</view>
-        <view class="analysis">{{'# 我是markdown内容'}}</view>
-        <custom-rich-text content="{{'# 我是markdown内容'}}" />
+        <view class="analysis">{{markdownContent}}</view>
+        <custom-rich-text content="{{markdownContent}}" />
       </view>
     </view>
   </block>

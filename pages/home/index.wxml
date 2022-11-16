@@ -13,7 +13,7 @@
     >
     <view class="introduction"> 🧰 Vue, TypeScript, Mini Program are all familiar, React has written some code. </view>
   </view>
-  <view class="about-project">
+  <!-- <view class="about-project">
     <view class="title">MiniProgram-Template</view>
     <view class="introduction"
       >miniprogram-template是一个快速开发小程序的解决方案，它基于 vant-weapp 实现。它使用了小程序目前支持的最新配置和
@@ -21,7 +21,7 @@
       提交代码规范验证，提供了丰富的功能组件，它可以帮助你快速搭建企业级小程序产品原型，希望本项目都能帮助你敏捷开发企业需求。</view
     >
     <view class="introduction">更多关于项目的介绍和组件的介绍请通过下方导航跳转查看。</view>
-  </view>
+  </view> -->
   <view class="introduce-list-wrapper">
     <view class="introduce-title">关于项目</view>
     <view class="introduce-list">
