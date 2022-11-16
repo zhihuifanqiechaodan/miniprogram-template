@@ -5,7 +5,7 @@
 ### Props
 
 | 参数               | 说明                                                | 类型             | 默认值                          |
-| ------------------ | --------------------------------------------------- | ---------------- | ------------------------------- | --- |
+| ------------------ | --------------------------------------------------- | ---------------- | ------------------------------- |
 | src                | 视频链接                                            | string           | -                               |
 | poster             | 视频封面图                                          | string           | -                               |
 | width              | 宽度，默认单位为`rpx`                               | string ｜ number | -                               |
@@ -21,7 +21,7 @@
 | fullScreenIconSize | 播放 icon 大小                                      | string ｜ number | 48rpx                           |
 | showMuted          | 展示静音 icon                                       | boolean          | true                            |
 | mutedStatus        | 静音状态                                            | boolean          | globalData.mutedStatus ｜ false |
-| mutedIcon          | 静音 icon                                           | string           | /assets/images/sound_off.png    |     |
+| mutedIcon          | 静音 icon                                           | string           | /assets/images/sound_off.png    |
 | unMutedIcon        | 非静音 icon                                         | string           | /assets/images/sound_on.png     |
 | unWifiToast        | 非 wifi 情况下播放视频，第一次是否提示              | boolean          | true                            |
 | unWifiToastMessage | 非 wifi 情况下播放视频，第一次提示的信息            | string           | 非 Wi-Fi 网络，请注意流量消耗   |
