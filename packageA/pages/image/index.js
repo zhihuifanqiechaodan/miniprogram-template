@@ -2,7 +2,8 @@
 import { getCustomImage } from '~/api/gitee-service';
 import { Image } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
-import { checkNetwork } from '~/utils/util';
+import { checkNetwork, shareImageFormat } from '~/utils/util';
+import { shareImage } from '~/config/index';
 
 Page({
   /**
@@ -69,7 +70,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: 'Image组件，增强版image提供多种功能',
+      imageUrl,
+    };
+  },
   getCustomImage() {
     return new Promise(async (resolve) => {
       try {

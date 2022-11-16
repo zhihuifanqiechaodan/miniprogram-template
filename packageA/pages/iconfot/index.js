@@ -2,7 +2,8 @@
 import { getCustomIconfont } from '~/api/gitee-service';
 import { Iconfont } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
-import { checkNetwork } from '~/utils/util';
+import { checkNetwork, shareImageFormat } from '~/utils/util';
+import { shareImage } from '~/config/index';
 
 Page({
   /**
@@ -65,7 +66,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: 'Iconfont组件，阿里图标的使用方案',
+      imageUrl,
+    };
+  },
   getCustomIconfont() {
     return new Promise(async (resolve) => {
       try {

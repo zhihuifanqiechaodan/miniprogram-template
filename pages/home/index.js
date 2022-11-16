@@ -1,6 +1,7 @@
 // pages/home/index.js
+import { shareImage } from '~/config/index';
 import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText, Video } from '~/utils/router';
-import { navigateTo } from '~/utils/util';
+import { navigateTo, shareImageFormat } from '~/utils/util';
 
 Page({
   /**
@@ -74,7 +75,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: '只需一分钟下载即可敏捷开发小程序、基础配置完善',
+      imageUrl,
+    };
+  },
 
   navigateTo(e) {
     const { path } = e.currentTarget.dataset;

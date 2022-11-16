@@ -7,23 +7,6 @@ page {
       font-weight: 500;
     }
 
-    .demo-list {
-      margin: 0 40rpx;
-      margin-bottom: 40rpx;
-      background-color: #ffffff;
-      .demo-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 30rpx 20rpx;
-
-        .demo-item-value {
-          flex: 1;
-          margin-left: 40rpx;
-        }
-      }
-    }
-
     .tips {
       padding: 0 40rpx;
       line-height: 40rpx;

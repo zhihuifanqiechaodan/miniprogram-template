@@ -12,7 +12,7 @@ Component({
     // markdown格式
     isMarkdown: {
       type: Boolean,
-      value: false,
+      value: true,
     },
   },
 

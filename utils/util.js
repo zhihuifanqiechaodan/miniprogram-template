@@ -224,3 +224,22 @@ export const logout = () => {
   deleteItemSync('userInfo');
   reLaunch({ url: Home.path });
 };
+
+/**
+ * @method shareImageFormat 图片格式处理
+ * @param {*} params
+ * @returns
+ */
+export const shareImageFormat = (params) => {
+  const { systemInfo } = getApp();
+  const { system } = systemInfo;
+  const systemDetail = system.split(' ');
+  const type = systemDetail[0];
+  const version = systemDetail[1];
+  // ios系统14版本以下，小程序分享的图片不支持webp格式，进行转换
+  if (type.toLowerCase() === 'ios' && parseInt(version) <= 14) {
+    return params.replace('format,webp', 'format,jpg');
+  } else {
+    return params;
+  }
+};

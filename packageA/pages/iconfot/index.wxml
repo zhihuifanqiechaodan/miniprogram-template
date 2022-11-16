@@ -4,7 +4,7 @@
   <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
   <block wx:if="{{!brokenNetwork && readmeContent}}">
     <view class="title">API</view>
-    <custom-rich-text content="{{readmeContent}}" markdown="{{true}}" />
+    <custom-rich-text content="{{readmeContent}}" />
     <view class="title">演示</view>
     <view class="demo-list">
       <view class="demo-item">

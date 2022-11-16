@@ -23,6 +23,10 @@ export const baseUrl = config.baseUrl + 'xxx';
  * gitee根域名
  */
 export const giteeBaseUrl = config.giteeBaseUrl;
+/**
+ * 分享图片
+ */
+export const shareImage = config.shareImage;
 
 export default {
   env,

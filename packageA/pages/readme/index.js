@@ -2,7 +2,8 @@
 import { getMiniprogramTemplate } from '~/api/gitee-service';
 import { Readme } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
-import { checkNetwork } from '~/utils/util';
+import { checkNetwork, shareImageFormat } from '~/utils/util';
+import { shareImage } from '~/config/index';
 
 Page({
   /**
@@ -63,7 +64,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: '只需一分钟下载即可敏捷开发小程序、基础配置完善',
+      imageUrl,
+    };
+  },
   getMiniprogramTemplate() {
     return new Promise(async (resolve) => {
       try {

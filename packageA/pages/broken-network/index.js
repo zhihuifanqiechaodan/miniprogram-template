@@ -2,7 +2,8 @@
 import { getCustomBrokenNetwork } from '~/api/gitee-service';
 import { BrokenNetwork } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
-import { checkNetwork } from '~/utils/util';
+import { checkNetwork, shareImageFormat } from '~/utils/util';
+import { shareImage } from '~/config/index';
 
 Page({
   /**
@@ -63,7 +64,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: 'BrokenNetwork组件，网络请求失败的处理方案',
+      imageUrl,
+    };
+  },
   getCustomBrokenNetwork() {
     return new Promise(async (resolve) => {
       try {

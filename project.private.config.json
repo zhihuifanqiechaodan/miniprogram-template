@@ -57,6 +57,13 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/rich-text/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}

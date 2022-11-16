@@ -51,3 +51,23 @@ export const getCustomNavBar = (data) => {
     data,
   });
 };
+/**
+ * @method getCustomVideo custom-video说明文件
+ * @param {*} data
+ */
+export const getCustomVideo = (data) => {
+  return nativeGet({
+    url: `${giteeBaseUrl}/zhihuifanqiechaodan/miniprogram-template/raw/master/components/custom-video/README.md`,
+    data,
+  });
+};
+/**
+ * @method getCustomRichText custom-rich-text说明文件
+ * @param {*} data
+ */
+export const getCustomRichText = (data) => {
+  return nativeGet({
+    url: `${giteeBaseUrl}/zhihuifanqiechaodan/miniprogram-template/raw/master/components/custom-rich-text/README.md`,
+    data,
+  });
+};

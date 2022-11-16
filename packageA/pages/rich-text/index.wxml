@@ -1,5 +1,29 @@
 <!--packageA/pages/rich-text/index.wxml-->
-<view class="app-container">
+<view class="app-container safeAreaInsetBottom">
   <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
-  <view>敬请期待</view>
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
+    <view class="case-wrapper">
+      <view class="case-item">
+        <view class="rich-text-title">解析富文本</view>
+        <view class="analysis"
+          >{{'
+          <div>我是富文本内容</div>
+          '}}</view
+        >
+        <custom-rich-text content="{{'<div>我是富文本内容</div>'}}" />
+      </view>
+      <view class="case-item">
+        <view class="rich-text-title">解析markdown</view>
+        <view class="analysis">{{'# 我是markdown内容'}}</view>
+        <custom-rich-text content="{{'# 我是markdown内容'}}" />
+      </view>
+    </view>
+  </block>
 </view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

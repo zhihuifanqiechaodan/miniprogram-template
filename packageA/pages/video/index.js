@@ -1,8 +1,9 @@
 // packageA/pages/video/index.js
-import { getCustomIconfont } from '~/api/gitee-service';
+import { getCustomVideo } from '~/api/gitee-service';
 import { Video } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
-import { checkNetwork } from '~/utils/util';
+import { checkNetwork, shareImageFormat } from '~/utils/util';
+import { shareImage } from '~/config/index';
 
 Page({
   /**
@@ -17,9 +18,6 @@ Page({
   data: {
     brokenNetwork: false,
     title: Video.name,
-    icon: 'icon-xiaochengxu',
-    size: '80rpx',
-    color: '#031c24',
     readmeContent: null,
     videoList: [
       {
@@ -289,11 +287,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
-  getCustomIconfont() {
+  onShareAppMessage() {
+    const imageUrl = shareImageFormat(shareImage);
+    return {
+      title: 'Video组件，增强版video提供多种功能',
+      imageUrl,
+    };
+  },
+  getCustomVideo() {
     return new Promise(async (resolve) => {
       try {
-        const response = await getCustomIconfont();
+        const response = await getCustomVideo();
         resolve(response);
       } catch (error) {
         // 正常加载
@@ -315,7 +319,7 @@ Page({
   },
   async initData() {
     Loading.show();
-    const readmeContent = await this.getCustomIconfont();
+    const readmeContent = await this.getCustomVideo();
     this.setData(
       {
         readmeContent,
@@ -324,13 +328,6 @@ Page({
         Loading.clear();
       }
     );
-  },
-  handleSettingChange(e) {
-    const { type } = e.currentTarget.dataset;
-    const value = e.detail;
-    this.setData({
-      [`${type}`]: value,
-    });
   },
   /**
    * @method refresh 断网刷新
