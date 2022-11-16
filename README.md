@@ -139,6 +139,13 @@ yarn install
 
 ## 更新日志
 
+- v1.0.3(20221116)
+
+1. 新增 custom-video 公共组件， 封装微信小程序原生 video 标签，单例模式，解决视频播放黑屏，多视频播放混音，视频列表存在多个视频同时播放，自定义 UI 样式等等，目前支持属性配置，如需扩展其他原生功能可直接修改组件添加属性。
+2. components 文件夹下的公共组件统一增加 README.md 说明文件。
+3. 新增 custom-video 演示页面。
+4. custom-image 公共组件优化。
+
 - v1.0.2(20221028)
 
   1.  新增 custom-rich-text 公共组件，基于 [mp-html](https://github.com/jin-yufeng/mp-html.git)封装，目前支持识别富文本以及 markdown 格式内容如需其他插件功能，可查看 [mp-html](https://github.com/jin-yufeng/mp-html.git) 文档，通过配置打包后将生成的 mp-weixin 文件夹放置到 components 文件件中覆盖原有的 mp-weixin 文件夹

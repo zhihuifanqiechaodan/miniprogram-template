@@ -49,7 +49,14 @@
       icon示例: icon-pullright、icon-xiaochengxu、icon-close、icon-leftarrow、icon-home、icon-search、icon-leftalignment
     </view> -->
     <block wx:for="{{videoList}}" wx:key="index">
-      <custom-video autoplay="{{false}}" width="100vw" height="100vw" poster="{{item.poster}}" src="{{item.src}}" />
+      <custom-video
+        showPlay="{{index === 0 ? false : true}}"
+        autoplay="{{false}}"
+        width="100vw"
+        height="100vw"
+        poster="{{item.poster}}"
+        src="{{item.src}}"
+      />
     </block>
   </block>
 </view>

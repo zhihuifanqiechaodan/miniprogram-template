@@ -1,3 +1,7 @@
+# 介绍
+
+通常用于小程序中图片的展示，增强版的 image 标签，提供多种图片填充模式，支持图片懒加载、加载中提示、加载失败提示。
+
 ### Props
 
 | 参数                   | 说明                                 | 类型             | 默认值     |
@@ -5,8 +9,8 @@
 | src                    | 图片链接                             | string           | -          |
 | mode                   | 图片填充模式                         | string           | aspectFill |
 | webp                   | 解析 webp 格式                       | boolean          | true       |
-| width                  | 宽度，默认单位为`px`                 | string           | -          |
-| height                 | 高度，默认单位为`px`                 | string           | -          |
+| width                  | 宽度，默认单位为`rpx`                | string           | -          |
+| height                 | 高度，默认单位为`rpx`                | string           | -          |
 | radius                 | 圆角大小，默认单位为`px`             | string ｜ number | 0          |
 | round                  | 是否显示为圆形                       | boolean          | false      |
 | lazy-load              | 是否懒加载                           | boolean          | false      |

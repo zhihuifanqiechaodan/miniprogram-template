@@ -2,7 +2,7 @@
 <view
   wx:if="{{loading}}"
   catchtouchmove="noop"
-  style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;"
+  style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px; z-index: {{zIndex}};"
   class="loading-wrapper"
 >
   <view class="mask-wrapper">
@@ -13,6 +13,6 @@
       showLoading="{{false}}"
       class="image"
     />
-    <text class="text">加载中...</text>
+    <text class="loading-text">加载中...</text>
   </view>
 </view>

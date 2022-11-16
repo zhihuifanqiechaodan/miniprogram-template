@@ -10,7 +10,7 @@ Component({
       value: '',
     },
     // markdown格式
-    markdown: {
+    isMarkdown: {
       type: Boolean,
       value: false,
     },
@@ -21,6 +21,7 @@ Component({
    */
   data: {
     containerStyle: {}, // 设置容器的样式
+    tagStyle: {}, // 设置标签的默认样式
     copyLink: true, // 是否允许外部链接被点击时自动复制
     domain: '', // 主域名（用于链接拼接）
     errorImg: '', // 图片出错时的占位图链接
@@ -32,7 +33,6 @@ Component({
     selectable: true, // 是否开启文本长按复制
     setTitle: false, // 是否将 title 标签的内容设置到页面标题
     showImgMenu: true, // 是否允许图片被长按时显示菜单
-    tagStyle: {}, // 设置标签的默认样式
     useAnchor: false, // 是否使用锚点链接
   },
 

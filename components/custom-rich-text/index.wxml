@@ -17,6 +17,6 @@
     show-img-menu="{{showImgMenu}}"
     tag-style="{{tagStyle}}"
     use-anchor="{{useAnchor}}"
-    markdown="{{markdown}}"
+    markdown="{{isMarkdown}}"
   />
 </view>

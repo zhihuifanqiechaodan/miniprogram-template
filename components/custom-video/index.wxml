@@ -4,7 +4,8 @@
 <view style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};" class="custom-video">
   <!-- 初始化视频加载样式 -->
   <view wx:if="{{init_load}}" class="init-load-wrapper">
-    <van-loading size="48rpx" vertical>加载中...</van-loading>
+    <view class="loading"></view>
+    <view class="loading-text">加载中...</view>
   </view>
   <!-- 右下角功能区域 -->
   <view wx:if="{{buffered_status}}" class="bottom-right-function-wrapper">
@@ -30,15 +31,16 @@
     </view>
   </view>
   <!-- 播放icon -->
-  <custom-image
-    wx:if="{{show_play}}"
-    catchtap="handlePlay"
-    src="{{playIcon}}"
-    width="{{playIconSize}}"
-    height="{{playIconSize}}"
-    showLoading="{{false}}"
-    class="play-icon-wrapper"
-  />
+  <view wx:if="{{show_play}}" catchtap="handlePlay" class="play-icon-wrapper">
+    <custom-image
+      wx:if="{{showPlay}}"
+      src="{{playIcon}}"
+      width="{{playIconSize}}"
+      height="{{playIconSize}}"
+      showLoading="{{false}}"
+    />
+  </view>
+
   <!-- 播放进度条 -->
   <view wx:if="{{buffered_status}}" class="progress-wrapper">
     <view style="width: {{percentage}};" class="progress"></view>

@@ -16,9 +16,35 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
+
+    .loading {
+      width: 48rpx;
+      height: 48rpx;
+      border: 4rpx solid #031c24;
+      border-top-color: #c8c9cc;
+      border-right-color: #c8c9cc;
+      border-bottom-color: #c8c9cc;
+      border-radius: 100%;
+      animation: circle infinite 0.75s linear;
+    }
+
+    .loading-text {
+      padding-top: 20rpx;
+      color: #969799;
+    }
+
+    @keyframes circle {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 
   .bottom-right-function-wrapper {

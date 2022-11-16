@@ -51,6 +51,11 @@ Component({
       type: Boolean,
       value: false,
     },
+    // 是否展示播放icon
+    showPlay: {
+      type: Boolean,
+      value: true,
+    },
     // 播放icon, 不传默认为本地播放icon
     playIcon: {
       type: String,
@@ -234,6 +239,7 @@ Component({
         });
         this._play();
       }
+      this.triggerEvent('handlePlay');
     },
     /**
      * @method _play 播放视频
@@ -274,6 +280,7 @@ Component({
         _eventType: 'pause',
       });
       this._pause();
+      this.triggerEvent('handlePause');
     },
     /**
      * @method _pause 暂停视频
@@ -302,6 +309,7 @@ Component({
         mutedStatus: !mutedStatus,
       });
       globalData.mutedStatus = !mutedStatus;
+      this.triggerEvent('handleMuted', !mutedStatus);
     },
     /**
      * @method handleFullScreen 点击全屏
@@ -340,6 +348,7 @@ Component({
           object_fit: objectFit,
         });
       }
+      this.triggerEvent('onFullscreenchange', fullScreen);
     },
     /**
      * @method initializationData 初始化data数据
