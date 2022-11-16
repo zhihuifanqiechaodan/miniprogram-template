@@ -12,7 +12,9 @@
 | height             | 高度，默认单位为`rpx`                               | string ｜ number | -                               |
 | autoplay           | 自动播放                                            | boolean          | false                           |
 | objectFit          | 当视频大小与 video 容器大小不一致时，视频的表现形式 | string           | cover                           |
-| showMuteBtn        | 静音 icon                                           | boolean          | true                            |
+| showMuted          | 静音 icon                                           | boolean          | true                            |
+| mutedStatus        | 静音状态                                            | boolean          | globalData.mutedStatus ｜ false |
+| mutedIcon          | 静音 icon                                           | string           | /assets/images/sound_off.png    |
 | loop               | 循环播放                                            | boolean          | false                           |
 | showPlay           | 播放 icon                                           | boolean          | true                            |
 | playIcon           | 播放 icon, 不传默认为本地播放 icon                  | string           | /assets/images/play.png         |
@@ -20,9 +22,6 @@
 | showFullScreen     | 全屏 icon                                           | boolean          | true                            |
 | fullScreenIcon     | 全屏 icon, 不传默认为本地全屏 icon                  | string           | /assets/images/full-screen.png  |
 | fullScreenIconSize | 播放 icon 大小                                      | string ｜ number | 48rpx                           |
-| showMuted          | 静音 icon                                           | boolean          | true                            |
-| mutedStatus        | 静音状态                                            | boolean          | globalData.mutedStatus ｜ false |
-| mutedIcon          | 静音 icon                                           | string           | /assets/images/sound_off.png    |
 | unMutedIcon        | 非静音 icon                                         | string           | /assets/images/sound_on.png     |
 | unWifiToast        | 非 wifi 情况下播放视频，第一次是否提示              | boolean          | true                            |
 | unWifiToastMessage | 非 wifi 情况下播放视频，第一次提示的信息            | string           | 非 Wi-Fi 网络，请注意流量消耗   |

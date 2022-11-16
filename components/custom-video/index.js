@@ -41,11 +41,6 @@ Component({
       type: String,
       value: 'cover',
     },
-    // 是否展示静音icon
-    showMuteBtn: {
-      type: Boolean,
-      value: true,
-    },
     // 是否循环播放
     loop: {
       type: Boolean,
