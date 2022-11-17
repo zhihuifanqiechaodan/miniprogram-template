@@ -1,6 +1,6 @@
 // pages/home/index.js
 import { shareImage } from '~/config/index';
-import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText, Video } from '~/utils/router';
+import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText, Video, VirtualiList } from '~/utils/router';
 import { navigateTo, shareImageFormat } from '~/utils/util';
 
 Page({
@@ -32,6 +32,10 @@ Page({
       {
         label: 'Video 视频',
         path: Video.path,
+      },
+      {
+        label: 'VirtualiList 虚拟列表',
+        path: VirtualiList.path,
       },
     ],
     Readme,

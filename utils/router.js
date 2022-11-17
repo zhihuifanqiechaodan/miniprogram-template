@@ -30,3 +30,7 @@ export const Video = {
   path: '/packageA/pages/video/index',
   name: 'Video 视频',
 };
+export const VirtualiList = {
+  path: '/packageA/pages/virtuali-list/index',
+  name: 'VirtualiList 虚拟列表',
+};

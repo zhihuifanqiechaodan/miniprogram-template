@@ -23,7 +23,8 @@
     "custom-iconfont": "/components/custom-iconfont/index",
     "custom-rich-text": "/components/custom-rich-text/index",
     "custom-loading": "/components/custom-loading/index",
-    "custom-video": "/components/custom-video/index"
+    "custom-video": "/components/custom-video/index",
+    "custom-virtuali-list": "/components/custom-virtuali-list/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index"],
@@ -38,7 +39,8 @@
         "pages/nav-bar/index",
         "pages/rich-text/index",
         "pages/readme/index",
-        "pages/video/index"
+        "pages/video/index",
+        "pages/virtuali-list/index"
       ]
     }
   ]

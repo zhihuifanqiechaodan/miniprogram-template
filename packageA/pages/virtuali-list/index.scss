@@ -1,3 +1,4 @@
+/* packageA/pages/virtuali-list/index.wxss */
 page {
   background-color: #ffffff;
   .app-container {
@@ -10,6 +11,13 @@ page {
     .tips {
       padding: 0 40rpx;
       line-height: 40rpx;
+    }
+
+    .goods-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 40rpx;
     }
   }
 }

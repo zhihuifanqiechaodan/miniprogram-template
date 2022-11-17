@@ -5,7 +5,7 @@
 		"compileHotReLoad": false,
 		"urlCheck": true
 	},
-	"libVersion": "2.25.4",
+	"libVersion": "2.27.2",
 	"condition": {
 		"miniprogram": {
 			"list": [
@@ -61,6 +61,13 @@
 				{
 					"name": "",
 					"pathName": "packageA/pages/rich-text/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageA/pages/virtuali-list/index",
 					"query": "",
 					"launchMode": "default",
 					"scene": null

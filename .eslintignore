@@ -3,3 +3,6 @@ miniprogram_npm/
 
 # 业务代码
 components/mp-weixin
+utils/lodash.mini.js
+utils/lodash.fix.js
+switch-env.js
