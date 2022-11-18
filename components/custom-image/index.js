@@ -6,12 +6,7 @@ Component({
   properties: {
     src: {
       type: String,
-      observer: function () {
-        this.setData({
-          error: false,
-          loading: true,
-        });
-      },
+      value: '',
     },
     mode: {
       type: String,

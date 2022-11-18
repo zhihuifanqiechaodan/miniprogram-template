@@ -4,6 +4,7 @@ import { Video } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';
 import { shareImage } from '~/config/index';
+const { systemInfo } = getApp();
 
 Page({
   /**
@@ -16,6 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemInfo,
     brokenNetwork: false,
     title: Video.name,
     readmeContent: null,

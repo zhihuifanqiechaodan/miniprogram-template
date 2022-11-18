@@ -78,7 +78,6 @@ Component({
           this.setData({
             virtualValue: [virtualIndex - 1, virtualIndex, virtualIndex + 1],
           });
-          console.log(this.data);
         }
       });
       this.setData({
@@ -88,6 +87,8 @@ Component({
   },
   pageLifetimes: {
     show() {
+      const { _virtualListObserve } = this.data;
+      _virtualListObserve && _virtualListObserve.disconnect();
       this.getVirtualiListHeight();
     },
     hide() {

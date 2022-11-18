@@ -24,7 +24,9 @@
     "custom-rich-text": "/components/custom-rich-text/index",
     "custom-loading": "/components/custom-loading/index",
     "custom-video": "/components/custom-video/index",
-    "custom-virtuali-list": "/components/custom-virtuali-list/index"
+    "custom-virtuali-list": "/components/custom-virtuali-list/index",
+    "custom-more": "/components/custom-more/index",
+    "custom-nomore": "/components/custom-nomore/index"
   },
   "sitemapLocation": "sitemap.json",
   "pages": ["pages/home/index"],

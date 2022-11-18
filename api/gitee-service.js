@@ -71,3 +71,13 @@ export const getCustomRichText = (data) => {
     data,
   });
 };
+/**
+ * @method getCustomVirtualiList custom-virtuali-list说明文件
+ * @param {*} data
+ */
+export const getCustomVirtualiList = (data) => {
+  return nativeGet({
+    url: `${giteeBaseUrl}/zhihuifanqiechaodan/miniprogram-template/raw/master/components/custom-virtuali-list/README.md`,
+    data,
+  });
+};

@@ -1,7 +1,11 @@
 <!--components/custom-video/index.wxml-->
 <wxs src="/utils/wxs.wxs" module="computed" />
 
-<view style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};" class="custom-video">
+<view
+  style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};"
+  class="custom-video"
+  id="custom-video"
+>
   <!-- 初始化视频加载样式 -->
   <view wx:if="{{init_load}}" class="init-load-wrapper">
     <view class="loading"></view>

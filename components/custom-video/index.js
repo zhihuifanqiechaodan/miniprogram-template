@@ -1,7 +1,11 @@
 // components/custom-video/index.js
 import Toast from '@vant/weapp/toast/toast';
 import { checkNetwork, getNetworkType } from '~/utils/util';
-const { globalData } = getApp();
+
+const app = getApp();
+// 兼容直接引入组件没有在app.js中生命globalData
+if (!app?.globalData) app.globalData = {};
+const { globalData, systemInfo } = app;
 
 Component({
   options: {
@@ -111,12 +115,19 @@ Component({
       type: String,
       value: '非Wi-Fi网络，请注意流量消耗',
     },
+    // 观察者开启
+    observeOpen: {
+      type: Boolean,
+      value: true,
+    },
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    _customVideoPlayObserve: null, // IntersectionObserver 对象
+    _customVideoPauseObserve: null, // IntersectionObserver 对象
     _eventType: '', // 事件类型，autoplay、play、pause
     _is_first_play: true, // 标记，用于处理加载进度中自动播放场景
     init_load: false, // 初始化视频加载
@@ -368,10 +379,47 @@ Component({
         }
       );
     },
+    /**
+     * @method observeCustomVideoPlay 监测视频自动播放
+     */
+    observeCustomVideoPlay() {
+      const { screenHeight } = systemInfo;
+      const _customVideoPlayObserve = this.createIntersectionObserver();
+      _customVideoPlayObserve
+        .relativeToViewport({ top: -(screenHeight / 2 - 1), bottom: -(screenHeight / 2 - 1) })
+        .observe('#custom-video', (value) => {
+          const { intersectionRatio } = value;
+          const { is_full_screen, show_play } = this.data;
+          // 处于监测区域且非全屏暂停状态
+          if (intersectionRatio && !is_full_screen && show_play) {
+            this.handlePlay();
+          }
+        });
+      this.setData({
+        _customVideoPlayObserve,
+      });
+    },
+    /**
+     * @method observeCustomVideoPuase 监测视频自动停止
+     */
+    observeCustomVideoPuase() {
+      const _customVideoPauseObserve = this.createIntersectionObserver();
+      _customVideoPauseObserve.relativeToViewport().observe('#custom-video', (value) => {
+        const { intersectionRatio } = value;
+        const { is_full_screen, show_play } = this.data;
+        // 超出屏幕范围且非全屏且正在播放
+        if (!intersectionRatio && !is_full_screen && !show_play) {
+          this.handlePause();
+        }
+      });
+      this.setData({
+        _customVideoPauseObserve,
+      });
+    },
   },
   lifetimes: {
     attached() {
-      const { autoplay } = this.data;
+      const { autoplay, _customVideoPlayObserve, _customVideoPauseObserve, observeOpen } = this.data;
       const id = 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = (Math.random() * 16) | 0;
         const v = c == 'x' ? r : (r & 0x3) | 0x8;
@@ -390,6 +438,24 @@ Component({
           id: `video_${id}`,
         });
       }
+      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
+      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
+      observeOpen && this.observeCustomVideoPlay();
+      observeOpen && this.observeCustomVideoPuase();
+    },
+  },
+  pageLifetimes: {
+    show() {
+      const { _customVideoPlayObserve, _customVideoPauseObserve, observeOpen } = this.data;
+      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
+      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
+      observeOpen && this.observeCustomVideoPlay();
+      observeOpen && this.observeCustomVideoPuase();
+    },
+    hide() {
+      const { _customVideoPlayObserve, _customVideoPauseObserve } = this.data;
+      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
+      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
     },
   },
 });

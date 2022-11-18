@@ -6,6 +6,7 @@
     <view class="title">API</view>
     <custom-rich-text content="{{readmeContent}}" />
     <view class="title">演示</view>
+    <view class="midline"></view>
     <block wx:for="{{videoList}}" wx:key="index">
       <custom-video autoplay="{{false}}" width="100vw" height="100vw" poster="{{item.poster}}" src="{{item.src}}" />
     </block>
