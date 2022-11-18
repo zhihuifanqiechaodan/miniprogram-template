@@ -3,9 +3,9 @@
   <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
   <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
   <block wx:if="{{!brokenNetwork && readmeContent}}">
-    <!-- <view class="title">API</view>
-		<custom-rich-text content="{{readmeContent}}" />
-		<view class="title">演示</view> -->
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
     <custom-virtuali-list
       virtualiList="{{goodsInfo.data}}"
       generic:selectable="my-goods"
