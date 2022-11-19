@@ -93,7 +93,7 @@ Page({
   onShareAppMessage() {
     const imageUrl = shareImageFormat(shareImage);
     return {
-      title: 'Video组件，增强版video提供多种功能',
+      title: 'VirtualiList组件，通过虚拟化列表渲染超大数据',
       imageUrl,
     };
   },
