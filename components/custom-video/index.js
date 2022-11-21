@@ -131,9 +131,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    _customVideoPlayObserve: null, // IntersectionObserver 对象
-    _customVideoPauseObserve: null, // IntersectionObserver 对象
-    _eventType: '', // 事件类型，autoplay、play、pause
+    _play_observe: null, // IntersectionObserver 对象
+    _pause_observe: null, // IntersectionObserver 对象
+    _event_type: '', // 事件类型，autoplay、play、pause
     _is_first_play: true, // 标记，用于处理加载进度中自动播放场景
     init_load: false, // 初始化视频加载
     show_placeholder: true, // 是否展示封面图片站位
@@ -173,10 +173,10 @@ Component({
      */
     onProgress(e) {
       const { buffered } = e.detail;
-      const { _eventType, _is_first_play } = this.data;
+      const { _event_type, _is_first_play } = this.data;
       if (buffered > 0) {
         // 由于加载进度不管当前video处于什么状态都会执行，因此要处理事件类型进行播放, 防止多次触发播放，通过_is_first_play标记进行判断
-        if (['play', 'autoplay'].includes(_eventType) && _is_first_play) {
+        if (['play', 'autoplay'].includes(_event_type) && _is_first_play) {
           this.setData(
             {
               buffered_status: true,
@@ -235,7 +235,7 @@ Component({
       }
       if (_is_first_play) {
         this.setData({
-          _eventType: 'play',
+          _event_type: 'play',
           init_load: true,
           show_video: true,
           show_play: false,
@@ -243,7 +243,7 @@ Component({
         });
       } else {
         this.setData({
-          _eventType: 'play',
+          _event_type: 'play',
           show_placeholder: false,
           show_play: false,
           mutedStatus,
@@ -288,7 +288,7 @@ Component({
     handlePause() {
       this.setData({
         show_play: true,
-        _eventType: 'pause',
+        _event_type: 'pause',
       });
       this._pause();
       this.triggerEvent('handlePause');
@@ -367,7 +367,7 @@ Component({
     initializationData() {
       this.setData(
         {
-          _eventType: '', // 事件类型，autoplay、play、pause
+          _event_type: '', // 事件类型，autoplay、play、pause
           _is_first_play: true, // 标记，用于处理加载进度中自动播放场景
           init_load: false, // 初始化视频加载
           show_placeholder: true, // 是否展示封面图片站位
@@ -389,8 +389,8 @@ Component({
      */
     observeCustomVideoPlay() {
       const { screenHeight } = systemInfo;
-      const _customVideoPlayObserve = this.createIntersectionObserver();
-      _customVideoPlayObserve
+      const _play_observe = this.createIntersectionObserver();
+      _play_observe
         .relativeToViewport({ top: -(screenHeight / 2 - 1), bottom: -(screenHeight / 2 - 1) })
         .observe('#custom-video', (value) => {
           const { intersectionRatio } = value;
@@ -401,15 +401,15 @@ Component({
           }
         });
       this.setData({
-        _customVideoPlayObserve,
+        _play_observe,
       });
     },
     /**
      * @method observeCustomVideoPuase 监测视频自动停止
      */
     observeCustomVideoPuase() {
-      const _customVideoPauseObserve = this.createIntersectionObserver();
-      _customVideoPauseObserve.relativeToViewport().observe('#custom-video', (value) => {
+      const _pause_observe = this.createIntersectionObserver();
+      _pause_observe.relativeToViewport().observe('#custom-video', (value) => {
         const { intersectionRatio } = value;
         const { is_full_screen, show_play } = this.data;
         // 超出屏幕范围且非全屏且正在播放
@@ -418,14 +418,13 @@ Component({
         }
       });
       this.setData({
-        _customVideoPauseObserve,
+        _pause_observe,
       });
     },
   },
   lifetimes: {
     attached() {
-      const { autoplay, _customVideoPlayObserve, _customVideoPauseObserve, observePlayStatus, observePauseStatus } =
-        this.data;
+      const { autoplay, _play_observe, _pause_observe, observePlayStatus, observePauseStatus } = this.data;
       const id = 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = (Math.random() * 16) | 0;
         const v = c == 'x' ? r : (r & 0x3) | 0x8;
@@ -436,7 +435,7 @@ Component({
           init_load: true,
           show_video: true,
           show_play: false,
-          _eventType: 'autoplay',
+          _event_type: 'autoplay',
           id,
         });
       } else {
@@ -444,24 +443,24 @@ Component({
           id: `video_${id}`,
         });
       }
-      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
-      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
+      _play_observe && _play_observe.disconnect();
+      _pause_observe && _pause_observe.disconnect();
       observePlayStatus && this.observeCustomVideoPlay();
       observePauseStatus && this.observeCustomVideoPuase();
     },
   },
   pageLifetimes: {
     show() {
-      const { _customVideoPlayObserve, _customVideoPauseObserve, observePlayStatus, observePauseStatus } = this.data;
-      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
-      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
+      const { _play_observe, _pause_observe, observePlayStatus, observePauseStatus } = this.data;
+      _play_observe && _play_observe.disconnect();
+      _pause_observe && _pause_observe.disconnect();
       observePlayStatus && this.observeCustomVideoPlay();
       observePauseStatus && this.observeCustomVideoPuase();
     },
     hide() {
-      const { _customVideoPlayObserve, _customVideoPauseObserve } = this.data;
-      _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
-      _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
+      const { _play_observe, _pause_observe } = this.data;
+      _play_observe && _play_observe.disconnect();
+      _pause_observe && _pause_observe.disconnect();
     },
   },
 });
