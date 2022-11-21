@@ -25,7 +25,8 @@
 | unMutedIcon        | 非静音 icon                                                                                | string           | /assets/images/sound_on.png     |
 | unWifiToast        | 非 wifi 情况下播放视频，第一次是否提示                                                     | boolean          | true                            |
 | unWifiToastMessage | 非 wifi 情况下播放视频，第一次提示的信息                                                   | string           | 非 Wi-Fi 网络，请注意流量消耗   |
-| observeOpen        | 观察者开启状态, 开启后视频在触碰屏幕中线时会自动播放视频，离开可使用窗口高度将自动停止播放 | boolean          | true                            |
+| observePlayStatus  | 观察者播放状态, 开启后视频在触碰屏幕中线时会自动播放视频，离开可使用窗口高度将自动停止播放 | boolean          | true                            |
+| observePauseStatus | 观察者暂停状态, 开启后视频在离开可使用窗口高度将自动停止播放                               | boolean          | true                            |
 
 ### objectFit 视频表现形式 
 

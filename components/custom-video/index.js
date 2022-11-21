@@ -115,8 +115,13 @@ Component({
       type: String,
       value: '非Wi-Fi网络，请注意流量消耗',
     },
-    // 观察者开启
-    observeOpen: {
+    // 观察者播放状态
+    observePlayStatus: {
+      type: Boolean,
+      value: true,
+    },
+    // 观察者暂停状态
+    observePauseStatus: {
       type: Boolean,
       value: true,
     },
@@ -419,7 +424,8 @@ Component({
   },
   lifetimes: {
     attached() {
-      const { autoplay, _customVideoPlayObserve, _customVideoPauseObserve, observeOpen } = this.data;
+      const { autoplay, _customVideoPlayObserve, _customVideoPauseObserve, observePlayStatus, observePauseStatus } =
+        this.data;
       const id = 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         const r = (Math.random() * 16) | 0;
         const v = c == 'x' ? r : (r & 0x3) | 0x8;
@@ -440,17 +446,17 @@ Component({
       }
       _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
       _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
-      observeOpen && this.observeCustomVideoPlay();
-      observeOpen && this.observeCustomVideoPuase();
+      observePlayStatus && this.observeCustomVideoPlay();
+      observePauseStatus && this.observeCustomVideoPuase();
     },
   },
   pageLifetimes: {
     show() {
-      const { _customVideoPlayObserve, _customVideoPauseObserve, observeOpen } = this.data;
+      const { _customVideoPlayObserve, _customVideoPauseObserve, observePlayStatus, observePauseStatus } = this.data;
       _customVideoPlayObserve && _customVideoPlayObserve.disconnect();
       _customVideoPauseObserve && _customVideoPauseObserve.disconnect();
-      observeOpen && this.observeCustomVideoPlay();
-      observeOpen && this.observeCustomVideoPuase();
+      observePlayStatus && this.observeCustomVideoPlay();
+      observePauseStatus && this.observeCustomVideoPuase();
     },
     hide() {
       const { _customVideoPlayObserve, _customVideoPauseObserve } = this.data;
