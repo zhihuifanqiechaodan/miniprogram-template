@@ -27,11 +27,16 @@
     - dev test pre prod
 
 - 组件
-    - 断网
-    - iconfot字体图标
-    - 图片
-    - 导航栏
-    - 富文本
+    - custom-broken-network
+    - custom-iconfont
+    - custom-image
+    - custom-loading
+    - custom-more
+    - custom-nav-bar
+    - custom-nomore
+    - custom-rich-text
+    - custom-video
+    - custom-virtuali-list
 
 - 全局配置
     - eslist + prettier 代码规范
@@ -133,7 +138,7 @@ yarn install
 
 ## 公共组件
 
-关于公共组件的介绍和使用请查看对应组件文件夹下的 README.md
+关于公共组件的介绍和使用请查看对应组件文件夹下的 README.md, 也可以查看公共组件介绍页面的demo.
 
 ## 其它
 
@@ -142,6 +147,10 @@ yarn install
 对于一些小程序开发中常遇到的问题和解决方案欢迎讨论。
 
 欢迎您提供宝贵的意见和建议，也欢迎提 issues 增加和修改功能或组件，另外如果可以的话请给个 start，感谢～
+
+**个人微信**
+
+![WechatIMG18.jpeg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1767488f0d6e43ff9a26ec2d6b6e65f0~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 更新日志
 
