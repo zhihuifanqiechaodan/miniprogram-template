@@ -256,10 +256,12 @@ Component({
      * @method _play 播放视频
      */
     _play() {
-      const { id } = this.data;
-      this.setData({
-        _is_first_play: false,
-      });
+      const { id, _is_first_play } = this.data;
+      if (_is_first_play) {
+        this.setData({
+          _is_first_play: false,
+        });
+      }
       this.createSelectorQuery()
         .select(`#${id}`)
         .context(function (res) {
@@ -392,11 +394,12 @@ Component({
       const _play_observe = this.createIntersectionObserver();
       _play_observe
         .relativeToViewport({ top: -(screenHeight / 2 - 1), bottom: -(screenHeight / 2 - 1) })
-        .observe('#custom-video', (value) => {
-          const { intersectionRatio } = value;
+        .observe('#custom-video', async (value) => {
+          const networkType = await getNetworkType();
           const { is_full_screen, show_play } = this.data;
-          // 处于监测区域且非全屏暂停状态
-          if (intersectionRatio && !is_full_screen && show_play) {
+          const { intersectionRatio } = value;
+          // 处于监测区域且非全屏暂停状态并且是wifi状态
+          if (intersectionRatio && !is_full_screen && show_play && networkType === 'wifi') {
             this.handlePlay();
           }
         });
@@ -436,7 +439,7 @@ Component({
           show_video: true,
           show_play: false,
           _event_type: 'autoplay',
-          id,
+          id: `video_${id}`,
         });
       } else {
         this.setData({
