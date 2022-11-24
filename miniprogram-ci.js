@@ -1,12 +1,19 @@
 import dayjs from 'dayjs';
 import ci from 'miniprogram-ci';
 import { version, appId, env } from './config/index.js';
+import path from 'path';
+
+const __dirname = path.resolve();
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 
 (async () => {
   const project = new ci.Project({
     appid: appId, // 小程序AppID
     type: 'miniProgram',
-    projectPath: './', // 打包文件路径
+    // projectPath: './', // 打包文件路径
+    projectPath: resolve('./'), // 打包文件路径
     privateKeyPath: `private.${appId}.key`, // 秘钥路径，根据appId放置多个
     ignores: ['node_modules/**/*'],
   });
