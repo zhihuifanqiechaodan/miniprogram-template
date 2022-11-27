@@ -7,7 +7,7 @@
   id="custom-video"
 >
   <!-- 初始化视频加载样式 -->
-  <view wx:if="{{init_load}}" class="init-load-wrapper">
+  <view wx:if="{{init_load}}" catchtap="handlePause" class="init-load-wrapper">
     <view class="loading"></view>
     <view class="loading-text">加载中...</view>
   </view>

@@ -289,6 +289,7 @@ Component({
      */
     handlePause() {
       this.setData({
+        init_load: false,
         show_play: true,
         _event_type: 'pause',
       });
