@@ -223,7 +223,7 @@ Component({
     async handlePlay() {
       await checkNetwork();
       const { _is_first_play, id } = this.data;
-      const { VideoContextComponent = null, mutedStatus = false } = globalData;
+      const { VideoContextComponent = null } = globalData;
       // 播放之前先处理上一个视频的业务逻辑（非当前播放视频组件）
       if (VideoContextComponent) {
         if (VideoContextComponent.data.id !== id) {
@@ -239,14 +239,12 @@ Component({
           init_load: true,
           show_video: true,
           show_play: false,
-          mutedStatus,
         });
       } else {
         this.setData({
           _event_type: 'play',
           show_placeholder: false,
           show_play: false,
-          mutedStatus,
         });
         this._play();
       }
@@ -256,12 +254,15 @@ Component({
      * @method _play 播放视频
      */
     _play() {
-      const { id, _is_first_play } = this.data;
+      const { id, _is_first_play, mutedStatus } = this.data;
       if (_is_first_play) {
         this.setData({
           _is_first_play: false,
         });
       }
+      this.setData({
+        mutedStatus: mutedStatus || globalData.mutedStatus,
+      });
       this.createSelectorQuery()
         .select(`#${id}`)
         .context(function (res) {
