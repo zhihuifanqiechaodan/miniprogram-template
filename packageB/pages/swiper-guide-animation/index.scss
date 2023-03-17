@@ -1,0 +1,153 @@
+/* packageB/pages/swiper-guide-animation/index.wxss */
+.app-container {
+  .swiper-wrapper {
+    position: relative;
+
+    .swiper {
+      width: 100vw;
+      height: 100vw;
+    }
+
+    .animation-wrapper {
+      z-index: 2;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vw;
+      pointer-events: none;
+      opacity: 1;
+      &.guide-animation-2 {
+        .mask-wrapper {
+          animation-duration: 3.3s;
+          @keyframes opacityDom {
+            0%,
+            89% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        }
+
+        .animation-images {
+          animation-duration: 2s;
+        }
+
+        .animation-indicator {
+          animation-iteration-count: 1, 2;
+        }
+      }
+
+      &.guide-animation-1 {
+        .mask-wrapper {
+          animation-duration: 2.3s;
+          @keyframes opacityDom {
+            0%,
+            92.3% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        }
+
+        .animation-images {
+          animation-duration: 1s;
+        }
+
+        .animation-indicator {
+          animation-iteration-count: 1, 1;
+        }
+      }
+
+      .mask-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        animation-name: opacityDom;
+        animation-fill-mode: forwards;
+
+        .animation-images {
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: flex;
+          width: 100%;
+          height: 100%;
+          animation-delay: 1s;
+          animation-name: scrollImage;
+          animation-fill-mode: forwards;
+
+          @keyframes scrollImage {
+            0% {
+              left: 0;
+            }
+            50% {
+              left: -100vw;
+            }
+            100% {
+              left: -200vw;
+            }
+          }
+        }
+
+        .animation-indicator {
+          z-index: 1;
+          position: absolute;
+          right: 40rpx;
+          top: 50%;
+          transform: translateY(-50%);
+          animation-name: indicatorOpacity, indicatorMove;
+          animation-duration: 1s, 1s;
+          animation-delay: 0s, 1s;
+          animation-fill-mode: forwards, forwards;
+          @keyframes indicatorOpacity {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+          @keyframes indicatorMove {
+            0% {
+              right: 40rpx;
+              opacity: 1;
+            }
+            95% {
+              right: calc(100% - 80rpx);
+              opacity: 0;
+            }
+            100% {
+              right: 40rpx;
+              opacity: 0;
+            }
+          }
+        }
+
+        .mask {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          animation-name: maskBackgroundColor;
+          animation-duration: 1s;
+          animation-fill-mode: forwards;
+          @keyframes maskBackgroundColor {
+            from {
+              background-color: rgba(0, 0, 0, 0);
+            }
+            to {
+              background-color: rgba(0, 0, 0, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}

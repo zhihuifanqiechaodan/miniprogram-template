@@ -34,3 +34,7 @@ export const VirtualiList = {
   path: '/packageA/pages/virtuali-list/index',
   name: 'VirtualiList 虚拟列表',
 };
+export const SwiperGuideAnimation = {
+  path: '/packageB/pages/swiper-guide-animation/index',
+  name: '轮播图引导动画',
+};

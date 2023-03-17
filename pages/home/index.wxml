@@ -46,4 +46,19 @@
       </view>
     </view>
   </view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">业务组件</view>
+    <view class="introduce-list">
+      <view
+        wx:for="{{businessList}}"
+        wx:key="index"
+        catchtap="navigateTo"
+        data-path="{{item.path}}"
+        class="introduce-item {{index !== introduceList.length -1  ? 'van-hairline--bottom' : ''}}"
+      >
+        <view class="introduce-label">{{item.label}}</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
 </view>

@@ -1,6 +1,16 @@
 // pages/home/index.js
 import { shareImage } from '~/config/index';
-import { BrokenNetwork, Iconfont, Image, NavBar, Readme, RichText, Video, VirtualiList } from '~/utils/router';
+import {
+  BrokenNetwork,
+  Iconfont,
+  Image,
+  NavBar,
+  Readme,
+  RichText,
+  SwiperGuideAnimation,
+  Video,
+  VirtualiList,
+} from '~/utils/router';
 import { navigateTo, shareImageFormat } from '~/utils/util';
 
 Page({
@@ -10,35 +20,41 @@ Page({
   data: {
     introduceList: [
       {
-        label: 'BrokenNetwork 断网',
+        label: BrokenNetwork.name,
         path: BrokenNetwork.path,
       },
       {
-        label: 'Iconfont 阿里图标',
+        label: Iconfont.name,
         path: Iconfont.path,
       },
       {
-        label: 'Image 图片',
+        label: Image.name,
         path: Image.path,
       },
       {
-        label: 'NavBar 导航栏',
+        label: NavBar.name,
         path: NavBar.path,
       },
       {
-        label: 'RichText 富文本',
+        label: RichText.name,
         path: RichText.path,
       },
       {
-        label: 'Video 视频',
+        label: Video.name,
         path: Video.path,
       },
       {
-        label: 'VirtualiList 虚拟列表',
+        label: VirtualiList.name,
         path: VirtualiList.path,
       },
     ],
     Readme,
+    businessList: [
+      {
+        label: SwiperGuideAnimation.name,
+        path: SwiperGuideAnimation.path,
+      },
+    ],
   },
 
   /**

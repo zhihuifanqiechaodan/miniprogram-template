@@ -71,6 +71,20 @@
 					"query": "",
 					"launchMode": "default",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageB/pages/watermark/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "packageB/pages/swiper-guide-animation/index",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}
