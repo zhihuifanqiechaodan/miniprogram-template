@@ -11,7 +11,7 @@
       <view class="mask-wrapper" bindanimationend="guideAnimationend">
         <view class="animation-images">
           <custom-image
-            wx:for="{{wxsModule.slice(swiperList, 0, swiperList.length > 2 ? 2 : 1)}}"
+            wx:for="{{wxsModule.slice(swiperList, 0, swiperList.length > 2 ? 3 : 2)}}"
             wx:for-item="animationUrlListItem"
             wx:for-index="animationUrlListIndex"
             wx:key="animationUrlListIndex"
