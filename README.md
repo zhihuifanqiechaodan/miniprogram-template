@@ -138,7 +138,7 @@ yarn install
 
 ## 公共组件
 
-关于公共组件的介绍和使用请查看对应组件文件夹下的 README.md, 也可以查看公共组件介绍页面的demo.
+关于公共组件的介绍和使用请查看对应组件文件夹下的 README.md, 也可以查看公共组件介绍页面的 demo.
 
 ## 其它
 
@@ -153,6 +153,10 @@ yarn install
 ![WechatIMG18.jpeg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1767488f0d6e43ff9a26ec2d6b6e65f0~tplv-k3u1fbpfcp-watermark.image?)
 
 ## 更新日志
+
+- v1.0.5(20230320)
+
+  1. 新增 轮播图引导动画 业务组件，基于 css animation 实现， 常用于引导告知用户当前是一个轮播图，可以左右滑动查看图片等等
 
 - v1.0.4(20221118)
 
