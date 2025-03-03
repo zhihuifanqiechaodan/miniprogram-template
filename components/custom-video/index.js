@@ -223,15 +223,15 @@ Component({
     async handlePlay() {
       await checkNetwork();
       const { _is_first_play, id } = this.data;
-      const { VideoContextComponent = null } = globalData;
+      const { videoContextComponent = null } = globalData;
       // 播放之前先处理上一个视频的业务逻辑（非当前播放视频组件）
-      if (VideoContextComponent) {
-        if (VideoContextComponent.data.id !== id) {
-          VideoContextComponent.initializationData();
-          globalData.VideoContextComponent = this;
+      if (videoContextComponent) {
+        if (videoContextComponent.data.id !== id) {
+          videoContextComponent.initializationData();
+          globalData.videoContextComponent = this;
         }
       } else {
-        globalData.VideoContextComponent = this;
+        globalData.videoContextComponent = this;
       }
       if (_is_first_play) {
         this.setData({
