@@ -1,7 +1,7 @@
 // app.js
 import { env, log } from '~/config/index';
 import { Home } from './utils/router';
-import { reLaunch } from './utils/util';
+import { reLaunch, getSystemInfoSync } from './utils/util';
 
 App({
   onLaunch() {
@@ -51,7 +51,7 @@ App({
     });
 
     // 获取设备信息
-    const systemInfo = wx.getSystemInfoSync();
+    const systemInfo = getSystemInfoSync();
 
     // 获取菜单按钮（右上角胶囊按钮）的布局位置信息。坐标信息以屏幕左上角为原点。
     const menuButton = wx.getMenuButtonBoundingClientRect();

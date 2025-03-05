@@ -243,3 +243,18 @@ export const shareImageFormat = (params) => {
     return params;
   }
 };
+
+export const getSystemInfoSync = () => {
+  const systemSetting = wx.getSystemSetting();
+  const appAuthorizeSetting = wx.getAppAuthorizeSetting();
+  const deviceInfo = wx.getDeviceInfo();
+  const windowInfo = wx.getWindowInfo();
+  const appBaseInfo = wx.getAppBaseInfo();
+  return {
+    ...systemSetting,
+    ...appAuthorizeSetting,
+    ...deviceInfo,
+    ...windowInfo,
+    ...appBaseInfo,
+  };
+};
