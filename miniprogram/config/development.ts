@@ -3,7 +3,7 @@ const env = 'development';
 // 根域名
 const baseUrl = 'https://xxx';
 // AppId
-const appId = 'wx2f3fed2106f72ceb';
+const appId = 'wx0d6d764af9843ae7';
 
 export default {
   env,
