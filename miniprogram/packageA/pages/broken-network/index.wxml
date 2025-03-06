@@ -1,0 +1,58 @@
+<!--packageA/pages/broken-network/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
+    <view class="demo-list">
+      <view class="demo-item">
+        <view class="demo-item-label">内容</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ message }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="message"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">按钮文案</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ buttonText }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="buttonText"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">基于屏幕垂直居中布局</view>
+        <van-checkbox
+          value="{{ verticalCenter }}"
+          bind:change="handleSettingChange"
+          data-type="verticalCenter"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <custom-broken-network
+      message="{{message}}"
+      buttonText="{{buttonText}}"
+      verticalCenter="{{verticalCenter}}"
+      external-custom-broken-network="external-custom-broken-network"
+      external-custom-broken-network_message="external-custom-broken-network_message"
+      external-custom-broken-network_refresh="external-custom-broken-network_refresh"
+    />
+  </block>
+</view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

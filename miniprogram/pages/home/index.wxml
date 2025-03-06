@@ -1,0 +1,64 @@
+<!--pages/home/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar placeholder="{{true}}" customStyle="background: #f4f5f5" title="MiniProgram-Template" />
+  <view class="title-wrapper">
+    <custom-iconfont icon="icon-xiaochengxu" size="60rpx" />
+    <view class="title">MiniProgram-Template</view>
+  </view>
+  <view class="subtitle">基础配置完善、可靠的小程序开发模版</view>
+  <view class="self-introduction">
+    <view class="title">个人介绍</view>
+    <view class="introduction">
+      👋 My name is Gao Yu, you can also call me Tomato. I am a Front-end developer. I live in China now.</view
+    >
+    <view class="introduction"> 🧰 Vue, TypeScript, Mini Program are all familiar, React has written some code. </view>
+  </view>
+  <view class="about-project">
+    <view class="title">MiniProgram-Template</view>
+    <view class="introduction"
+      >miniprogram-template是一个快速开发小程序的解决方案，它基于 vant-weapp 实现。它使用了小程序目前支持的最新配置和
+      api，内置了 eslist + prettier 代码规范，husky + lint-staged Git
+      提交代码规范验证，提供了丰富的功能组件，它可以帮助你快速搭建企业级小程序产品原型，希望本项目都能帮助你敏捷开发企业需求。</view
+    >
+    <view class="introduction">更多关于项目的介绍和组件的介绍请通过下方导航跳转查看。</view>
+  </view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">关于项目</view>
+    <view class="introduce-list">
+      <view catchtap="navigateTo" data-path="{{Readme.path}}" class="introduce-item">
+        <view class="introduce-label">模版介绍</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">公共组件</view>
+    <view class="introduce-list">
+      <view
+        wx:for="{{introduceList}}"
+        wx:key="index"
+        catchtap="navigateTo"
+        data-path="{{item.path}}"
+        class="introduce-item {{index !== introduceList.length -1  ? 'van-hairline--bottom' : ''}}"
+      >
+        <view class="introduce-label">{{item.label}}</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
+  <view class="introduce-list-wrapper">
+    <view class="introduce-title">业务组件</view>
+    <view class="introduce-list">
+      <view
+        wx:for="{{businessList}}"
+        wx:key="index"
+        catchtap="navigateTo"
+        data-path="{{item.path}}"
+        class="introduce-item {{index !== introduceList.length -1  ? 'van-hairline--bottom' : ''}}"
+      >
+        <view class="introduce-label">{{item.label}}</view>
+        <custom-iconfont icon="icon-pullright" size="36rpx" />
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,121 @@
+/* components/custom-video/index.wxss */
+.custom-video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #f7f8fa;
+
+  .init-load-wrapper {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .loading {
+      width: 48rpx;
+      height: 48rpx;
+      border: 4rpx solid #031c24;
+      border-top-color: #c8c9cc;
+      border-right-color: #c8c9cc;
+      border-bottom-color: #c8c9cc;
+      border-radius: 100%;
+      animation: circle infinite 0.75s linear;
+    }
+
+    .loading-text {
+      padding-top: 20rpx;
+      color: #969799;
+    }
+
+    @keyframes circle {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .bottom-right-function-wrapper {
+    z-index: 9;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    .full-screen-icon-wrapper {
+      padding: 20rpx;
+    }
+
+    .muted-icon-wrapper {
+      padding: 20rpx;
+    }
+  }
+
+  .play-icon-wrapper {
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pause-wrapper {
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .progress-wrapper {
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4rpx;
+    background-color: #d8d8d8;
+
+    .progress {
+      height: 100%;
+      background-color: #031c24;
+    }
+  }
+
+  .poster-wrapper {
+    z-index: 7;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+}

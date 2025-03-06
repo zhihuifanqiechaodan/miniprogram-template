@@ -1,0 +1,41 @@
+{
+  "name": "miniprogram-ts-sass-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build:dev": "cross-env NODE_ENV=development run-s switch-env miniprogram-ci",
+    "build:prod": "cross-env NODE_ENV=production run-s switch-env miniprogram-ci",
+    "build:prod1": "cross-env NODE_ENV=production run-s switch-env",
+    "lint": "eslint . --fix",
+    "format": "prettier . --write",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint"
+    ],
+    "*.{ts,wxs,wxml,wxss,json}": [
+      "npm run format"
+    ]
+  },
+  "dependencies": {
+    "@vant/weapp": "^1.11.7",
+    "husky": "^9.1.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "lint-staged": "^15.4.3",
+    "miniprogram-api-typings": "^4.0.5",
+    "miniprogram-ci": "^2.0.10",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.26.0"
+  },
+  "type": "module"
+}

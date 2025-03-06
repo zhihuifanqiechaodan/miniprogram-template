@@ -1,0 +1,42 @@
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper.flex {
+  display: flex;
+  align-items: center;
+}
+
+.placeholder_bg_logo {
+  width: 50%;
+  height: 0;
+}
+
+.image-round {
+  border-radius: 50% !important;
+}
+
+.image-round .image-img {
+  border-radius: inherit;
+}
+
+.image-error,
+.image-img,
+.image-loading {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.image-error,
+.image-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf0f0;
+}

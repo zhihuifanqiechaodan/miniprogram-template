@@ -1,0 +1,57 @@
+/* packageA/pages/virtuali-list/components/goods/index.wxss */
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+/* 新版本 */
+.characteristic {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32rpx;
+  color: #ffffff;
+  font-size: 20rpx;
+  background-color: rgba(3, 28, 36, 0.4);
+}
+
+.marketing-label-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.description {
+  white-space: normal;
+}
+
+.brand {
+  padding-top: 20rpx;
+  font-size: 20rpx;
+  font-weight: 300;
+}
+
+.brand-suffix {
+  padding-top: 6rpx;
+  font-size: 20rpx;
+  font-weight: 300;
+}
+
+.name {
+  padding-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+
+.price {
+  padding-top: 8rpx;
+  font-size: 24rpx;
+}
+
+.relate-color-count-description {
+  padding-top: 8rpx;
+  padding-bottom: 8rpx;
+  color: #999999;
+  font-size: 24rpx;
+}

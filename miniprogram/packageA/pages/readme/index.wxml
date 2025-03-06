@@ -1,0 +1,11 @@
+<!--packageA/pages/readme/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <custom-rich-text content="{{readmeContent}}" />
+  </block>
+</view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

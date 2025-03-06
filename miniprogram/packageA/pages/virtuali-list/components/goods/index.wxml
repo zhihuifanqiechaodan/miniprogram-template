@@ -1,0 +1,34 @@
+<!--packageA/pages/virtuali-list/components/goods/index.wxml-->
+<view wx:if="{{virtualiItem}}" class="custom-goods" style="width: 320rpx">
+  <custom-image src="{{virtualiItem.miniCoverImage}}" width="320rpx" height="480rpx">
+    <view wx:if="{{virtualiItem.willSellOut || virtualiItem.stockNum}}" class="characteristic">
+      <view wx:if="{{virtualiItem.stockNum}}" class="sell-out">已售罄</view>
+      <view wx:elif="{{virtualiItem.willSellOut}}" class="will-sell-out">即将售罄</view>
+    </view>
+    <custom-image
+      wx:if="{{virtualiItem.marketingLabelImg}}"
+      width="{{virtualiItem.width}}"
+      height="{{virtualiItem.height}}"
+      src="{{virtualiItem.marketingLabelImg}}"
+      showLoading="{{false}}"
+      class="marketing-label-img"
+    />
+  </custom-image>
+  <!-- 单品描述 -->
+  <view class="description">
+    <!-- 品牌 -->
+    <view wx:if="{{virtualiItem.spuBrand}}" class="brand">{{virtualiItem.spuBrand}}</view>
+    <!-- 品牌后缀 -->
+    <view wx:if="{{virtualiItem.brandSuffix}}" class="brand-suffix">{{virtualiItem.brandSuffix}}</view>
+    <!-- 单品名称 -->
+    <view wx:if="{{virtualiItem.spuName}}" class="name van-multi-ellipsis--l2">{{virtualiItem.spuName}}</view>
+    <!-- 复色 -->
+    <view wx:if="{{virtualiItem.relateColorCountDescription}}" class="relate-color-count-description"
+      >{{virtualiItem.relateColorCountDescription}}</view
+    >
+    <!-- 单品价格 -->
+    <view wx:if="{{virtualiItem.minSkuPriceStr}}" class="price external-price van-ellipsis"
+      >¥{{virtualiItem.minSkuPriceStr}}</view
+    >
+  </view>
+</view>

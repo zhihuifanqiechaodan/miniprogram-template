@@ -1,0 +1,31 @@
+/* packageA/pages/rich-text/index.wxss */
+page {
+  .app-container {
+    .title {
+      padding: 40rpx;
+      font-size: 36rpx;
+      font-weight: 500;
+    }
+
+    .tips {
+      padding: 0 40rpx;
+      line-height: 40rpx;
+    }
+
+    .case-wrapper {
+      padding: 0 40rpx;
+
+      .case-item {
+        padding-bottom: 40rpx;
+        .rich-text-title {
+          font-size: 32rpx;
+          font-weight: 500;
+        }
+
+        .analysis {
+          padding: 20rpx;
+        }
+      }
+    }
+  }
+}

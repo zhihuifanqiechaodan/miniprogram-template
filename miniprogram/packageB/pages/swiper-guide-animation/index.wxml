@@ -1,0 +1,39 @@
+<!--packageB/pages/swiper-guide-animation/index.wxml-->
+<view class="app-container">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <view class="swiper-wrapper">
+    <swiper class="swiper" current="{{swiperList.length > 2 ? 2 : 1}}">
+      <swiper-item wx:for="{{swiperList}}" wx:key="index">
+        <custom-image src="{{item}}" />
+      </swiper-item>
+    </swiper>
+    <view class="animation-wrapper {{swiperList.length > 2 ? 'guide-animation-2' : 'guide-animation-1'}}">
+      <view class="mask-wrapper" bindanimationend="guideAnimationend">
+        <view class="animation-images">
+          <custom-image
+            wx:for="{{wxsModule.slice(swiperList, 0, swiperList.length > 2 ? 3 : 2)}}"
+            wx:for-item="animationUrlListItem"
+            wx:for-index="animationUrlListIndex"
+            wx:key="animationUrlListIndex"
+            src="{{animationUrlListItem}}"
+            width="100vw"
+            height="100vw"
+          />
+        </view>
+        <view class="animation-indicator">
+          <custom-image src="/assets/images/indicator.png" width="48rpx" height="48rpx" showLoading="{{false}}" />
+        </view>
+        <view class="mask"> </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+	module.exports = {
+		slice: function (data, start, end) {
+			return data.slice(start, end)
+		}
+	}
+</wxs>

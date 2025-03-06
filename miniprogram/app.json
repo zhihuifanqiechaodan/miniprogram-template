@@ -1,0 +1,46 @@
+{
+  "pages": ["pages/home/index"],
+  "subPackages": [
+    {
+      "root": "packageA",
+      "name": "packageA",
+      "pages": [
+        "pages/broken-network/index",
+        "pages/iconfot/index",
+        "pages/image/index",
+        "pages/nav-bar/index",
+        "pages/rich-text/index",
+        "pages/readme/index",
+        "pages/video/index",
+        "pages/virtuali-list/index"
+      ]
+    },
+    {
+      "root": "packageB",
+      "name": "packageB",
+      "pages": ["pages/swiper-guide-animation/index"]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "resolveAlias": {
+    "~/*": "/*",
+    "@vant/*": "/miniprogram_npm/@vant/*"
+  }
+}

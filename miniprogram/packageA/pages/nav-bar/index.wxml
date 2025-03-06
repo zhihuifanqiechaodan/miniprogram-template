@@ -1,0 +1,106 @@
+<!--packageA/pages/nav-bar/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
+    <view class="demo-list">
+      <view class="demo-item">
+        <view class="demo-item-label">标题</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ title }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="title"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">自定义样式</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ customStyle }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="customStyle"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否开启点击滚动到顶部, 仅支持页面滚动</view>
+        <van-checkbox
+          value="{{ backTop }}"
+          bind:change="handleSettingChange"
+          data-type="backTop"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否显示下边框</view>
+        <van-checkbox
+          value="{{ border }}"
+          bind:change="handleSettingChange"
+          data-type="border"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否显示左侧首页图标</view>
+        <van-checkbox
+          value="{{ showHome }}"
+          bind:change="handleSettingChange"
+          data-type="showHome"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否显示左侧返回图标</view>
+        <van-checkbox
+          value="{{ showBack }}"
+          bind:change="handleSettingChange"
+          data-type="showBack"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否显示左侧关闭图标</view>
+        <van-checkbox
+          value="{{ showClose }}"
+          bind:change="handleSettingChange"
+          data-type="showClose"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否留出顶部安全距离（状态栏高度）</view>
+        <van-checkbox
+          value="{{ safeAreaInsetTop }}"
+          bind:change="handleSettingChange"
+          data-type="safeAreaInsetTop"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <custom-nav-bar
+      safeAreaInsetTop="{{safeAreaInsetTop}}"
+      fixed="{{false}}"
+      title="{{title}}"
+      customStyle="{{customStyle}}"
+      backTop="{{backTop}}"
+      border="{{border}}"
+      showHome="{{showHome}}"
+      showBack="{{showBack}}"
+      showClose="{{showClose}}"
+    />
+  </block>
+</view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

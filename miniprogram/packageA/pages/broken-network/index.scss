@@ -1,0 +1,25 @@
+/* packageA/pages/broken-network/index.wxss */
+.app-container {
+  .title {
+    padding: 40rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+  }
+
+  .demo-list {
+    margin: 0 40rpx;
+    margin-bottom: 40rpx;
+    background-color: #ffffff;
+    .demo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30rpx 20rpx;
+
+      .demo-item-value {
+        flex: 1;
+        margin-left: 40rpx;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<!--packageA/pages/iconfot/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
+    <view class="demo-list">
+      <view class="demo-item">
+        <view class="demo-item-label">图标</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ icon}}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="icon"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">大小</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ size }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="size"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">颜色</view>
+        <van-field
+          value="{{ color }}"
+          border="{{ false }}"
+          bind:change="handleSettingChange"
+          data-type="color"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <view class="tips">
+      icon示例: icon-pullright、icon-xiaochengxu、icon-close、icon-leftarrow、icon-home、icon-search、icon-leftalignment
+    </view>
+    <custom-iconfont
+      icon="{{icon || 'icon-xiaochengxu'}}"
+      size="{{size || '80rpx'}}"
+      color="{{color || '#031c24'}}"
+      external-custom-iconfont="external-custom-iconfont"
+    />
+  </block>
+</view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

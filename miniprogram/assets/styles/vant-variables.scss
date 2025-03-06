@@ -1,0 +1,25 @@
+page {
+  --button-default-color: #031c24;
+  --button-default-height: 72rpx;
+  --button-default-font-size: 28rpx;
+  --button-primary-color: #ffffff;
+  --button-primary-background-color: #031c24;
+  --button-primary-border-color: #031c24;
+  --button-border-radius: 4rpx;
+
+  --nav-bar-title-font-size: 28rpx;
+  --nav-bar-title-text-color: #031c24;
+}
+
+// Vant Weapp 开放了大量的外部样式类供开发者使用，具体的样式类名称可查阅对应组件的“外部样式类”部分。
+// 需要注意的是普通样式类和外部样式类的优先级是未定义的，因此使用时请添加!important以保证外部样式类的优先级。
+.van-nav-bar__content {
+  display: flex !important;
+  align-items: center !important;
+}
+.van-nav-bar__left {
+  left: 0 !important;
+}
+.van-nav-bar__title {
+  max-width: 50vw !important;
+}

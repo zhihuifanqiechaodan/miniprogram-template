@@ -1,0 +1,78 @@
+<!--components/custom-video/index.wxml-->
+<wxs src="/utils/wxs.wxs" module="computed" />
+
+<view
+  style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};"
+  class="custom-video"
+  id="custom-video"
+>
+  <!-- 初始化视频加载样式 -->
+  <view wx:if="{{init_load}}" catchtap="handlePause" class="init-load-wrapper">
+    <view class="loading"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+  <!-- 右下角功能区域 -->
+  <view wx:if="{{buffered_status}}" class="bottom-right-function-wrapper">
+    <!-- 静音icon -->
+    <view wx:if="{{showMuted}}" class="muted-icon-wrapper">
+      <custom-image
+        catchtap="handleMuted"
+        src="{{mutedStatus ? mutedIcon : unMutedIcon}}"
+        width="{{mutedIconSize}}"
+        height="{{mutedIconSize}}"
+        showLoading="{{false}}"
+      />
+    </view>
+    <!-- 全屏icon -->
+    <view wx:if="{{showFullScreen}}" class="full-screen-icon-wrapper">
+      <custom-image
+        catchtap="handleFullScreen"
+        src="{{fullScreenIcon}}"
+        width="{{fullScreenIconSize}}"
+        height="{{fullScreenIconSize}}"
+        showLoading="{{false}}"
+      />
+    </view>
+  </view>
+  <!-- 播放icon -->
+  <view wx:if="{{show_play}}" catchtap="handlePlay" class="play-icon-wrapper">
+    <custom-image
+      wx:if="{{showPlay}}"
+      src="{{playIcon}}"
+      width="{{playIconSize}}"
+      height="{{playIconSize}}"
+      showLoading="{{false}}"
+    />
+  </view>
+  <!-- 播放进度条 -->
+  <view wx:if="{{buffered_status}}" class="progress-wrapper">
+    <view style="width: {{percentage}};" class="progress"></view>
+  </view>
+  <!-- 暂停遮罩层 -->
+  <view wx:if="{{!show_play}}" catchtap="handlePause" class="pause-wrapper"></view>
+  <!-- 封面图 -->
+  <custom-image src="{{poster}}" class="poster-wrapper" style="left: {{show_placeholder ? 0 : '-100vw'}}" />
+  <!-- 视频组件 -->
+  <video
+    wx:if="{{show_video}}"
+    bindplay="onPlay"
+    bindpause="onPause"
+    binderror="onError"
+    bindended="onEnded"
+    bindtimeupdate="onTimeupdate"
+    bindfullscreenchange="onFullscreenchange"
+    bindloadedmetadata="onLoadedmetadata"
+    bindprogress="onProgress"
+    src="{{src}}"
+    object-fit="{{object_fit}}"
+    muted="{{mutedStatus}}"
+    show-progress="{{is_full_screen}}"
+    show-play-btn="{{is_full_screen}}"
+    show-fullscreen-btn="{{is_full_screen}}"
+    show-center-play-btn="{{false}}"
+    loop="{{loop}}"
+    class="video-wrapper"
+    id="{{id}}"
+  />
+  <slot />
+</view>

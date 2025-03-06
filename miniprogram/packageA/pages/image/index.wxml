@@ -1,0 +1,101 @@
+<!--packageA/pages/image/index.wxml-->
+<view class="app-container safeAreaInsetBottom">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
+  <block wx:if="{{!brokenNetwork && readmeContent}}">
+    <view class="title">API</view>
+    <custom-rich-text content="{{readmeContent}}" />
+    <view class="title">演示</view>
+    <view class="demo-list">
+      <view class="demo-item">
+        <view class="demo-item-label">图片链接</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ src }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="src"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">宽度</view>
+        <view class="demo-item-value">
+          <van-field
+            value="{{ width }}"
+            border="{{ false }}"
+            bind:change="handleSettingChange"
+            data-type="width"
+            input-align="right"
+            custom-style="padding: 0;"
+          />
+        </view>
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">高度</view>
+        <van-field
+          value="{{ height }}"
+          border="{{ false }}"
+          bind:change="handleSettingChange"
+          data-type="height"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">图片填充模式</view>
+        <van-field
+          value="{{ mode }}"
+          border="{{ false }}"
+          bind:change="handleSettingChange"
+          data-type="mode"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">圆角大小</view>
+        <van-field
+          value="{{ radius }}"
+          border="{{ false }}"
+          bind:change="handleSettingChange"
+          data-type="radius"
+          input-align="right"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否显示为圆形</view>
+        <van-checkbox
+          value="{{ round }}"
+          bind:change="handleSettingChange"
+          data-type="round"
+          custom-style="padding: 0;"
+        />
+      </view>
+      <view class="demo-item">
+        <view class="demo-item-label">是否开启长按图片显示识别小程序码菜单</view>
+        <van-checkbox
+          value="{{ showMenuByLongpress }}"
+          bind:change="handleSettingChange"
+          data-type="showMenuByLongpress"
+          custom-style="padding: 0;"
+        />
+      </view>
+    </view>
+    <custom-image
+      src="{{src}}"
+      width="{{width}}"
+      height="{{height}}"
+      mode="{{mode}}"
+      radius="{{radius}}"
+      round="{{round}}"
+      show-menu-by-longpress="{{showMenuByLongpress}}"
+    />
+  </block>
+</view>
+
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

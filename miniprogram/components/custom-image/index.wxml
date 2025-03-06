@@ -1,0 +1,44 @@
+<!--components/custom-image/index.wxml-->
+<view
+  style="width: {{wxsModule.addUnit(width)}}; height: {{wxsModule.addUnit(height)}}; border-radius: {{radius ? wxsModule.addUnit(radius) : 0}}; {{customStyle}}"
+  class="image-wrapper {{round ? 'image-round' : ''}} {{flex ? 'flex' : ''}}"
+>
+  <image
+    src="{{src}}"
+    mode="{{mode}}"
+    webp="{{webp}}"
+    lazy-load="{{lazyLoad}}"
+    show-menu-by-longpress="{{showMenuByLongpress}}"
+    binderror="error"
+    bindload="load"
+    class="image-img"
+  />
+  <slot />
+  <view
+    wx:if="{{ loading && showLoading }}"
+    style="background-color: {{showLoadingBackg}};"
+    class="image-loading {{round ? 'image-round' : ''}}"
+  >
+    <image
+      wx:if="{{placeholder}}"
+      mode="widthFix"
+      src="/assets/images/common/fabrique_logo.png"
+      lazy-load="{{lazyLoad}}"
+      class="placeholder_bg_logo"
+    />
+  </view>
+  <view wx:if="{{ error && showError }}" class="image-error {{round ? 'image-round' : ''}}" />
+</view>
+
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  var REGEXP = getRegExp('^-?\d+(\.\d+)?$');
+  module.exports = {
+    addUnit: function (value) {
+      if (value == null) {
+        return undefined;
+      }
+      return REGEXP.test('' + value) ? value + 'px' : value;
+    }
+  }
+</wxs>
