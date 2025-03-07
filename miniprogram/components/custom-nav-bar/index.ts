@@ -56,7 +56,6 @@ Component({
   data: {
     safeAreaInsetTop: false,
     systemInfo: app.systemInfo,
-    height: app.systemInfo.safeArea.top + 46,
   },
 
   /**

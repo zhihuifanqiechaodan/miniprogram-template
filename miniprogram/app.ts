@@ -25,7 +25,6 @@ App<IAppOption>({
       });
     });
     this.systemInfo.navbarHeight = this.systemInfo.statusBarHeight + 46;
-    console.log(this.systemInfo);
 
     wx.login({
       success: (res) => {

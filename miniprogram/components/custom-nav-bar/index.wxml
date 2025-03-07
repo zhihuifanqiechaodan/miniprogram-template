@@ -21,4 +21,4 @@
     </view>
   </view>
 </view>
-<view wx:if="{{fixed && placeholder}}" style="height: {{height * 2}}rpx;"></view>
+<view wx:if="{{fixed && placeholder}}" style="height: {{systemInfo.navbarHeight * 2}}rpx;"></view>
