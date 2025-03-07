@@ -2,10 +2,8 @@
 import { navigateBack, reLaunch } from '~/utils/util';
 import { Home } from '~/utils/router';
 const app: IAppOption = getApp();
+
 Component({
-  options: {
-    multipleSlots: true, // 在组件定义时的选项中启用多 slot 支持
-  },
   /**
    * 组件的属性列表
    */
