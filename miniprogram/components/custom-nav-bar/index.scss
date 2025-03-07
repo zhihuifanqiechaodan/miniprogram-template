@@ -1,5 +1,32 @@
 /* components/custom-navbar/index.wxss */
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+
 .custom-nav-bar {
+  &.custom-nav-bar--fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .custom-nav-bar_content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 92rpx;
+    padding: 0 20rpx;
+    .custom-nav-bar_title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50vw;
+    }
+    .custom-nav-bar_home-icon,
+    .custom-nav-bar_back-icon,
+    .custom-nav-bar_close-icon {
+      padding: 0 20rpx;
+    }
+  }
   .solt-left {
     display: flex;
     align-items: center;

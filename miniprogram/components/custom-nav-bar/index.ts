@@ -1,7 +1,7 @@
 // components/custom-navbar/custom-navbar.js
 import { navigateBack, reLaunch } from '~/utils/util';
 import { Home } from '~/utils/router';
-
+const app: IAppOption = getApp();
 Component({
   options: {
     multipleSlots: true, // 在组件定义时的选项中启用多 slot 支持
@@ -10,60 +10,41 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    // 是否显示中间文案
-    title: {
-      type: String,
-      value: '',
-    },
-    // 是否开启点击滚动到顶部, 仅支持页面滚动
-    backTop: {
-      type: Boolean,
-      value: false,
-    },
-    // 是否固定在顶部
     fixed: {
       type: Boolean,
       value: true,
     },
-    // 固定在顶部时是否开启占位
+    title: {
+      type: String,
+      value: '',
+    },
+    backTop: {
+      type: Boolean,
+      value: true,
+    },
     placeholder: {
       type: Boolean,
       value: false,
     },
-    // 是否显示下边框
-    border: {
-      type: Boolean,
-      value: false,
-    },
-    // 根节点自定义样式
     customStyle: {
       type: String,
       value: 'background: rgba(255, 255, 255, 0)',
     },
-    // 是否显示左侧首页图标
     showHome: {
       type: Boolean,
       value: false,
     },
-    //是否显示左侧返回图标
     showBack: {
       type: Boolean,
       value: false,
     },
-    //是否显示左侧关闭图标
     showClose: {
       type: Boolean,
       value: false,
     },
-    // 是否开启左侧插槽
     showSlot: {
       type: Boolean,
       value: false,
-    },
-    // 是否留出顶部安全距离（状态栏高度）
-    safeAreaInsetTop: {
-      type: Boolean,
-      value: true,
     },
     zIndex: {
       type: Number,
@@ -74,7 +55,11 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    safeAreaInsetTop: false,
+    systemInfo: app.systemInfo,
+    height: app.systemInfo.safeArea.top + 46,
+  },
 
   /**
    * 组件的方法列表

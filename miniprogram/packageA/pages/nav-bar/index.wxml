@@ -1,6 +1,11 @@
 <!--packageA/pages/nav-bar/index.wxml-->
 <view class="app-container safeAreaInsetBottom">
-  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" customStyle="background: #f4f5f5" title="{{title}}" />
+  <custom-nav-bar
+    showBack="{{showBack}}"
+    placeholder="{{placeholder}}"
+    customStyle="background: #f4f5f5"
+    title="{{title}}"
+  />
   <custom-broken-network wx:if="{{brokenNetwork}}" bindhandleRefresh="refresh" verticalCenter="{{true}}" />
   <block wx:if="{{!brokenNetwork && readmeContent}}">
     <view class="title">API</view>
@@ -43,15 +48,6 @@
         />
       </view>
       <view class="demo-item">
-        <view class="demo-item-label">是否显示下边框</view>
-        <van-checkbox
-          value="{{ border }}"
-          bind:change="handleSettingChange"
-          data-type="border"
-          custom-style="padding: 0;"
-        />
-      </view>
-      <view class="demo-item">
         <view class="demo-item-label">是否显示左侧首页图标</view>
         <van-checkbox
           value="{{ showHome }}"
@@ -79,25 +75,23 @@
         />
       </view>
       <view class="demo-item">
-        <view class="demo-item-label">是否留出顶部安全距离（状态栏高度）</view>
+        <view class="demo-item-label">是否是否开启占位</view>
         <van-checkbox
-          value="{{ safeAreaInsetTop }}"
+          value="{{ placeholder }}"
           bind:change="handleSettingChange"
-          data-type="safeAreaInsetTop"
+          data-type="placeholder"
           custom-style="padding: 0;"
         />
       </view>
     </view>
     <custom-nav-bar
-      safeAreaInsetTop="{{safeAreaInsetTop}}"
-      fixed="{{false}}"
       title="{{title}}"
       customStyle="{{customStyle}}"
       backTop="{{backTop}}"
-      border="{{border}}"
       showHome="{{showHome}}"
       showBack="{{showBack}}"
       showClose="{{showClose}}"
+      placeholder="{{placeholder}}"
     />
   </block>
 </view>

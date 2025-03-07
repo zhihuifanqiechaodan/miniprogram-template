@@ -10,12 +10,11 @@ interface IPageData {
   title: string;
   readmeContent: string | null;
   backTop: boolean;
-  border: boolean;
   showHome: boolean;
   showBack: boolean;
   showClose: boolean;
-  safeAreaInsetTop: boolean;
   customStyle: string;
+  placeholder: boolean;
 }
 Page({
   /**
@@ -26,12 +25,11 @@ Page({
     title: NavBar.name,
     readmeContent: null,
     backTop: true,
-    border: false,
     showHome: false,
-    showBack: false,
+    showBack: true,
     showClose: false,
-    safeAreaInsetTop: false,
     customStyle: 'background-color: #ffffff;',
+    placeholder: true,
   },
 
   /**
