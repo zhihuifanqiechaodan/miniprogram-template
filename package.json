@@ -5,7 +5,8 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development run-s switch-env miniprogram-ci",
     "build:prod": "cross-env NODE_ENV=production run-s switch-env miniprogram-ci",
-    "build:prod1": "cross-env NODE_ENV=production run-s switch-env",
+    "switch-env": "node switch-env.js",
+    "miniprogram-ci": "node miniprogram-ci.js",
     "lint": "eslint --fix",
     "lint-all": "eslint . --fix",
     "format": "prettier --write",
@@ -25,13 +26,14 @@
   },
   "dependencies": {
     "@vant/weapp": "^1.11.7",
-    "husky": "^9.1.7"
+    "dayjs": "^1.11.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.21.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "miniprogram-api-typings": "^4.0.5",
     "miniprogram-ci": "^2.0.10",
@@ -39,5 +41,13 @@
     "prettier": "^3.5.3",
     "typescript-eslint": "^8.26.0"
   },
-  "type": "module"
+  "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "core-js",
+      "protobufjs"
+    ]
+  }
 }

@@ -15,5 +15,7 @@ interface IAppOption {
     WechatMiniprogram.AppAuthorizeSetting &
     WechatMiniprogram.DeviceInfo &
     WechatMiniprogram.WindowInfo &
-    WechatMiniprogram.AppBaseInfo;
+    WechatMiniprogram.AppBaseInfo & {
+      navbarHeight?: number
+    }
 }

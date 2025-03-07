@@ -5,7 +5,7 @@
     "compileHotReLoad": false,
     "autoAudits": false,
     "lazyloadPlaceholderEnable": true,
-    "skylineRenderEnable": true
+    "skylineRenderEnable": false
   },
   "libVersion": "development"
 }

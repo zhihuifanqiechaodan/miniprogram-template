@@ -15,6 +15,7 @@ export default [
       'typings/types/**',
       '.prettierrc.cjs',
       'switch-env.js',
+      'miniprogram-ci.js'
     ],
   },
   {
