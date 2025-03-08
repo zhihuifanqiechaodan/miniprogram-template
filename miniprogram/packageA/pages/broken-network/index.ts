@@ -1,5 +1,5 @@
 // packageA/pages/broken-network/index.js
-import { getCustomBrokenNetwork } from '~/api/gitee-service';
+import { getCustomBrokenNetwork } from '~/api/gitee';
 import { BrokenNetwork } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

@@ -1,5 +1,5 @@
 // packageA/pages/nav-bar/index.js
-import { getCustomNavBar } from '~/api/gitee-service';
+import { getCustomNavBar } from '~/api/gitee';
 import { NavBar } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

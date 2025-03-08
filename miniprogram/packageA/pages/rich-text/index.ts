@@ -1,5 +1,5 @@
 // packageA/pages/rich-text/index.js
-import { getCustomRichText } from '~/api/gitee-service';
+import { getCustomRichText } from '~/api/gitee';
 import { RichText } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

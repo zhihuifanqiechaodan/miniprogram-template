@@ -1,5 +1,5 @@
 // packageA/pages/video/index.js
-import { getCustomVideo } from '~/api/gitee-service';
+import { getCustomVideo } from '~/api/gitee';
 import { Video } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

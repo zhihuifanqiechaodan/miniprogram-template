@@ -1,5 +1,5 @@
 // packageA/pages/iconfot/index.js
-import { getCustomIconfont } from '~/api/gitee-service';
+import { getCustomIconfont } from '~/api/gitee';
 import { Iconfont } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

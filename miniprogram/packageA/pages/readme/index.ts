@@ -1,5 +1,5 @@
 // packageA/pages/readme/index.js
-import { getMiniprogramTemplate } from '~/api/gitee-service';
+import { getMiniprogramTemplate } from '~/api/gitee';
 import { Readme } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

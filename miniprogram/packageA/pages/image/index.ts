@@ -1,5 +1,5 @@
 // packageA/pages/image/index.js
-import { getCustomImage } from '~/api/gitee-service';
+import { getCustomImage } from '~/api/gitee';
 import { Image } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';

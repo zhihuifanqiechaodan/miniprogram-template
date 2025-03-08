@@ -1,7 +1,7 @@
 // packageA/pages/virtuali-list/index.js
 import Toast from '@vant/weapp/toast/toast';
-import { getCustomVirtualiList } from '~/api/gitee-service';
-import { addGoodsList } from '~/api/goods-service';
+import { getCustomVirtualiList } from '~/api/gitee';
+import { addGoodsList } from '~/api/goods';
 import { VirtualiList } from '~/utils/router';
 import { Loading } from '~/components/custom-loading/loading';
 import { checkNetwork, shareImageFormat } from '~/utils/util';
