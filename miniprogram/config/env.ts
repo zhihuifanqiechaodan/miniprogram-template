@@ -1,5 +1,5 @@
-import development from './development.js'; // 开发环境
-import production from './production.js'; // 生产环境
+import development from './development'; // 开发环境
+import production from './production'; // 生产环境
 
 const configInfo = {
   development,
