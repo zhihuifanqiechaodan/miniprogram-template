@@ -5,6 +5,10 @@ import { checkNetwork, getNetworkType } from '~/utils/util';
 const app: IAppOption = getApp();
 const { globalData, systemInfo } = app;
 export {};
+
+interface IVideoObjectFit {
+  objectFit: 'contain' | 'fill' | 'cover';
+}
 interface ICustomVideoData {
   _play_observe: WechatMiniprogram.IntersectionObserver | null;
   _pause_observe: WechatMiniprogram.IntersectionObserver | null;
@@ -16,7 +20,7 @@ interface ICustomVideoData {
   show_play: boolean;
   buffered_status: boolean;
   percentage: string;
-  object_fit: 'contain' | 'cover';
+  object_fit: IVideoObjectFit['objectFit'];
   is_full_screen: boolean;
   id: string;
 }
@@ -380,7 +384,7 @@ Component({
       } else {
         this.setData({
           is_full_screen: fullScreen,
-          object_fit: objectFit,
+          object_fit: objectFit as IVideoObjectFit['objectFit'],
         });
       }
       this.triggerEvent('onFullscreenchange', fullScreen);
