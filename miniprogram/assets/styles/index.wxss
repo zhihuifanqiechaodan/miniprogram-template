@@ -1,0 +1,31 @@
+@import '/assets/styles/vant-variables.wxss';
+@import '/assets/styles/swiper.wxss';
+
+::-webkit-scrollbar {
+  display: none;
+}
+.safeAreaInsetBottom {
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}
+.page-container {
+  padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
+}
+.refresher-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90rpx;
+}
+.fixed-bottom-wrapper {
+  z-index: 9;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 -2rpx 0 0 #e6e6e6;
+  box-sizing: border-box;
+  padding: 24rpx 20rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+}

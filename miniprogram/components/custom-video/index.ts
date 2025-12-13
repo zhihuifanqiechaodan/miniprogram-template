@@ -1,9 +1,9 @@
 // components/custom-video/index.js
 import Toast from '@vant/weapp/toast/toast';
-import { checkNetwork, getNetworkType } from '~/utils/util';
+import { checkNetwork, getNetworkType } from '@miniprogram/utils/util';
 
 const app: IAppOption = getApp();
-const { globalData, systemInfo } = app;
+const { globalData } = app;
 export {};
 
 interface IVideoObjectFit {
@@ -23,6 +23,8 @@ interface ICustomVideoData {
   object_fit: IVideoObjectFit['objectFit'];
   is_full_screen: boolean;
   id: string;
+  playbackRateIndex: number;
+  playbackRateList: { label: string; value: number; src: string }[];
 }
 
 Component({
@@ -148,6 +150,17 @@ Component({
       type: Boolean,
       value: true,
     },
+    radius: {
+      type: Number,
+      optionalTypes: [String, Number],
+      value: 0,
+    },
+  },
+
+  observers: {
+    src() {
+      this.initializationData();
+    },
   },
 
   /**
@@ -167,6 +180,12 @@ Component({
     object_fit: 'cover', // 当视频大小与 video 容器大小不一致时，视频的表现形式
     is_full_screen: false, // 全屏状态
     id: '', // 视频组件唯一id
+    playbackRateList: [
+      { label: '1.0x', value: 1, src: '/assets/images/rate1.svg' },
+      { label: '1.5x', value: 1.5, src: '/assets/images/rate1.5.svg' },
+      // { label: '2.0x', value: 2 ,src: '/assets/images/rate2.svg'},
+    ],
+    playbackRateIndex: 0,
   } as ICustomVideoData,
 
   /**
@@ -185,10 +204,20 @@ Component({
      */
     onLoadedmetadata() {
       // 经测试发现，当视频数据源大的时候，加载时机没有onProgress快，即使视频数据源小的时候也会出现没有onProgress快, 因此逻辑放到onProgress中去进行。
-      // console.log(
-      //   '========================👇 视频元数据加载完成时触发。event.detail = {width, height, duration}👇========================\n\n',
-      //   '\n\n'
-      // );
+      this.setData(
+        {
+          buffered_status: true,
+          init_load: false,
+          show_placeholder: false,
+        },
+        () => {
+          this._play();
+        }
+      );
+      console.log(
+        '========================👇 视频元数据加载完成时触发。event.detail = {width, height, duration}👇========================\n\n',
+        '\n\n'
+      );
     },
     /**
      * @method onProgress 加载进度变化时触发，只支持一段加载。event.detail = {buffered}，百分比
@@ -239,6 +268,7 @@ Component({
         show_placeholder: true,
         percentage: '0%',
       });
+      this.triggerEvent('onEnded');
     },
     /**
      * @method handlePlay 点击播放
@@ -416,7 +446,7 @@ Component({
      * @method observeCustomVideoPlay 监测视频自动播放
      */
     observeCustomVideoPlay() {
-      const { screenHeight } = systemInfo;
+      const { screenHeight } = globalData.systemInfo!;
       const _play_observe = this.createIntersectionObserver({});
       _play_observe
         .relativeToViewport({
@@ -452,6 +482,25 @@ Component({
       this.setData({
         _pause_observe,
       });
+    },
+    /**
+     * @method handleChangePlaybackRate 切换视频播放速度
+     * 每次点击切换到下一个倍率，末尾后回到第一个
+     */
+    handleChangePlaybackRate() {
+      this.setData({
+        playbackRateIndex: (this.data.playbackRateIndex + 1) % this.data.playbackRateList.length,
+      });
+      // 设置 video 组件的播放速度
+      this.createSelectorQuery()
+        .select(`#${this.data.id}`)
+        .context((res) => {
+          const VideoContext = res.context;
+          if (VideoContext && VideoContext.playbackRate) {
+            VideoContext.playbackRate(this.data.playbackRateList[this.data.playbackRateIndex].value);
+          }
+        })
+        .exec();
     },
   },
   lifetimes: {

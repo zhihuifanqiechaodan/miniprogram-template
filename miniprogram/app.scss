@@ -1,3 +1,27 @@
 /**app.wxss**/
 @import '/miniprogram_npm/@vant/weapp/common/index.wxss';
 @import '/assets/styles/index.wxss';
+
+page {
+	--color-primary: #1890ff;
+	--color-light-blue: #e6f4ff;
+	--color-green: #52c41a;
+	--color-black: #000;
+	--color-white: #fff;
+	--color-text: #333333;
+	--color-border: #ebedf0;
+	--color-bg: #f6f6f6;
+	--color-shadow-color: rgba(0, 0, 0, 0.1);
+	--text-content: 24rpx;
+	--border-radius: 8rpx;
+	--tabbar-height: 120rpx;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: var(--color-text);
+	background-color: #f5f6f7;
+}
+
+view,
+text {
+	word-break: break-word;
+}

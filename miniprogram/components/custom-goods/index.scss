@@ -1,0 +1,24 @@
+/* components/custom-goods/index.wxss */
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+.custom-goods {
+  .goods-title {
+    padding-top: 10rpx;
+  }
+  .characteristic {
+    padding-top: 10rpx;
+    color: #999999;
+  }
+  .goods-price-box {
+    display: flex;
+    align-items: center;
+    padding-top: 10rpx;
+    font-weight: 500;
+
+    .goods-originalPrice {
+      padding-left: 20rpx;
+      color: #999999;
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import Toast from '@vant/weapp/toast/toast';
-import { Home } from '~/utils/router';
+import { Carts, Categories, Device, Home, Profile } from '@miniprogram/utils/router';
 
 /**
  * @method getItemSync 缓存读取
@@ -161,7 +161,9 @@ export const reLaunch = ({ url }: { url: string }) => {
  * @method getCurrentPageInfo 获取当前页面栈中指定路径的页面信息
  * @param {*} path app.json中定义的完整路径
  */
-export const getCurrentPageInfo = (path: string) => {
+export const getCurrentPageInfo = (
+  path?: string
+): WechatMiniprogram.Page.Instance<AnyObject, AnyObject> | undefined => {
   // 存在指定路径， 返回指定路径页面详情
   if (path) {
     // 反转数组，返回最后一次出现路由
@@ -208,8 +210,8 @@ export const checkNetwork = () => {
 /**
  * @method getNetworkType 获取网络类型
  */
-export const getNetworkType = () => {
-  return new Promise((resolve) => {
+export const getNetworkType = (): Promise<'wifi' | '2g' | '3g' | '4g' | '5g' | 'unknown' | 'none'> => {
+  return new Promise<'wifi' | '2g' | '3g' | '4g' | '5g' | 'unknown' | 'none'>((resolve) => {
     // 获取网络类型
     wx.getNetworkType({
       success: (value) => {
@@ -227,7 +229,7 @@ export const logout = () => {
   const { globalData } = getApp();
   globalData.userInfo = null;
   deleteItemSync('userInfo');
-  reLaunch({ url: Home.path });
+  reLaunch({ url: Home.pagePath });
 };
 
 /**
@@ -255,11 +257,78 @@ export const getSystemInfoSync = () => {
   const deviceInfo = wx.getDeviceInfo();
   const windowInfo = wx.getWindowInfo();
   const appBaseInfo = wx.getAppBaseInfo();
+  const menuButton = wx.getMenuButtonBoundingClientRect();
   return {
     ...systemSetting,
     ...appAuthorizeSetting,
     ...deviceInfo,
     ...windowInfo,
     ...appBaseInfo,
+    menuButton,
   };
+};
+export const tabbarRoutes = [Home, Categories, Device, Carts, Profile];
+export const setTabBarSelected = () => {
+  const currentPageInfo = getCurrentPageInfo();
+  if (typeof currentPageInfo?.getTabBar === 'function') {
+    const selected = tabbarRoutes.findIndex((item) => {
+      return item.pagePath === `/${currentPageInfo.route}`;
+    });
+    currentPageInfo?.getTabBar().setData({
+      selected,
+    });
+  }
+};
+
+interface IEventBusClients {
+  [key: string]: ((data: any) => void)[];
+}
+/**
+ * eventBus 事件总线
+ */
+export const eventBus = {
+  clients: {} as IEventBusClients,
+  /**
+   * @method addEventListener 事件监听
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   * @param {Function} fn 回调函数
+   */
+  addEventListener(method: string, fn: (data: any) => void) {
+    if (!this.clients[method]) {
+      this.clients[method] = [];
+    }
+    this.clients[method].push(fn);
+  },
+  /**
+   * @method triggerEventListener 事件触发
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   * @param {object} data
+   */
+  triggerEventListener(method: string, data?: any) {
+    this.clients[method]?.forEach((fn: (data: any) => void) => fn(data));
+  },
+  /**
+   * @method removeEventListener 删除事件
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   */
+  removeEventListener(method: string) {
+    this.clients[method]?.pop();
+  },
+};
+
+export const getUuid = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
+export const openWeChatCustomerService = (): void => {
+  wx.openCustomerServiceChat({
+    extInfo: {
+      url: 'https://work.weixin.qq.com/kfid/kfcb0ceea388bc6e173',
+    },
+    corpId: 'ww7fb3f78055c08d11',
+  });
 };

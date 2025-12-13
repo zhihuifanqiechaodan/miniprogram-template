@@ -22,7 +22,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    systemInfo: app.systemInfo, // 设备信息
+    systemInfo: app.globalData.systemInfo, // 设备信息
   },
 
   /**

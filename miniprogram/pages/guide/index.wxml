@@ -1,0 +1,21 @@
+<!--pages/guide/index.wxml-->
+<view class="app-container">
+  <custom-nav-bar showSlot="{{true}}" placeholder="{{false}}">
+    <view class="custom-nav-bar">
+      <view catch:tap="handlePass" class="pass-wrapper">
+        <view class="skip">跳过</view>
+        <van-count-down
+          bind:change="onChange"
+          bind:finish="onFinish"
+          use-slot
+          time="{{ time }}"
+          class="control-count-down"
+          >{{timeData.seconds}}</van-count-down
+        >
+      </view>
+    </view>
+  </custom-nav-bar>
+  <custom-image src="https://cdn-mini.easylook.com.cn/common/start-poster-2.jpg" width="100vw" height="100vh">
+    <view catch:tap="handlePass" class="quick-explore">即刻探索 →</view>
+  </custom-image>
+</view>

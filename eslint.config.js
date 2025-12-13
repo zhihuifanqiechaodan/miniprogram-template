@@ -8,15 +8,7 @@ export default [
     files: ['**/*.{js,mjs,cjs,ts}'],
   },
   {
-    ignores: [
-      'node_modules',
-      'miniprogram/components/mp-weixin',
-      'miniprogram/miniprogram_npm',
-      'typings/types/**',
-      '.prettierrc.cjs',
-      'switch-env.js',
-      'miniprogram-ci.js'
-    ],
+    ignores: ['node_modules', 'miniprogram/components/mp-weixin', 'miniprogram/miniprogram_npm', 'typings/types/**', '.prettierrc.cjs', 'miniprogram-ci.js', 'generate-env.js'],
   },
   {
     languageOptions: {

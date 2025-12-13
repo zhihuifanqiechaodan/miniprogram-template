@@ -1,0 +1,30 @@
+page {
+  --button-default-color: #151515;
+  --button-default-height: 80rpx;
+  --button-default-font-size: 28rpx;
+  --button-primary-color: #ffffff;
+  --button-primary-background-color: #151515;
+  --button-primary-border-color: #151515;
+  --button-border-radius: 4rpx;
+  --nav-bar-title-font-size: 28rpx;
+  --nav-bar-title-text-color: #151515;
+}
+
+.van-button.van-button--active:before {
+  opacity: 0 !important;
+}
+
+.van-button--disabled {
+  background-color: #edf0f0 !important;
+  color: #999999 !important;
+  border: none !important;
+  opacity: 1 !important;
+}
+
+.van-tabs__line {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  bottom: 16rpx !important;
+  height: 0 !important;
+  border-bottom: 2rpx dashed var(--color-primary);
+}

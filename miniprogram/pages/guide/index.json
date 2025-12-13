@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-count-down": "@vant/weapp/count-down/index",
+    "custom-image": "/components/custom-image/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index"
+  }
+}

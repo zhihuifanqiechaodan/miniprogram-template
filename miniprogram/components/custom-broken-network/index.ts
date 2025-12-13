@@ -1,3 +1,5 @@
+import { checkNetwork, getCurrentPageInfo } from '@miniprogram/utils/util';
+
 // components/custom-broken-network/index.js
 const app: IAppOption = getApp();
 // TS-Q 多个文件出现 重复声明
@@ -22,7 +24,7 @@ Component({
     },
     verticalCenter: {
       type: Boolean,
-      value: false,
+      value: true,
     },
   },
 
@@ -30,7 +32,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    systemInfo: app.systemInfo, // 设备信息
+    systemInfo: app.globalData.systemInfo, // 设备信息
   },
 
   /**
@@ -40,8 +42,13 @@ Component({
     /**
      * @method handleRefresh 刷新
      */
-    handleRefresh() {
-      this.triggerEvent('handleRefresh');
+    async handleRefresh() {
+      await checkNetwork();
+      const currentPage = getCurrentPageInfo();
+      currentPage?.setData({
+        brokenNetwork: false,
+      });
+      currentPage?.initData?.();
     },
   },
 });

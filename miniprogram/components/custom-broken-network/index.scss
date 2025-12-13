@@ -1,23 +1,26 @@
 /* components/custom-broken-network/index.wxss */
 .custom-broken-network-vertical-center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	z-index: 9999;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #ffffff;
 }
 
 .message {
-  text-align: center;
-  line-height: 40rpx;
+	text-align: center;
+	line-height: 40rpx;
 }
 
 .refresh {
-  margin-top: 40rpx;
-  .custom-refresh {
-    width: 240rpx;
-  }
+	margin-top: 40rpx;
+
+	.custom-refresh {
+		width: 240rpx;
+	}
 }

@@ -1,0 +1,95 @@
+/* packageA/pages/search/index.wxss */
+.app-container {
+  .serarch-wrapper {
+    .sort-wrapper {
+      display: flex;
+      align-items: center;
+      height: 46px;
+      padding: 0 20rpx;
+      box-sizing: border-box;
+      .sort-item {
+        padding: 20rpx;
+        font-size: 24rpx;
+        &.sort-item--active {
+          color: #3889ff;
+          font-weight: 500;
+        }
+      }
+    }
+    .goods-list {
+      padding: 20rpx 40rpx;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      box-sizing: border-box;
+      .custom-goods {
+        margin-bottom: 20rpx;
+      }
+    }
+    .keyword-wrapper {
+      padding: 20rpx 40rpx;
+      .keyword-title-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20rpx 0;
+        .keyword-title {
+          font-size: 32rpx;
+          font-weight: 500;
+        }
+      }
+      .keyword {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 440rpx;
+        box-sizing: border-box;
+        overflow-y: hidden;
+        .keyword-item-box {
+          display: flex;
+          align-items: center;
+          max-width: 100%;
+          height: 88rpx;
+          margin-right: 20rpx;
+          .keyword-item {
+            padding: 10rpx 20rpx;
+            border: 2rpx solid #edf0f0;
+            box-sizing: border-box;
+            border-radius: 4rpx;
+          }
+        }
+      }
+    }
+    .search-discovery-wrapper {
+      padding: 20rpx 40rpx;
+      .search-discovery-title {
+        display: flex;
+        align-items: center;
+        height: 72rpx;
+        font-size: 32rpx;
+        font-weight: 500;
+      }
+      .search-discovery {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 440rpx;
+        box-sizing: border-box;
+        overflow-y: hidden;
+        .search-discovery-item-box {
+          display: flex;
+          align-items: center;
+          max-width: 100%;
+          height: 88rpx;
+          margin-right: 20rpx;
+          .search-discovery-item {
+            display: flex;
+            align-items: center;
+            padding: 10rpx 20rpx;
+            border: 2rpx solid #edf0f0;
+            box-sizing: border-box;
+            border-radius: 4rpx;
+          }
+        }
+      }
+    }
+  }
+}

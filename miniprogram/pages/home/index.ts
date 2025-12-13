@@ -1,65 +1,33 @@
+import { IApiMallBannersGetAllItem, IApiMallCategoriesGetAllItem, IApiMallProductItem } from '@/typings/api-types';
+import { mallBannersGetAll } from '@miniprogram/api/banner';
+import { mallCategoriesGetAll } from '@miniprogram/api/category';
+import { mallProductsGetAll } from '@miniprogram/api/product';
+import { setTabBarSelected } from '@miniprogram/utils/util';
+
 // pages/home/index.ts
-import { shareImage } from '~/config/index';
-import {
-  BrokenNetwork,
-  Iconfont,
-  Image,
-  NavBar,
-  Readme,
-  RichText,
-  SwiperGuideAnimation,
-  Video,
-  VirtualiList,
-} from '~/utils/router';
-import { navigateTo, shareImageFormat } from '~/utils/util';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    introduceList: [
-      {
-        label: BrokenNetwork.name,
-        path: BrokenNetwork.path,
-      },
-      {
-        label: Iconfont.name,
-        path: Iconfont.path,
-      },
-      {
-        label: Image.name,
-        path: Image.path,
-      },
-      {
-        label: NavBar.name,
-        path: NavBar.path,
-      },
-      {
-        label: RichText.name,
-        path: RichText.path,
-      },
-      {
-        label: Video.name,
-        path: Video.path,
-      },
-      {
-        label: VirtualiList.name,
-        path: VirtualiList.path,
-      },
-    ],
-    Readme,
-    businessList: [
-      {
-        label: SwiperGuideAnimation.name,
-        path: SwiperGuideAnimation.path,
-      },
-    ],
+    brokenNetwork: false,
+    banners: [] as IApiMallBannersGetAllItem[],
+    categories: [] as IApiMallCategoriesGetAllItem[],
+    goodsList: [] as IApiMallProductItem[][],
+    empty: false,
+    pageNum: 1,
+    pageSize: 20,
+    nomore: false,
+    lowerLoading: false,
+    refresherTriggered: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    this.initData();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -69,7 +37,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    setTabBarSelected();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -94,16 +64,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-    const imageUrl = shareImageFormat(shareImage);
-    return {
-      title: '只需一分钟下载即可敏捷开发小程序、基础配置完善',
-      imageUrl,
-    };
-  },
-
-  navigateTo(e: WechatMiniprogram.TouchEvent) {
-    const { path } = e.currentTarget.dataset;
-    navigateTo({ url: path });
+  onShareAppMessage() {},
+  initData() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    Promise.all([
+      mallBannersGetAll({ pageNum: 1, pageSize: 5 }),
+      mallCategoriesGetAll({ pageNum: 1, pageSize: 8, is_enabled: true }),
+      mallProductsGetAll({ pageNum: 1, pageSize: this.data.pageSize, is_enabled: true }),
+    ]).then(([mallBannersGetAllRes, mallCategoriesGetAllRes, mallProductsGetAllRes]) => {
+      wx.hideLoading();
+      this.setData({
+        banners: mallBannersGetAllRes.data.records,
+        categories: mallCategoriesGetAllRes.data.records,
+        goodsList: [mallProductsGetAllRes.data.records],
+        empty: !mallProductsGetAllRes.data.records.length,
+        nomore: mallProductsGetAllRes.data.pagination.totalPages == this.data.pageSize,
+      });
+    });
   },
 });

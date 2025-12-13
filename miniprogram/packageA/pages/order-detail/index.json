@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "custom-broken-network": "/components/custom-broken-network/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index",
+    "custom-loading": "/components/custom-loading/index",
+    "custom-image": "/components/custom-image/index"
+  }
+}

@@ -1,0 +1,22 @@
+/* pages/categories/index.wxss */
+.van-tabs__wrap {
+	display: none !important;
+}
+
+.app-container {
+	.categories-wrapper {
+		display: flex;
+
+		.tabs-wrapper {
+			flex: 1;
+		}
+	}
+
+	.tabs-wrapper {
+		.goods-item {
+			padding: 20rpx 40rpx;
+			background-color: #ffffff;
+			border-bottom: 2rpx solid #eeeeee;
+		}
+	}
+}

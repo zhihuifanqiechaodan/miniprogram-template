@@ -1,0 +1,80 @@
+<!-- packageA/pages/search/index.wxml -->
+<view class="app-container">
+  <custom-nav-bar showBack="{{true}}" title="搜索" placeholder="{{true}}" />
+  <view class="serarch-wrapper">
+    <van-search bind:search="onSearch" bind:clear="onClear" value="{{ k }}" clearable placeholder="请输入搜索关键词" />
+    <block wx:if="{{k}}">
+      <view wx:if="{{goodsList.length}}" class="sort-wrapper">
+        <view
+          wx:for="{{sortList}}"
+          wx:key="index"
+          catch:tap="handleSortItemClick"
+          data-order-by="{{item.orderBy}}"
+          class="sort-item {{orderBy === item.orderBy ? 'sort-item--active' : ''}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+      <scroll-view
+        bindscrolltolower="scrolltolower"
+        scroll-y
+        style="height: calc(100vh - {{systemInfo.menuButton.bottom}}px - 54px - 46px);"
+      >
+        <view class="goods-list">
+          <block
+            wx:for="{{goodsList}}"
+            wx:for-item="goodsListItem"
+            wx:for-index="goodsListItemIndex"
+            wx:key="goodsListItemIndex"
+          >
+            <custom-goods wx:for="{{goodsListItem}}" wx:key="index" dataInfo="{{item}}" class="custom-goods" />
+          </block>
+        </view>
+        <custom-more wx:if="{{lowerLoading}}" />
+      </scroll-view>
+    </block>
+    <block wx:else>
+      <view wx:if="{{keywordList.length}}" class="keyword-wrapper">
+        <view class="keyword-title-wrapper">
+          <view class="keyword-title">搜索历史</view>
+          <custom-image
+            catchtap="handleDeleteHistoryKeyword"
+            src="/assets/images/delete_light.svg"
+            width="48rpx"
+            height="48rpx"
+          />
+        </view>
+        <view class="keyword">
+          <view
+            wx:for="{{keywordList}}"
+            wx:key="index"
+            catchtap="handleKeywordClick"
+            data-k="{{item}}"
+            class="keyword-item-box"
+          >
+            <view class="keyword-item ^van-ellipsis">{{item}}</view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{goodsRecommend.length}}" class="search-discovery-wrapper">
+        <view class="search-discovery-title">搜索发现</view>
+        <view class="search-discovery">
+          <view
+            wx:for="{{goodsRecommend}}"
+            wx:key="index"
+            catchtap="handleKeywordClick"
+            data-k="{{item.name}}"
+            class="search-discovery-item-box"
+          >
+            <view class="search-discovery-item van-ellipsis">
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

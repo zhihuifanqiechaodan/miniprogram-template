@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "custom-image": "/components/custom-image/index"
+    "van-loading": "@vant/weapp/loading/index"
   }
 }

@@ -1,0 +1,92 @@
+<!-- packageA/pages/sign-in/index.wxml -->
+<view class="app-container">
+  <custom-nav-bar showBack="{{true}}" placeholder="{{true}}" title="训练日历" custom-style="background: #ffffff" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" />
+  <block wx:else>
+    <view class="calendar-header-box">
+      <view class="calendar-header">
+        <view class="calendar-header-left">
+          <view class="calendar-all-day-desc">累计签到天数</view>
+          <view class="calendar-all-day">{{historyInfo.totalSignCount}}</view>
+        </view>
+        <view class="calendar-header-right">
+          <view class="points-desc">当前积分</view>
+          <view class="points">{{pointsInfo.points || 0}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="calendar-wrapper">
+      <view class="month-title">
+        <view class="month-title-left">
+          <view>{{currentMonth}}</view>
+          <view class="month-sign-days">(本月已签到 {{historyInfo.list.length}} 天)</view>
+        </view>
+        <view bindtap="handleExchange" class="points-mall">
+          去兑换
+          <view class="right-triangle"></view>
+        </view>
+      </view>
+      <view class="calendar-box">
+        <view class="calendar">
+          <view class="week-header">
+            <view wx:for="{{['日', '一', '二', '三', '四', '五', '六']}}" wx:key="index" class="week-day">
+              {{item}}
+            </view>
+          </view>
+          <view class="calendar-body">
+            <view class="week-row" wx:for="{{calendar}}" wx:for-item="week" wx:key="index">
+              <view
+                class="day-item"
+                wx:for="{{week}}"
+                wx:for-item="day"
+                wx:key="fullDate"
+                catchtap="handleChooseCalendarDay"
+                data-full-date="{{day.fullDate}}"
+              >
+                <view
+                  wx:if="{{!day.isEmpty}}"
+                  class="day-item_date {{wxsModule.isTodaySignedIn({history: historyInfo.list, date: day.fullDate}) ? 'day-item_sign' : ''}} {{day.isToday ? 'day-item_today' : ''}} {{day.fullDate === chooseCalendarDay ? 'day-item_choose' : ''}}"
+                >
+                  {{day.date}}
+                </view>
+                <view class="calendar-day-activity">
+                  <view
+                    wx:if="{{wxsModule.isTodaySignedIn({history: historyInfo.list, date: day.fullDate}).signStatus == 1 || wxsModule.isTodaySignedIn({history: historyInfo.list, date: day.fullDate}).signStatus == 3}}"
+                    class="activity-item activity-item_sign"
+                  ></view>
+                  <view
+                    wx:if="{{wxsModule.isTodaySignedIn({history: historyInfo.list, date: day.fullDate}).signStatus == 2 || wxsModule.isTodaySignedIn({history: historyInfo.list, date: day.fullDate}).signStatus == 3}}"
+                    class="activity-item activity-item_training"
+                  ></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="current-day-task-completions">
+        <view wx:for="{{dailyTaskCompletions.tasks}}" wx:key="index">
+          <view class="task-completion-item {{item.taskType}}">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  module.exports = {
+    isTodaySignedIn: function (data) {
+      var history = data.history
+      var date = data.date
+      var isTodaySignedIn = null
+      history.forEach(function (historyItem) {
+        if (historyItem.time === date) {
+          isTodaySignedIn = historyItem
+        }
+      });
+      return isTodaySignedIn
+    }
+  }
+</wxs>

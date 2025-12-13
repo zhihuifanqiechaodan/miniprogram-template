@@ -14,14 +14,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-xiaochengxu:before {
-  content: '\e646';
-}
-
-.icon-pullright:before {
-  content: '\e720';
-}
-
 .icon-close:before {
   content: '\e747';
 }
@@ -32,12 +24,4 @@
 
 .icon-home:before {
   content: '\e7a7';
-}
-
-.icon-search:before {
-  content: '\e7b4';
-}
-
-.icon-leftalignment:before {
-  content: '\e7cf';
 }

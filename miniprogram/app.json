@@ -1,31 +1,62 @@
 {
-  "pages": ["pages/home/index"],
+  "tabBar": {
+    "custom": true,
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/categories/index",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/device/index",
+        "text": "设备"
+      },
+      {
+        "pagePath": "pages/carts/index",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "pages": [
+    "pages/home/index",
+    "pages/guide/index",
+    "pages/categories/index",
+    "pages/device/index",
+    "pages/carts/index",
+    "pages/profile/index"
+  ],
   "subPackages": [
     {
       "root": "packageA",
       "name": "packageA",
       "pages": [
-        "pages/broken-network/index",
-        "pages/iconfot/index",
-        "pages/image/index",
-        "pages/nav-bar/index",
-        "pages/rich-text/index",
-        "pages/readme/index",
-        "pages/video/index",
-        "pages/virtuali-list/index"
+        "pages/goods-detail/index",
+        "pages/address/index",
+        "pages/address-edit/index",
+        "pages/order-confirm/index",
+        "pages/order-list/index",
+        "pages/order-detail/index",
+        "pages/search/index",
+        "pages/sign-in/index",
+        "pages/web-view/index"
       ]
-    },
-    {
-      "root": "packageB",
-      "name": "packageB",
-      "pages": ["pages/swiper-guide-animation/index"]
     }
   ],
   "window": {
+    "navigationBarTitleText": "视力优",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light"
   },
-  "style": "v2",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
@@ -40,7 +71,9 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "resolveAlias": {
-    "~/*": "/*",
-    "@vant/*": "/miniprogram_npm/@vant/*"
-  }
+    "@miniprogram/*": "/*",
+    "@vant/*": "/miniprogram_npm/@vant/*",
+    "@/*": "../*"
+  },
+  "requiredPrivateInfos": ["chooseAddress"]
 }

@@ -1,0 +1,15 @@
+<!-- pages/carts/index.wxml -->
+<view class="app-container">
+  <custom-nav-bar placeholder="{{true}}" title="购物车" />
+  <custom-broken-network wx:if="{{brokenNetwork}}" />
+  <view class="carts-wrapper">
+    <block wx:for="{{carts}}" wx:for-item="dataItem" wx:for-index="index" wx:key="index">
+      <view wx:for="{{dataItem}}" wx:key="_id" class="goods-item">
+        <custom-goods dataInfo="{{item}}" width="100%" height="320rpx" />
+      </view>
+    </block>
+  </view>
+  <view>
+    <button bindtap="submitOrder">提交订单</button>
+  </view>
+</view>

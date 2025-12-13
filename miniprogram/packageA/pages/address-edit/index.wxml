@@ -1,0 +1,139 @@
+<!-- packageA/pages/address-edit/index.wxml -->
+<page-meta page-style="{{ (provincesPopup || cityPopup || districtPopup) ? 'overflow: hidden;' : '' }}">
+  <view class="app-container">
+    <custom-nav-bar
+      title="{{id ? '编辑地址' : '添加地址'}}"
+      showBack="{{true}}"
+      placeholder="{{true}}"
+      customStyle="background: rgba(255, 255, 255, 1)"
+    />
+    <view wx:if="{{brokenNetwork}}" class="broken-network">
+      <custom-broken-network bindrefresh="refresh" />
+    </view>
+    <view wx:else class="address-wrapper">
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          bind:blur="handleInputBlur"
+          bind:clear="handleInputClear"
+          data-type="linkMan"
+          value="{{ addressInfo.linkMan }}"
+          center
+          clearable
+          label="收件人"
+          maxlength="20"
+          placeholder="请填写收件人姓名"
+        />
+      </view>
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          bind:blur="handleInputBlur"
+          data-type="mobile"
+          value="{{ addressInfo.mobile }}"
+          center
+          clearable
+          label="联系方式"
+          type="number"
+          maxlength="11"
+          placeholder="请填写收件人手机号"
+        />
+      </view>
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          label="所在省份"
+          value="{{ addressInfo.provinceStr ? addressInfo.provinceStr  : '请选择省份' }}"
+          readonly
+          is-link
+          bind:tap="handleRegionPickerClick"
+          data-type="provinces"
+        />
+      </view>
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          label="所在城市"
+          value="{{ addressInfo.cityStr ? addressInfo.cityStr  : '请选择城市' }}"
+          readonly
+          is-link
+          bind:tap="handleRegionPickerClick"
+          data-type="city"
+        />
+      </view>
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          label="所在区县"
+          value="{{ addressInfo.areaStr ? addressInfo.areaStr  : '请选择区县' }}"
+          readonly
+          is-link
+          bind:tap="handleRegionPickerClick"
+          data-type="district"
+        />
+      </view>
+      <van-popup show="{{ provincesPopup }}" position="bottom" bind:close="handleProvincePickerClose">
+        <van-picker
+          show-toolbar
+          title="选择省份"
+          columns="{{ wxsModule.getRegionNames(provinceList) }}"
+          bind:cancel="handleProvincePickerClose"
+          bind:confirm="handleProvinceChange"
+        />
+      </van-popup>
+      <van-popup show="{{ cityPopup }}" position="bottom" bind:close="handleCityPickerClose">
+        <van-picker
+          show-toolbar
+          title="选择城市"
+          columns="{{ wxsModule.getRegionNames(cityList) }}"
+          bind:cancel="handleCityPickerClose"
+          bind:confirm="handleCityChange"
+        />
+      </van-popup>
+      <van-popup show="{{ districtPopup }}" position="bottom" bind:close="handleDistrictPickerClose">
+        <van-picker
+          show-toolbar
+          title="选择区县"
+          columns="{{ wxsModule.getRegionNames(districtList) }}"
+          bind:cancel="handleDistrictPickerClose"
+          bind:confirm="handleDistrictChange"
+        />
+      </van-popup>
+      <view class="form-item">
+        <van-field
+          border="{{false}}"
+          bind:blur="handleInputBlur"
+          data-type="address"
+          value="{{ addressInfo.address }}"
+          center
+          clearable
+          autosize
+          label="详细地址"
+          type="textarea"
+          maxlength="50"
+          placeholder="街道、楼牌号等"
+        />
+      </view>
+      <view class="fixed-bottom-wrapper">
+        <van-button bind:click="handleSaveAddress" block square type="primary" style="flex: 1"> 保存地址 </van-button>
+      </view>
+    </view>
+  </view>
+</page-meta>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  module.exports = {
+    getRegionNames: function (regionList) {
+      if (!regionList || !regionList.length) {
+        return [];
+      }
+      var result = [];
+      for (var i = 0; i < regionList.length; i++) {
+        result.push(regionList[i].name);
+      }
+      return result;
+    }
+  }
+</wxs>

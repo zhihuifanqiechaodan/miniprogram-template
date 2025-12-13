@@ -1,0 +1,42 @@
+/* pages/guide/index.wxss */
+.custom-nav-bar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 40rpx;
+  color: #ffffff;
+  .pass-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 30rpx;
+    border-radius: 40rpx;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #fff;
+    .skip {
+      margin-right: 8rpx;
+    }
+    .van-count-down {
+      color: #ffffff;
+      font-size: 28rpx;
+    }
+  }
+}
+.quick-explore {
+  position: absolute;
+  left: 50%;
+  bottom: 100rpx;
+  transform: translate(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.25);
+}

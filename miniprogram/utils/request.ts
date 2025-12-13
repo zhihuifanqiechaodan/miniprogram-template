@@ -1,113 +1,67 @@
-import { logout } from '~/utils/util';
-import { version } from '~/config/index';
+import { ApiResponse } from '@/typings/api-types';
+import { getCurrentPageInfo } from '@miniprogram/utils/util';
 
-/**
- * 按照下述例子继续封装项目中需要的上传功能等等，封装两种 一种用于携带用户信息，一种用于原生
- */
-
-/**
- * @method _request 封装业务请求
- * @param {*} { method, url, data }
- */
-interface RequestParams {
-  method: 'GET' | 'POST';
-  url: string;
-  data?: any;
+export enum FunctionsType {
+  mall_categories_create = 'mall_categories_create',
+  mall_categories_delete = 'mall_categories_delete',
+  mall_categories_update = 'mall_categories_update',
+  mall_categories_get_all = 'mall_categories_get_all',
+  mall_products_create = 'mall_products_create',
+  mall_products_delete = 'mall_products_delete',
+  mall_products_update = 'mall_products_update',
+  mall_products_get = 'mall_products_get',
+  mall_products_get_all = 'mall_products_get_all',
+  mall_carts_create = 'mall_carts_create',
+  mall_carts_delete = 'mall_carts_delete',
+  mall_carts_update = 'mall_carts_update',
+  mall_carts_get_all = 'mall_carts_get_all',
+  mall_banners_create = 'mall_banners_create',
+  mall_banners_delete = 'mall_banners_delete',
+  mall_banners_update = 'mall_banners_update',
+  mall_banners_get_all = 'mall_banners_get_all',
+  mall_orders_create = 'mall_orders_create',
+  mall_orders_get_all = 'mall_orders_get_all',
+  mall_orders_get = 'mall_orders_get',
+  mall_orders_confirm = 'mall_orders_confirm',
+  mall_orders_cancel = 'mall_orders_cancel',
 }
 
-interface RequestResponse {
-  code: number;
-  msg: string;
-  data: any;
-}
-
-const _request = async ({ method, url, data }: RequestParams): Promise<RequestResponse> => {
-  const { globalData } = getApp<IAppOption>();
-  const { isConnected } = globalData;
-  const header = {
-    version,
-  };
+export const requestA = <T>({ type, params }: { type: FunctionsType; params: any }): Promise<T> => {
+  const currentPage = getCurrentPageInfo();
   return new Promise((resolve, reject) => {
-    if (isConnected) {
-      // 微信原生请求
-      wx.request({
-        url,
-        data,
-        method,
-        header,
-        success: async (value) => {
-          const { data, statusCode } = value;
-          if (statusCode === 200) {
-            const { code, msg } = data as {
-              code: number;
-              msg: string;
-              data: any;
-            };
-            switch (code) {
-              // 退出登录
-              case 2128:
-                logout();
-                reject(msg);
-                break;
-              default:
-                resolve(data as any);
-                break;
-            }
-          } else {
-            reject(`服务请求错误，状态码：${statusCode}`);
-          }
+    wx.cloud
+      .callFunction({
+        name: 'mallFunctions',
+        data: {
+          type,
+          params,
         },
-        fail(reason) {
-          reject(reason);
-        },
+      })
+      .then((res) => {
+        const result = res.result as ApiResponse<T>;
+        if (result.code !== 200) {
+          wx.hideLoading();
+          wx.showToast({
+            title: result.message,
+            icon: 'none',
+          });
+          currentPage?.setData({
+            brokenNetwork: false,
+          });
+          reject(result.message);
+        }
+        resolve(res.result as T);
+      })
+      .catch((err) => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '云函数请求失败',
+          icon: 'none',
+        });
+        currentPage?.setData({
+          brokenNetwork: false,
+        });
+        reject(err);
       });
-    } else {
-      reject('无网状态');
-    }
   });
 };
-
-/**
- * @method _nativeRequest 封装原生请求
- * @param {*} { method, url, data }
- */
-const _nativeRequest = async ({ method, url, data }: RequestParams): Promise<any> => {
-  const { globalData } = getApp<IAppOption>();
-  const { isConnected } = globalData;
-  return new Promise((resolve, reject) => {
-    if (isConnected) {
-      // 微信原生请求
-      wx.request({
-        url,
-        data,
-        method,
-        success: async (value) => {
-          const { data, statusCode } = value;
-          if (statusCode === 200) {
-            resolve(data);
-          } else {
-            reject(`服务请求错误，状态码：${statusCode}`);
-          }
-        },
-        fail(reason) {
-          reject(reason);
-        },
-      });
-    } else {
-      reject('无网状态');
-    }
-  });
-};
-
-/**
- * @method post 业务post请求
- * @param {*} { url, data }
- */
-export const post = ({ url, data }: Omit<RequestParams, 'method'>): Promise<RequestResponse> =>
-  _request({ method: 'POST', url, data });
-
-export const nativePost = ({ url, data }: Omit<RequestParams, 'method'>): Promise<any> =>
-  _nativeRequest({ method: 'POST', url, data });
-
-export const nativeGet = ({ url, data }: Omit<RequestParams, 'method'>): Promise<any> =>
-  _nativeRequest({ method: 'GET', url, data });

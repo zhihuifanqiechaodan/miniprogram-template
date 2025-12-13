@@ -17,12 +17,14 @@
     "strict": true,
     "strictPropertyInitialization": true,
     "lib": ["ES2020"],
-    "typeRoots": ["./typings"],
+    "typeRoots": ["./typings", "./typings/api-types"],
+    "outDir": "./dist",
     "paths": {
-      "~/*": ["./miniprogram/*"],
-      "@vant/*": ["./miniprogram/miniprogram_npm/@vant/*"]
+      "@miniprogram/*": ["./miniprogram/*"],
+      "@vant/*": ["./miniprogram/miniprogram_npm/@vant/*"],
+      "@/*": ["./*"]
     }
   },
   "include": ["./**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "miniprogram/config"]
 }

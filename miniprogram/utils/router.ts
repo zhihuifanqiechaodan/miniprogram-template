@@ -1,45 +1,78 @@
 interface RouteConfig {
-  path: string;
-  name: string;
+  pagePath: string;
+  iconPath?: string;
+  selectedIconPath?: string;
+  text: string;
+  isSpecial?: boolean;
 }
-
 export const Home: RouteConfig = {
-  path: '/pages/home/index',
-  name: '首页',
+  pagePath: '/pages/home/index',
+  iconPath: '/assets/images/tabbar/shop.svg',
+  selectedIconPath: '/assets/images/tabbar/shop_fill.svg',
+  text: '商城',
 };
-export const BrokenNetwork: RouteConfig = {
-  path: '/packageA/pages/broken-network/index',
-  name: 'BrokenNetwork 断网',
+export const Categories: RouteConfig = {
+  pagePath: '/pages/categories/index',
+  iconPath: '/assets/images/tabbar/rank.svg',
+  selectedIconPath: '/assets/images/tabbar/rank_fill.svg',
+  text: '分类',
 };
-export const Iconfont: RouteConfig = {
-  path: '/packageA/pages/iconfot/index',
-  name: 'Iconfont 阿里图标',
+export const Device: RouteConfig = {
+  pagePath: '/pages/device/index',
+  iconPath: '/assets/images/tabbar/device.svg',
+  selectedIconPath: '/assets/images/tabbar/device_fill.svg',
+  text: '',
+  isSpecial: true,
 };
-export const Image: RouteConfig = {
-  path: '/packageA/pages/image/index',
-  name: 'Image 图片',
+export const Carts: RouteConfig = {
+  pagePath: '/pages/carts/index',
+  iconPath: '/assets/images/tabbar/cart.svg',
+  selectedIconPath: '/assets/images/tabbar/cart_fill.svg',
+  text: '购物车',
 };
-export const NavBar: RouteConfig = {
-  path: '/packageA/pages/nav-bar/index',
-  name: 'NavBar 导航栏',
+export const Profile: RouteConfig = {
+  pagePath: '/pages/profile/index',
+  iconPath: '/assets/images/tabbar/profile.svg',
+  selectedIconPath: '/assets/images/tabbar/profile_fill.svg',
+  text: '我的',
 };
-export const RichText: RouteConfig = {
-  path: '/packageA/pages/rich-text/index',
-  name: 'RichText 富文本',
+export const GoodsDetail: RouteConfig = {
+  pagePath: '/packageA/pages/goods-detail/index',
+  text: '商品详情',
 };
-export const Readme: RouteConfig = {
-  path: '/packageA/pages/readme/index',
-  name: 'MiniProgram-Template 模版介绍',
+export const Address: RouteConfig = {
+  pagePath: '/packageA/pages/address/index',
+  text: '地址',
 };
-export const Video: RouteConfig = {
-  path: '/packageA/pages/video/index',
-  name: 'Video 视频',
+export const AddressEdit: RouteConfig = {
+  pagePath: '/packageA/pages/address-edit/index',
+  text: '地址编辑',
 };
-export const VirtualiList: RouteConfig = {
-  path: '/packageA/pages/virtuali-list/index',
-  name: 'VirtualiList 虚拟列表',
+export const OrderConfirm: RouteConfig = {
+  pagePath: '/packageA/pages/order-confirm/index',
+  text: '订单确认',
 };
-export const SwiperGuideAnimation: RouteConfig = {
-  path: '/packageB/pages/swiper-guide-animation/index',
-  name: '轮播图引导动画',
+export const OrderList: RouteConfig = {
+  pagePath: '/packageA/pages/order-list/index',
+  text: '订单列表',
+};
+export const OrderDetail: RouteConfig = {
+  pagePath: '/packageA/pages/order-detail/index',
+  text: '订单详情',
+};
+export const Search: RouteConfig = {
+  pagePath: '/packageA/pages/search/index',
+  text: '搜索',
+};
+export const SignIn: RouteConfig = {
+  pagePath: '/packageA/pages/sign-in/index',
+  text: '签到',
+};
+export const Guide: RouteConfig = {
+  pagePath: '/pages/guide/index',
+  text: '引导页',
+};
+export const WebView: RouteConfig = {
+  pagePath: '/packageA/pages/web-view/index',
+  text: 'WebView',
 };

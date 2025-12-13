@@ -1,0 +1,218 @@
+page {
+  background-color: rgb(250, 250, 250);
+}
+.order-detail {
+  padding: 20rpx;
+  padding-bottom: calc(128rpx + 20rpx + env(safe-area-inset-bottom));
+}
+
+.delivery-status {
+  background-color: rgba(#4476f6, 0.05);
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 64rpx;
+    height: 64rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .iconfont {
+      font-size: 40rpx;
+      color: #4476f6;
+    }
+  }
+
+  &__info {
+    margin-left: 16rpx;
+  }
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+  }
+
+  &__desc {
+    color: #666;
+    margin-top: 8rpx;
+  }
+}
+
+.logistics-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  .logistics-item {
+    .logistics-head {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      .shipperName {
+        padding-left: 20rpx;
+      }
+    }
+    .logistics-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__content {
+      padding: 20rpx 0;
+      padding-right: 20rpx;
+    }
+
+    &__time {
+      padding: 20rpx 0;
+      font-size: 24rpx;
+      color: #999;
+    }
+  }
+}
+
+.goods-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+
+  &__header {
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-bottom: 32rpx;
+  }
+}
+
+.goods-item {
+  display: flex;
+  padding-bottom: 32rpx;
+  margin-bottom: 32rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  &__image {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 8rpx;
+  }
+
+  &__content {
+    flex: 1;
+    margin-left: 24rpx;
+  }
+
+  &__name {
+    font-weight: 500;
+  }
+
+  &__spec {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 8rpx;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16rpx;
+  }
+
+  &__quantity {
+    font-size: 24rpx;
+    color: #999;
+  }
+}
+
+.address-card {
+  display: flex;
+  align-items: baseline;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+
+  &__content {
+    flex: 1;
+    margin-left: 16rpx;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__name {
+    margin-top: 16rpx;
+  }
+
+  &__address {
+    color: #666;
+    margin-top: 8rpx;
+  }
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-bottom: 32rpx;
+  }
+}
+
+.order-info {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24rpx;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--total {
+      font-weight: 500;
+    }
+  }
+
+  &__label {
+    color: #666;
+  }
+
+  &__value {
+    &--primary {
+      color: #4476f6;
+    }
+  }
+}
+
+.orderLogistics-popup {
+  padding: 40rpx;
+  .orderLogistics-item {
+    padding: 20rpx 0;
+    .AcceptTime {
+      padding: 20rpx 0;
+      color: #999999;
+    }
+  }
+}
+
+.fixed-bottom-wrapper {
+  display: flex;
+}

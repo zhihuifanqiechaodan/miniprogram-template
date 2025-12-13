@@ -1,0 +1,179 @@
+<!-- packageA/pages/order-detail/index.wxml -->
+<wxs src="/utils/wxs.wxs" module="commonModule" />
+<page-meta page-style="{{orderLogisticsPopup ? 'overflow: hidden;' : ''}}">
+  <view class="app-container">
+    <custom-nav-bar
+      showBack="{{true}}"
+      title="订单详情"
+      placeholder="{{true}}"
+      custom-style="background-color: #ffffff;"
+    />
+    <custom-broken-network wx:if="{{brokenNetwork}}" />
+    <view wx:if="{{!brokenNetwork && dataInfo}}" class="order-detail">
+      <view class="delivery-status">
+        <view class="delivery-status__content">
+          <!-- <view class="delivery-status__icon">
+            <text class="iconfont icon-truck"></text>
+          </view> -->
+          <view class="delivery-status__info">
+            <view class="delivery-status__title">{{dataInfo.orderInfo.statusStr}}</view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{dataInfo.logistics}}" class="logistics-card">
+        <block wx:if="{{dataInfo.orderLogisticsShippers.length}}">
+          <view
+            wx:for="{{dataInfo.orderLogisticsShippers}}"
+            wx:key="index"
+            catch:tap="handleOrderLogisticsShippersItemClick"
+            data-id="{{item.id}}"
+            class="logistics-item"
+          >
+            <view class="logistics-head">
+              <custom-image src="/assets/images/location_light.svg" width="28rpx" height="28rpx" />
+              <view class="shipperName">{{item.shipperName}}: {{item.trackingNumber}}</view>
+            </view>
+            <view class="logistics-content">
+              <view class="logistics-item__content">
+                <view class="logistics-item__text">{{wxsModule.lastLogistics(item.traces).AcceptStation}}</view>
+                <view class="logistics-item__time">{{wxsModule.lastLogistics(item.traces).AcceptTime}}</view>
+              </view>
+              <custom-image src="/assets/images/right.svg" width="24rpx" height="24rpx" />
+            </view>
+          </view>
+        </block>
+        <view wx:else class="logistics-item">
+          <view wx:if="{{dataInfo.logisticsTraces}}" class="logistics-head">
+            <custom-image src="/assets/images/location_light.svg" width="28rpx" height="28rpx" />
+            <view class="shipperName">{{dataInfo.logistics.shipperName}}: {{dataInfo.logistics.trackingNumber}}</view>
+          </view>
+          <view wx:else class="logistics-head">
+            <custom-image src="/assets/images/location_light.svg" width="28rpx" height="28rpx" />
+            <view class="shipperName">暂无物流信息</view>
+          </view>
+        </view>
+      </view>
+      <view class="goods-card">
+        <view class="goods-card__header">商品信息</view>
+        <view wx:for="{{dataInfo.goods}}" wx:key="index" class="goods-item">
+          <custom-image src="{{item.pic}}" width="160rpx" height="160rpx" radius="10rpx" />
+          <view class="goods-item__content">
+            <view class="goods-item__name">{{item.goodsName}}</view>
+            <view class="goods-item__spec">{{item.property}}</view>
+            <view class="goods-item__footer">
+              <text class="goods-item__price">¥{{item.amount}}</text>
+              <text class="goods-item__quantity">x{{item.number}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="address-card">
+        <custom-image src="/assets/images/location_light.svg" width="24rpx" height="24rpx" />
+        <view class="address-card__content">
+          <view class="address-card__title">收货信息</view>
+          <view class="address-card__name"> {{dataInfo.logistics.linkMan}} {{dataInfo.logistics.mobile}} </view>
+          <view class="address-card__address">
+            {{dataInfo.logistics.provinceStr}} {{dataInfo.logistics.cityStr}} {{dataInfo.logistics.areaStr}}
+            {{dataInfo.logistics.address}}
+          </view>
+        </view>
+      </view>
+      <view class="order-card">
+        <view class="order-card__title">订单信息</view>
+        <view class="order-info">
+          <view class="order-info__item">
+            <text class="order-info__label">订单编号</text>
+            <text class="order-info__value">{{dataInfo.orderInfo.orderNumber}}</text>
+          </view>
+          <view class="order-info__item">
+            <text class="order-info__label">创建时间</text>
+            <text class="order-info__value"
+              >{{commonModule.formatDate(dataInfo.orderInfo.dateAdd, 'YYYY-MM-DD hh:mm:ss')}}</text
+            >
+          </view>
+          <view class="order-info__item">
+            <text class="order-info__label">支付方式</text>
+            <text class="order-info__value">微信支付</text>
+          </view>
+          <view class="order-info__item">
+            <text class="order-info__label">商品总额</text>
+            <text class="order-info__value">¥{{dataInfo.orderInfo.amount}}</text>
+          </view>
+          <view class="order-info__item">
+            <text class="order-info__label">运费</text>
+            <text class="order-info__value">¥{{dataInfo.orderInfo.amountLogistics}}</text>
+          </view>
+          <block wx:if="{{ dataInfo.orderAdditionalPrices }}">
+            <view wx:for="{{dataInfo.orderAdditionalPrices}}" wx:key="index" class="order-info__item">
+              <text class="order-info__label">{{item.name}}</text>
+              <text class="order-info__value">¥{{item.amount}}</text>
+            </view>
+          </block>
+          <view class="order-info__item order-info__item--total">
+            <text class="order-info__label">实付款</text>
+            <text class="order-info__value order-info__value--primary"> ¥{{dataInfo.orderInfo.amountReal}} </text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{dataInfo.orderInfo.status === 0 || dataInfo.orderInfo.status === 2}}" class="fixed-bottom-wrapper">
+        <van-button
+          wx:if="{{dataInfo.orderInfo.status === 2}}"
+          catch:tap="confirmOrder"
+          data-id="{{dataInfo.orderInfo.id}}"
+          block
+          square
+          type="primary"
+          style="flex: 1"
+        >
+          确认收货
+        </van-button>
+        <block wx:if="{{dataInfo.orderInfo.status === 0}}">
+          <van-button
+            catch:tap="cancelOrder"
+            data-id="{{dataInfo.orderInfo.id}}"
+            square
+            block
+            plain
+            type="primary"
+            style="flex: 1; margin-left: 20rpx"
+          >
+            取消订单
+          </van-button>
+          <van-button
+            catch:tap="payOrder"
+            data-id="{{dataInfo.orderInfo.id}}"
+            data-amount-real="{{dataInfo.orderInfo.amountReal}}"
+            square
+            block
+            type="primary"
+            style="flex: 1; margin-left: 20rpx"
+          >
+            马上付款
+          </van-button>
+        </block>
+      </view>
+    </view>
+  </view>
+</page-meta>
+
+<van-popup show="{{ orderLogisticsPopup }}" bind:close="onClose" position="bottom" custom-style="height: 75vh">
+  <view class="orderLogistics-popup">
+    <view wx:for="{{orderLogistics}}" wx:key="index" class="orderLogistics-item">
+      <view class="orderLogistics">{{item.AcceptStation}}</view>
+      <view class="AcceptTime">{{item.AcceptTime}}</view>
+    </view>
+  </view>
+</van-popup>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  module.exports = {
+    lastLogistics: function (data) {
+      if (data) {
+        return JSON.parse(data)[0]
+      }
+    }
+  }
+</wxs>

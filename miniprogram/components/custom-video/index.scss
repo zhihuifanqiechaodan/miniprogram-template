@@ -53,12 +53,11 @@
     position: absolute;
     right: 0;
     bottom: 0;
-
-    .full-screen-icon-wrapper {
-      padding: 20rpx;
-    }
-
-    .muted-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    .feature-item {
       padding: 20rpx;
     }
   }

@@ -1,0 +1,2 @@
+<!--packageA/pages/web-view/index.wxml-->
+<web-view wx:if="{{webViewSrc}}" src="{{webViewSrc}}"></web-view>

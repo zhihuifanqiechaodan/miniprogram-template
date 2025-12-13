@@ -1,0 +1,143 @@
+<!-- packageA/pages/goods-detail/index.wxml -->
+<page-meta page-style="{{ customSizePopup ? 'overflow: hidden;' : '' }}">
+  <view class="app-container">
+    <custom-nav-bar showBack="{{true}}" />
+    <custom-broken-network wx:if="{{brokenNetwork}}" />
+    <view wx:if="{{!brokenNetwork && dataInfo}}" class="goods-detail-wrapper">
+      <view class="banner-wrapper">
+        <swiper circular indicator-dots class="banner swiper-line-white">
+          <swiper-item wx:for="{{dataInfo.pics}}" wx:key="index" catchtap="handlePreviewBanner" data-pic="{{item.pic}}">
+            <custom-image src="{{item.pic}}" width="100vw" height="100vw">
+              <view class="linear-gradient" />
+            </custom-image>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="info-wrapper">
+        <view class="module-item-1">
+          <view class="share-wrapper">
+            <van-button open-type="share" custom-style="height: auto; width: 100%; border: none; padding: 0;">
+              <view class="share-content">
+                <custom-image src="/assets/images/detail/share.svg" width="48rpx" height="48rpx" />
+                <view class="share-conten-text">分享</view>
+              </view>
+            </van-button>
+          </view>
+          <view class="goods-price-box">
+            <view class="goods-price">
+              <text class="line-price"> ¥{{ dataInfo.basicInfo.originalPrice }} </text>
+              <text class="{{userInfo.userLevel ? 'vip-price' : 'normal-price'}}">¥{{chooseSkuPrice}}</text>
+              <view wx:if="{{userInfo.userLevel}}" class="userLevel"> {{ userInfo.userLevel.name }} </view>
+            </view>
+          </view>
+          <view class="goods-title">{{dataInfo.basicInfo.name}}</view>
+          <view wx:if="{{displayTags.length}}" class="tags-container">
+            <view wx:for="{{displayTags}}" wx:key="index" class="tag-text">{{item}}</view>
+          </view>
+        </view>
+        <view class="line"></view>
+        <block wx:if="{{dataInfo.skuList.length > 0}}">
+          <view class="module-item-2">
+            <view catch:tap="handleSizeClick" data-type="0" class="select-size">
+              <view>已选: {{wxsModule.chooseSkuStr(dataInfo.skuList, chooseSku)}}</view>
+              <custom-image src="/assets/images/right.svg" width="24rpx" height="24rpx" />
+            </view>
+          </view>
+          <view class="line"></view>
+        </block>
+        <view class="module-item-3">
+          <view class="tab-detail">
+            <view class="tab-header">
+              <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" data-tab="0" bind:tap="handleTabChange">
+                购买须知
+              </view>
+              <view class="slash">/</view>
+              <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" data-tab="1" bind:tap="handleTabChange">
+                商品特色
+              </view>
+            </view>
+            <view class="tab-content">
+              {{ currentTab === 0 ? dataInfo.basicInfo.purchaseNotes : dataInfo.basicInfo.characteristic }}
+            </view>
+          </view>
+        </view>
+        <view class="goods-detail">
+          <mp-weixin content="{{dataInfo.content}}" />
+        </view>
+      </view>
+      <view class="submit-bar-wrapper">
+        <view class="submit-bar">
+          <van-button
+            class="contact-button"
+            catch:tap="handleContact"
+            custom-style="width: 100%; border: none; padding: 0;"
+          >
+            <view class="icon-wrapper">
+              <custom-image src="/assets/images/detail/contact.svg" width="54rpx" height="54rpx" />
+              <view>客服</view>
+            </view>
+          </van-button>
+          <view class="cart-button-wrapper">
+            <van-button bind:click="handleCartClick" custom-style="width: 100%; border: none; padding: 0;">
+              <view class="icon-wrapper">
+                <custom-image src="/assets/images/detail/cart.svg" width="54rpx" height="54rpx" />
+                <view>购物车</view>
+              </view>
+            </van-button>
+            <view wx:if="{{shippingCarInfo.number}}" class="number">
+              {{shippingCarInfo.number > 99 ? 99 : shippingCarInfo.number}}
+            </view>
+          </view>
+          <van-button
+            catch:tap="handleSizeClick"
+            data-type="1"
+            square
+            block
+            plain
+            type="primary"
+            style="flex: 1"
+            custom-style="width: 100%;"
+          >
+            加入购物车
+          </van-button>
+          <van-button
+            catch:tap="handleSizeClick"
+            data-type="2"
+            square
+            block
+            type="primary"
+            style="flex: 1; margin-left: 20rpx"
+            custom-style="width: 100%;"
+          >
+            立即购买
+          </van-button>
+        </view>
+        <view class="^safeAreaInsetBottom"></view>
+      </view>
+      <custom-size-popup
+        bindhandleSpecOptionSelect="customSizePopup_handleSpecOptionSelect"
+        bindonClose="customSizePopup_onClose"
+        dataInfo="{{ dataInfo }}"
+        show="{{customSizePopup}}"
+        type="{{customSizePopupType}}"
+        chooseSku="{{chooseSku}}"
+        chooseSkuPrice="{{chooseSkuPrice}}"
+        userInfo="{{userInfo}}"
+      />
+    </view>
+  </view>
+</page-meta>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  module.exports = {
+    chooseSkuStr: function (skuList, chooseSku) {
+      for (var i = 0; i < skuList.length; i++) {
+        if (skuList[i].propertyChildIds === chooseSku) {
+          return skuList[i].propertyChildNames
+        }
+      }
+    }
+  }
+</wxs>

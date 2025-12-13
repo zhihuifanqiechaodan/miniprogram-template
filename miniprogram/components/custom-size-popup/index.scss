@@ -1,0 +1,77 @@
+.custom-size-popup {
+  background: #fff;
+  .goods-info {
+    display: flex;
+    padding: 20rpx 40rpx;
+    .goods-info-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 20rpx;
+      .goods-info-right-head {
+        .chooseSkuPrice {
+          display: flex;
+          align-items: center;
+          font-size: 36rpx;
+          font-weight: 500;
+          padding-top: 20rpx;
+          .userLevel {
+            padding: 4rpx;
+            margin-left: 10rpx;
+            background-color: #fff3c5;
+            font-size: 20rpx;
+          }
+        }
+      }
+    }
+  }
+  .specs-container {
+    padding: 20rpx 40rpx;
+
+    .spec-group {
+      margin-bottom: 40rpx;
+
+      .spec-name {
+        font-weight: 500;
+        font-size: 26rpx;
+        margin-bottom: 20rpx;
+      }
+
+      .spec-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20rpx;
+
+        .spec-option {
+          min-width: 120rpx;
+          height: 60rpx;
+          line-height: 60rpx;
+          text-align: center;
+          background: #f5f5f5;
+          border-radius: 8rpx;
+          padding: 0 30rpx;
+          font-size: 24rpx;
+          color: #333;
+          border: 2rpx solid #f5f5f5;
+
+          &--active {
+            background: #fff5e5;
+            border-color: #ffb000;
+          }
+          &--disabled {
+            background: #f5f5f5;
+            color: #ccc;
+            border-color: #f5f5f5;
+            cursor: not-allowed;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+  .submit-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 24rpx 40rpx;
+  }
+}

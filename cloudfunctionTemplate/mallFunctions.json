@@ -1,0 +1,265 @@
+[
+  {
+    "name": "mall_products_create",
+    "value": {
+      "type": "mall_products_create",
+      "params": {
+        "name": "示例商品名称",
+        "category_id": "22be1a42693a89920738d3241a9f085c",
+        "images": ["cloud://env-id.course-image/product1.jpg", "cloud://env-id.course-image/product2.jpg"],
+        "is_enabled": true,
+        "description": "这是商品的详细描述信息",
+        "skus": [
+          {
+            "spec": "红色 XL",
+            "sell_price": 9900,
+            "original_price": 12900,
+            "stock": 100
+          },
+          {
+            "spec": "蓝色 L",
+            "sell_price": 9900,
+            "original_price": 12900,
+            "stock": 50
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "mall_products_delete",
+    "value": {
+      "type": "mall_products_delete",
+      "params": {
+        "product_id": "product_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_products_update",
+    "value": {
+      "type": "mall_products_update",
+      "params": {
+        "product_id": "product_id_example",
+        "name": "更新商品名称",
+        "category_id": "category_id_example",
+        "images": ["cloud://env-id.course-image/product_new.jpg"],
+        "is_enabled": true,
+        "description": "更新后的描述",
+        "skus": [
+          {
+            "spec": "红色 XL",
+            "sell_price": 8800,
+            "original_price": 12900,
+            "stock": 90,
+            "sku_id": "sku_id_example"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "mall_products_get",
+    "value": {
+      "type": "mall_products_get",
+      "params": {
+        "product_id": "product_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_products_get_all",
+    "value": {
+      "type": "mall_products_get_all",
+      "params": {
+        "pageNum": 1,
+        "pageSize": 20
+      }
+    }
+  },
+  {
+    "name": "mall_categories_create",
+    "value": {
+      "type": "mall_categories_create",
+      "params": {
+        "name": "示例分类名称",
+        "icon_url": "cloud://env-id.course-image/category.jpg",
+        "order": 1,
+        "is_enabled": true
+      }
+    }
+  },
+  {
+    "name": "mall_categories_delete",
+    "value": {
+      "type": "mall_categories_delete",
+      "params": {
+        "category_id": "category_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_categories_update",
+    "value": {
+      "type": "mall_categories_update",
+      "params": {
+        "category_id": "category_id_example",
+        "name": "更新分类名称",
+        "icon_url": "cloud://env-id.course-image/category_new.jpg",
+        "order": 2,
+        "is_enabled": true
+      }
+    }
+  },
+  {
+    "name": "mall_categories_get_all",
+    "value": {
+      "type": "mall_categories_get_all",
+      "params": {
+        "pageNum": 1,
+        "pageSize": 20
+      }
+    }
+  },
+  {
+    "name": "mall_carts_create",
+    "value": {
+      "type": "mall_carts_create",
+      "params": {
+        "product_id": "product_id_example",
+        "sku_id": "sku_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_carts_delete",
+    "value": {
+      "type": "mall_carts_delete",
+      "params": {
+        "cart_id": "cart_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_carts_update",
+    "value": {
+      "type": "mall_carts_update",
+      "params": {
+        "cart_id": "cart_id_example",
+        "product_id": "product_id_example",
+        "sku_id": "sku_id_example",
+        "quantity": 1
+      }
+    }
+  },
+  {
+    "name": "mall_carts_get_all",
+    "value": {
+      "type": "mall_carts_get_all",
+      "params": {
+        "pageNum": 1,
+        "pageSize": 20
+      }
+    }
+  },
+  {
+    "name": "mall_banners_create",
+    "value": {
+      "type": "mall_banners_create",
+      "params": {
+        "title": "示例轮播图",
+        "image_url": "cloud://env-id.course-image/banner.jpg",
+        "link_url": "/pages/home/index",
+        "order": 1,
+        "is_enabled": true
+      }
+    }
+  },
+  {
+    "name": "mall_banners_delete",
+    "value": {
+      "type": "mall_banners_delete",
+      "params": {
+        "banner_id": "banner_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_banners_update",
+    "value": {
+      "type": "mall_banners_update",
+      "params": {
+        "banner_id": "banner_id_example",
+        "title": "更新轮播图",
+        "image_url": "cloud://env-id.course-image/banner_new.jpg",
+        "link_url": "/pages/home/index",
+        "order": 1,
+        "is_enabled": true
+      }
+    }
+  },
+  {
+    "name": "mall_banners_get_all",
+    "value": {
+      "type": "mall_banners_get_all",
+      "params": {
+        "pageNum": 1,
+        "pageSize": 20
+      }
+    }
+  },
+  {
+    "name": "mall_orders_create",
+    "value": {
+      "type": "mall_orders_create",
+      "params": {
+        "cart_ids": ["cart_id_example"],
+        "name": "收货人",
+        "phone": "13800000000",
+        "province": "广东省",
+        "city": "深圳市",
+        "district": "南山区",
+        "detail_address": "科技园",
+        "remark": "尽快发货"
+      }
+    }
+  },
+  {
+    "name": "mall_orders_get_all",
+    "value": {
+      "type": "mall_orders_get_all",
+      "params": {
+        "pageNum": 1,
+        "pageSize": 20,
+        "status": "pending"
+      }
+    }
+  },
+  {
+    "name": "mall_orders_get",
+    "value": {
+      "type": "mall_orders_get",
+      "params": {
+        "order_id": "order_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_orders_confirm",
+    "value": {
+      "type": "mall_orders_confirm",
+      "params": {
+        "order_id": "order_id_example"
+      }
+    }
+  },
+  {
+    "name": "mall_orders_cancel",
+    "value": {
+      "type": "mall_orders_cancel",
+      "params": {
+        "order_id": "order_id_example"
+      }
+    }
+  }
+]

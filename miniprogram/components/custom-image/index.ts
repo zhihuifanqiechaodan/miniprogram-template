@@ -1,3 +1,5 @@
+import { version } from '@miniprogram/config/index';
+
 // components/custom-image/index.js
 Component({
   /**
@@ -80,6 +82,7 @@ Component({
   data: {
     error: false,
     loading: true,
+    version: version,
   },
 
   /**

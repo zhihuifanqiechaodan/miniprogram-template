@@ -1,6 +1,9 @@
 {
   "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
     "custom-nav-bar": "/components/custom-nav-bar/index",
-    "custom-iconfont": "/components/custom-iconfont/index"
+    "custom-image": "/components/custom-image/index",
+    "custom-broken-network": "/components/custom-broken-network/index",
+    "custom-goods": "/components/custom-goods/index"
   }
 }

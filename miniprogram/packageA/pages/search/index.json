@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index",
+    "custom-image": "/components/custom-image/index",
+    "custom-loading": "/components/custom-loading/index",
+    "custom-nomore": "/components/custom-nomore/index",
+    "custom-more": "/components/custom-more/index",
+    "custom-goods": "/components/custom-goods/index"
+  }
+}

@@ -1,0 +1,149 @@
+<!-- packageA/pages/order-confirm/index.wxml -->
+<view class="app-container">
+  <custom-nav-bar
+    showBack="{{true}}"
+    title="确认订单"
+    placeholder="{{true}}"
+    custom-style="background-color: #ffffff;"
+  />
+  <custom-broken-network wx:if="{{brokenNetwork}}" />
+  <view wx:if="{{!brokenNetwork && goodsList.length}}" class="order-confirm">
+    <view class="address-wrapper">
+      <view wx:if="{{peisongType === 'kd'}}" catch:tap="handleAddressClick" class="address-info">
+        <view wx:if="{{addressInfo}}" class="address-card">
+          <view class="card-content">
+            <view class="name">{{ addressInfo.info.linkMan }}</view>
+            <view class="phone">{{ addressInfo.info.mobile }}</view>
+            <view class="address"> {{ addressInfo.info.address }} </view>
+            <custom-image class="edit-icon" src="/assets/images/edit-address.svg" width="42rpx" height="42rpx" />
+          </view>
+          <view class="card-footer"></view>
+        </view>
+        <view wx:else class="address-card">
+          <view class="card-content">
+            <view class="no-address">暂无收货人信息，请填写地址信息</view>
+            <custom-image class="edit-icon" src="/assets/images/edit-address.svg" width="42rpx" height="42rpx" />
+          </view>
+          <view class="card-footer"></view>
+        </view>
+      </view>
+      <view class="delivery-method">
+        <view class="delivery-method-title">配送方式</view>
+        <view class="delivery-options">
+          <view catch:tap="handleDeliveryChange" data-peisong-type="kd" class="delivery-option">
+            <view class="delivery-option-radio {{peisongType === 'kd' ? 'delivery-option-radio--selected' : ''}}">
+              <view
+                class="delivery-option-radio-inner {{peisongType === 'kd' ? 'delivery-option-radio-inner--selected' : ''}}"
+              ></view>
+            </view>
+            <view class="delivery-option-label">快递配送</view>
+          </view>
+          <view catch:tap="handleDeliveryChange" data-peisong-type="zq" class="delivery-option">
+            <view class="delivery-option-radio {{peisongType === 'zq' ? 'delivery-option-radio--selected' : ''}}">
+              <view
+                class="delivery-option-radio-inner {{peisongType === 'zq' ? 'delivery-option-radio-inner--selected' : ''}}"
+              ></view>
+            </view>
+            <view class="delivery-option-label">门店自提</view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{peisongType === 'zq'}}" class="self-pick-info">
+        <view class="self-pick-input">
+          <input
+            bindchange="onSelfPickupInfoChange"
+            data-field="contactName"
+            type="text"
+            placeholder="请输入联系人姓名"
+            class="self-pick-name-input"
+          />
+        </view>
+        <view class="self-pick-input">
+          <input
+            bindchange="onSelfPickupInfoChange"
+            data-field="contactPhone"
+            type="number"
+            placeholder="请输入手机号码"
+            maxlength="11"
+            class="self-pick-phone-input"
+          />
+        </view>
+      </view>
+    </view>
+
+    <view class="product-list">
+      <view class="product-list-title">商品信息</view>
+      <view wx:for="{{goodsList}}" wx:key="index" class="product-item">
+        <custom-image
+          class="product-image"
+          catchtap="handleGoodsClick"
+          src="{{item.pic}}"
+          width="200rpx"
+          height="180rpx"
+        />
+        <view class="product-details">
+          <view>
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-spec">
+              <block wx:for="{{item.sku}}" wx:for-item="option" wx:key="index">
+                {{option.optionName}}:{{option.optionValueName}}
+              </block>
+            </view>
+          </view>
+          <view class="product-price-quantity">
+            <text class="product-price">¥{{item.price || item.minPrice}}</text>
+            <text class="product-quantity">x{{item.number}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="remark-section">
+      <view class="remark-textarea">
+        <input bind:change="onRemarkChange" type="text" placeholder="请输入备注信息" />
+      </view>
+    </view>
+    <view class="order-details">
+      <view class="order-details-title">订单详情</view>
+      <view class="order-details-item">
+        <view class="order-detail">
+          <view class="order-detail-label">优惠券</view>
+          <view class="order-detail-value">无可用</view>
+        </view>
+        <view class="order-detail">
+          <view class="order-detail-label">商品总额</view>
+          <view class="order-detail-value">¥{{payInfo.amountTotle}}</view>
+        </view>
+        <block wx:if="{{peisongType === 'kd'}}">
+          <view wx:if="{{payInfo.amountLogistics}}" class="order-detail">
+            <view class="order-detail-label">运费</view>
+            <view class="order-detail-value">¥{{payInfo.amountLogistics}}</view>
+          </view>
+          <view wx:if="{{payInfo.amountLogistics2}}" class="order-detail">
+            <view class="order-detail-label">附加运费</view>
+            <view class="order-detail-value">¥{{payInfo.amountLogistics2}}</view>
+          </view>
+          <block wx:if="{{payInfo.goodsAdditionalPriceMap}}">
+            <view wx:for="{{payInfo.goodsAdditionalPriceMap}}" wx:key="index" class="order-detail">
+              <view class="order-detail-label">{{index}}</view>
+              <view class="order-detail-value">¥{{item}}</view>
+            </view>
+          </block>
+        </block>
+      </view>
+    </view>
+    <view class="fixed-bottom-wrapper">
+      <view class="amount-container">
+        <view class="amount">
+          <view class="amount-label">合计：</view>
+          <view class="amount-value">¥{{payInfo.amountReal}}</view>
+        </view>
+        <view class="amount-tips">请在15分钟内完成付款</view>
+      </view>
+      <van-button bind:click="handleConfirm" block square type="primary" custom-style="width: 240rpx;">
+        提交订单
+      </van-button>
+    </view>
+  </view>
+</view>
+<custom-loading id="custom-loading" />
+<van-toast id="van-toast" />

@@ -2,7 +2,7 @@
 <wxs src="/utils/wxs.wxs" module="computed" />
 
 <view
-  style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}};"
+  style="width: {{computed.addRpxUnit(width)}}; height: {{computed.addRpxUnit(height)}}; border-radius: {{radius ? wxsModule.addUnit(radius) : 0}};"
   class="custom-video"
   id="custom-video"
 >
@@ -13,25 +13,34 @@
   </view>
   <!-- 右下角功能区域 -->
   <view wx:if="{{buffered_status}}" class="bottom-right-function-wrapper">
-    <!-- 静音icon -->
-    <view wx:if="{{showMuted}}" class="muted-icon-wrapper">
+    <view class="feature-item">
       <custom-image
-        catchtap="handleMuted"
-        src="{{mutedStatus ? mutedIcon : unMutedIcon}}"
-        width="{{mutedIconSize}}"
-        height="{{mutedIconSize}}"
+        catchtap="handleChangePlaybackRate"
+        src="{{playbackRateList[playbackRateIndex].src}}"
+        width="48rpx"
+        height="48rpx"
         showLoading="{{false}}"
       />
     </view>
-    <!-- 全屏icon -->
-    <view wx:if="{{showFullScreen}}" class="full-screen-icon-wrapper">
-      <custom-image
-        catchtap="handleFullScreen"
-        src="{{fullScreenIcon}}"
-        width="{{fullScreenIconSize}}"
-        height="{{fullScreenIconSize}}"
-        showLoading="{{false}}"
-      />
+    <view style="display: flex; align-items: center">
+      <view wx:if="{{showMuted}}" class="feature-item">
+        <custom-image
+          catchtap="handleMuted"
+          src="{{mutedStatus ? mutedIcon : unMutedIcon}}"
+          width="{{mutedIconSize}}"
+          height="{{mutedIconSize}}"
+          showLoading="{{false}}"
+        />
+      </view>
+      <view wx:if="{{showFullScreen}}" class="feature-item">
+        <custom-image
+          catchtap="handleFullScreen"
+          src="{{fullScreenIcon}}"
+          width="{{fullScreenIconSize}}"
+          height="{{fullScreenIconSize}}"
+          showLoading="{{false}}"
+        />
+      </view>
     </view>
   </view>
   <!-- 播放icon -->
@@ -73,6 +82,8 @@
     loop="{{loop}}"
     class="video-wrapper"
     id="{{id}}"
+    picture-in-picture-mode="{{[]}}"
+    show-background-playback-button="{{false}}"
   />
   <slot />
 </view>

@@ -1,0 +1,98 @@
+/* pages/device/index.wxss */
+page {
+  .app-container {
+    // background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+    box-sizing: border-box;
+    .custom-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0 40rpx;
+      .nav-bar-right {
+        display: flex;
+        align-items: center;
+        gap: 20rpx;
+        .sign-area {
+          position: relative;
+          .sign-text {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14rpx;
+            height: 26rpx;
+            border-radius: 15rpx;
+            width: 50rpx;
+            background-color: #3889ff;
+            color: #ffffff;
+            font-weight: 500;
+          }
+          .signed-text {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14rpx;
+            height: 26rpx;
+            border-radius: 15rpx;
+            width: 50rpx;
+            background: linear-gradient(to right, #b8c0cd, #a8aeba);
+            color: #ffffff;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .device-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40rpx;
+      padding: 40rpx;
+      .device-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 240rpx;
+        border-radius: 16rpx;
+        box-shadow: 8rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.25);
+        padding: 0 30rpx;
+        &.eye-task-box-container {
+          position: relative;
+          .eye-task-box-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+          }
+        }
+        .device-item-title {
+          font-family: cursive;
+          font-size: 36rpx;
+          font-weight: 600;
+        }
+        .device-item-desc {
+          padding-top: 20rpx;
+          font-size: 24rpx;
+          color: #666;
+          width: 50%;
+          line-height: 36rpx;
+          font-weight: 300;
+        }
+        &.more {
+          box-shadow: 8rpx 4rpx 10rpx 4rpx rgba(0, 0, 0, 0.25);
+          .device-item-image {
+            position: absolute;
+            right: 0rpx;
+            top: 0rpx;
+          }
+        }
+      }
+    }
+  }
+}
