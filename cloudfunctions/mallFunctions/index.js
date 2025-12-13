@@ -17,11 +17,12 @@ const mallBannersDelete = require('./mall_banners_delete')
 const mallBannersUpdate = require('./mall_banners_update')
 const mallBannersGetAll = require('./mall_banners_get_all')
 const mallOrdersCreate = require('./mall_orders_create')
-// const mallOrdersUpdate = require('./mall_orders_update')
+const mallOrdersUpdate = require('./mall_orders_update')
 const mallOrdersGetAll = require('./mall_orders_get_all')
 const mallOrdersGet = require('./mall_orders_get')
 const mallOrdersConfirm = require('./mall_orders_confirm')
 const mallOrdersCancel = require('./mall_orders_cancel')
+const mallMiniProgramCodeGet = require('./mall_mini_program_code_get')
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -68,9 +69,8 @@ exports.main = async (event, context) => {
       // 订单
       case 'mall_orders_create':
         return await mallOrdersCreate.main(event, context)
-      // 内置调用
-      // case 'mall_orders_update':
-      //   return await mallOrdersUpdate.main(event, context)
+      case 'mall_orders_update':
+        return await mallOrdersUpdate.main(event, context)
       case 'mall_orders_get_all':
         return await mallOrdersGetAll.main(event, context)
       case 'mall_orders_get':
@@ -79,31 +79,13 @@ exports.main = async (event, context) => {
         return await mallOrdersConfirm.main(event, context)
       case 'mall_orders_cancel':
         return await mallOrdersCancel.main(event, context)
+      // 小程序码
+      case 'mall_mini_program_code_get':
+        return await mallMiniProgramCodeGet.main(event, context)
       default:
         return {
           code: 404,
-          message: '仅支持以下方法',
-          data: [
-            'mall_categories_create',
-            'mall_categories_delete',
-            'mall_categories_update',
-            'mall_categories_get_all',
-            'mall_products_create',
-            'mall_products_delete',
-            'mall_products_update',
-            'mall_products_get',
-            'mall_products_get_all',
-            'mall_carts_create',
-            'mall_carts_delete',
-            'mall_carts_update',
-            'mall_carts_get_all',
-            'mall_banners_create',
-            'mall_banners_delete',
-            'mall_banners_update',
-            'mall_banners_get_all',
-            'mall_orders_create',
-            'mall_orders_get_all',
-          ]
+          message: `不支持的${event.type}操作`,
         }
     }
   } catch (error) {
