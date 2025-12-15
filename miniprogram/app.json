@@ -48,6 +48,16 @@
         "pages/sign-in/index",
         "pages/web-view/index"
       ]
+    },
+    {
+      "root": "packageB",
+      "name": "packageB",
+      "pages": [
+        "pages/admin-backend/index",
+        "pages/admin-banner/index",
+        "pages/admin-category/index",
+        "pages/admin-product/index"
+      ]
     }
   ],
   "window": {

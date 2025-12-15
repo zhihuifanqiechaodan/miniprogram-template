@@ -1,5 +1,5 @@
 /* components/custom-broken-network/index.wxss */
-.custom-broken-network-vertical-center {
+.custom-broken-network {
 	z-index: 9999;
 	position: fixed;
 	top: 50%;
@@ -9,18 +9,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 40rpx;
 	background-color: #ffffff;
-}
-
-.message {
-	text-align: center;
-	line-height: 40rpx;
-}
-
-.refresh {
-	margin-top: 40rpx;
-
-	.custom-refresh {
-		width: 240rpx;
-	}
 }

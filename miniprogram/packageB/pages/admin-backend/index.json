@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "custom-broken-network": "/components/custom-broken-network/index",
+    "custom-nav-bar": "/components/custom-nav-bar/index"
+  }
+}

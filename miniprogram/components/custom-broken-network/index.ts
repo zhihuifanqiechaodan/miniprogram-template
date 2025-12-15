@@ -2,14 +2,8 @@ import { checkNetwork, getCurrentPageInfo } from '@miniprogram/utils/util';
 
 // components/custom-broken-network/index.js
 const app: IAppOption = getApp();
-// TS-Q 多个文件出现 重复声明
-export {};
+
 Component({
-  externalClasses: [
-    'external-custom-broken-network',
-    'external-custom-broken-network_message',
-    'external-custom-broken-network_refresh',
-  ],
   /**
    * 组件的属性列表
    */
@@ -21,10 +15,6 @@ Component({
     buttonText: {
       type: String,
       value: '刷新',
-    },
-    verticalCenter: {
-      type: Boolean,
-      value: true,
     },
   },
 

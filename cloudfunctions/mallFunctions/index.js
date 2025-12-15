@@ -23,6 +23,7 @@ const mallOrdersGet = require('./mall_orders_get')
 const mallOrdersConfirm = require('./mall_orders_confirm')
 const mallOrdersCancel = require('./mall_orders_cancel')
 const mallMiniProgramCodeGet = require('./mall_mini_program_code_get')
+const mallAdminDataGet = require('./mall_admin_data_get')
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -82,6 +83,9 @@ exports.main = async (event, context) => {
       // 小程序码
       case 'mall_mini_program_code_get':
         return await mallMiniProgramCodeGet.main(event, context)
+      // 管理数据
+      case 'mall_admin_data_get':
+        return await mallAdminDataGet.main(event, context)
       default:
         return {
           code: 404,

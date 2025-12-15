@@ -1,0 +1,21 @@
+<!--packageB/pages/admin-banner/index.wxml-->
+<!-- packageB/pages/admin-backend/index.wxml -->
+<view class="app-container">
+  <custom-nav-bar showBack="{{true}}" title="后台管理" placeholder="{{true}}" />
+  <view class="admin-list">
+    <view
+      class="admin-item"
+      wx:for="{{adminList}}"
+      wx:key="{{item.name}}"
+      bindtap="navigateToAdmin"
+      data-path="{{item.path}}"
+    >
+      <view style="background-color: {{wxsModule.computedRandomColor()}}" class="admin-item-icon">{{item.icon}}</view>
+      <view class="admin-item-info">
+        <view class="admin-item-text">{{item.name}}</view>
+        <view class="admin-item-count">共{{item.count}}条数据</view>
+      </view>
+      <view class="admin-item-arrow">></view>
+    </view>
+  </view>
+</view>

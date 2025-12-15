@@ -76,3 +76,19 @@ export const WebView: RouteConfig = {
   pagePath: '/packageA/pages/web-view/index',
   text: 'WebView',
 };
+export const AdminBackend: RouteConfig = {
+  pagePath: '/packageB/pages/admin-backend/index',
+  text: '后台管理',
+};
+export const AdminBanner: RouteConfig = {
+  pagePath: '/packageB/pages/admin-banner/index',
+  text: '轮播图管理',
+};
+export const AdminCategory: RouteConfig = {
+  pagePath: '/packageB/pages/admin-category/index',
+  text: '分类管理',
+};
+export const AdminProduct: RouteConfig = {
+  pagePath: '/packageB/pages/admin-product/index',
+  text: '商品管理',
+};

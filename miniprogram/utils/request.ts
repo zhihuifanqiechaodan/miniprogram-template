@@ -1,4 +1,3 @@
-import { ApiResponse } from '@/typings/api-types';
 import { getCurrentPageInfo } from '@miniprogram/utils/util';
 
 export enum FunctionsType {
@@ -24,9 +23,11 @@ export enum FunctionsType {
   mall_orders_get = 'mall_orders_get',
   mall_orders_confirm = 'mall_orders_confirm',
   mall_orders_cancel = 'mall_orders_cancel',
+  mall_mini_program_code_get = 'mall_mini_program_code_get',
+  mall_admin_data_get = 'mall_admin_data_get',
 }
 
-export const requestA = <T>({ type, params }: { type: FunctionsType; params: any }): Promise<T> => {
+export const requestA = <T>({ type, params }: { type: FunctionsType; params?: any }): Promise<T> => {
   const currentPage = getCurrentPageInfo();
   return new Promise((resolve, reject) => {
     wx.cloud
@@ -38,20 +39,6 @@ export const requestA = <T>({ type, params }: { type: FunctionsType; params: any
         },
       })
       .then((res) => {
-        console.log(res);
-
-        const result = res.result as ApiResponse<T>;
-        if (result.code !== 200) {
-          wx.hideLoading();
-          wx.showToast({
-            title: result.message,
-            icon: 'none',
-          });
-          currentPage?.setData({
-            brokenNetwork: false,
-          });
-          reject(result.message);
-        }
         resolve(res.result as T);
       })
       .catch((err) => {

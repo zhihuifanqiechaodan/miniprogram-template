@@ -1,9 +1,5 @@
 <!-- components/custom-navbar/index.wxml -->
-<view
-  catchtap="handleBackTop"
-  style="z-index: {{zIndex}}; {{customStyle}}"
-  class="custom-nav-bar {{fixed ? 'custom-nav-bar--fixed' : ''}}"
->
+<view catchtap="handleBackTop" style="{{customStyle}}" class="custom-nav-bar {{fixed ? 'custom-nav-bar--fixed' : ''}}">
   <view style="height: {{systemInfo.menuButton.top || 48}}px"></view>
   <view
     wx:if="{{showSlot}}"

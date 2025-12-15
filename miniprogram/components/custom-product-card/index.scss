@@ -184,7 +184,7 @@
 			justify-content: center;
 			gap: 12rpx;
 			box-shadow: 0 2rpx 8rpx rgba(16, 185, 129, 0.2);
-
+			box-sizing: border-box;
 			&:active {
 				background: linear-gradient(to right, #059669 0%, #047857 100%);
 				box-shadow: none;

@@ -34,11 +34,11 @@
       <view class="price-row">
         <view class="sale-price">
           <text class="price-symbol">¥</text>
-          <text class="price-value"> {{dataInfo.skus[wxsModule.minSkuIndex(dataInfo)].sell_price}} </text>
+          <text class="price-value">{{dataInfo.skus[currentSpecIndex].sell_price}}</text>
         </view>
-        <text class="original-price"> ¥{{dataInfo.skus[wxsModule.minSkuIndex(dataInfo)].original_price}} </text>
+        <text class="original-price">¥{{dataInfo.skus[currentSpecIndex].original_price}}</text>
       </view>
-      <text class="saved-amount">已省 ¥{{savedAmount}}</text>
+      <text class="saved-amount"> 已省 ¥{{wxsModule.computedSaveAmount({dataInfo, currentSpecIndex})}} </text>
     </view>
     <view class="add-cart-btn" bindtap="onAddToCart">
       <text class="cart-icon">🛒</text>
@@ -92,14 +92,12 @@
 <!-- prettier-ignore -->
 <wxs module="wxsModule">
 	module.exports = {
-		minSkuIndex: function (data) {
-			var minSkuIndex = 0
-			for (var i = 0; i < data.skus.length; i++) {
-				if (data.skus[i].sell_price < data.skus[minSkuIndex].sell_price) {
-					minSkuIndex = i
-				}
-			}
-			return minSkuIndex
+    computedSaveAmount: function (data) {
+      var currentSpecIndex = data.currentSpecIndex
+      var dataInfo = data.dataInfo
+			var sell_price = dataInfo.skus[currentSpecIndex].sell_price
+      var original_price = dataInfo.skus[currentSpecIndex].original_price
+			return original_price - sell_price
 		},
 		computedLayout: function (layout) {
 			var layoutClass = ''
