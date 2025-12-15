@@ -9,6 +9,6 @@
     "custom-loading": "/components/custom-loading/index",
     "custom-nomore": "/components/custom-nomore/index",
     "custom-more": "/components/custom-more/index",
-    "custom-goods": "/components/custom-goods/index"
+    "custom-product-card": "/components/custom-product-card/index"
   }
 }

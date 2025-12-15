@@ -14,9 +14,11 @@
       <custom-image src="{{item.image_url}}" width="100%" height="100%" />
     </swiper-item>
   </swiper>
-  <block wx:for="{{goodsList}}" wx:for-item="dataItem" wx:for-index="index" wx:key="index">
-    <view wx:for="{{dataItem}}" wx:key="_id" class="goods-item">
-      <custom-goods dataInfo="{{item}}" width="320rpx" height="320rpx" />
-    </view>
-  </block>
+  <view class="goods-list">
+    <block wx:for="{{goodsList}}" wx:for-item="dataItem" wx:for-index="index" wx:key="index">
+      <view wx:for="{{dataItem}}" wx:key="_id" class="goods-item">
+        <custom-product-card dataInfo="{{item}}" width="320rpx" height="320rpx" />
+      </view>
+    </block>
+  </view>
 </view>

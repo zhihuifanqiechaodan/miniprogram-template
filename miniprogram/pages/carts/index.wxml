@@ -5,7 +5,7 @@
   <view class="carts-wrapper">
     <block wx:for="{{carts}}" wx:for-item="dataItem" wx:for-index="index" wx:key="index">
       <view wx:for="{{dataItem}}" wx:key="_id" class="goods-item">
-        <custom-goods dataInfo="{{item}}" width="100%" height="320rpx" />
+        <custom-product-card dataInfo="{{item}}" width="100%" height="320rpx" />
       </view>
     </block>
   </view>

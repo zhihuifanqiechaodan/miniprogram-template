@@ -2,3 +2,11 @@
 	width: 100vw;
 	height: 100vw;
 }
+
+.goods-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 20rpx 40rpx;
+	gap: 20rpx;
+}

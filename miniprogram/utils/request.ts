@@ -38,6 +38,8 @@ export const requestA = <T>({ type, params }: { type: FunctionsType; params: any
         },
       })
       .then((res) => {
+        console.log(res);
+
         const result = res.result as ApiResponse<T>;
         if (result.code !== 200) {
           wx.hideLoading();

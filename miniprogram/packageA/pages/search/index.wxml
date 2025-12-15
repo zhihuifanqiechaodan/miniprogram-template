@@ -27,7 +27,12 @@
             wx:for-index="goodsListItemIndex"
             wx:key="goodsListItemIndex"
           >
-            <custom-goods wx:for="{{goodsListItem}}" wx:key="index" dataInfo="{{item}}" class="custom-goods" />
+            <custom-product-card
+              wx:for="{{goodsListItem}}"
+              wx:key="index"
+              dataInfo="{{item}}"
+              class="custom-product-card"
+            />
           </block>
         </view>
         <custom-more wx:if="{{lowerLoading}}" />

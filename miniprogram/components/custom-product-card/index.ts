@@ -2,7 +2,7 @@ import { navigateTo } from '@miniprogram/utils/util';
 import { GoodsDetail } from '@miniprogram/utils/router';
 import { mallCartsCreate } from '@miniprogram/api/shopping-cart';
 
-// components/custom-goods/index.ts
+// components/custom-product-card/index.ts
 Component({
   /**
    * 组件的属性列表
@@ -30,7 +30,9 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    currentSpecIndex: 0,
+  },
 
   /**
    * 组件的方法列表
