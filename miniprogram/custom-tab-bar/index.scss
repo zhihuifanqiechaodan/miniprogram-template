@@ -12,6 +12,7 @@
   --text-content: 24rpx;
   --border-radius: 8rpx;
   --tabbar-height: 120rpx;
+  z-index: 10000;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -21,6 +22,7 @@
   display: flex;
   padding-bottom: env(safe-area-inset-bottom);
   color: #03142b;
+
   .tab-bar-border {
     position: absolute;
     left: 0;
@@ -29,6 +31,7 @@
     height: 2rpx;
     background-color: #ebedf0;
   }
+
   .tab-bar-item {
     position: relative;
     flex: 1;
@@ -38,6 +41,7 @@
     align-items: center;
     flex-direction: column;
     font-size: 20rpx;
+
     &.tab-bar-item--special {
       .tab-bar-item_icon {
         position: absolute;
@@ -52,19 +56,23 @@
         border: 2px solid var(--color-primary);
         background-color: var(--color-light-blue);
         box-sizing: border-box;
+
         &.tab-bar-item_icon--fill {
           background-color: var(--color-primary);
         }
       }
     }
+
     .tab-bar-item_icon {
       .tab-bar-item_image {
         width: 48rpx;
         height: 48rpx;
       }
     }
+
     .tab-bar-item_text {
       padding-top: 4rpx;
+
       &.tab-bar-item_tex--fill {
         color: var(--color-primary);
       }
