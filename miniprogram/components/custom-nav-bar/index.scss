@@ -3,6 +3,7 @@
 
 .custom-nav-bar {
 	background-color: #ffffff;
+	box-sizing: border-box;
 
 	&.custom-nav-bar--fixed {
 		z-index: 10000;

@@ -1,14 +1,7 @@
 <!-- components/custom-navbar/index.wxml -->
 <view catchtap="handleBackTop" style="{{customStyle}}" class="custom-nav-bar {{fixed ? 'custom-nav-bar--fixed' : ''}}">
-  <view style="height: {{systemInfo.menuButton.top || 48}}px"></view>
-  <view
-    wx:if="{{showSlot}}"
-    style="height: {{height ? height : systemInfo.menuButton.height + 'px'}};"
-    class="custom-nav-bar_slot"
-  >
-    <slot />
-  </view>
-  <view wx:else style="height: {{systemInfo.menuButton.height}}px;" class="custom-nav-bar_content">
+  <view style="height: {{systemInfo.menuButton.top}}px"></view>
+  <view style="height: {{systemInfo.menuButton.height}}px;" class="custom-nav-bar_content">
     <view wx:if="{{title}}" class="custom-nav-bar_title van-ellipsis">{{title}}</view>
     <view wx:if="{{showHome}}" catchtap="handleReLaunchHome" class="custom-nav-bar_home-icon">
       <custom-iconfont icon="icon-home" size="48rpx" />
@@ -19,6 +12,7 @@
     <view wx:if="{{showClose}}" catchtap="handleNavigateBack" class="custom-nav-bar_close-icon">
       <custom-iconfont icon="icon-close" size="48rpx" />
     </view>
+    <slot wx:if="{{showSlot}}" />
   </view>
 </view>
 <view wx:if="{{fixed && placeholder}}" style="height: {{systemInfo.menuButton.bottom}}px;"></view>

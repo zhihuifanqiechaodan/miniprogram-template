@@ -7,9 +7,6 @@
 .safeAreaInsetBottom {
   padding-bottom: calc(env(safe-area-inset-bottom));
 }
-.page-container {
-  padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
-}
 .refresher-loading {
   display: flex;
   align-items: center;
@@ -24,7 +21,7 @@
   bottom: 0;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 -2rpx 0 0 #e6e6e6;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   padding: 24rpx 20rpx;
   padding-bottom: calc(24rpx + env(safe-area-inset-bottom));

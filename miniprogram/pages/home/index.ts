@@ -1,33 +1,32 @@
-import { IApiMallBannersGetAllItem, IApiMallCategoriesGetAllItem, IApiMallProductItem } from '@/typings/api-types';
-import { mallBannersGetAll } from '@miniprogram/api/banner';
-import { mallCategoriesGetAll } from '@miniprogram/api/category';
-import { mallProductsGetAll } from '@miniprogram/api/product';
-import { setTabBarSelected } from '@miniprogram/utils/util';
-
 // pages/home/index.ts
+const app: IAppOption = getApp();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    brokenNetwork: false,
-    banners: [] as IApiMallBannersGetAllItem[],
-    categories: [] as IApiMallCategoriesGetAllItem[],
-    goodsList: [] as IApiMallProductItem[][],
-    empty: false,
-    pageNum: 1,
-    pageSize: 20,
-    nomore: false,
-    lowerLoading: false,
-    refresherTriggered: false,
+    systemInfo: app.globalData.systemInfo,
+    // Initial data for dashboard
+    todatStats: [
+      { label: '今日营业额', value: '¥3,248', trend: '', icon: '💰', color: 'bg-green-500' },
+      { label: '今日订单', value: '42', trend: '', icon: '🛍️', color: 'bg-blue-500' },
+      { label: '客流量', value: '156', trend: '', icon: '👥', color: 'bg-purple-500' },
+      { label: '环比增长', value: '+12.5%', trend: '', icon: '📈', color: 'bg-orange-500' },
+    ],
+    menuItems: [
+      { id: 'product', name: '商品管理', icon: '🍱', url: '/packageB/pages/admin-product/index' },
+      { id: 'user', name: '分类管理', icon: '👥', url: '' },
+      { id: 'order', name: '订单处理', icon: '📋', url: '/packageA/pages/order-list/index' },
+      { id: 'stats', name: '数据统计', icon: '📊', url: '' },
+      { id: 'settings', name: '门店设置', icon: '⚙️', url: '' },
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-    this.initData();
-  },
+  onLoad() {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -37,9 +36,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    setTabBarSelected();
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -61,27 +58,22 @@ Page({
    */
   onReachBottom() {},
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {},
-  initData() {
-    wx.showLoading({
-      title: '加载中',
+  handleLogout() {
+    wx.showToast({
+      title: '点击退出',
+      icon: 'none',
     });
-    Promise.all([
-      mallBannersGetAll({ pageNum: 1, pageSize: 5 }),
-      mallCategoriesGetAll({ pageNum: 1, pageSize: 8, is_enabled: true }),
-      mallProductsGetAll({ pageNum: 1, pageSize: this.data.pageSize, is_enabled: true }),
-    ]).then(([mallBannersGetAllRes, mallCategoriesGetAllRes, mallProductsGetAllRes]) => {
-      wx.hideLoading();
-      this.setData({
-        banners: mallBannersGetAllRes.data.records,
-        categories: mallCategoriesGetAllRes.data.records,
-        goodsList: [mallProductsGetAllRes.data.records],
-        empty: !mallProductsGetAllRes.data.records.length,
-        nomore: mallProductsGetAllRes.data.pagination.totalPages == this.data.pageSize,
+  },
+
+  onMenuClick(e: WechatMiniprogram.TouchEvent) {
+    const { url } = e.currentTarget.dataset;
+    if (url) {
+      wx.navigateTo({ url });
+    } else {
+      wx.showToast({
+        title: '功能开发中',
+        icon: 'none',
       });
-    });
+    }
   },
 });

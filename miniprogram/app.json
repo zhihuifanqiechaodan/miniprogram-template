@@ -8,27 +8,27 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/categories/index",
-        "text": "分类"
+        "pagePath": "pages/goods/index",
+        "text": "菜品"
       },
       {
         "pagePath": "pages/device/index",
-        "text": "设备"
+        "text": "订单"
       },
       {
         "pagePath": "pages/carts/index",
-        "text": "购物车"
+        "text": "数据"
       },
       {
         "pagePath": "pages/profile/index",
-        "text": "我的"
+        "text": "设置"
       }
     ]
   },
   "pages": [
     "pages/home/index",
+    "pages/goods/index",
     "pages/guide/index",
-    "pages/categories/index",
     "pages/device/index",
     "pages/carts/index",
     "pages/profile/index"
@@ -38,6 +38,7 @@
       "root": "packageA",
       "name": "packageA",
       "pages": [
+        "pages/categories/index",
         "pages/goods-detail/index",
         "pages/address/index",
         "pages/address-edit/index",
