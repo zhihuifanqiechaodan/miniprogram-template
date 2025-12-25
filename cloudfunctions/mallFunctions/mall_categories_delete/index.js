@@ -17,15 +17,11 @@ exports.main = async (event, context) => {
     const validated = schema.parse(event.params);
     const categoriesRes = await categoriesCollection.where({ _id: validated.category_id, is_deleted: false, }).get();
     if (!categoriesRes.data.length) throw new Error('分类不存在')
+    const productsRes = await productsCollection.where({ category_id: validated.category_id, is_deleted: false, }).get();
+    if (productsRes.data.length) throw new Error('有关联当前分类的商品 当前分类不允许删除')
     await categoriesCollection.doc(validated.category_id).update({
         data: {
             is_deleted: true,
-            updated_at: updatedAt
-        },
-    });
-    await productsCollection.where({ category_id: validated.category_id, is_deleted: false, }).update({
-        data: {
-            category_id: '',
             updated_at: updatedAt
         },
     });

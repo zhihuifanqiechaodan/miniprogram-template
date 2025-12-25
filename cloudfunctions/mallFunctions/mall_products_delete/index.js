@@ -21,11 +21,21 @@ exports.main = async (event, context) => {
         })
         .get();
     if (!productsRes.data.length) throw new Error("商品不存在");
-    await productsCollection.doc(validated.product_id).update({
-        data: {
-            is_deleted: true,
-            updated_at: updatedAt
-        },
+    await db.runTransaction(async (transaction) => {
+        const productsCollection = transaction.collection('products')
+        const categoriesCollection = transaction.collection('categories')
+        await productsCollection.doc(validated.product_id).update({
+            data: {
+                is_deleted: true,
+                updated_at: updatedAt
+            },
+        })
+        await categoriesCollection.doc(productsRes.data[0].category_id).update({
+            data: {
+                count: db.command.inc(-1),
+                updated_at: updatedAt,
+            }
+        })
     });
     return {
         code: 200,

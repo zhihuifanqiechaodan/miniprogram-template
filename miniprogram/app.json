@@ -12,53 +12,25 @@
         "text": "菜品"
       },
       {
-        "pagePath": "pages/device/index",
+        "pagePath": "pages/orders/index",
         "text": "订单"
       },
       {
-        "pagePath": "pages/carts/index",
+        "pagePath": "pages/data/index",
         "text": "数据"
       },
       {
-        "pagePath": "pages/profile/index",
+        "pagePath": "pages/settings/index",
         "text": "设置"
       }
     ]
   },
-  "pages": [
-    "pages/home/index",
-    "pages/goods/index",
-    "pages/guide/index",
-    "pages/device/index",
-    "pages/carts/index",
-    "pages/profile/index"
-  ],
+  "pages": ["pages/home/index", "pages/goods/index", "pages/orders/index", "pages/data/index", "pages/settings/index"],
   "subPackages": [
     {
       "root": "packageA",
       "name": "packageA",
-      "pages": [
-        "pages/categories/index",
-        "pages/goods-detail/index",
-        "pages/address/index",
-        "pages/address-edit/index",
-        "pages/order-confirm/index",
-        "pages/order-list/index",
-        "pages/order-detail/index",
-        "pages/search/index",
-        "pages/sign-in/index",
-        "pages/web-view/index"
-      ]
-    },
-    {
-      "root": "packageB",
-      "name": "packageB",
-      "pages": [
-        "pages/admin-backend/index",
-        "pages/admin-banner/index",
-        "pages/admin-category/index",
-        "pages/admin-product/index"
-      ]
+      "pages": ["pages/categories/index", "pages/web-view/index"]
     }
   ],
   "window": {

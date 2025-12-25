@@ -6,7 +6,6 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 const { z } = require('zod');
 const { handleUuid } = require('../utils');
 const db = cloud.database();
-const productsCollection = db.collection('products');
 const categoriesCollection = db.collection('categories');
 const updatedAt = db.serverDate();
 
@@ -30,20 +29,31 @@ exports.main = async (event, context) => {
 	const validated = schema.parse(event.params);
 	const categoriesRes = await categoriesCollection.where({ _id: validated.category_id, is_deleted: false, is_enabled: true }).get();
 	if (categoriesRes.data.length === 0) throw new Error("商品分类不存在");
-	validated.category_name = categoriesRes.data[0].name
 	validated.skus.forEach((sku) => {
 		sku.sku_id = handleUuid()
 		sku.updated_at = updatedAt;
 		sku.created_at = updatedAt;
 	})
-	await productsCollection.add({
-		data: {
-			...validated,
-			is_deleted: false,
-			updated_at: updatedAt,
-			created_at: updatedAt,
-		}
+	db.runTransaction(async (transaction) => {
+		const productsCollection = transaction.collection('products')
+		const categoriesCollection = transaction.collection('categories')
+		await productsCollection.add({
+			data: {
+				...validated,
+				is_deleted: false,
+				updated_at: updatedAt,
+				created_at: updatedAt,
+				category_name: categoriesRes.data[0].name,
+			}
+		})
+		await categoriesCollection.doc(validated.category_id).update({
+			data: {
+				count: db.command.inc(1),
+				updated_at: updatedAt,
+			}
+		})
 	})
+
 	return {
 		code: 200,
 		message: "商品创建成功",

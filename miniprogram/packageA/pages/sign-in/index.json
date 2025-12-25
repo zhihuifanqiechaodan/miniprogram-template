@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "van-toast": "@vant/weapp/toast/index",
-    "custom-nav-bar": "/components/custom-nav-bar/index",
-    "custom-loading": "/components/custom-loading/index",
-    "custom-broken-network": "/components/custom-broken-network/index"
-  }
-}

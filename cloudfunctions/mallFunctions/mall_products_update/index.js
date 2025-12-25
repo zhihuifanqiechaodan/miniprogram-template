@@ -61,17 +61,35 @@ exports.main = async (event, context) => {
             updated_at: updatedAt
         };
     });
-    await productsCollection.doc(validated.product_id).update({
-        data: {
-            name: validated.name,
-            category_id: validated.category_id,
-            images: validated.images,
-            is_enabled: validated.is_enabled,
-            description: validated.description,
-            skus: updatedSkus,
-            updated_at: updatedAt,
-        },
-    });
+    await db.runTransaction(async (transaction) => {
+        const productsCollection = transaction.collection('products')
+        const categoriesCollection = transaction.collection('categories')
+        await productsCollection.doc(validated.product_id).update({
+            data: {
+                name: validated.name,
+                category_id: validated.category_id,
+                images: validated.images,
+                is_enabled: validated.is_enabled,
+                description: validated.description,
+                skus: updatedSkus,
+                updated_at: updatedAt,
+            },
+        });
+        if (productsRes.data[0].category_id !== validated.category_id) {
+            await categoriesCollection.doc(productsRes.data[0].category_id).update({
+                data: {
+                    count: db.command.inc(-1),
+                    updated_at: updatedAt,
+                }
+            })
+        }
+        await categoriesCollection.doc(validated.category_id).update({
+            data: {
+                count: db.command.inc(1),
+                updated_at: updatedAt,
+            }
+        })
+    })
     return {
         code: 200,
         message: "商品更新成功",

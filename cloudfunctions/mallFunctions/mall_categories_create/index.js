@@ -23,6 +23,7 @@ exports.main = async (event, context) => {
             is_deleted: false,
             created_at: createdAt,
             updated_at: createdAt,
+            count: 0,
         }
     });
     return {

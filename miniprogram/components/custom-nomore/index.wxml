@@ -1,6 +1,0 @@
-<!--components/custom-nomore/index.wxml-->
-<view
-  class="custom-nomore"
-  style="margin-top: {{gap === 'small' ? '40rpx' : gap === 'large' ? '120rpx' : '60rpx'}}; margin-bottom: {{gap === 'small' ? '20rpx' : gap === 'large' ? '40rpx' : '20rpx'}};"
-  >- {{text}} -</view
->
