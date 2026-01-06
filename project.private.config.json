@@ -19,7 +19,7 @@
     "checkInvalidKey": true,
     "ignoreDevUnusedFiles": true
   },
-  "libVersion": "3.4.10",
+  "libVersion": "3.7.12",
   "condition": {
     "miniprogram": {
       "list": [

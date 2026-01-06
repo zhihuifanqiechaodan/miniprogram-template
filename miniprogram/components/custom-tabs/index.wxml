@@ -1,0 +1,22 @@
+<!--components/custom-tabs/index.wxml-->
+<view class="custom-tabs">
+  <scroll-view scroll-with-animation scroll-left="{{ scrollLeft }}" scroll-x class="custom-tabs-scroll-view">
+    <view class="custom-tabs-item-wrapper" style="{{customStyle}}">
+      <view
+        wx:for="{{tabs}}"
+        wx:key="*this"
+        catch:tap="handleTabsItemClick"
+        data-index="{{index}}"
+        class="custom-tabs-item external-custom-tabs-item {{index === currentTab ? 'custom-tabs-item-active external-custom-tabs-item-active' : ''}}"
+      >
+        {{item}}
+      </view>
+      <view
+        wx:if="{{tabsItemPlaceholderWidth}}"
+        class="custom-tabs-item"
+        style="min-width: {{tabsItemPlaceholderWidth}};"
+      ></view>
+    </view>
+  </scroll-view>
+  <slot></slot>
+</view>

@@ -120,6 +120,8 @@ Page({
           'https://oss.fabrique.cn/24e6c0b0-d407-4452-a18d-5e8484211136.jpg?x-oss-process=image/format,webp/resize,w_1125,m_lfit&_t=2.2.8.0',
       },
     ],
+    tabs: ['全部', '热销推荐', '主食', '小吃', '饮品'],
+    currentTab: 1,
   },
 
   /**
@@ -163,6 +165,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
+  handleTabsItemClick(e: WechatMiniprogram.TouchEvent) {
+    this.setData({
+      currentTab: e.detail.index,
+    });
+  },
   handleScrolltolower() {
     console.log(1111);
   },

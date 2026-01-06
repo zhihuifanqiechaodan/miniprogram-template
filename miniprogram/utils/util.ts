@@ -268,3 +268,27 @@ export const eventBus = {
     this.clients[method]?.pop();
   },
 };
+
+export const getRect = (context: any, selector: string) => {
+  return new Promise((resolve) => {
+    context
+      .createSelectorQuery()
+      .select(selector)
+      .boundingClientRect(function (rect: any) {
+        resolve(rect);
+      })
+      .exec();
+  });
+};
+
+export const getAllRect = (context: any, selector: string) => {
+  return new Promise((resolve) => {
+    context
+      .createSelectorQuery()
+      .selectAll(selector)
+      .boundingClientRect(function (rects: any) {
+        resolve(rects);
+      })
+      .exec();
+  });
+};

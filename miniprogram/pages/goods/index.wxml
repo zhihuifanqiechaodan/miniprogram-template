@@ -5,10 +5,17 @@
     class="content-wrapper"
     style="height: calc(100vh - {{systemInfo.menuButton.bottom}}px - var(--tabbar-height) - env(safe-area-inset-bottom));"
   >
-    <view class="categories-wrapper">
-      <view class="category-item active">全部</view>
-      <view class="category-item">热销</view>
-      <view class="category-item">新品</view>
+    <view class="content-header">
+      <view class="tabs-wrapper">
+        <custom-tabs
+          bindhandleTabsItemClick="handleTabsItemClick"
+          tabs="{{tabs}}"
+          currentTab="{{currentTab}}"
+          customStyle="gap: 16rpx; padding: 0 32rpx;"
+          external-custom-tabs-item="external-custom-tabs-item"
+          external-custom-tabs-item-active="external-custom-tabs-item-active"
+        />
+      </view>
     </view>
     <scroll-view bindscrolltolower="handleScrolltolower" scroll-y style="flex: 1; height: 0">
       <view class="goods-list">
