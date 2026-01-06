@@ -16,7 +16,7 @@
         "text": "订单"
       },
       {
-        "pagePath": "pages/data/index",
+        "pagePath": "pages/stats/index",
         "text": "数据"
       },
       {
@@ -25,7 +25,7 @@
       }
     ]
   },
-  "pages": ["pages/home/index", "pages/goods/index", "pages/orders/index", "pages/data/index", "pages/settings/index"],
+  "pages": ["pages/home/index", "pages/goods/index", "pages/orders/index", "pages/stats/index", "pages/settings/index"],
   "subPackages": [
     {
       "root": "packageA",

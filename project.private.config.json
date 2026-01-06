@@ -2,7 +2,7 @@
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "miniProgram-template",
   "setting": {
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "autoAudits": false,
     "lazyloadPlaceholderEnable": false,
     "skylineRenderEnable": false,
@@ -24,11 +24,18 @@
     "miniprogram": {
       "list": [
         {
-          "name": "packageA/pages/categories/index",
-          "pathName": "packageA/pages/categories/index",
+          "name": "pages/goods/index",
+          "pathName": "pages/goods/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "packageA/pages/categories/index",
+          "pathName": "packageA/pages/categories/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/categories/index",

@@ -1,2 +1,48 @@
 <!--pages/goods/index.wxml-->
-<text>pages/goods/index.wxml</text>
+<view class="page-container">
+  <custom-nav-bar title="菜品管理" placeholder="{{true}}" custom-style="background: #ffffff;" />
+  <view
+    class="content-wrapper"
+    style="height: calc(100vh - {{systemInfo.menuButton.bottom}}px - var(--tabbar-height) - env(safe-area-inset-bottom));"
+  >
+    <view class="categories-wrapper">
+      <view class="category-item active">全部</view>
+      <view class="category-item">热销</view>
+      <view class="category-item">新品</view>
+    </view>
+    <scroll-view bindscrolltolower="handleScrolltolower" scroll-y style="flex: 1; height: 0">
+      <view class="goods-list">
+        <view class="goods-item" wx:for="{{ goodsList }}" wx:key="id">
+          <custom-image src="{{ item.image }}" width="160rpx" height="160rpx" radius="32rpx" />
+          <view class="goods-content">
+            <view class="goods-header">
+              <text class="goods-name">{{ item.name }}</text>
+              <view class="status-badge">{{ item.statusText }}</view>
+            </view>
+
+            <view class="goods-desc">
+              <text>{{ item.desc }}</text>
+              <text class="middle-dot">·</text>
+              <text>ID: {{ item.id }}</text>
+            </view>
+
+            <view class="goods-bottom">
+              <view class="goods-price-info">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">{{ item.price }}</text>
+                <text class="stock-label">库存:</text>
+                <text class="stock-value">{{ item.stock }}</text>
+              </view>
+
+              <view class="goods-actions">
+                <van-icon name="eye-o" class="icon-eye" size="32rpx" />
+                <van-icon name="edit" class="icon-edit" size="32rpx" />
+                <van-icon name="delete-o" class="icon-delete" size="32rpx" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

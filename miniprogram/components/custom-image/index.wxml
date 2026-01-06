@@ -1,0 +1,73 @@
+<!--components/custom-image/index.wxml-->
+<view
+  style="width: {{width}}; height: {{height}}; border-radius: {{radius ? radius : 0}}; {{customStyle}}"
+  class="image-wrapper {{round ? 'image-round' : ''}} {{flex ? 'flex' : ''}}"
+>
+  <image
+    src="{{wxsModule.processSrc({src, version})}}"
+    mode="{{mode}}"
+    webp="{{webp}}"
+    lazy-load="{{lazyLoad}}"
+    show-menu-by-longpress="{{showMenuByLongpress}}"
+    binderror="error"
+    bindload="load"
+    class="image-img"
+  />
+  <slot />
+  <view
+    wx:if="{{ loading && showLoading }}"
+    style="background-color: {{showLoadingBackg}};"
+    class="image-loading {{round ? 'image-round' : ''}}"
+  >
+    <image
+      wx:if="{{placeholder}}"
+      mode="widthFix"
+      src="/assets/images/common/fabrique_logo.png"
+      lazy-load="{{lazyLoad}}"
+      class="placeholder_bg_logo"
+    />
+  </view>
+  <view wx:if="{{ error && showError }}" class="image-error {{round ? 'image-round' : ''}}">
+    <image
+      mode="widthFix"
+      src="/assets/images/common/fabrique_logo.png"
+      lazy-load="{{lazyLoad}}"
+      class="placeholder_bg_logo"
+    />
+  </view>
+</view>
+
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+	var REGEXP = getRegExp('^-?\d+(\.\d+)?$');
+	module.exports = {
+		processSrc: function (data) {
+			var src = data.src
+			var version = data.version
+			var ossUrls = [
+				"fabrique.oss-cn-qingdao-internal.aliyuncs.com",
+				"fabrique.oss-cn-qingdao.aliyuncs.com",
+				"fabrique.oss-accelerate.aliyuncs.com"
+			]
+			// 小程序本地临时文件不做处理
+			if (src.indexOf('://tmp/') > -1 || src.indexOf('wxfile://') > -1) {
+				return src;
+			}
+			if (src.indexOf('://') > -1) {
+				var hasParam = src.indexOf('?') > -1;
+				src += hasParam ? '&_t=' + version : '?_t=' + version;
+				if (src.indexOf('http://') === 0) {
+					return src.replace('http://', 'https://');
+				}
+				for (var i = 0; i < ossUrls.length; i++) {
+					if (src.indexOf(ossUrls[i]) > -1) {
+						src = src.replace(ossUrls[i], 'oss.fabrique.cn');
+						break;
+					}
+				}
+				return src;
+			}
+			return src;
+		}
+	}
+</wxs>

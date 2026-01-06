@@ -1,4 +1,4 @@
-import { getItemSync, getNetworkType, getSystemInfoSync, reLaunch } from '@miniprogram/utils/util';
+import { getNetworkType, getSystemInfoSync, reLaunch } from '@miniprogram/utils/util';
 import { Home } from '@miniprogram/utils/router';
 import { cloundEnv } from './config/index';
 
@@ -37,7 +37,7 @@ App<IAppOption>({
     if (networkType == 'none') {
       this.globalData.isConnected = false;
     }
-    const keywordList = getItemSync('keywordList');
+    const keywordList = wx.getStorageSync('keywordList');
     if (keywordList) {
       this.globalData.keywordList = keywordList;
     }

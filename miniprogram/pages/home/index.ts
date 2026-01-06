@@ -1,4 +1,5 @@
 // pages/home/index.ts
+export {};
 const app: IAppOption = getApp();
 
 Page({
@@ -8,7 +9,7 @@ Page({
   data: {
     systemInfo: app.globalData.systemInfo,
     // Initial data for dashboard
-    todatStats: [
+    todatyStats: [
       { label: '今日营业额', value: '¥3,248', trend: '', icon: '💰', color: 'bg-green-500' },
       { label: '今日订单', value: '42', trend: '', icon: '🛍️', color: 'bg-blue-500' },
       { label: '客流量', value: '156', trend: '', icon: '👥', color: 'bg-purple-500' },

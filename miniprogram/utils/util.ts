@@ -1,43 +1,18 @@
 import Toast from '@vant/weapp/toast/toast';
-import { Carts, Categories, Device, Home, Profile } from '@miniprogram/utils/router';
+import { Home, Goods, Orders, Settings, Stats } from '@miniprogram/utils/router';
 
-/**
- * @method getItemSync 缓存读取
- * @param {*} key
- */
-export const getItemSync = (key: string) => {
-  try {
-    return wx.getStorageSync(key);
-  } catch (err) {
-    console.error('wx.getStorageSync(key)', err);
+export const tabbarRoutes = [Home, Goods, Orders, Stats, Settings];
+export const setTabBarSelected = () => {
+  const currentPageInfo = getCurrentPageInfo();
+  if (typeof currentPageInfo?.getTabBar === 'function') {
+    const selected = tabbarRoutes.findIndex((item) => {
+      return item.pagePath === `/${currentPageInfo.route}`;
+    });
+    currentPageInfo?.getTabBar().setData({
+      selected,
+    });
   }
 };
-
-/**
- * @method setItemSync 缓存存储
- * @param {*} key
- * @param {*} value
- */
-export const setItemSync = (key: string, value: any) => {
-  try {
-    wx.setStorageSync(key, value);
-  } catch (err) {
-    console.error('wx.setStorageSync(key, value)', err);
-  }
-};
-
-/**
- * @method deleteItemSync 缓存删除
- * @param {*} key
- */
-export const deleteItemSync = (key: string) => {
-  try {
-    return wx.removeStorageSync(key);
-  } catch (err) {
-    console.error('wx.removeStorageSync(key)', err);
-  }
-};
-
 /**
  * @method navigateTo 封装navigateTo请求
  * @param {*} { url, events }
@@ -223,16 +198,6 @@ export const getNetworkType = (): Promise<'wifi' | '2g' | '3g' | '4g' | '5g' | '
 };
 
 /**
- * @method logout 退出登录
- */
-export const logout = () => {
-  const { globalData } = getApp();
-  globalData.userInfo = null;
-  deleteItemSync('userInfo');
-  reLaunch({ url: Home.pagePath });
-};
-
-/**
  * @method shareImageFormat 图片格式处理
  * @param {*} url
  * @returns
@@ -266,18 +231,6 @@ export const getSystemInfoSync = () => {
     ...appBaseInfo,
     menuButton,
   };
-};
-export const tabbarRoutes = [Home, Categories, Device, Carts, Profile];
-export const setTabBarSelected = () => {
-  const currentPageInfo = getCurrentPageInfo();
-  if (typeof currentPageInfo?.getTabBar === 'function') {
-    const selected = tabbarRoutes.findIndex((item) => {
-      return item.pagePath === `/${currentPageInfo.route}`;
-    });
-    currentPageInfo?.getTabBar().setData({
-      selected,
-    });
-  }
 };
 
 interface IEventBusClients {
@@ -314,21 +267,4 @@ export const eventBus = {
   removeEventListener(method: string) {
     this.clients[method]?.pop();
   },
-};
-
-export const getUuid = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
-
-export const openWeChatCustomerService = (): void => {
-  wx.openCustomerServiceChat({
-    extInfo: {
-      url: 'https://work.weixin.qq.com/kfid/kfcb0ceea388bc6e173',
-    },
-    corpId: 'ww7fb3f78055c08d11',
-  });
 };

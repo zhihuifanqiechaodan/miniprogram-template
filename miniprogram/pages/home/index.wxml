@@ -14,7 +14,7 @@
   </custom-nav-bar>
   <view class="content-wrapper">
     <view class="stats-grid">
-      <view wx:for="{{todatStats}}" wx:key="index" class="stats-card">
+      <view wx:for="{{todatyStats}}" wx:key="index" class="stats-card">
         <view class="card-header">
           <text class="card-title">{{item.label}}</text>
           <view class="card-icon-box"> {{ item.icon }} </view>

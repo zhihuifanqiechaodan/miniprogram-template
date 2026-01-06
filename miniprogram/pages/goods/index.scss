@@ -1,1 +1,114 @@
-/* pages/goods/index.wxss */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.goods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  padding: 32rpx;
+
+  .goods-item {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 40rpx;
+    padding: 24rpx;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.03);
+
+    .goods-content {
+      flex: 1;
+      margin-left: 24rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4rpx 0;
+    }
+
+    .goods-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .goods-name {
+        font-size: 30rpx;
+        font-weight: 500;
+        color: #333333;
+      }
+
+      .status-badge {
+        font-size: 22rpx;
+        padding: 6rpx 24rpx;
+        background-color: #f1fcf5;
+        color: #1eb96c;
+        border-radius: 100rpx;
+        font-weight: 500;
+      }
+    }
+
+    .goods-desc {
+      display: flex;
+      align-items: center;
+      font-size: 24rpx;
+      color: #9ea4b0;
+      margin-top: 6rpx;
+
+      .middle-dot {
+        margin: 0 12rpx;
+      }
+    }
+
+    .goods-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 20rpx;
+
+      .goods-price-info {
+        display: flex;
+        align-items: baseline;
+
+        .price-symbol {
+          font-weight: 500;
+          color: #ff7d45;
+        }
+
+        .price-value {
+          font-size: 34rpx;
+          font-weight: 500;
+          color: #ff7d45;
+          margin-right: 16rpx;
+        }
+
+        .stock-label {
+          font-size: 24rpx;
+          color: #9ea4b0;
+          margin-right: 8rpx;
+        }
+
+        .stock-value {
+          font-size: 24rpx;
+          color: #9ea4b0;
+        }
+      }
+
+      .goods-actions {
+        display: flex;
+        align-items: center;
+        gap: 32rpx;
+
+        .icon-eye {
+          color: #1eb96c;
+        }
+
+        .icon-edit {
+          color: #3b82f6;
+        }
+
+        .icon-delete {
+          color: #ef4444;
+        }
+      }
+    }
+  }
+}
