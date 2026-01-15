@@ -1,7 +1,7 @@
 {
-  "name": "wxpayFunctions",
+  "name": "demo",
   "version": "1.0.0",
-  "description": "微信支付云模板云函数",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "~2.4.0"
+    "wx-server-sdk": "~3.0.1"
   }
 }

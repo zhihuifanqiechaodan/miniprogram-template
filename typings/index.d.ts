@@ -18,8 +18,6 @@ declare global {
       mutedStatus: boolean;
       isAutoPlayVideo: boolean;
       videoContextComponent: WechatMiniprogram.Component.TrivialInstance | null;
-      keywordList: string[];
-      isTodaySignedIn: boolean;
     };
     userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback;
   }

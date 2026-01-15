@@ -8,33 +8,15 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/goods/index",
-        "text": "菜品"
-      },
-      {
-        "pagePath": "pages/orders/index",
-        "text": "订单"
-      },
-      {
-        "pagePath": "pages/stats/index",
-        "text": "数据"
-      },
-      {
-        "pagePath": "pages/settings/index",
-        "text": "设置"
+        "pagePath": "pages/profile/index",
+        "text": "我的"
       }
     ]
   },
-  "pages": ["pages/home/index", "pages/goods/index", "pages/orders/index", "pages/stats/index", "pages/settings/index"],
-  "subPackages": [
-    {
-      "root": "packageA",
-      "name": "packageA",
-      "pages": ["pages/categories/index", "pages/web-view/index"]
-    }
-  ],
+  "pages": ["pages/home/index", "pages/profile/index"],
+  "subPackages": [],
   "window": {
-    "navigationBarTitleText": "视力优",
+    "navigationBarTitleText": "miniprogram",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom",
@@ -55,8 +37,7 @@
   "lazyCodeLoading": "requiredComponents",
   "resolveAlias": {
     "@miniprogram/*": "/*",
-    "@vant/*": "/miniprogram_npm/@vant/*",
-    "@/*": "../*"
+    "@vant/*": "/miniprogram_npm/@vant/*"
   },
-  "requiredPrivateInfos": ["chooseAddress"]
+  "requiredPrivateInfos": []
 }

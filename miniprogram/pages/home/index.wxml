@@ -1,7 +1,7 @@
 <!-- pages/home/index.wxml -->
 <view class="page-container">
   <custom-nav-bar
-    title="商家后台"
+    title="首页"
     showSlot="{{true}}"
     placeholder="{{true}}"
     custom-style="background: rgba(255, 255, 255, 0); color: #ffffff;"
@@ -12,30 +12,5 @@
       </view>
     </view>
   </custom-nav-bar>
-  <view class="content-wrapper">
-    <view class="stats-grid">
-      <view wx:for="{{todatyStats}}" wx:key="index" class="stats-card">
-        <view class="card-header">
-          <text class="card-title">{{item.label}}</text>
-          <view class="card-icon-box"> {{ item.icon }} </view>
-        </view>
-        <view class="card-value">{{item.value}}</view>
-        <view class="card-trend">
-          <text class="trend-arrow">↑{{item.trend}}</text>
-        </view>
-      </view>
-    </view>
-
-    <view class="quick-actions">
-      <view class="section-title">快捷操作</view>
-      <view class="actions-grid">
-        <view class="action-item" wx:for="{{menuItems}}" wx:key="id" bindtap="onMenuClick" data-url="{{item.url}}">
-          <view class="action-icon-box">
-            <text class="action-icon">{{item.icon}}</text>
-          </view>
-          <text class="action-name">{{item.name}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
+  <view class="content-wrapper"> 首页 </view>
 </view>

@@ -1,5 +1,4 @@
 export default {
   "ENV": "production",
   "APPID": "wxcb6d2816d7abe793",
-  "CLOUD_ENV": "5gl7fjsg55805179"
 };

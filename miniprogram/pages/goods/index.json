@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index",
-    "custom-nav-bar": "/components/custom-nav-bar/index",
-    "custom-image": "/components/custom-image/index",
-    "custom-tabs": "/components/custom-tabs/index"
-  },
-  "disableScroll": true
-}

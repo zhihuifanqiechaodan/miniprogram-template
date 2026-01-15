@@ -59,7 +59,7 @@ Component({
       type: String,
       value: '0',
     },
-    showLoadingBackg: {
+    loadingBackground: {
       type: String,
       value: '#edf0f0',
     },

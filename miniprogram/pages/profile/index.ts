@@ -1,9 +1,14 @@
-// pages/settings/index.ts
+// pages/profile/index.ts
+export {};
+const app: IAppOption = getApp();
+
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    systemInfo: app.globalData.systemInfo,
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -43,5 +48,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage(opts): WechatMiniprogram.Page.ICustomShareContent {
+    console.log(opts.target);
+    return {};
+  },
 });
