@@ -1,0 +1,4 @@
+export default {
+  ENV: 'production',
+  APPID: 'wxcb6d2816d7abe793',
+};

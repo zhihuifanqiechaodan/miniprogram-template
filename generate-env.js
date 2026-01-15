@@ -12,16 +12,15 @@ const envConfig = dotenv.config({ path: envPath }).parsed;
 // 直接使用原始配置
 const config = { ...envConfig };
 
-// 生成 env.js 内容
+// 生成 env.ts 内容
 const envContent = `export default ${JSON.stringify(config, null, 2)};`;
 
-// 确保目录存在
 const configDir = path.resolve(process.cwd(), 'miniprogram/config');
 if (!fs.existsSync(configDir)) {
   fs.mkdirSync(configDir, { recursive: true });
 }
 
 // 写入文件
-fs.writeFileSync(path.join(configDir, 'env.js'), envContent, 'utf8');
+fs.writeFileSync(path.join(configDir, 'env.ts'), envContent, 'utf8');
 
-console.log(`✨ env.js 生成成功！(${env}环境)`);
+console.log(`✨ env.ts 生成成功！(${env}环境)`);

@@ -1,3 +1,5 @@
+import { version } from '@miniprogram/config';
+
 // components/custom-image/index.ts
 Component({
   /**
@@ -77,7 +79,9 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    version,
+  },
 
   /**
    * 组件的方法列表

@@ -7,8 +7,6 @@ interface RouteConfig {
 export const Home: RouteConfig = {
   text: '首页',
   pagePath: '/pages/home/index',
-  iconPath: '/assets/images/tabbar/shop.svg',
-  selectedIconPath: '/assets/images/tabbar/shop_fill.svg',
 };
 
 export const Profile: RouteConfig = {
