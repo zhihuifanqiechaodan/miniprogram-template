@@ -1,3 +1,5 @@
+import { setTabBarSelected } from '@miniprogram/utils/util';
+
 // pages/profile/index.ts
 export {};
 const app: IAppOption = getApp();
@@ -23,7 +25,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    setTabBarSelected();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
