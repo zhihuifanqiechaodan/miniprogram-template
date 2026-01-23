@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 课程核销</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            padding: var(--spacing-lg);
+            color: var(--white);
+        }
+        .admin-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing);
+        }
+        .admin-stats-row {
+            display: flex;
+            gap: var(--spacing);
+        }
+        .admin-stat-card {
+            flex: 1;
+            background: rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+            text-align: center;
+        }
+        .admin-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .admin-stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .verify-mode-tabs {
+            display: flex;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            background: var(--white);
+            margin-bottom: var(--spacing);
+        }
+        .verify-mode-tab {
+            flex: 1;
+            padding: var(--spacing);
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .verify-mode-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .verify-mode-icon {
+            font-size: 24px;
+            margin-bottom: var(--spacing-xs);
+        }
+        .verify-mode-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .scan-area {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            padding: var(--spacing-xl);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .scan-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--spacing);
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        .scan-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-xs);
+        }
+        .scan-desc {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-lg);
+        }
+        .verify-form {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .verify-input {
+            width: 100%;
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: var(--spacing);
+        }
+        .verify-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .verify-result {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            background: var(--success-light);
+        }
+        .result-success-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--success);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 20px;
+        }
+        .result-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--success);
+        }
+        .result-name {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+        .result-body {
+            padding: var(--spacing);
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            color: var(--gray-500);
+        }
+        .result-value {
+            color: var(--gray-900);
+            font-weight: 500;
+        }
+        .today-classes {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .today-class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .today-class-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .today-class-count {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .class-item-admin {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .class-item-admin:last-child {
+            border-bottom: none;
+        }
+        .class-time-badge {
+            padding: var(--spacing-sm) var(--spacing);
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .class-info-admin {
+            flex: 1;
+        }
+        .class-name-admin {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .class-meta-admin {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .class-count-badge {
+            padding: 4px 10px;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing);">
+            <h1 class="admin-title">课程核销</h1>
+            <span style="font-size: 12px; opacity: 0.8;">张教练</span>
+        </div>
+        <div class="admin-stats-row">
+            <div class="admin-stat-card">
+                <div class="admin-stat-value">3</div>
+                <div class="admin-stat-label">今日课程</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value">18</div>
+                <div class="admin-stat-label">待核销</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value">12</div>
+                <div class="admin-stat-label">已签到</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="verify-mode-tabs">
+        <div class="verify-mode-tab active" onclick="switchMode(this, 'scan')">
+            <div class="verify-mode-icon">📷</div>
+            <div class="verify-mode-name">扫码核销</div>
+        </div>
+        <div class="verify-mode-tab" onclick="switchMode(this, 'search')">
+            <div class="verify-mode-icon">🔍</div>
+            <div class="verify-mode-name">搜索核销</div>
+        </div>
+    </div>
+
+    <!-- Scan Area -->
+    <div id="scanMode">
+        <div class="scan-area">
+            <div class="scan-icon">📷</div>
+            <h3 class="scan-title">扫描学员二维码</h3>
+            <p class="scan-desc">将摄像头对准学员出示的二维码即可完成核销</p>
+            <button class="btn btn-primary" onclick="showToast('打开相机...')" style="width: 100%;">打开相机</button>
+        </div>
+    </div>
+
+    <!-- Search Mode -->
+    <div id="searchMode" style="display: none;">
+        <div class="verify-form">
+            <input type="tel" class="verify-input" placeholder="输入手机号或学员姓名" id="searchInput">
+            <button class="btn btn-primary" style="width: 100%;" onclick="searchStudent()">搜索</button>
+        </div>
+    </div>
+
+    <!-- Verify Result -->
+    <div class="verify-result" id="verifyResult" style="display: none;">
+        <div class="result-header">
+            <div class="result-success-icon">✓</div>
+            <div>
+                <div class="result-title">核销成功</div>
+                <div class="result-name">张小明 - 篮球启蒙班</div>
+            </div>
+        </div>
+        <div class="result-body">
+            <div class="result-row">
+                <span class="result-label">核销时间</span>
+                <span class="result-value">09:05</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">消耗课时</span>
+                <span class="result-value">1 节</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">剩余课时</span>
+                <span class="result-value">11 节</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">上课时间</span>
+                <span class="result-value">09:00-10:30</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Today's Classes -->
+    <div class="today-classes">
+        <div class="today-class-header">
+            <span class="today-class-title">今日课程</span>
+            <span class="today-class-count">3节课 · 18人</span>
+        </div>
+        <div class="class-item-admin">
+            <div class="class-time-badge">09:00</div>
+            <div class="class-info-admin">
+                <div class="class-name-admin">篮球启蒙班</div>
+                <div class="class-meta-admin">1号全场 · 8人报名</div>
+            </div>
+            <span class="class-count-badge">已签 5/8</span>
+        </div>
+        <div class="class-item-admin">
+            <div class="class-time-badge">14:00</div>
+            <div class="class-info-admin">
+                <div class="class-name-admin">成人提高班</div>
+                <div class="class-meta-admin">2号全场 · 6人报名</div>
+            </div>
+            <span class="class-count-badge">已签 0/6</span>
+        </div>
+        <div class="class-item-admin">
+            <div class="class-time-badge">16:30</div>
+            <div class="class-info-admin">
+                <div class="class-name-admin">私教课</div>
+                <div class="class-meta-admin">3号半场 · 4人预约</div>
+            </div>
+            <span class="class-count-badge">已签 1/4</span>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function switchMode(el, mode) {
+            document.querySelectorAll('.verify-mode-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+
+            if (mode === 'scan') {
+                document.getElementById('scanMode').style.display = 'block';
+                document.getElementById('searchMode').style.display = 'none';
+                document.getElementById('verifyResult').style.display = 'none';
+            } else {
+                document.getElementById('scanMode').style.display = 'none';
+                document.getElementById('searchMode').style.display = 'block';
+            }
+        }
+
+        function searchStudent() {
+            const input = document.getElementById('searchInput').value;
+            if (input) {
+                showToast('搜索中...');
+                setTimeout(() => {
+                    document.getElementById('verifyResult').style.display = 'block';
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 首页</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Bottom Navigation -->
+    <nav class="tabbar">
+        <a href="index.html" class="tabbar-item active">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="tabbar-label">首页</span>
+        </a>
+        <a href="venue.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            <span class="tabbar-label">场地</span>
+        </a>
+        <a href="course.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="tabbar-label">课程</span>
+        </a>
+        <a href="profile.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="tabbar-label">我的</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <p class="greeting">早上好</p>
+                    <h1 class="venue-name">XX 篮球馆</h1>
+                    <p class="venue-status">
+                        <span class="status-dot"></span>
+                        当前 3 片场地空闲
+                    </p>
+                </div>
+                <div class="header-weather">
+                    <span class="weather-icon">☀️</span>
+                    <span class="weather-temp">28°</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Actions -->
+        <section class="section">
+            <div class="quick-actions">
+                <a href="venue.html" class="quick-action-item">
+                    <div class="quick-action-icon court-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="12" y1="3" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <span>预订场地</span>
+                </a>
+                <a href="course.html" class="quick-action-item">
+                    <div class="quick-action-icon class-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <span>购买课程</span>
+                </a>
+                <a href="class-record.html" class="quick-action-item">
+                    <div class="quick-action-icon record-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                    </div>
+                    <span>训练记录</span>
+                </a>
+                <a href="student-list.html" class="quick-action-item">
+                    <div class="quick-action-icon member-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span>学员管理</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Court Status -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">场地状态</h2>
+                <a href="venue.html" class="section-link">查看全部 →</a>
+            </div>
+            <div class="court-grid">
+                <div class="court-card">
+                    <div class="court-info">
+                        <h3 class="court-name">1号全场</h3>
+                        <p class="court-type">室内 · 木地板</p>
+                    </div>
+                    <div class="court-status available">
+                        <span class="status-badge">空闲</span>
+                        <p class="court-price">¥120/小时</p>
+                    </div>
+                </div>
+                <div class="court-card">
+                    <div class="court-info">
+                        <h3 class="court-name">2号全场</h3>
+                        <p class="court-type">室内 · 木地板</p>
+                    </div>
+                    <div class="court-status busy">
+                        <span class="status-badge busy">使用中</span>
+                        <p class="court-time">至 20:00</p>
+                    </div>
+                </div>
+                <div class="court-card">
+                    <div class="court-info">
+                        <h3 class="court-name">3号半场</h3>
+                        <p class="court-type">室外 · 塑胶</p>
+                    </div>
+                    <div class="court-status available">
+                        <span class="status-badge">空闲</span>
+                        <p class="court-price">¥60/小时</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Courses -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">热门课程</h2>
+                <a href="course.html" class="section-link">查看全部 →</a>
+            </div>
+            <div class="course-scroll">
+                <a href="course-detail.html" class="course-card">
+                    <div class="course-image">
+                        <div class="course-placeholder">🏀</div>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">青少年</span>
+                        <h3 class="course-name">篮球启蒙班</h3>
+                        <p class="course-desc">6-12岁 · 基础入门</p>
+                        <div class="course-footer">
+                            <span class="course-price">¥1,980</span>
+                            <span class="course-classes">12节课时</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="course-detail.html" class="course-card">
+                    <div class="course-image">
+                        <div class="course-placeholder">🏀</div>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">成人</span>
+                        <h3 class="course-name">成人提高班</h3>
+                        <p class="course-desc">18岁以上 · 技术提升</p>
+                        <div class="course-footer">
+                            <span class="course-price">¥2,280</span>
+                            <span class="course-classes">10节课时</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="course-detail.html" class="course-card">
+                    <div class="course-image">
+                        <div class="course-placeholder">🏀</div>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-tag">私教</span>
+                        <h3 class="course-name">一对一私教</h3>
+                        <p class="course-desc">VIP定制 · 针对性训练</p>
+                        <div class="course-footer">
+                            <span class="course-price">¥350</span>
+                            <span class="course-classes">/节</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Upcoming Classes -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">今日课程</h2>
+                <a href="appointment-list.html" class="section-link">查看全部 →</a>
+            </div>
+            <div class="class-list">
+                <a href="appointment-list.html" class="class-item">
+                    <div class="class-time">
+                        <span class="time-hour">09:00</span>
+                        <span class="time-period">AM</span>
+                    </div>
+                    <div class="class-info">
+                        <h3 class="class-name">青少年启蒙班</h3>
+                        <p class="class-details">1号全场 · 张教练 · 已报名 8/12</p>
+                    </div>
+                    <div class="class-action">
+                        <button class="btn btn-outline">预约</button>
+                    </div>
+                </a>
+                <a href="appointment-list.html" class="class-item">
+                    <div class="class-time">
+                        <span class="time-hour">14:00</span>
+                        <span class="time-period">PM</span>
+                    </div>
+                    <div class="class-info">
+                        <h3 class="class-name">成人提高班</h3>
+                        <p class="class-details">2号全场 · 李教练 · 已报名 6/10</p>
+                    </div>
+                    <div class="class-action">
+                        <button class="btn btn-outline">预约</button>
+                    </div>
+                </a>
+                <a href="appointment-list.html" class="class-item">
+                    <div class="class-time">
+                        <span class="time-hour">16:30</span>
+                        <span class="time-period">PM</span>
+                    </div>
+                    <div class="class-info">
+                        <h3 class="class-name">私教课</h3>
+                        <p class="class-details">3号半场 · 王教练 · 1v1</p>
+                    </div>
+                    <div class="class-action">
+                        <button class="btn btn-primary">签到</button>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Announcements -->
+        <section class="section">
+            <div class="announcement-card">
+                <div class="announcement-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </div>
+                <div class="announcement-content">
+                    <h3>暑期训练营开始报名啦！</h3>
+                    <p>7月15日-8月30日，20节课时仅需 ¥3,980</p>
+                </div>
+                <a href="course.html" class="announcement-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+/* ========================================
+   CSS Reset & Variables
+======================================== */
+:root {
+    /* Color Palette - Modern & Clean */
+    --primary: #FF6B35;
+    --primary-light: #FFF0EB;
+    --primary-dark: #E55A2B;
+    --secondary: #1A1A2E;
+    --accent: #16213E;
+
+    /* Neutral Colors */
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-400: #9CA3AF;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+
+    /* Status Colors */
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --warning: #F59E0B;
+    --warning-light: #FEF3C7;
+    --danger: #EF4444;
+    --danger-light: #FEE2E2;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition: 200ms ease;
+    --transition-slow: 300ms ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* ========================================
+   Tabbar Navigation
+======================================== */
+.tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing) calc(var(--spacing) + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.tabbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--spacing-xs) var(--spacing);
+    color: var(--gray-400);
+    transition: color var(--transition);
+    border-radius: var(--radius);
+}
+
+.tabbar-item.active {
+    color: var(--primary);
+}
+
+.tabbar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.tabbar-label {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* ========================================
+   Main Content Area
+======================================== */
+.main-content {
+    padding: var(--spacing);
+    padding-top: var(--spacing-lg);
+}
+
+.section {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* ========================================
+   Header Section
+======================================== */
+.header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-text {
+    flex: 1;
+}
+
+.greeting {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: var(--spacing-xs);
+}
+
+.venue-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-xs);
+}
+
+.venue-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 14px;
+    color: var(--gray-600);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: var(--radius-full);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.header-weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing);
+    background: linear-gradient(135deg, #FFE5D9 0%, #FFF0EB 100%);
+    border-radius: var(--radius-lg);
+    min-width: 70px;
+}
+
+.weather-icon {
+    font-size: 24px;
+}
+
+.weather-temp {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+/* ========================================
+   Quick Actions
+======================================== */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing);
+}
+
+.quick-action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.quick-action-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.quick-action-item:active {
+    transform: translateY(0);
+}
+
+.quick-action-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    color: var(--white);
+}
+
+.quick-action-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.court-icon {
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8F65 100%);
+}
+
+.class-icon {
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+}
+
+.record-icon {
+    background: linear-gradient(135deg, #11998E 0%, #38EF7D 100%);
+}
+
+.member-icon {
+    background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
+}
+
+.quick-action-item span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-700);
+    text-align: center;
+}
+
+/* ========================================
+   Section Headers
+======================================== */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing);
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.section-link {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+/* ========================================
+   Court Cards
+======================================== */
+.court-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+.court-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition);
+}
+
+.court-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.court-info {
+    flex: 1;
+}
+
+.court-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-xs);
+}
+
+.court-type {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.court-status {
+    text-align: right;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--success-light);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+}
+
+.status-badge.busy {
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+
+.court-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: var(--spacing-xs);
+}
+
+.court-time {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-top: var(--spacing-xs);
+}
+
+/* ========================================
+   Course Cards
+======================================== */
+.course-scroll {
+    display: flex;
+    gap: var(--spacing);
+    overflow-x: auto;
+    padding-bottom: var(--spacing);
+    margin: 0 calc(-1 * var(--spacing));
+    padding-left: var(--spacing);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.course-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.course-card {
+    flex-shrink: 0;
+    width: 200px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    scroll-snap-align: start;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.course-image {
+    height: 120px;
+    background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-placeholder {
+    font-size: 48px;
+}
+
+.course-content {
+    padding: var(--spacing);
+}
+
+.course-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-xs);
+}
+
+.course-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-xs);
+}
+
+.course-desc {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-bottom: var(--spacing);
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.course-classes {
+    font-size: 12px;
+    color: var(--gray-400);
+}
+
+/* ========================================
+   Class List
+======================================== */
+.class-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+.class-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.class-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+    padding: var(--spacing-sm) var(--spacing);
+    background: var(--gray-50);
+    border-radius: var(--radius);
+}
+
+.time-hour {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.time-period {
+    font-size: 11px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+}
+
+.class-info {
+    flex: 1;
+}
+
+.class-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+}
+
+.class-details {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+/* ========================================
+   Buttons
+======================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ========================================
+   Announcement Card
+======================================== */
+.announcement-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8F65 100%);
+    border-radius: var(--radius-lg);
+    color: var(--white);
+}
+
+.announcement-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    flex-shrink: 0;
+}
+
+.announcement-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.announcement-content {
+    flex: 1;
+}
+
+.announcement-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.announcement-content p {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.announcement-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.announcement-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 375px) {
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .course-card {
+        width: 180px;
+    }
+}

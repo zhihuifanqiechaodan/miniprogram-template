@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 订单详情</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .order-detail-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        .order-status-large {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        .order-status-desc {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        .order-info-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: calc(-1 * var(--radius-lg)) var(--spacing) var(--spacing);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        .info-row {
+            display: flex;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            width: 80px;
+            font-size: 14px;
+            color: var(--gray-500);
+            flex-shrink: 0;
+        }
+        .info-value {
+            flex: 1;
+            font-size: 14px;
+            color: var(--gray-900);
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .product-header {
+            padding: var(--spacing);
+            border-bottom: 1px solid var(--gray-100);
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .product-body {
+            display: flex;
+            gap: var(--spacing);
+            padding: var(--spacing);
+        }
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-xs);
+        }
+        .product-meta {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-sm);
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .price-breakdown {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .price-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            font-size: 14px;
+        }
+        .price-item .label {
+            color: var(--gray-500);
+        }
+        .price-item .value {
+            color: var(--gray-900);
+        }
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: var(--spacing);
+            margin-top: var(--spacing);
+            border-top: 1px solid var(--gray-100);
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .price-total .value {
+            color: var(--primary);
+            font-size: 20px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing-2xl);
+        }
+        .action-buttons .btn {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="tabbar">
+        <a href="index.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="tabbar-label">首页</span>
+        </a>
+        <a href="venue.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            <span class="tabbar-label">场地</span>
+        </a>
+        <a href="course.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="tabbar-label">课程</span>
+        </a>
+        <a href="profile.html" class="tabbar-item active">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="tabbar-label">我的</span>
+        </a>
+    </nav>
+
+    <!-- Order Header -->
+    <div class="order-detail-header">
+        <div class="order-status-large">✅ 订单已完成</div>
+        <div class="order-status-desc">感谢您的购买，欢迎再次光临</div>
+    </div>
+
+    <!-- Order Info -->
+    <div class="order-info-card">
+        <div class="info-row">
+            <span class="info-label">订单号</span>
+            <span class="info-value">202501230001</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">下单时间</span>
+            <span class="info-value">2025-01-23 14:32:18</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">支付方式</span>
+            <span class="info-value">微信支付</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">支付时间</span>
+            <span class="info-value">2025-01-23 14:32:25</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">学员</span>
+            <span class="info-value">张小明</span>
+        </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-card">
+        <div class="product-header">商品信息</div>
+        <div class="product-body">
+            <div class="product-image">🏀</div>
+            <div class="product-info">
+                <h3 class="product-name">篮球启蒙班</h3>
+                <p class="product-meta">12节课时 · 6周周期</p>
+                <p class="product-meta">上课时间：周一三五 09:00-10:30</p>
+                <span class="product-price">¥1,980</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price Breakdown -->
+    <div class="price-breakdown">
+        <div class="price-title">费用明细</div>
+        <div class="price-item">
+            <span class="label">课程原价</span>
+            <span class="value">¥2,280</span>
+        </div>
+        <div class="price-item">
+            <span class="label">会员折扣</span>
+            <span class="value" style="color: var(--success);">-¥300</span>
+        </div>
+        <div class="price-total">
+            <span class="label">实付金额</span>
+            <span class="value">¥1,980</span>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-outline" onclick="showToast('申请退款')">申请退款</button>
+        <button class="btn btn-primary" onclick="showToast('再次购买')">再次购买</button>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

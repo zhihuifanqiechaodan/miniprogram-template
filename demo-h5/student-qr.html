@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 学员二维码</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .qr-container {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+        .qr-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+        }
+        .qr-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0 auto var(--spacing);
+        }
+        .qr-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing-xs);
+        }
+        .qr-meta {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-lg);
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: var(--gray-100);
+            margin: 0 auto var(--spacing);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+        .qr-tips {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-lg);
+        }
+        .qr-actions {
+            display: flex;
+            gap: var(--spacing);
+        }
+        .qr-action-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing);
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .qr-action-btn:hover {
+            background: var(--gray-100);
+        }
+        .qr-action-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: var(--radius);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .qr-action-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .qr-action-label {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        .course-info-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin: var(--spacing);
+            box-shadow: var(--shadow-sm);
+        }
+        .course-info-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+        }
+        .course-info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+        .course-info-row:last-child {
+            border-bottom: none;
+        }
+        .course-info-label {
+            color: var(--gray-500);
+        }
+        .course-info-value {
+            color: var(--gray-900);
+        }
+        .course-info-value.highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <div style="padding: var(--spacing);">
+            <a href="student-list.html" style="display: flex; align-items: center; gap: var(--spacing-sm); color: var(--gray-700);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span>返回</span>
+            </a>
+        </div>
+
+        <!-- QR Code Card -->
+        <div class="qr-container">
+            <div class="qr-card">
+                <div class="qr-avatar">小</div>
+                <h2 class="qr-name">张小明</h2>
+                <p class="qr-meta">儿子 · 8岁</p>
+                <div class="qr-code">📱</div>
+                <p class="qr-tips">出示给教练扫描即可完成签到</p>
+
+                <div class="qr-actions">
+                    <div class="qr-action-btn" onclick="showToast('保存成功')">
+                        <div class="qr-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </div>
+                        <span class="qr-action-label">保存</span>
+                    </div>
+                    <div class="qr-action-btn" onclick="showToast('已复制')">
+                        <div class="qr-action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </div>
+                        <span class="qr-action-label">复制</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Info -->
+        <div class="course-info-card">
+            <h3 class="course-info-title">课程信息</h3>
+            <div class="course-info-row">
+                <span class="course-info-label">当前课程</span>
+                <span class="course-info-value">篮球启蒙班</span>
+            </div>
+            <div class="course-info-row">
+                <span class="course-info-label">剩余课时</span>
+                <span class="course-info-value highlight">12 节</span>
+            </div>
+            <div class="course-info-row">
+                <span class="course-info-label">已上课时</span>
+                <span class="course-info-value">8 节</span>
+            </div>
+            <div class="course-info-row">
+                <span class="course-info-label">下次上课</span>
+                <span class="course-info-value">周一 09:00</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 教练详情</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .coach-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            padding: var(--spacing-xl);
+            text-align: center;
+            color: var(--white);
+        }
+        .coach-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 600;
+            margin: 0 auto var(--spacing);
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+        .coach-name-large {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+        .coach-title-large {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: var(--spacing);
+        }
+        .coach-tags-large {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+        }
+        .coach-tag-large {
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+        }
+        .coach-stats {
+            display: flex;
+            justify-content: space-around;
+            background: var(--white);
+            padding: var(--spacing-lg);
+            margin-top: -30px;
+            margin-left: var(--spacing);
+            margin-right: var(--spacing);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        .coach-stat {
+            text-align: center;
+        }
+        .coach-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .coach-stat-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        .coach-section {
+            padding: var(--spacing-lg) var(--spacing);
+        }
+        .coach-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        .coach-section-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .coach-desc {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.8;
+            box-shadow: var(--shadow-sm);
+        }
+        .course-list-simple {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .course-simple-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .course-simple-item:last-child {
+            border-bottom: none;
+        }
+        .course-simple-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius);
+            font-size: 20px;
+        }
+        .course-simple-info {
+            flex: 1;
+        }
+        .course-simple-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .course-simple-meta {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .review-summary {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow-sm);
+        }
+        .review-score {
+            text-align: center;
+            padding-right: var(--spacing-lg);
+            border-right: 1px solid var(--gray-100);
+        }
+        .review-score-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .review-score-label {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .review-stats {
+            flex: 1;
+        }
+        .review-stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+            font-size: 13px;
+        }
+        .review-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--gray-100);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .review-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container" style="padding-bottom: 80px;">
+        <!-- Coach Header -->
+        <div class="coach-header">
+            <div class="coach-avatar-large">张</div>
+            <h1 class="coach-name-large">张教练</h1>
+            <p class="coach-title-large">国家一级运动员 · 8年执教经验</p>
+            <div class="coach-tags-large">
+                <span class="coach-tag-large">青少年专家</span>
+                <span class="coach-tag-large">耐心细致</span>
+                <span class="coach-tag-large">专业认证</span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="coach-stats">
+            <div class="coach-stat">
+                <div class="coach-stat-value">200+</div>
+                <div class="coach-stat-label">学员数量</div>
+            </div>
+            <div class="coach-stat">
+                <div class="coach-stat-value">98%</div>
+                <div class="coach-stat-label">好评率</div>
+            </div>
+            <div class="coach-stat">
+                <div class="coach-stat-value">8年</div>
+                <div class="coach-stat-label">执教经验</div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="coach-section">
+            <h2 class="coach-section-title">教练介绍</h2>
+            <div class="coach-desc">
+                张教练拥有国家一级运动员资质，曾效力于CBA职业球队。退役后从事青少年篮球培训工作，累计执教超过200名学员。
+                <br><br>
+                擅长根据不同年龄段制定针对性训练计划，注重基础功训练和兴趣培养。课堂氛围活跃，深受学员和家长喜爱。
+            </div>
+        </div>
+
+        <!-- Courses -->
+        <div class="coach-section">
+            <h2 class="coach-section-title">所授课程</h2>
+            <div class="course-list-simple">
+                <a href="course-detail.html" class="course-simple-item">
+                    <div class="course-simple-icon">🏀</div>
+                    <div class="course-simple-info">
+                        <h3 class="course-simple-name">篮球启蒙班</h3>
+                        <p class="course-simple-meta">6-12岁 · 周一三五 09:00</p>
+                    </div>
+                </a>
+                <a href="course-detail.html" class="course-simple-item">
+                    <div class="course-simple-icon">🏀</div>
+                    <div class="course-simple-info">
+                        <h3 class="course-simple-name">青少年提高班</h3>
+                        <p class="course-simple-meta">8-15岁 · 周二四六 15:00</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="coach-section">
+            <h2 class="coach-section-title">学员评价</h2>
+            <div class="review-summary">
+                <div class="review-score">
+                    <div class="review-score-value">4.9</div>
+                    <div class="review-score-label">综合评分</div>
+                </div>
+                <div class="review-stats">
+                    <div class="review-stat-item">
+                        <span style="width: 30px;">5分</span>
+                        <div class="review-bar"><div class="review-bar-fill" style="width: 90%;"></div></div>
+                        <span>90%</span>
+                    </div>
+                    <div class="review-stat-item">
+                        <span style="width: 30px;">4分</span>
+                        <div class="review-bar"><div class="review-bar-fill" style="width: 8%;"></div></div>
+                        <span>8%</span>
+                    </div>
+                    <div class="review-stat-item">
+                        <span style="width: 30px;">3分</span>
+                        <div class="review-bar"><div class="review-bar-fill" style="width: 2%;"></div></div>
+                        <span>2%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

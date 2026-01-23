@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 课程列表</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .course-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing);
+        }
+        .course-list-item {
+            display: flex;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .course-list-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .course-list-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+        .course-list-content {
+            flex: 1;
+            padding: var(--spacing);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .course-list-header {
+            margin-bottom: var(--spacing-sm);
+        }
+        .course-list-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+        }
+        .course-tag {
+            padding: 2px 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+        }
+        .course-tag.secondary {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+        .course-list-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .course-list-meta {
+            display: flex;
+            gap: var(--spacing);
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-sm);
+        }
+        .course-list-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .course-list-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .course-list-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .course-list-price small {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
+        .course-list-slots {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .course-list-slots.full {
+            color: var(--danger);
+        }
+        .coach-card {
+            display: flex;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing);
+        }
+        .coach-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .coach-info {
+            flex: 1;
+        }
+        .coach-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .coach-title {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: var(--spacing-xs);
+        }
+        .coach-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+        .coach-tag {
+            padding: 2px 6px;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 11px;
+            border-radius: var(--radius-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- Bottom Navigation -->
+    <nav class="tabbar">
+        <a href="index.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="tabbar-label">首页</span>
+        </a>
+        <a href="venue.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            <span class="tabbar-label">场地</span>
+        </a>
+        <a href="course.html" class="tabbar-item active">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="tabbar-label">课程</span>
+        </a>
+        <a href="profile.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="tabbar-label">我的</span>
+        </a>
+    </nav>
+
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">培训课程</h1>
+            <p class="page-subtitle">选择适合你的篮球课程</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div style="position: relative; margin-bottom: var(--spacing-lg);">
+            <svg style="position: absolute; left: var(--spacing); top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--gray-400);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="搜索课程、教练..." style="width: 100%; padding: var(--spacing) var(--spacing) var(--spacing) 48px; border: none; border-radius: var(--radius); background: var(--white); font-size: 15px; box-shadow: var(--shadow-sm);">
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active">全部</div>
+            <div class="filter-tab">青少年</div>
+            <div class="filter-tab">成人</div>
+            <div class="filter-tab">私教</div>
+            <div class="filter-tab">夏令营</div>
+        </div>
+
+        <!-- Coach Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">明星教练</h2>
+                <a href="#" class="section-link">查看全部 →</a>
+            </div>
+            <a href="coach-detail.html" class="coach-card">
+                <div class="coach-avatar">张</div>
+                <div class="coach-info">
+                    <h3 class="coach-name">张教练</h3>
+                    <p class="coach-title">国家一级运动员 · 8年执教经验</p>
+                    <div class="coach-tags">
+                        <span class="coach-tag">青少年</span>
+                        <span class="coach-tag">技术提升</span>
+                    </div>
+                </div>
+            </a>
+            <a href="coach-detail.html" class="coach-card">
+                <div class="coach-avatar">李</div>
+                <div class="coach-info">
+                    <h3 class="coach-name">李教练</h3>
+                    <p class="coach-title">前CBA球员 · 12年执教经验</p>
+                    <div class="coach-tags">
+                        <span class="coach-tag">成人</span>
+                        <span class="coach-tag">实战技巧</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Course List -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">推荐课程</h2>
+            </div>
+            <div class="course-list">
+                <a href="course-detail.html" class="course-list-item">
+                    <div class="course-list-image">🏀</div>
+                    <div class="course-list-content">
+                        <div class="course-list-header">
+                            <div class="course-list-tags">
+                                <span class="course-tag">青少年</span>
+                                <span class="course-tag secondary">入门级</span>
+                            </div>
+                            <h3 class="course-list-name">篮球启蒙班</h3>
+                            <div class="course-list-meta">
+                                <span>📅 周一三五</span>
+                                <span>⏰ 9:00-10:30</span>
+                            </div>
+                        </div>
+                        <div class="course-list-footer">
+                            <div>
+                                <span class="course-list-price">¥1,980</span>
+                                <small>/ 12节</small>
+                            </div>
+                            <span class="course-list-slots">剩 4 名</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html" class="course-list-item">
+                    <div class="course-list-image">🏀</div>
+                    <div class="course-list-content">
+                        <div class="course-list-header">
+                            <div class="course-list-tags">
+                                <span class="course-tag">青少年</span>
+                                <span class="course-tag secondary">进阶级</span>
+                            </div>
+                            <h3 class="course-list-name">青少年提高班</h3>
+                            <div class="course-list-meta">
+                                <span>📅 周二四六</span>
+                                <span>⏰ 15:00-16:30</span>
+                            </div>
+                        </div>
+                        <div class="course-list-footer">
+                            <div>
+                                <span class="course-list-price">¥2,280</span>
+                                <small>/ 12节</small>
+                            </div>
+                            <span class="course-list-slots">剩 6 名</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html" class="course-list-item">
+                    <div class="course-list-image">🏀</div>
+                    <div class="course-list-content">
+                        <div class="course-list-header">
+                            <div class="course-list-tags">
+                                <span class="course-tag">成人</span>
+                                <span class="course-tag secondary">基础</span>
+                            </div>
+                            <h3 class="course-list-name">成人基础班</h3>
+                            <div class="course-list-meta">
+                                <span>📅 周一三五</span>
+                                <span>⏰ 19:00-20:30</span>
+                            </div>
+                        </div>
+                        <div class="course-list-footer">
+                            <div>
+                                <span class="course-list-price">¥1,680</span>
+                                <small>/ 10节</small>
+                            </div>
+                            <span class="course-list-slots">剩 8 名</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html" class="course-list-item">
+                    <div class="course-list-image">🏀</div>
+                    <div class="course-list-content">
+                        <div class="course-list-header">
+                            <div class="course-list-tags">
+                                <span class="course-tag">私教</span>
+                                <span class="course-tag secondary">1对1</span>
+                            </div>
+                            <h3 class="course-list-name">一对一私教课</h3>
+                            <div class="course-list-meta">
+                                <span>📅 预约制</span>
+                                <span>⏰ 灵活时间</span>
+                            </div>
+                        </div>
+                        <div class="course-list-footer">
+                            <div>
+                                <span class="course-list-price">¥350</span>
+                                <small>/节</small>
+                            </div>
+                            <span class="course-list-slots">可预约</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html" class="course-list-item">
+                    <div class="course-list-image">🏀</div>
+                    <div class="course-list-content">
+                        <div class="course-list-header">
+                            <div class="course-list-tags">
+                                <span class="course-tag">暑假</span>
+                                <span class="course-tag secondary">集中训练</span>
+                            </div>
+                            <h3 class="course-list-name">暑期训练营</h3>
+                            <div class="course-list-meta">
+                                <span>📅 7.15-8.30</span>
+                                <span>⏰ 20节课时</span>
+                            </div>
+                        </div>
+                        <div class="course-list-footer">
+                            <div>
+                                <span class="course-list-price">¥3,980</span>
+                                <small>/ 期</small>
+                            </div>
+                            <span class="course-list-slots">剩 12 名</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.course-list-item').forEach(item => {
+            item.addEventListener('click', function() {
+                showToast('点击查看课程详情');
+            });
+        });
+    </script>
+</body>
+</html>

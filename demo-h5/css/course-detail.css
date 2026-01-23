@@ -1,0 +1,365 @@
+/* Course Detail Specific Styles */
+.course-detail-header {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+}
+
+.course-detail-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+}
+
+.course-detail-overlay {
+    position: absolute;
+    top: var(--spacing);
+    left: var(--spacing);
+    right: var(--spacing);
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-full);
+    color: var(--gray-800);
+}
+
+.back-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.course-detail-content {
+    background: var(--gray-50);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    margin-top: -30px;
+    padding: var(--spacing-lg);
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.course-detail-tags {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing);
+}
+
+.course-detail-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-sm);
+}
+
+.course-detail-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+.course-stats {
+    display: flex;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+    margin-bottom: var(--spacing-lg);
+}
+
+.course-stat {
+    flex: 1;
+    text-align: center;
+}
+
+.course-stat .stat-value {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.course-stat .stat-label {
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+.detail-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.detail-section .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing);
+}
+
+/* Coach Detail Card */
+.coach-detail-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+}
+
+.coach-avatar.large {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+}
+
+.coach-detail-info {
+    flex: 1;
+}
+
+.coach-detail-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+}
+
+.coach-detail-info p {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: var(--spacing-xs);
+}
+
+.coach-detail-info .coach-tags {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.coach-arrow {
+    color: var(--gray-400);
+}
+
+.coach-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Schedule List */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+}
+
+.schedule-day {
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.schedule-time {
+    color: var(--gray-500);
+    font-size: 14px;
+}
+
+/* Outline List */
+.outline-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+.outline-item {
+    display: flex;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+}
+
+.outline-num {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.outline-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+}
+
+.outline-content p {
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+/* Venue Detail Card */
+.venue-detail-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+}
+
+.venue-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: var(--radius);
+}
+
+.venue-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.venue-detail-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+}
+
+.venue-detail-info p {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.venue-address {
+    font-size: 12px !important;
+    color: var(--gray-400) !important;
+}
+
+/* Review List */
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+.review-item {
+    padding: var(--spacing);
+    background: var(--white);
+    border-radius: var(--radius);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing);
+}
+
+.review-avatar {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+}
+
+.review-info {
+    flex: 1;
+}
+
+.review-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.review-date {
+    font-size: 12px;
+    color: var(--gray-400);
+}
+
+.review-rating {
+    font-size: 12px;
+}
+
+.review-content {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* Bottom Bar */
+.detail-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: var(--spacing);
+    padding-bottom: calc(var(--spacing) + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+    z-index: 100;
+}
+
+.bottom-bar-info {
+    flex: 1;
+}
+
+.price-label {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+.price-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.price-original {
+    font-size: 14px;
+    color: var(--gray-400);
+    text-decoration: line-through;
+    margin-left: var(--spacing-sm);
+}
+
+.btn-large {
+    padding: 14px 32px;
+    font-size: 16px;
+}

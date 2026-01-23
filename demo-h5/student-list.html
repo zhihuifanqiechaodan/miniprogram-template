@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 学员管理</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .student-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        .student-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing);
+        }
+        .student-list {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .student-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            border-bottom: 1px solid var(--gray-100);
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+        .student-item:last-child {
+            border-bottom: none;
+        }
+        .student-item:hover {
+            background: var(--gray-50);
+        }
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .student-avatar.blue {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+        }
+        .student-avatar.orange {
+            background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+        }
+        .student-avatar.green {
+            background: linear-gradient(135deg, #11998E 0%, #38EF7D 100%);
+        }
+        .student-info {
+            flex: 1;
+        }
+        .student-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .student-meta {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .student-qr-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            color: var(--gray-600);
+        }
+        .student-qr-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        .add-student-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg);
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--gray-500);
+            font-size: 15px;
+            cursor: pointer;
+            transition: all var(--transition);
+            margin-top: var(--spacing);
+        }
+        .add-student-card:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .add-student-card svg {
+            width: 24px;
+            height: 24px;
+        }
+        .student-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing);
+            margin-bottom: var(--spacing);
+        }
+        .student-stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .student-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .student-stat-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        .current-student {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing);
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing);
+        }
+        .current-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: var(--radius-full);
+        }
+        .current-text {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <nav class="tabbar">
+        <a href="index.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="tabbar-label">首页</span>
+        </a>
+        <a href="venue.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            <span class="tabbar-label">场地</span>
+        </a>
+        <a href="course.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="tabbar-label">课程</span>
+        </a>
+        <a href="profile.html" class="tabbar-item active">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="tabbar-label">我的</span>
+        </a>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header" style="padding: var(--spacing); background: var(--white);">
+            <div class="current-student">
+                <span class="current-indicator"></span>
+                <span class="current-text">当前查看：张小明</span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="student-section" style="padding: 0 var(--spacing);">
+            <div class="student-stats">
+                <div class="student-stat-card">
+                    <div class="student-stat-value">12</div>
+                    <div class="student-stat-label">剩余课时</div>
+                </div>
+                <div class="student-stat-card">
+                    <div class="student-stat-value">8</div>
+                    <div class="student-stat-label">已上课时</div>
+                </div>
+                <div class="student-stat-card">
+                    <div class="student-stat-value">15</div>
+                    <div class="student-stat-label">累计上课</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student List -->
+        <div class="student-section" style="padding: 0 var(--spacing);">
+            <div class="student-header">
+                <h2 class="section-title">家庭成员</h2>
+                <span style="font-size: 13px; color: var(--gray-500);">共 2 人</span>
+            </div>
+            <div class="student-list">
+                <a href="student-qr.html" class="student-item">
+                    <div class="student-avatar blue">小</div>
+                    <div class="student-info">
+                        <h3 class="student-name">张小明</h3>
+                        <p class="student-meta">儿子 · 8岁 · 剩余12课时</p>
+                    </div>
+                    <div class="student-qr-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="3" height="3"></rect>
+                            <rect x="18" y="14" width="3" height="3"></rect>
+                            <rect x="14" y="18" width="3" height="3"></rect>
+                            <rect x="18" y="18" width="3" height="3"></rect>
+                        </svg>
+                    </div>
+                </a>
+                <a href="student-qr.html" class="student-item">
+                    <div class="student-avatar orange">张</div>
+                    <div class="student-info">
+                        <h3 class="student-name">张女士</h3>
+                        <p class="student-meta">本人 · 35岁 · 剩余5课时</p>
+                    </div>
+                    <div class="student-qr-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="3" height="3"></rect>
+                            <rect x="18" y="14" width="3" height="3"></rect>
+                            <rect x="14" y="18" width="3" height="3"></rect>
+                            <rect x="18" y="18" width="3" height="3"></rect>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            <a href="student-add.html" class="add-student-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                添加学员
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

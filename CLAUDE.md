@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp UI components. Features include e-commerce functionality (products, cart, orders), user management, and cloud functions for backend API.
+WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp UI components. Features include custom navigation, tab bar handling, and reusable components.
 
 ## Common Commands
 
@@ -12,7 +12,7 @@ WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp U
 # Install dependencies
 pnpm install
 
-# Generate environment config (creates miniprogram/config/env.js)
+# Generate environment config (creates miniprogram/config/env.ts)
 pnpm run gen:env:dev   # Development environment
 pnpm run gen:env:prod  # Production environment
 
@@ -33,31 +33,28 @@ pnpm run format-all    # Format all files with Prettier
 
 ```
 miniprogram/
-├── api/              # API functions - each module (banner, product, order, etc.) has dedicated files
 ├── assets/           # Static resources (images, fonts, styles)
 ├── components/       # Reusable custom components
-├── config/           # Generated environment config (env.js)
+├── config/           # Generated environment config (env.ts)
 ├── custom-tab-bar/   # Custom tab bar implementation
-├── packageA/         # Subpackage A for order/address/product detail pages
-├── packageB/         # Subpackage B for admin features
-├── pages/            # Main package pages (home, category, device, cart, profile)
-└── utils/            # Utility functions (request.ts, router.ts, util.ts)
+├── pages/            # Main package pages (home, profile)
+└── utils/            # Utility functions (util.ts, router.ts)
 
-cloudfunctions/       # WeChat cloud functions
 typings/              # TypeScript type definitions
+cloudfunctions/       # WeChat cloud functions
 ```
 
 ### Key Patterns
 
-**API Calls**: All API requests go through `miniprogram/utils/request.ts` which wraps `wx.cloud.callFunction`. API modules in `api/` use `FunctionsType` enum to identify cloud functions.
+**Routing**: Use helpers from `miniprogram/utils/util.ts`: `navigateTo`, `redirectTo`, `switchTab`, `reLaunch`, `navigateBack`. All wrap native APIs with network connectivity checks and fallback to `redirectTo` on failure.
 
-**Routing**: Use helpers from `miniprogram/utils/util.ts`: `navigateTo`, `redirectTo`, `switchTab`, `reLaunch`, `navigateBack`. All wrap native APIs with network connectivity checks.
+**Route Config**: Define page routes in `miniprogram/utils/router.ts` using `RouteConfig` interface with `text`, `pagePath`, `iconPath`, and `selectedIconPath`.
 
 **Global State**: `getApp().globalData` stores system info, network status, user state. Defined in `typings/index.d.ts` as `IAppOption`.
 
 **Event Bus**: `eventBus` in `util.ts` for cross-component communication with methods: `addEventListener`, `triggerEventListener`, `removeEventListener`.
 
-**Cloud Functions**: Each cloud function is identified by a `type` string. The `requestA` function in `request.ts` calls `mallFunctions` cloud function with `type` and `params`.
+**Network Handling**: Routing helpers automatically check `isConnected` from `globalData` and show a Toast if offline.
 
 ### Path Aliases
 
@@ -68,21 +65,25 @@ typings/              # TypeScript type definitions
 ### TypeScript Types
 
 - `ApiResponse<T>` in `typings/api-types/api.d.ts` - Standard API response structure with `code`, `message`, `data`
+- `IAppOption` in `typings/index.d.ts` - App global data interface
 - Domain-specific types in `typings/api-types/` (banner, category, product, order, shopping-cart, admin)
 
 ## WeChat-Specific Conventions
 
 - Use `wx.cloud.init()` in `app.ts` for cloud development
 - Network status tracked globally via `wx.onNetworkStatusChange`
-- Pages use `Component()` constructor (not options object)
+- Pages use `Page()` constructor (not Component-based pages)
 - Custom navigation via `custom-nav-bar` component with `navigationStyle: custom` in app.json
 - Use `wx.nextTick()` for DOM updates after data changes
 - Component properties use `type`, `value` pattern with optional `observer`
 - `getCurrentPages()` for navigating between existing pages
+- Use `setTabBarSelected()` from `util.ts` in `onShow` to update tab bar state
+- Skyline renderer with glass-easel component framework enabled
 
 ## Build & Upload Notes
 
-- `generate-env.js` reads `.env.{environment}` and generates `miniprogram/config/env.js`
+- `generate-env.js` reads `.env.{environment}` and generates `miniprogram/config/env.ts`
 - `miniprogram-ci.js` handles npm packaging and upload via `miniprogram-ci`
 - Upload requires `private.{appId}.key` file for authentication
-- Uses Skyline renderer with glass-easel component framework
+- Version defined in `miniprogram/config/index.ts` from `env.ts`
+- Uses `packNpmManually` for npm dependency packaging

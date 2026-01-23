@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 添加学员</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .form-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow-sm);
+        }
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-sm);
+        }
+        .form-input {
+            width: 100%;
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 15px;
+            transition: all var(--transition);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .form-input::placeholder {
+            color: var(--gray-400);
+        }
+        .form-select {
+            width: 100%;
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 15px;
+            background: var(--white);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right var(--spacing) center;
+        }
+        .form-row {
+            display: flex;
+            gap: var(--spacing);
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .radio-group {
+            display: flex;
+            gap: var(--spacing);
+        }
+        .radio-item {
+            flex: 1;
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .radio-item.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: var(--spacing-lg);
+            background: var(--primary);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--radius);
+            margin-top: var(--spacing-lg);
+        }
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+        .tip-card {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        .tip-icon {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .tip-text {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container" style="padding: var(--spacing); padding-bottom: 100px;">
+        <!-- Header -->
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg);">
+            <a href="student-list.html" style="display: flex; align-items: center; color: var(--gray-700);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </a>
+            <h1 style="font-size: 20px; font-weight: 600; color: var(--gray-900);">添加学员</h1>
+        </div>
+
+        <!-- Form -->
+        <form onsubmit="event.preventDefault(); showToast('添加成功！'); setTimeout(() => location.href='student-list.html', 1500);">
+            <div class="form-section">
+                <div class="form-group">
+                    <label class="form-label">学员姓名</label>
+                    <input type="text" class="form-input" placeholder="请输入学员姓名" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">与您的关系</label>
+                    <select class="form-select">
+                        <option value="">请选择</option>
+                        <option value="son">儿子</option>
+                        <option value="daughter">女儿</option>
+                        <option value="wife">妻子</option>
+                        <option value="husband">丈夫</option>
+                        <option value="self">本人</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">性别</label>
+                        <div class="radio-group">
+                            <div class="radio-item active" onclick="selectGender(this, 'male')">男</div>
+                            <div class="radio-item" onclick="selectGender(this, 'female')">女</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">出生日期</label>
+                        <input type="date" class="form-input" style="padding: var(--spacing);">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">手机号码（可选）</label>
+                    <input type="tel" class="form-input" placeholder="用于接收上课通知">
+                </div>
+            </div>
+
+            <!-- Tip -->
+            <div class="tip-card">
+                <div class="tip-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </div>
+                <p class="tip-text">添加学员后，学员将拥有专属二维码，上课时出示给教练即可完成签到核销。</p>
+            </div>
+
+            <button type="submit" class="submit-btn">保存学员</button>
+        </form>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function selectGender(el, gender) {
+            document.querySelectorAll('.radio-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>

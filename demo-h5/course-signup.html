@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XX篮球馆 - 课程报名</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .signup-container {
+            padding: var(--spacing);
+            padding-bottom: 100px;
+        }
+        .signup-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow-sm);
+        }
+        .signup-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        .signup-section-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        .student-select-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .student-select-item:hover {
+            border-color: var(--primary);
+        }
+        .student-select-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .student-select-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .student-select-info {
+            flex: 1;
+        }
+        .student-select-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .student-select-meta {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .student-select-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+        .student-select-item.selected .student-select-check {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+        .add-student-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing);
+            border: 2px dashed var(--gray-300);
+            border-radius: var(--radius);
+            color: var(--gray-500);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .add-student-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .time-slot-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing-sm);
+            cursor: pointer;
+        }
+        .time-slot-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .time-slot-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .time-slot-week {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .time-slot-slots {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        .price-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .price-detail-item:last-child {
+            border-bottom: none;
+        }
+        .price-detail-label {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+        .price-detail-value {
+            font-size: 14px;
+            color: var(--gray-900);
+        }
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing);
+            margin-top: var(--spacing);
+            border-top: 2px solid var(--gray-100);
+        }
+        .price-total-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .price-total-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .payment-method-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing);
+            padding: var(--spacing);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            margin-bottom: var(--spacing-sm);
+            cursor: pointer;
+        }
+        .payment-method-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .payment-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            font-size: 20px;
+        }
+        .payment-icon.wechat {
+            background: #07C160;
+            color: white;
+        }
+        .payment-icon.balance {
+            background: #FF6B35;
+            color: white;
+        }
+        .payment-info {
+            flex: 1;
+        }
+        .payment-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .payment-desc {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        .payment-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-method-item.selected .payment-check {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container" style="padding-bottom: 100px;">
+        <!-- Header -->
+        <div class="page-header" style="padding: var(--spacing); background: var(--white);">
+            <a href="course-detail.html" style="display: flex; align-items: center; gap: var(--spacing-sm); color: var(--gray-700); margin-bottom: var(--spacing);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span>返回</span>
+            </a>
+            <h1 class="page-title">课程报名</h1>
+        </div>
+
+        <div class="signup-container">
+            <!-- Student Selection -->
+            <div class="signup-section">
+                <div class="signup-section-title">选择学员</div>
+                <div class="student-select-item selected">
+                    <div class="student-select-avatar">小</div>
+                    <div class="student-select-info">
+                        <div class="student-select-name">张小明</div>
+                        <div class="student-select-meta">儿子 · 8岁 · 剩余课时 12 节</div>
+                    </div>
+                    <div class="student-select-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 14px; height: 14px;">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="add-student-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    添加学员
+                </div>
+            </div>
+
+            <!-- Course Selection -->
+            <div class="signup-section">
+                <div class="signup-section-title">选择班次</div>
+                <div class="time-slot-item selected">
+                    <div>
+                        <div class="time-slot-date">周一三五班</div>
+                        <div class="time-slot-week">每周一、三、五 09:00-10:30</div>
+                    </div>
+                    <div class="time-slot-slots">剩 4 名</div>
+                </div>
+                <div class="time-slot-item">
+                    <div>
+                        <div class="time-slot-date">周六班</div>
+                        <div class="time-slot-week">每周六 14:00-16:00</div>
+                    </div>
+                    <div class="time-slot-slots">剩 8 名</div>
+                </div>
+            </div>
+
+            <!-- Price Details -->
+            <div class="signup-section">
+                <div class="signup-section-title">费用明细</div>
+                <div class="price-detail-item">
+                    <span class="price-detail-label">课程费用</span>
+                    <span class="price-detail-value">¥2,280</span>
+                </div>
+                <div class="price-detail-item">
+                    <span class="price-detail-label">优惠折扣</span>
+                    <span class="price-detail-value" style="color: var(--success);">-¥300</span>
+                </div>
+                <div class="price-total">
+                    <span class="price-total-label">实付金额</span>
+                    <span class="price-total-value">¥1,980</span>
+                </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="signup-section">
+                <div class="signup-section-title">支付方式</div>
+                <div class="payment-method-item selected">
+                    <div class="payment-icon wechat">微</div>
+                    <div class="payment-info">
+                        <div class="payment-name">微信支付</div>
+                        <div class="payment-desc">推荐使用微信支付</div>
+                    </div>
+                    <div class="payment-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 14px; height: 14px;">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="payment-method-item">
+                    <div class="payment-icon balance">储</div>
+                    <div class="payment-info">
+                        <div class="payment-name">账户储值</div>
+                        <div class="payment-desc">可用余额 ¥580</div>
+                    </div>
+                    <div class="payment-check"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="detail-bottom-bar" style="position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: var(--spacing); padding-bottom: calc(var(--spacing) + env(safe-area-inset-bottom)); box-shadow: 0 -4px 20px rgba(0,0,0,0.1); display: flex; align-items: center; gap: var(--spacing); z-index: 100;">
+            <div class="bottom-bar-info">
+                <span class="price-label">应付金额</span>
+                <span class="price-total-value">¥1,980</span>
+            </div>
+            <button class="btn btn-primary btn-large" onclick="paySuccess()">立即支付</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function paySuccess() {
+            showToast('支付成功！');
+            setTimeout(() => {
+                location.href = 'order-list.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
