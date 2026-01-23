@@ -1,14 +1,3 @@
-/**
- * @method addRpxUnit 添加单位
- * @param value
- */
-function addRpxUnit(value) {
-  if (value == null) {
-    return undefined;
-  }
-  return value.constructor === 'Number' ? value * 2 + 'rpx' : value;
-}
-
 function slice(data, length) {
   return data.slice(0, length);
 }
@@ -55,7 +44,6 @@ function formatDate(date, format) {
 }
 
 module.exports = {
-  addRpxUnit: addRpxUnit,
   slice: slice,
   listTo2DArray: listTo2DArray,
   formatDate: formatDate,

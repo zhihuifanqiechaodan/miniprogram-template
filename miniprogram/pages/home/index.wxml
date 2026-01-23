@@ -1,5 +1,5 @@
 <!-- pages/home/index.wxml -->
-<view class="page-container">
+<view class="tabbar-page-container">
   <custom-nav-bar
     title="首页"
     showSlot="{{true}}"

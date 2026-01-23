@@ -1,5 +1,5 @@
 <!-- pages/profile/index.wxml -->
-<view class="page-container">
+<view class="tabbar-page-container">
   <custom-nav-bar title="个人中心" showBack="{{false}}"> </custom-nav-bar>
   <view class="content-wrapper"></view>
 </view>
