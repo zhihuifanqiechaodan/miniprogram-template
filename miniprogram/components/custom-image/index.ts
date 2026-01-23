@@ -1,4 +1,6 @@
-// components/custom-image/index.js
+import { version } from '@miniprogram/config';
+
+// components/custom-image/index.ts
 Component({
   /**
    * 组件的属性列表
@@ -6,22 +8,14 @@ Component({
   properties: {
     width: {
       type: String,
-      optionalTypes: [String, Number],
       value: '100%',
     },
     height: {
       type: String,
-      optionalTypes: [String, Number],
       value: '100%',
     },
     src: {
       type: String,
-      observer: function () {
-        this.setData({
-          error: false,
-          loading: true,
-        });
-      },
     },
     mode: {
       type: String,
@@ -64,13 +58,21 @@ Component({
       value: '',
     },
     radius: {
-      type: Number,
-      optionalTypes: [String, Number],
-      value: 0,
+      type: String,
+      value: '0',
     },
-    showLoadingBackg: {
+    loadingBackground: {
       type: String,
       value: '#edf0f0',
+    },
+  },
+
+  observers: {
+    src() {
+      this.setData({
+        error: false,
+        loading: true,
+      });
     },
   },
 
@@ -78,8 +80,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    error: false,
-    loading: true,
+    version,
   },
 
   /**
@@ -89,11 +90,14 @@ Component({
     /**
      * @method error 当错误发生时触发，event.detail = {errMsg}
      */
-    error() {
+    error(e: WechatMiniprogram.TouchEvent) {
+      const { errMsg } = e.detail;
       this.setData({
         loading: false,
         error: true,
       });
+
+      console.error('========================👇 custom-image加载错误 👇========================\n\n', errMsg, '\n\n');
     },
     /**
      * @method load 当图片载入完毕时触发，event.detail = {height, width}

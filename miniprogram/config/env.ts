@@ -1,13 +1,4 @@
-import development from './development'; // 开发环境
-import production from './production'; // 生产环境
-
-const configInfo = {
-  development,
-  production,
+export default {
+  ENV: 'production',
+  APPID: 'wxcb6d2816d7abe793',
 };
-
-// const NODE_ENV = 'development';
-const NODE_ENV = 'production';
-const config = configInfo[NODE_ENV];
-
-export default config;

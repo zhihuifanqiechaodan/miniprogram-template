@@ -1,5 +1,5 @@
 node_modules
 miniprogram_npm
-typings
+typings/types/
 project.config.json
 project.private.config.json

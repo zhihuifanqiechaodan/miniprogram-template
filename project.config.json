@@ -1,49 +1,58 @@
 {
-  "description": "项目配置文件",
-  "miniprogramRoot": "miniprogram/",
-  "compileType": "miniprogram",
-  "setting": {
-    "useCompilerPlugins": [
-      "typescript",
-      "sass"
-    ],
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "coverView": false,
-    "postcss": true,
-    "minified": true,
-    "enhance": true,
-    "showShadowRootInWxmlPanel": false,
-    "ignoreUploadUnusedFiles": true,
-    "compileHotReLoad": false,
-    "skylineRenderEnable": true,
-    "es6": true,
-    "condition": true,
-    "uglifyFileName": true,
-    "packNpmManually": true,
-    "packNpmRelationList": [
-      {
-        "packageJsonPath": "./package.json",
-        "miniprogramNpmDistDir": "./miniprogram/"
-      }
-    ],
-    "swc": false
-  },
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {},
-  "srcMiniprogramRoot": "miniprogram/",
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  },
-  "libVersion": "2.32.3",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "appid": "wx0d6d764af9843ae7"
+	"description": "项目配置文件",
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
+	"compileType": "miniprogram",
+	"setting": {
+		"useCompilerPlugins": [
+			"typescript",
+			"sass"
+		],
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"coverView": false,
+		"postcss": true,
+		"minified": true,
+		"enhance": true,
+		"showShadowRootInWxmlPanel": false,
+		"ignoreUploadUnusedFiles": true,
+		"compileHotReLoad": false,
+		"skylineRenderEnable": true,
+		"es6": true,
+		"condition": true,
+		"uglifyFileName": true,
+		"packNpmManually": true,
+		"packNpmRelationList": [
+			{
+				"packageJsonPath": "./package.json",
+				"miniprogramNpmDistDir": "./miniprogram/"
+			}
+		],
+		"swc": false,
+		"compileWorklet": false,
+		"uploadWithSourceMap": true,
+		"minifyWXSS": true,
+		"minifyWXML": true,
+		"localPlugins": false,
+		"disableUseStrict": false,
+		"disableSWC": true
+	},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {},
+	"srcMiniprogramRoot": "miniprogram/",
+	"editorSetting": {
+		"tabIndent": "insertSpaces",
+		"tabSize": 2
+	},
+	"appid": "wxa60d78d6d3bb8e79",
+	"packOptions": {
+		"ignore": [],
+		"include": []
+	},
+	"libVersion": "3.7.11"
 }

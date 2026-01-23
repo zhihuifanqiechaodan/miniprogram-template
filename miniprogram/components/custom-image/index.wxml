@@ -1,10 +1,10 @@
 <!--components/custom-image/index.wxml-->
 <view
-  style="width: {{wxsModule.addUnit(width)}}; height: {{wxsModule.addUnit(height)}}; border-radius: {{radius ? wxsModule.addUnit(radius) : 0}}; {{customStyle}}"
+  style="width: {{width}}; height: {{height}}; border-radius: {{radius ? radius : 0}}; {{customStyle}}"
   class="image-wrapper {{round ? 'image-round' : ''}} {{flex ? 'flex' : ''}}"
 >
   <image
-    src="{{src}}"
+    src="{{wxsModule.processSrc({src, version})}}"
     mode="{{mode}}"
     webp="{{webp}}"
     lazy-load="{{lazyLoad}}"
@@ -16,7 +16,7 @@
   <slot />
   <view
     wx:if="{{ loading && showLoading }}"
-    style="background-color: {{showLoadingBackg}};"
+    style="background-color: {{loadingBackground}};"
     class="image-loading {{round ? 'image-round' : ''}}"
   >
     <image
@@ -27,18 +27,35 @@
       class="placeholder_bg_logo"
     />
   </view>
-  <view wx:if="{{ error && showError }}" class="image-error {{round ? 'image-round' : ''}}" />
+  <view wx:if="{{ error && showError }}" class="image-error {{round ? 'image-round' : ''}}">
+    <image
+      mode="widthFix"
+      src="/assets/images/common/fabrique_logo.png"
+      lazy-load="{{lazyLoad}}"
+      class="placeholder_bg_logo"
+    />
+  </view>
 </view>
 
 <!-- prettier-ignore -->
 <wxs module="wxsModule">
   var REGEXP = getRegExp('^-?\d+(\.\d+)?$');
   module.exports = {
-    addUnit: function (value) {
-      if (value == null) {
-        return undefined;
+    processSrc: function (data) {
+      var src = data.src
+      var version = data.version
+      if (src.indexOf('://tmp/') > -1 || src.indexOf('wxfile://') > -1) {
+        return src;
       }
-      return REGEXP.test('' + value) ? value + 'px' : value;
+      if (src.indexOf('://') > -1) {
+        var hasParam = src.indexOf('?') > -1;
+        src += hasParam ? '&_t=' + version : '?_t=' + version;
+        if (src.indexOf('http://') === 0) {
+          return src.replace('http://', 'https://');
+        }
+        return src;
+      }
+      return src;
     }
   }
 </wxs>

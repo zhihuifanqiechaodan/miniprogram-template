@@ -1,6 +1,6 @@
 // components/custom-navbar/custom-navbar.js
-import { navigateBack, reLaunch } from '~/utils/util';
-import { Home } from '~/utils/router';
+import { Home } from '@miniprogram/utils/router';
+import { navigateBack, reLaunch, tabbarRoutes } from '@miniprogram/utils/util';
 const app: IAppOption = getApp();
 
 Component({
@@ -44,10 +44,6 @@ Component({
       type: Boolean,
       value: false,
     },
-    zIndex: {
-      type: Number,
-      value: 100,
-    },
   },
 
   /**
@@ -55,7 +51,7 @@ Component({
    */
   data: {
     safeAreaInsetTop: false,
-    systemInfo: app.systemInfo,
+    systemInfo: app.globalData.systemInfo,
   },
 
   /**
@@ -87,21 +83,16 @@ Component({
      * @method handleReLaunchHome 返回首页, 通常配置为tabbar的第一个页面
      */
     handleReLaunchHome() {
-      reLaunch({ url: Home.path });
+      reLaunch({ url: Home.pagePath });
       this.triggerEvent('handleReLaunchHome');
     },
   },
   lifetimes: {
     attached() {
-      // 过滤路由列表
-      const tabbarRoute = [Home.path];
-      // 获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
       const pages = getCurrentPages();
-      // 如果当前页面栈只有一层
       if (pages.length === 1) {
         const route = pages[0].route;
-        // 不是tabbar页面则显示返回首页
-        if (!tabbarRoute.includes('/' + route)) {
+        if (!tabbarRoutes.map((item) => item.pagePath).includes('/' + route)) {
           this.setData({
             showHome: true,
             showBack: false,

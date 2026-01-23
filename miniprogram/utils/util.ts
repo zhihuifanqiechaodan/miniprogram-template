@@ -1,43 +1,18 @@
 import Toast from '@vant/weapp/toast/toast';
-import { Home } from '~/utils/router';
+import { Home, Profile } from '@miniprogram/utils/router';
 
-/**
- * @method getItemSync 缓存读取
- * @param {*} key
- */
-export const getItemSync = (key: string) => {
-  try {
-    return wx.getStorageSync(key);
-  } catch (err) {
-    console.error('wx.getStorageSync(key)', err);
+export const tabbarRoutes = [Home, Profile];
+export const setTabBarSelected = () => {
+  const currentPageInfo = getCurrentPageInfo();
+  if (typeof currentPageInfo?.getTabBar === 'function') {
+    const selected = tabbarRoutes.findIndex((item) => {
+      return item.pagePath === `/${currentPageInfo.route}`;
+    });
+    currentPageInfo?.getTabBar().setData({
+      selected,
+    });
   }
 };
-
-/**
- * @method setItemSync 缓存存储
- * @param {*} key
- * @param {*} value
- */
-export const setItemSync = (key: string, value: any) => {
-  try {
-    wx.setStorageSync(key, value);
-  } catch (err) {
-    console.error('wx.setStorageSync(key, value)', err);
-  }
-};
-
-/**
- * @method deleteItemSync 缓存删除
- * @param {*} key
- */
-export const deleteItemSync = (key: string) => {
-  try {
-    return wx.removeStorageSync(key);
-  } catch (err) {
-    console.error('wx.removeStorageSync(key)', err);
-  }
-};
-
 /**
  * @method navigateTo 封装navigateTo请求
  * @param {*} { url, events }
@@ -161,7 +136,9 @@ export const reLaunch = ({ url }: { url: string }) => {
  * @method getCurrentPageInfo 获取当前页面栈中指定路径的页面信息
  * @param {*} path app.json中定义的完整路径
  */
-export const getCurrentPageInfo = (path: string) => {
+export const getCurrentPageInfo = (
+  path?: string
+): WechatMiniprogram.Page.Instance<AnyObject, AnyObject> | undefined => {
   // 存在指定路径， 返回指定路径页面详情
   if (path) {
     // 反转数组，返回最后一次出现路由
@@ -208,8 +185,8 @@ export const checkNetwork = () => {
 /**
  * @method getNetworkType 获取网络类型
  */
-export const getNetworkType = () => {
-  return new Promise((resolve) => {
+export const getNetworkType = (): Promise<'wifi' | '2g' | '3g' | '4g' | '5g' | 'unknown' | 'none'> => {
+  return new Promise<'wifi' | '2g' | '3g' | '4g' | '5g' | 'unknown' | 'none'>((resolve) => {
     // 获取网络类型
     wx.getNetworkType({
       success: (value) => {
@@ -218,16 +195,6 @@ export const getNetworkType = () => {
       },
     });
   });
-};
-
-/**
- * @method logout 退出登录
- */
-export const logout = () => {
-  const { globalData } = getApp();
-  globalData.userInfo = null;
-  deleteItemSync('userInfo');
-  reLaunch({ url: Home.path });
 };
 
 /**
@@ -255,11 +222,73 @@ export const getSystemInfoSync = () => {
   const deviceInfo = wx.getDeviceInfo();
   const windowInfo = wx.getWindowInfo();
   const appBaseInfo = wx.getAppBaseInfo();
+  const menuButton = wx.getMenuButtonBoundingClientRect();
   return {
     ...systemSetting,
     ...appAuthorizeSetting,
     ...deviceInfo,
     ...windowInfo,
     ...appBaseInfo,
+    menuButton,
   };
+};
+
+interface IEventBusClients {
+  [key: string]: ((data: any) => void)[];
+}
+/**
+ * eventBus 事件总线
+ */
+export const eventBus = {
+  clients: {} as IEventBusClients,
+  /**
+   * @method addEventListener 事件监听
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   * @param {Function} fn 回调函数
+   */
+  addEventListener(method: string, fn: (data: any) => void) {
+    if (!this.clients[method]) {
+      this.clients[method] = [];
+    }
+    this.clients[method].push(fn);
+  },
+  /**
+   * @method triggerEventListener 事件触发
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   * @param {object} data
+   */
+  triggerEventListener(method: string, data?: any) {
+    this.clients[method]?.forEach((fn: (data: any) => void) => fn(data));
+  },
+  /**
+   * @method removeEventListener 删除事件
+   * @param {'onUserLogin' | 'onShoppingCartInfoUpdate' | 'onAddressRemove' | 'onAddressSaved' | 'onAddressChoose' | 'onTaskCompleted' | 'onCreateTaskCompleted' | 'onSignInCompleted'} method 方法名
+   */
+  removeEventListener(method: string) {
+    this.clients[method]?.pop();
+  },
+};
+
+export const getRect = (context: any, selector: string) => {
+  return new Promise((resolve) => {
+    context
+      .createSelectorQuery()
+      .select(selector)
+      .boundingClientRect(function (rect: any) {
+        resolve(rect);
+      })
+      .exec();
+  });
+};
+
+export const getAllRect = (context: any, selector: string) => {
+  return new Promise((resolve) => {
+    context
+      .createSelectorQuery()
+      .selectAll(selector)
+      .boundingClientRect(function (rects: any) {
+        resolve(rects);
+      })
+      .exec();
+  });
 };

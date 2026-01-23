@@ -1,14 +1,50 @@
-/**
- * @method addRpxUnit 添加单位
- * @param value
- */
-function addRpxUnit(value) {
-  if (value == null) {
-    return undefined;
+function slice(data, length) {
+  return data.slice(0, length);
+}
+
+function listTo2DArray(data, length) {
+  var arr = data;
+  var result = [];
+  if (data) {
+    for (var i = 0; i < arr.length; i += length) {
+      var subArray = [];
+      for (var j = i; j < i + length && j < arr.length; j++) {
+        subArray.push(arr[j]);
+      }
+      result.push(subArray);
+    }
   }
-  return value.constructor === 'Number' ? value * 2 + 'rpx' : value;
+  return result;
+}
+
+function formatDate(date, format) {
+  date = getDate(date);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  var timeStr = format;
+  var yearStr = year.toString();
+  var monthStr = month < 10 ? '0' + month : month.toString();
+  var dayStr = day < 10 ? '0' + day : day.toString();
+  var hourStr = hour < 10 ? '0' + hour : hour.toString();
+  var minuteStr = minute < 10 ? '0' + minute : minute.toString();
+  var secondStr = second < 10 ? '0' + second : second.toString();
+  timeStr = timeStr.replace('YYYY', yearStr);
+  timeStr = timeStr.replace('MM', monthStr);
+  timeStr = timeStr.replace('DD', dayStr);
+  timeStr = timeStr.replace('hh', hourStr);
+  timeStr = timeStr.replace('mm', minuteStr);
+  timeStr = timeStr.replace('ss', secondStr);
+
+  return timeStr;
 }
 
 module.exports = {
-  addRpxUnit: addRpxUnit,
+  slice: slice,
+  listTo2DArray: listTo2DArray,
+  formatDate: formatDate,
 };
