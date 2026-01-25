@@ -1,16 +1,210 @@
 <!-- pages/home/index.wxml -->
 <view class="tabbar-page-container">
-  <custom-nav-bar
-    title="首页"
-    showSlot="{{true}}"
-    placeholder="{{true}}"
-    custom-style="background: rgba(255, 255, 255, 0); color: #ffffff;"
-  >
-    <view class="nav-bar">
-      <view class="nav-action">
-        <text>退出</text>
+  <custom-nav-bar custom-style="background: rgba(0,0,0,0); color: #ffffff;" />
+
+  <scroll-view scroll-y bindscrolltolower="handleScroll" class="content-wrapper">
+    <!-- Header -->
+    <view class="home-header">
+      <view class="header-content">
+        <view class="header-text">
+          <text class="greeting">早上好</text>
+          <text class="venue-name">XX 篮球馆</text>
+          <view class="venue-status">
+            <view class="status-dot"></view>
+            <text>当前 3 片场地空闲</text>
+          </view>
+        </view>
       </view>
     </view>
-  </custom-nav-bar>
-  <view class="content-wrapper"> 首页 </view>
+
+    <!-- Quick Actions -->
+    <view class="section">
+      <view class="quick-actions">
+        <navigator url="/miniprogram/pages/venue/index" class="quick-action-item">
+          <view class="quick-action-icon court-icon">
+            <text class="icon-placeholder">🏀</text>
+          </view>
+          <text>预订场地</text>
+        </navigator>
+        <navigator url="/miniprogram/pages/course/index" class="quick-action-item">
+          <view class="quick-action-icon class-icon">
+            <text class="icon-placeholder">📅</text>
+          </view>
+          <text>购买课程</text>
+        </navigator>
+        <navigator url="/miniprogram/pages/class-record/index" class="quick-action-item">
+          <view class="quick-action-icon record-icon">
+            <text class="icon-placeholder">📋</text>
+          </view>
+          <text>训练记录</text>
+        </navigator>
+        <navigator url="/miniprogram/pages/student-list/index" class="quick-action-item">
+          <view class="quick-action-icon member-icon">
+            <text class="icon-placeholder">👥</text>
+          </view>
+          <text>学员管理</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- Court Status -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">场地状态</text>
+        <navigator url="/miniprogram/pages/venue/index" class="section-link">查看全部 →</navigator>
+      </view>
+      <view class="court-grid">
+        <view class="court-card">
+          <view class="court-info">
+            <text class="court-name">1号全场</text>
+            <text class="court-type">室内 · 木地板</text>
+          </view>
+          <view class="court-status">
+            <text class="status-badge">空闲</text>
+            <text class="court-price">¥120/小时</text>
+          </view>
+        </view>
+        <view class="court-card">
+          <view class="court-info">
+            <text class="court-name">2号全场</text>
+            <text class="court-type">室内 · 木地板</text>
+          </view>
+          <view class="court-status busy">
+            <text class="status-badge busy">使用中</text>
+            <text class="court-time">至 20:00</text>
+          </view>
+        </view>
+        <view class="court-card">
+          <view class="court-info">
+            <text class="court-name">3号半场</text>
+            <text class="court-type">室外 · 塑胶</text>
+          </view>
+          <view class="court-status">
+            <text class="status-badge">空闲</text>
+            <text class="court-price">¥60/小时</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Popular Courses -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">热门课程</text>
+        <navigator url="/miniprogram/pages/course/index" class="section-link">查看全部 →</navigator>
+      </view>
+      <scroll-view class="course-scroll" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+        <view class="course-card">
+          <view class="course-image">
+            <text class="course-placeholder">🏀</text>
+          </view>
+          <view class="course-content">
+            <text class="course-tag">青少年</text>
+            <text class="course-name">篮球启蒙班</text>
+            <text class="course-desc">6-12岁 · 基础入门</text>
+            <view class="course-footer">
+              <text class="course-price">¥1,980</text>
+              <text class="course-classes">12节课时</text>
+            </view>
+          </view>
+        </view>
+        <view class="course-card">
+          <view class="course-image">
+            <text class="course-placeholder">🏀</text>
+          </view>
+          <view class="course-content">
+            <text class="course-tag">成人</text>
+            <text class="course-name">成人提高班</text>
+            <text class="course-desc">18岁以上 · 技术提升</text>
+            <view class="course-footer">
+              <text class="course-price">¥2,280</text>
+              <text class="course-classes">10节课时</text>
+            </view>
+          </view>
+        </view>
+        <view class="course-card">
+          <view class="course-image">
+            <text class="course-placeholder">🏀</text>
+          </view>
+          <view class="course-content">
+            <text class="course-tag">私教</text>
+            <text class="course-name">一对一私教</text>
+            <text class="course-desc">VIP定制 · 针对性训练</text>
+            <view class="course-footer">
+              <text class="course-price">¥350</text>
+              <text class="course-classes">/节</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- Upcoming Classes -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">今日课程</text>
+        <navigator url="/miniprogram/pages/appointment-list/index" class="section-link">查看全部 →</navigator>
+      </view>
+      <view class="class-list">
+        <navigator url="/miniprogram/pages/appointment-list/index" class="class-item">
+          <view class="class-time">
+            <text class="time-hour">09:00</text>
+            <text class="time-period">AM</text>
+          </view>
+          <view class="class-info">
+            <text class="class-name">青少年启蒙班</text>
+            <text class="class-details">1号全场 · 张教练 · 已报名 8/12</text>
+          </view>
+          <view class="class-action">
+            <button class="btn btn-outline">预约</button>
+          </view>
+        </navigator>
+        <navigator url="/miniprogram/pages/appointment-list/index" class="class-item">
+          <view class="class-time">
+            <text class="time-hour">14:00</text>
+            <text class="time-period">PM</text>
+          </view>
+          <view class="class-info">
+            <text class="class-name">成人提高班</text>
+            <text class="class-details">2号全场 · 李教练 · 已报名 6/10</text>
+          </view>
+          <view class="class-action">
+            <button class="btn btn-outline">预约</button>
+          </view>
+        </navigator>
+        <navigator url="/miniprogram/pages/appointment-list/index" class="class-item">
+          <view class="class-time">
+            <text class="time-hour">16:30</text>
+            <text class="time-period">PM</text>
+          </view>
+          <view class="class-info">
+            <text class="class-name">私教课</text>
+            <text class="class-details">3号半场 · 王教练 · 1v1</text>
+          </view>
+          <view class="class-action">
+            <button class="btn btn-primary">签到</button>
+          </view>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- Announcements -->
+    <view class="section">
+      <view class="announcement-card">
+        <view class="announcement-icon">
+          <text>📢</text>
+        </view>
+        <view class="announcement-content">
+          <text class="announcement-title">暑期训练营开始报名啦！</text>
+          <text class="announcement-desc">7月15日-8月30日，20节课时仅需 ¥3,980</text>
+        </view>
+        <navigator url="/miniprogram/pages/course/index" class="announcement-arrow">
+          <text>→</text>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- Bottom Spacing -->
+    <view class="bottom-spacing"></view>
+  </scroll-view>
 </view>

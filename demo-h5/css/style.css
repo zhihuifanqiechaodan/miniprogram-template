@@ -2,7 +2,7 @@
    CSS Reset & Variables
 ======================================== */
 :root {
-    /* Color Palette - Modern & Clean */
+    /* Color Palette */
     --primary: #FF6B35;
     --primary-light: #FFF0EB;
     --primary-dark: #E55A2B;
@@ -25,23 +25,15 @@
     /* Status Colors */
     --success: #10B981;
     --success-light: #D1FAE5;
-    --warning: #F59E0B;
-    --warning-light: #FEF3C7;
-    --danger: #EF4444;
-    --danger-light: #FEE2E2;
 
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     /* Border Radius */
-    --radius-sm: 8px;
     --radius: 12px;
     --radius-lg: 16px;
-    --radius-xl: 24px;
     --radius-full: 9999px;
 
     /* Typography */
@@ -53,12 +45,9 @@
     --spacing: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
-    --spacing-2xl: 48px;
 
     /* Transitions */
-    --transition-fast: 150ms ease;
     --transition: 200ms ease;
-    --transition-slow: 300ms ease;
 }
 
 * {
@@ -79,7 +68,7 @@ body {
     color: var(--gray-800);
     line-height: 1.5;
     min-height: 100vh;
-    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 a {
@@ -95,45 +84,80 @@ button {
 }
 
 /* ========================================
-   Tabbar Navigation
+   Custom Navigation Bar (Mini Program Style)
 ======================================== */
-.tabbar {
+.custom-nav-bar {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
-    background: var(--white);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: var(--spacing-sm) var(--spacing) calc(var(--spacing) + env(safe-area-inset-bottom));
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+    padding: var(--spacing) var(--spacing) var(--spacing-lg);
+    padding-top: calc(var(--spacing) + env(safe-area-inset-top));
     z-index: 100;
+    color: var(--white);
 }
 
-.tabbar-item {
+.nav-bar-content {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: var(--spacing-xs) var(--spacing);
-    color: var(--gray-400);
-    transition: color var(--transition);
-    border-radius: var(--radius);
+    justify-content: space-between;
+    height: 32px;
+    margin-bottom: var(--spacing);
 }
 
-.tabbar-item.active {
-    color: var(--primary);
+.nav-bar-left {
+    width: 50px;
 }
 
-.tabbar-icon {
-    width: 24px;
+.nav-bar-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.nav-bar-right {
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Capsule Button */
+.capsule {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
+    padding: 4px;
+    height: 32px;
+}
+
+.capsule-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
     height: 24px;
 }
 
-.tabbar-label {
-    font-size: 12px;
-    font-weight: 500;
+.capsule-item svg {
+    width: 16px;
+    height: 16px;
+}
+
+.capsule-line {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
+}
+
+/* Weather in nav bar */
+.nav-bar-weather {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    opacity: 0.9;
 }
 
 /* ========================================
@@ -141,11 +165,15 @@ button {
 ======================================== */
 .main-content {
     padding: var(--spacing);
-    padding-top: var(--spacing-lg);
+    padding-top: calc(110px + env(safe-area-inset-top));
 }
 
 .section {
     margin-bottom: var(--spacing-xl);
+}
+
+.bottom-spacing {
+    height: var(--spacing-xl);
 }
 
 /* ========================================
@@ -197,26 +225,6 @@ button {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
-}
-
-.header-weather {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--spacing);
-    background: linear-gradient(135deg, #FFE5D9 0%, #FFF0EB 100%);
-    border-radius: var(--radius-lg);
-    min-width: 70px;
-}
-
-.weather-icon {
-    font-size: 24px;
-}
-
-.weather-temp {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--gray-800);
 }
 
 /* ========================================
@@ -623,14 +631,43 @@ button {
 }
 
 /* ========================================
-   Responsive
+   Tabbar Navigation
 ======================================== */
-@media (max-width: 375px) {
-    .quick-actions {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing) calc(var(--spacing) + env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
 
-    .course-card {
-        width: 180px;
-    }
+.tabbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--spacing-xs) var(--spacing);
+    color: var(--gray-400);
+    transition: color var(--transition);
+    border-radius: var(--radius);
+}
+
+.tabbar-item.active {
+    color: var(--primary);
+}
+
+.tabbar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.tabbar-label {
+    font-size: 12px;
+    font-weight: 500;
 }

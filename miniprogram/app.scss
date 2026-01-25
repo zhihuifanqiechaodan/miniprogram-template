@@ -10,6 +10,10 @@ page {
 	background-color: #f5f6f7;
 }
 
+scroll-view {
+	overflow: auto;
+}
+
 view,
 text {
 	word-break: break-word;

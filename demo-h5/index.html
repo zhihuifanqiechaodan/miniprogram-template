@@ -7,37 +7,38 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Bottom Navigation -->
-    <nav class="tabbar">
-        <a href="index.html" class="tabbar-item active">
-            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            <span class="tabbar-label">首页</span>
-        </a>
-        <a href="venue.html" class="tabbar-item">
-            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="9" y1="3" x2="9" y2="21"></line>
-            </svg>
-            <span class="tabbar-label">场地</span>
-        </a>
-        <a href="course.html" class="tabbar-item">
-            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span class="tabbar-label">课程</span>
-        </a>
-        <a href="profile.html" class="tabbar-item">
-            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span class="tabbar-label">我的</span>
-        </a>
-    </nav>
+    <!-- Custom Navigation Bar (Simulating WeChat Mini Program) -->
+    <div class="custom-nav-bar">
+        <div class="nav-bar-content">
+            <div class="nav-bar-left">
+                <!-- Back button placeholder -->
+            </div>
+            <div class="nav-bar-title">首页</div>
+            <div class="nav-bar-right">
+                <div class="capsule">
+                    <div class="capsule-item capsule-search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="capsule-line"></div>
+                    <div class="capsule-item capsule-more">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="19" cy="12" r="1"></circle>
+                            <circle cx="5" cy="12" r="1"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Weather placeholder in nav bar -->
+        <div class="nav-bar-weather">
+            <span>☀️</span>
+            <span>28°C</span>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -51,10 +52,6 @@
                         <span class="status-dot"></span>
                         当前 3 片场地空闲
                     </p>
-                </div>
-                <div class="header-weather">
-                    <span class="weather-icon">☀️</span>
-                    <span class="weather-temp">28°</span>
                 </div>
             </div>
         </header>
@@ -113,7 +110,7 @@
                         <h3 class="court-name">1号全场</h3>
                         <p class="court-type">室内 · 木地板</p>
                     </div>
-                    <div class="court-status available">
+                    <div class="court-status">
                         <span class="status-badge">空闲</span>
                         <p class="court-price">¥120/小时</p>
                     </div>
@@ -133,7 +130,7 @@
                         <h3 class="court-name">3号半场</h3>
                         <p class="court-type">室外 · 塑胶</p>
                     </div>
-                    <div class="court-status available">
+                    <div class="court-status">
                         <span class="status-badge">空闲</span>
                         <p class="court-price">¥60/小时</p>
                     </div>
@@ -262,7 +259,42 @@
                 </a>
             </div>
         </section>
+
+        <!-- Bottom Spacing -->
+        <div class="bottom-spacing"></div>
     </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="tabbar">
+        <a href="index.html" class="tabbar-item active">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="tabbar-label">首页</span>
+        </a>
+        <a href="venue.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            <span class="tabbar-label">场地</span>
+        </a>
+        <a href="course.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="tabbar-label">课程</span>
+        </a>
+        <a href="profile.html" class="tabbar-item">
+            <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="tabbar-label">我的</span>
+        </a>
+    </nav>
 
     <script src="js/app.js"></script>
 </body>
