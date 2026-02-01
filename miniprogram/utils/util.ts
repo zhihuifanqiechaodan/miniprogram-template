@@ -1,7 +1,7 @@
 import Toast from '@vant/weapp/toast/toast';
-import { Home, Profile } from '@miniprogram/utils/router';
+import { Home, Review, Profile } from '@miniprogram/utils/router';
 
-export const tabbarRoutes = [Home, Profile];
+export const tabbarRoutes = [Home, Review, Profile];
 export const setTabBarSelected = () => {
   const currentPageInfo = getCurrentPageInfo();
   if (typeof currentPageInfo?.getTabBar === 'function') {

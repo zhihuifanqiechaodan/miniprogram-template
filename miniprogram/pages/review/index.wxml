@@ -1,0 +1,18 @@
+<!-- pages/review/index.wxml -->
+<view class="tabbar-page-container">
+  <custom-nav-bar
+    title="写评"
+    showSlot="{{true}}"
+    placeholder="{{true}}"
+    custom-style="background: rgba(255, 255, 255, 0); color: #ffffff;"
+  >
+    <view class="nav-bar">
+      <view class="nav-action">
+        <text>退出</text>
+      </view>
+    </view>
+  </custom-nav-bar>
+  <view class="content-wrapper">
+    <text>写评页面</text>
+  </view>
+</view>

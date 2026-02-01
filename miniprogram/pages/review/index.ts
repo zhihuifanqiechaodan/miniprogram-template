@@ -1,17 +1,8 @@
 import { setTabBarSelected } from '@miniprogram/utils/util';
 
-// pages/home/index.ts
+// pages/review/index.ts
 export {};
 const app: IAppOption = getApp();
-
-interface CourseItem {
-  id: number;
-  index: string;
-  code: string;
-  name: string;
-  rating: string;
-  bgColor: string;
-}
 
 Page({
   /**
@@ -19,13 +10,6 @@ Page({
    */
   data: {
     systemInfo: app.globalData.systemInfo,
-    courseList: [
-      { id: 1, index: '9021', code: 'COMP9021', name: 'Principles of Programming', rating: '4.8', bgColor: '#E3F2FD' },
-      { id: 2, index: '9024', code: 'COMP9024', name: 'Data Structures and', rating: '4.6', bgColor: '#FCE4EC' },
-      { id: 3, index: '9331', code: 'COMP9331', name: 'Computer Networks', rating: '4.5', bgColor: '#FFF3E0' },
-      { id: 4, index: '9311', code: 'COMP9311', name: 'Database Systems', rating: '4.7', bgColor: '#F3E5F5' },
-      { id: 5, index: '9315', code: 'COMP9315', name: 'Database Systems', rating: '4.4', bgColor: '#E8F5E9' },
-    ] as CourseItem[],
   },
 
   /**

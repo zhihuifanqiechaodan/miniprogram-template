@@ -1,4 +1,4 @@
-.page-container {
+.tabbar-page-container {
 
   .nav-bar {
     height: 100%;
@@ -17,7 +17,128 @@
   }
 
   .content-wrapper {
-    position: relative;
+    padding: 20rpx 0;
+  }
+
+  // 搜索栏样式
+  .search-bar {
     padding: 20rpx 40rpx;
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      padding: 20rpx;
+      border-radius: 999rpx;
+      background-color: #ffffff;
+
+      .search-icon {
+        color: #999;
+        font-size: 28rpx;
+        margin-right: 16rpx;
+      }
+
+      .search-input {
+        flex: 1;
+        font-size: 26rpx;
+        color: #333;
+      }
+
+      .search-placeholder {
+        color: #999;
+      }
+    }
+
+
+  }
+
+  // 热门推荐标题样式
+  .section-title {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 40rpx;
+
+    .fire-icon {
+      color: #ff6b35;
+      font-size: 32rpx;
+      margin-right: 10rpx;
+    }
+
+    .title-text {
+      font-size: 30rpx;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  // 课程卡片列表样式
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20rpx;
+    padding: 20rpx 40rpx;
+  }
+
+  // 课程卡片样式
+  .course-card {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+    padding: 20rpx 24rpx;
+    background-color: #fff;
+    border-radius: 16rpx;
+    border: 1rpx solid #f0f0f0;
+
+    .course-index {
+      width: 80rpx;
+      height: 80rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12rpx;
+
+      font-weight: 500;
+      color: #666;
+      flex-shrink: 0;
+    }
+
+    .course-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+
+      .course-code {
+
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 6rpx;
+      }
+
+      .course-name {
+        font-size: 22rpx;
+        color: #999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .course-rating {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      .rating-score {
+        font-size: 26rpx;
+        font-weight: 500;
+        color: #ffc107;
+        margin-right: 6rpx;
+      }
+
+      .star-icon {
+        font-size: 24rpx;
+      }
+    }
   }
 }

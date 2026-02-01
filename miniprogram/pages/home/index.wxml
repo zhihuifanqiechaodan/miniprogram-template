@@ -1,16 +1,34 @@
 <!-- pages/home/index.wxml -->
 <view class="tabbar-page-container">
-  <custom-nav-bar
-    title="首页"
-    showSlot="{{true}}"
-    placeholder="{{true}}"
-    custom-style="background: rgba(255, 255, 255, 0); color: #ffffff;"
-  >
-    <view class="nav-bar">
-      <view class="nav-action">
-        <text>退出</text>
+  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
+  <view class="content-wrapper">
+    <!-- 搜索栏 -->
+    <view class="search-bar">
+      <view class="search-box">
+        <van-icon name="search" class="search-icon" />
+        <input class="search-input" placeholder="搜索课程..." placeholder-class="search-placeholder" />
       </view>
     </view>
-  </custom-nav-bar>
-  <view class="content-wrapper"> 首页 </view>
+    <!-- 热门推荐标题 -->
+    <view class="section-title">
+      <van-icon name="fire" class="fire-icon" />
+      <text class="title-text">热门推荐</text>
+    </view>
+    <!-- 课程卡片列表 -->
+    <view class="course-list">
+      <block wx:for="{{courseList}}" wx:key="id">
+        <view class="course-card">
+          <view class="course-index" style="background-color: {{item.bgColor}}"> {{item.index}} </view>
+          <view class="course-info">
+            <text class="course-code">{{item.code}}</text>
+            <text class="course-name">{{item.name}}</text>
+          </view>
+          <view class="course-rating">
+            <text class="rating-score">{{item.rating}}</text>
+            <van-icon name="star" class="star-icon" color="#FFC107" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 </view>

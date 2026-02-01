@@ -5,7 +5,11 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/review/index",
+        "text": "写评"
       },
       {
         "pagePath": "pages/profile/index",
@@ -13,7 +17,7 @@
       }
     ]
   },
-  "pages": ["pages/home/index", "pages/profile/index"],
+  "pages": ["pages/home/index", "pages/review/index", "pages/profile/index"],
   "subPackages": [],
   "window": {
     "navigationBarTitleText": "miniprogram",

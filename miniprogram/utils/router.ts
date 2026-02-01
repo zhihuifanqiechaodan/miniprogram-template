@@ -5,8 +5,13 @@ interface RouteConfig {
   selectedIconPath?: string;
 }
 export const Home: RouteConfig = {
-  text: '首页',
+  text: '课程',
   pagePath: '/pages/home/index',
+};
+
+export const Review: RouteConfig = {
+  text: '写评',
+  pagePath: '/pages/review/index',
 };
 
 export const Profile: RouteConfig = {
