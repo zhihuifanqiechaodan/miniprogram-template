@@ -1,6 +1,5 @@
 import { getNetworkType, getSystemInfoSync, reLaunch } from '@miniprogram/utils/util';
 import { Home } from '@miniprogram/utils/router';
-import { cloundEnv } from './config/index';
 
 // app.ts
 App<IAppOption>({
@@ -13,10 +12,6 @@ App<IAppOption>({
     videoContextComponent: null, // VideoContextComponent，VideoContext实例所在的组件，用于处理视频播放相关业务
   },
   async onLaunch() {
-    wx.cloud.init({
-      env: cloundEnv,
-      traceUser: true,
-    });
     const updateManager = wx.getUpdateManager();
     updateManager.onUpdateReady(function () {
       wx.showModal({

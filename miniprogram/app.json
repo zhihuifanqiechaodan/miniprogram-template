@@ -1,6 +1,7 @@
 {
   "tabBar": {
-    "custom": true,
+    "color": "#9ca3af",
+    "selectedColor": "#4f46e5",
     "borderStyle": "black",
     "list": [
       {
@@ -18,7 +19,12 @@
     ]
   },
   "pages": ["pages/home/index", "pages/review/index", "pages/profile/index"],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "packageA/",
+      "pages": ["course-detail/index"]
+    }
+  ],
   "window": {
     "navigationBarTitleText": "miniprogram",
     "navigationBarBackgroundColor": "#ffffff",

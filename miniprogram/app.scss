@@ -2,11 +2,12 @@
 @import '/miniprogram_npm/@vant/weapp/common/index.wxss';
 
 page {
-	--color-primary: #03142b;
+	--color-primary: #4f46e5;
+	--color-default: #03142b;
 	--tabbar-height: 120rpx;
 	font-size: 28rpx;
 	font-weight: 400;
-	color: var(--color-primary);
+	color: var(#03142b);
 	background-color: #f9fafb;
 }
 
@@ -48,7 +49,14 @@ text {
 .tabbar-page-container {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - var(--tabbar-height) - env(safe-area-inset-bottom));
+	// height: calc(100vh - var(--tabbar-height) - env(safe-area-inset-bottom));
+	height: 100vh;
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 
 .swiper-dot-white {

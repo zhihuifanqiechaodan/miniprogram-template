@@ -1,5 +1,59 @@
 <!-- pages/profile/index.wxml -->
 <view class="tabbar-page-container">
-  <custom-nav-bar title="个人中心" showBack="{{false}}"> </custom-nav-bar>
-  <view class="content-wrapper"></view>
+  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
+  <view class="content-wrapper">
+    <!-- 用户信息头部 -->
+    <view class="user-header">
+      <view class="user-avatar">
+        <text>A</text>
+      </view>
+      <view class="user-info">
+        <text class="user-name">Alex</text>
+        <text class="user-subtitle">UNSW · Computer Science</text>
+      </view>
+    </view>
+
+    <!-- 功能列表 -->
+    <view class="menu-list">
+      <view class="menu-item" bindtap="handleNavigate" data-type="favorites">
+        <view class="menu-left">
+          <view class="icon-box favorite">
+            <text class="icon-star">★</text>
+          </view>
+          <text class="menu-label">我的收藏</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleNavigate" data-type="likes">
+        <view class="menu-left">
+          <view class="icon-box like">
+            <text class="icon-heart">♥</text>
+          </view>
+          <text class="menu-label">我的点赞</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleNavigate" data-type="reviews">
+        <view class="menu-left">
+          <view class="icon-box review">
+            <text class="icon-review">💬</text>
+          </view>
+          <text class="menu-label">我的评价</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleNavigate" data-type="settings">
+        <view class="menu-left">
+          <view class="icon-box settings">
+            <text class="icon-settings">⚙</text>
+          </view>
+          <text class="menu-label">设置</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
 </view>

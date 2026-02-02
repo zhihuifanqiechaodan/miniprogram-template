@@ -1,25 +1,100 @@
 .tabbar-page-container {
-  min-height: 100vh;
-  background-color: #fff;
-
-  .nav-bar {
-    height: 100%;
-    padding: 0 20rpx;
-
-    .nav-action {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      padding: 0 32rpx;
-      border-radius: 32rpx;
-      background: rgba(255, 255, 255, 0.2);
-      font-size: 24rpx;
-    }
-  }
-
   .content-wrapper {
     position: relative;
     padding: 32rpx;
+  }
+
+  .review-card {
+    background: #ffffff;
+    border-radius: 32rpx;
+    padding: 40rpx;
+    box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.04);
+  }
+
+  .page-title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #1a1c33;
+    margin-bottom: 48rpx;
+  }
+
+  .form-item {
+    margin-bottom: 40rpx;
+  }
+
+  .form-label {
+    font-size: 24rpx;
+    color: #333333;
+    font-weight: 500;
+    margin-bottom: 20rpx;
+  }
+
+  .picker-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 96rpx;
+    padding: 0 24rpx;
+    border: 2rpx solid #e0e0e0;
+    border-radius: 20rpx;
+    font-size: 28rpx;
+    color: #333333;
+    background: #ffffff;
+
+    &.placeholder {
+      color: #999999;
+    }
+  }
+
+  .picker-arrow {
+    width: 0;
+    height: 0;
+    border-left: 12rpx solid transparent;
+    border-right: 12rpx solid transparent;
+    border-top: 12rpx solid #999999;
+    opacity: 0.5;
+  }
+
+  .textarea-box {
+    position: relative;
+    border: 2rpx solid #e0e0e0;
+    border-radius: 20rpx;
+    padding: 24rpx;
+    background: #ffffff;
+
+    textarea {
+      width: 100%;
+      height: 280rpx;
+      font-size: 28rpx;
+      color: #333333;
+      line-height: 1.5;
+    }
+
+    .textarea-placeholder {
+      color: #999999;
+    }
+
+    .textarea-count {
+      position: absolute;
+      right: 24rpx;
+      bottom: 24rpx;
+      font-size: 24rpx;
+      color: #999999;
+    }
+  }
+
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80rpx;
+    background: var(--color-primary);
+    border-radius: 20rpx;
+    margin-top: 48rpx;
+
+    text {
+      font-weight: bold;
+      color: #ffffff;
+    }
   }
 }

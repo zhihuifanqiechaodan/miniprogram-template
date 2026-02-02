@@ -1,0 +1,87 @@
+// pages/course-detail/index.scss
+.page-container {
+
+  .content-wrapper {
+    padding: 32rpx;
+  }
+
+  .course-detail-card {
+    background: #fff;
+    border-radius: 16rpx;
+    padding: 32rpx;
+    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  }
+
+  .detail-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 32rpx;
+    border-bottom: 1rpx solid #eee;
+    margin-bottom: 32rpx;
+  }
+
+  .course-index {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 12rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32rpx;
+    font-weight: 600;
+    margin-right: 24rpx;
+  }
+
+  .course-basic {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .course-code {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8rpx;
+  }
+
+  .course-name {
+    font-size: 28rpx;
+    color: #666;
+    margin-bottom: 12rpx;
+  }
+
+  .course-rating {
+    display: flex;
+    align-items: center;
+  }
+
+  .rating-score {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #333;
+    margin-right: 8rpx;
+  }
+
+  .star-icon {
+    font-size: 28rpx;
+  }
+
+  .detail-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-label {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 16rpx;
+  }
+
+  .course-description {
+    font-size: 26rpx;
+    color: #666;
+    line-height: 1.6;
+  }
+}

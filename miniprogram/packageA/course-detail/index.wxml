@@ -1,0 +1,28 @@
+<!-- pages/course-detail/index.wxml -->
+<view class="page-container">
+  <custom-nav-bar
+    showBack="{{true}}"
+    title="课程详情"
+    custom-style="background: rgba(255, 255, 255, 1);"
+    bind:onBack="handleNavigateBack"
+  />
+  <view class="content-wrapper">
+    <view class="course-detail-card" wx:if="{{course}}">
+      <view class="detail-header">
+        <view class="course-index" style="background-color: {{course.bgColor}}">{{course.index}}</view>
+        <view class="course-basic">
+          <text class="course-code">{{course.code}}</text>
+          <text class="course-name">{{course.name}}</text>
+          <view class="course-rating">
+            <text class="rating-score">{{course.rating}}</text>
+            <van-icon name="star" class="star-icon" color="#FFC107" />
+          </view>
+        </view>
+      </view>
+      <view class="detail-body">
+        <text class="section-label">课程简介</text>
+        <text class="course-description">{{course.description}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -17,7 +17,7 @@
     <!-- 课程卡片列表 -->
     <view class="course-list">
       <block wx:for="{{courseList}}" wx:key="id">
-        <view class="course-card">
+        <view class="course-card" data-id="{{item.id}}" bindtap="handleCourseTap">
           <view class="course-index" style="background-color: {{item.bgColor}}"> {{item.index}} </view>
           <view class="course-info">
             <text class="course-code">{{item.code}}</text>

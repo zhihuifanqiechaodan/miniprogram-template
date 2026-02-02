@@ -1,7 +1,7 @@
-import { setTabBarSelected } from '@miniprogram/utils/util';
-
 // pages/home/index.ts
 export {};
+import { CourseDetail, buildUrl } from '@miniprogram/utils/router';
+import { navigateTo } from '@miniprogram/utils/util';
 const app: IAppOption = getApp();
 
 interface CourseItem {
@@ -41,9 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    setTabBarSelected();
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -64,4 +62,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {},
+
+  /**
+   * 课程卡片点击事件
+   */
+  handleCourseTap(e: WechatMiniprogram.CustomEvent<{ id: number }>) {
+    const { id } = e.currentTarget.dataset;
+    const url = buildUrl(CourseDetail, { id });
+    navigateTo({ url });
+  },
 });

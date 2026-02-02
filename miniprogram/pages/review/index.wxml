@@ -1,18 +1,37 @@
 <!-- pages/review/index.wxml -->
 <view class="tabbar-page-container">
-  <custom-nav-bar
-    title="写评"
-    showSlot="{{true}}"
-    placeholder="{{true}}"
-    custom-style="background: rgba(255, 255, 255, 0); color: #ffffff;"
-  >
-    <view class="nav-bar">
-      <view class="nav-action">
-        <text>退出</text>
+  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
+  <view class="content-wrapper">
+    <view class="review-card">
+      <view class="page-title">写点评</view>
+
+      <view class="form-item">
+        <view class="form-label">课程代码</view>
+        <picker mode="selector" range="{{courseList}}" range-key="name" bindchange="onCourseChange">
+          <view class="picker-box {{selectedCourse ? '' : 'placeholder'}}">
+            <text>{{selectedCourse.name || '请选择课程...'}}</text>
+            <view class="picker-arrow"></view>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">评价内容</view>
+        <view class="textarea-box">
+          <textarea
+            placeholder="写下你的真实感受..."
+            placeholder-class="textarea-placeholder"
+            maxlength="{{500}}"
+            bindinput="onContentChange"
+            value="{{content}}"
+          ></textarea>
+          <text class="textarea-count">{{content.length}}/500</text>
+        </view>
+      </view>
+
+      <view class="submit-btn" bindtap="handleSubmit">
+        <text>提交评价</text>
       </view>
     </view>
-  </custom-nav-bar>
-  <view class="content-wrapper">
-    <text>写评页面</text>
   </view>
 </view>
