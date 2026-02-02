@@ -1,87 +1,215 @@
 // pages/course-detail/index.scss
 .page-container {
+  min-height: 100vh;
+  background: #fff;
 
   .content-wrapper {
     padding: 32rpx;
   }
 
-  .course-detail-card {
-    background: #fff;
-    border-radius: 16rpx;
+  // 课程基本信息区域
+  .course-info-section {
+    margin-bottom: 24rpx;
+
+    .course-code {
+      display: block;
+      font-size: 48rpx;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 8rpx;
+    }
+
+    .course-name {
+      display: block;
+      font-size: 28rpx;
+      color: #666;
+      margin-bottom: 20rpx;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16rpx;
+
+      .tag-item {
+        padding: 8rpx 20rpx;
+        background: #f5f5f5;
+        border-radius: 24rpx;
+        font-size: 24rpx;
+        color: #666;
+      }
+    }
+  }
+
+  // 课程简介卡片
+  .description-card {
+    background: #f8f8f8;
+    border-radius: 24rpx;
     padding: 32rpx;
-    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+    margin-bottom: 24rpx;
+
+    .description-text {
+      font-size: 26rpx;
+      color: #666;
+      line-height: 1.8;
+    }
   }
 
-  .detail-header {
-    display: flex;
-    align-items: center;
-    padding-bottom: 32rpx;
-    border-bottom: 1rpx solid #eee;
-    margin-bottom: 32rpx;
+  // 综合评分卡片
+  .rating-card {
+    background: #F0F3FF;
+    border-radius: 24rpx;
+    padding: 32rpx;
+    margin-bottom: 24rpx;
+
+    .rating-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24rpx;
+
+      .rating-title {
+        font-size: 30rpx;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .rating-value-wrap {
+        display: flex;
+        align-items: center;
+
+        .rating-value {
+          font-size: 36rpx;
+          font-weight: 600;
+          color: #333;
+          margin-right: 8rpx;
+        }
+
+        .star-icon {
+          font-size: 32rpx;
+          color: #FFD700;
+        }
+      }
+    }
+
+    .progress-section {
+      .progress-item {
+        margin-bottom: 16rpx;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .progress-label-row {
+          margin-bottom: 8rpx;
+
+          .progress-label {
+            font-size: 24rpx;
+            color: #999;
+          }
+        }
+
+        .progress-track {
+          height: 12rpx;
+          background: #E0E5FF;
+          border-radius: 6rpx;
+          overflow: hidden;
+
+          .progress-fill {
+            height: 100%;
+            border-radius: 6rpx;
+            transition: width 0.3s ease;
+
+            &.workload {
+              background: #7C5CFC;
+            }
+
+            &.grading {
+              background: #7DD361;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .course-index {
-    width: 120rpx;
-    height: 120rpx;
-    border-radius: 12rpx;
+  // 精选评价区域
+  .reviews-section {
+    .reviews-title {
+      display: block;
+      font-size: 30rpx;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20rpx;
+    }
+
+    .review-item {
+      background: #fafafa;
+      border-radius: 20rpx;
+      padding: 24rpx;
+      margin-bottom: 16rpx;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .review-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16rpx;
+
+        .avatar-wrap {
+          width: 56rpx;
+          height: 56rpx;
+          border-radius: 50%;
+          background: #e8e8e8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24rpx;
+          font-weight: 600;
+          color: #999;
+          margin-right: 16rpx;
+        }
+
+        .review-author {
+          font-size: 28rpx;
+          font-weight: 600;
+          color: #333;
+          flex: 1;
+        }
+
+        .review-date {
+          font-size: 24rpx;
+          color: #999;
+        }
+      }
+
+      .review-content {
+        font-size: 26rpx;
+        color: #666;
+        line-height: 1.7;
+      }
+    }
+  }
+
+  // 悬浮按钮
+  .fab-button {
+    position: fixed;
+    right: 32rpx;
+    bottom: 64rpx;
+    width: 96rpx;
+    height: 96rpx;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C5CFC 0%, #5B3FD4 100%);
+    box-shadow: 0 8rpx 24rpx rgba(124, 92, 252, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32rpx;
-    font-weight: 600;
-    margin-right: 24rpx;
-  }
 
-  .course-basic {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .course-code {
-    font-size: 32rpx;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8rpx;
-  }
-
-  .course-name {
-    font-size: 28rpx;
-    color: #666;
-    margin-bottom: 12rpx;
-  }
-
-  .course-rating {
-    display: flex;
-    align-items: center;
-  }
-
-  .rating-score {
-    font-size: 28rpx;
-    font-weight: 500;
-    color: #333;
-    margin-right: 8rpx;
-  }
-
-  .star-icon {
-    font-size: 28rpx;
-  }
-
-  .detail-body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .section-label {
-    font-size: 28rpx;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 16rpx;
-  }
-
-  .course-description {
-    font-size: 26rpx;
-    color: #666;
-    line-height: 1.6;
+    .fab-icon {
+      font-size: 40rpx;
+      color: #fff;
+    }
   }
 }

@@ -7,22 +7,64 @@
     bind:onBack="handleNavigateBack"
   />
   <view class="content-wrapper">
-    <view class="course-detail-card" wx:if="{{course}}">
-      <view class="detail-header">
-        <view class="course-index" style="background-color: {{course.bgColor}}">{{course.index}}</view>
-        <view class="course-basic">
-          <text class="course-code">{{course.code}}</text>
-          <text class="course-name">{{course.name}}</text>
-          <view class="course-rating">
-            <text class="rating-score">{{course.rating}}</text>
-            <van-icon name="star" class="star-icon" color="#FFC107" />
+    <view class="course-info-section" wx:if="{{course}}">
+      <text class="course-code">{{course.code}}</text>
+      <text class="course-name">{{course.name}}</text>
+      <view class="tag-list">
+        <block wx:for="{{course.tags}}" wx:key="index">
+          <text class="tag-item">{{item}}</text>
+        </block>
+      </view>
+    </view>
+
+    <view class="description-card" wx:if="{{course}}">
+      <text class="description-text">{{course.description}}</text>
+    </view>
+
+    <view class="rating-card" wx:if="{{course}}">
+      <view class="rating-header">
+        <text class="rating-title">综合评分</text>
+        <view class="rating-value-wrap">
+          <text class="rating-value">{{course.overallRating}}</text>
+          <text class="star-icon">★</text>
+        </view>
+      </view>
+      <view class="progress-section">
+        <view class="progress-item">
+          <view class="progress-label-row">
+            <text class="progress-label">Workload</text>
+          </view>
+          <view class="progress-track">
+            <view class="progress-fill workload" style="width: {{course.workloadPercent + '%'}}"></view>
+          </view>
+        </view>
+        <view class="progress-item">
+          <view class="progress-label-row">
+            <text class="progress-label">Grading</text>
+          </view>
+          <view class="progress-track">
+            <view class="progress-fill grading" style="width: {{course.gradingPercent + '%'}}"></view>
           </view>
         </view>
       </view>
-      <view class="detail-body">
-        <text class="section-label">课程简介</text>
-        <text class="course-description">{{course.description}}</text>
-      </view>
     </view>
+
+    <view class="reviews-section" wx:if="{{course.reviews.length}}">
+      <text class="reviews-title">精选评价</text>
+      <block wx:for="{{course.reviews}}" wx:key="id">
+        <view class="review-item">
+          <view class="review-header">
+            <view class="avatar-wrap">{{item.avatar}}</view>
+            <text class="review-author">{{item.author}}</text>
+            <text class="review-date">{{item.date}}</text>
+          </view>
+          <text class="review-content">{{item.content}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="fab-button" bindtap="handleWriteReview">
+    <text class="fab-icon">✎</text>
   </view>
 </view>
