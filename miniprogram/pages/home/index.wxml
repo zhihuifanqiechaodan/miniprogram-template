@@ -12,5 +12,5 @@
       </view>
     </view>
   </custom-nav-bar>
-  <view class="content-wrapper"> 首页 </view>
+  <scroll-view class="scroll-container">首页</scroll-view>
 </view>
