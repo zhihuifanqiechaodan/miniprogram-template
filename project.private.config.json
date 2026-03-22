@@ -24,11 +24,18 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/goods/index",
-          "pathName": "pages/goods/index",
+          "name": "pages/login/index",
+          "pathName": "pages/login/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/goods/index",
+          "pathName": "pages/goods/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "packageA/pages/categories/index",

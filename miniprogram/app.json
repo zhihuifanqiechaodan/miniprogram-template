@@ -18,7 +18,7 @@
       }
     ]
   },
-  "pages": ["pages/home/index", "pages/review/index", "pages/profile/index"],
+  "pages": ["pages/home/index", "pages/review/index", "pages/profile/index", "pages/login/index"],
   "subPackages": [
     {
       "root": "packageA/",
