@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp UI components. Features include e-commerce functionality (products, cart, orders), user management, and cloud functions for backend API.
+WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp UI components. Features include e-commerce functionality (products, cart, orders), and user management.
 
 ## Common Commands
 
@@ -41,23 +41,18 @@ miniprogram/
 ├── packageA/         # Subpackage A for order/address/product detail pages
 ├── packageB/         # Subpackage B for admin features
 ├── pages/            # Main package pages (home, category, device, cart, profile)
-└── utils/            # Utility functions (request.ts, router.ts, util.ts)
+└── utils/            # Utility functions (router.ts, util.ts)
 
-cloudfunctions/       # WeChat cloud functions
 typings/              # TypeScript type definitions
 ```
 
 ### Key Patterns
-
-**API Calls**: All API requests go through `miniprogram/utils/request.ts` which wraps `wx.cloud.callFunction`. API modules in `api/` use `FunctionsType` enum to identify cloud functions.
 
 **Routing**: Use helpers from `miniprogram/utils/util.ts`: `navigateTo`, `redirectTo`, `switchTab`, `reLaunch`, `navigateBack`. All wrap native APIs with network connectivity checks.
 
 **Global State**: `getApp().globalData` stores system info, network status, user state. Defined in `typings/index.d.ts` as `IAppOption`.
 
 **Event Bus**: `eventBus` in `util.ts` for cross-component communication with methods: `addEventListener`, `triggerEventListener`, `removeEventListener`.
-
-**Cloud Functions**: Each cloud function is identified by a `type` string. The `requestA` function in `request.ts` calls `mallFunctions` cloud function with `type` and `params`.
 
 ### Path Aliases
 
@@ -72,7 +67,6 @@ typings/              # TypeScript type definitions
 
 ## WeChat-Specific Conventions
 
-- Use `wx.cloud.init()` in `app.ts` for cloud development
 - Network status tracked globally via `wx.onNetworkStatusChange`
 - Pages use `Component()` constructor (not options object)
 - Custom navigation via `custom-nav-bar` component with `navigationStyle: custom` in app.json
