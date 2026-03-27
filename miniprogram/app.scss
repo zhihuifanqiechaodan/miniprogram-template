@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+@import '/assets/styles/vant-weapp-var.wxss';
 
 page {
 	--color-primary: #4f46e5;
@@ -15,7 +16,6 @@ view,
 text {
 	word-break: break-word;
 }
-
 
 ::-webkit-scrollbar {
 	display: none;
