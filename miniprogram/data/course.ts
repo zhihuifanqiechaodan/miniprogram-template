@@ -64,34 +64,6 @@ export interface CourseItem {
 }
 
 /**
- * 首页统计卡片数据结构
- */
-export interface HomeStatItem {
-  label: string;
-  value: string;
-  highlight: boolean;
-}
-
-// 首页统计信息
-export const courseStats: HomeStatItem[] = [
-  {
-    label: '已收录',
-    value: '12k+',
-    highlight: false,
-  },
-  {
-    label: '真实评价',
-    value: '45k+',
-    highlight: true,
-  },
-  {
-    label: '用户',
-    value: '8.9k',
-    highlight: false,
-  },
-];
-
-/**
  * 构建课程评分项列表
  * @param {{
  *   difficulty: number;

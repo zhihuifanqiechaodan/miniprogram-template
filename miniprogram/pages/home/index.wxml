@@ -54,22 +54,11 @@
 
     <scroll-view class="scroll" scroll-y show-scrollbar="{{false}}">
       <view class="list">
-        <block wx:if="{{displayCourseList.length}}">
-          <block wx:for="{{displayCourseList}}" wx:key="id">
-            <view class="course-item">
-              <com-course-card course="{{item}}" bind:cardtap="handleCourseTap" />
-            </view>
-          </block>
-        </block>
-
-        <view wx:else class="empty">
-          <view class="empty-icon-wrap">
-            <van-icon name="search" class="empty-icon" />
+        <block wx:for="{{displayCourseList}}" wx:key="id">
+          <view class="course-item">
+            <com-course-card course="{{item}}" bind:cardtap="handleCourseTap" />
           </view>
-          <text class="empty-title">没找到相关课程</text>
-          <text class="empty-text">试试课程代码、学校简称或英文名关键词</text>
-          <view class="empty-button" catch:tap="handleResetFilter">查看全部课程</view>
-        </view>
+        </block>
       </view>
     </scroll-view>
   </view>

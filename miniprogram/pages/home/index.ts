@@ -1,11 +1,77 @@
 // pages/home/index.ts
 export {};
 import { CourseDetail } from '@miniprogram/utils/router';
-import { courseCatalog, courseStats } from '@miniprogram/data/course';
 import { buildUrl, navigateTo } from '@miniprogram/utils/util';
 import { getCoursesHot } from '@miniprogram/api/courses';
-import { IApiGetCoursesHotRes } from '@/typings/api-types';
+import { getStatsOverview } from '@miniprogram/api/stats';
+import { IApiGetCoursesHotRes, IApiGetStatsOverviewRes } from '@/typings/api-types';
+import Toast from '@miniprogram/miniprogram_npm/@vant/weapp/toast/toast';
 const app: IAppOption = getApp();
+
+/**
+ * 首页统计卡片展示结构
+ */
+interface HeroStatItem {
+  label: string;
+  value: string;
+  highlight: boolean;
+}
+
+const heroStatsConfig: Array<{
+  key: keyof IApiGetStatsOverviewRes;
+  label: string;
+  highlight: boolean;
+}> = [
+  {
+    key: 'courseCount',
+    label: '已收录',
+    highlight: false,
+  },
+  {
+    key: 'reviewCount',
+    label: '真实评价',
+    highlight: true,
+  },
+  {
+    key: 'registeredUserCount',
+    label: '用户',
+    highlight: false,
+  },
+];
+
+/**
+ * 格式化数量展示
+ * @param {number} value 数量值
+ * @returns {string} 格式化后的展示值
+ */
+function formatCount(value: number): string {
+  if (typeof value !== 'number' || !isFinite(value)) {
+    return '--';
+  }
+  if (value >= 1000) {
+    const kValue = value / 1000;
+    const fixed = kValue >= 10 ? kValue.toFixed(0) : kValue.toFixed(1);
+    const display = fixed.endsWith('.0') ? fixed.slice(0, -2) : fixed;
+    return `${display}k`;
+  }
+  return `${value}`;
+}
+
+/**
+ * 构建首页统计卡片数据
+ * @param {IApiGetStatsOverviewRes | undefined} overviewStats 接口返回的概览统计（可选）
+ * @returns {HeroStatItem[]} 首页统计卡片数据
+ */
+function buildHeroStats(overviewStats?: IApiGetStatsOverviewRes): HeroStatItem[] {
+  return heroStatsConfig.map((item) => {
+    const value = overviewStats ? formatCount(overviewStats[item.key]) : '--';
+    return {
+      label: item.label,
+      value,
+      highlight: item.highlight,
+    };
+  });
+}
 
 Page({
   /**
@@ -14,7 +80,7 @@ Page({
   data: {
     systemInfo: app.globalData.systemInfo,
     keyword: '',
-    heroStats: courseStats,
+    heroStats: buildHeroStats(),
     displayCourseList: [] as IApiGetCoursesHotRes,
   },
 
@@ -54,12 +120,27 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {},
+
+  /**
+   * @method initData 初始化页面数据
+   * @returns {Promise<void>} 无返回值
+   */
   async initData() {
-    Promise.all([getCoursesHot({ limit: 10 })]).then(([getCoursesHotRes]) => {
-      this.setData({
-        displayCourseList: getCoursesHotRes,
-      });
-    });
+    const [getCoursesHotRes, getStatsOverviewRes] = await Promise.allSettled([
+      getCoursesHot({ limit: 10 }),
+      getStatsOverview(),
+    ]);
+    const setData = {};
+
+    if (getCoursesHotRes.status === 'fulfilled') {
+      Object.assign(setData, { displayCourseList: getCoursesHotRes.value });
+    }
+
+    if (getStatsOverviewRes.status === 'fulfilled') {
+      Object.assign(setData, { heroStats: buildHeroStats(getStatsOverviewRes.value) });
+    }
+
+    this.setData(setData);
   },
 
   /**
@@ -73,12 +154,6 @@ Page({
     this.setData({
       keyword,
     });
-
-    if (!keyword.trim()) {
-      this.setData({
-        displayCourseList: courseCatalog,
-      });
-    }
   },
 
   /**
@@ -86,24 +161,7 @@ Page({
    * @returns {void} 无返回值
    */
   handleSearch() {
-    const normalizedKeyword = this.data.keyword.trim().toUpperCase();
-
-    if (!normalizedKeyword) {
-      this.setData({
-        displayCourseList: courseCatalog,
-      });
-      return;
-    }
-
-    const displayCourseList = courseCatalog.filter((course) => {
-      return [course.code, course.school, course.name.toUpperCase()].some((field) =>
-        field.toUpperCase().includes(normalizedKeyword)
-      );
-    });
-
-    this.setData({
-      displayCourseList,
-    });
+    Toast('功能开发中');
   },
 
   /**
@@ -113,7 +171,6 @@ Page({
   handleResetFilter() {
     this.setData({
       keyword: '',
-      displayCourseList: courseCatalog,
     });
   },
 
