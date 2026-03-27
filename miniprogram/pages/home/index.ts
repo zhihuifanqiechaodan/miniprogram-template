@@ -8,71 +8,6 @@ import { IApiGetCoursesHotRes, IApiGetStatsOverviewRes } from '@/typings/api-typ
 import Toast from '@miniprogram/miniprogram_npm/@vant/weapp/toast/toast';
 const app: IAppOption = getApp();
 
-/**
- * 首页统计卡片展示结构
- */
-interface HeroStatItem {
-  label: string;
-  value: string;
-  highlight: boolean;
-}
-
-const heroStatsConfig: Array<{
-  key: keyof IApiGetStatsOverviewRes;
-  label: string;
-  highlight: boolean;
-}> = [
-  {
-    key: 'courseCount',
-    label: '已收录',
-    highlight: false,
-  },
-  {
-    key: 'reviewCount',
-    label: '真实评价',
-    highlight: true,
-  },
-  {
-    key: 'registeredUserCount',
-    label: '用户',
-    highlight: false,
-  },
-];
-
-/**
- * 格式化数量展示
- * @param {number} value 数量值
- * @returns {string} 格式化后的展示值
- */
-function formatCount(value: number): string {
-  if (typeof value !== 'number' || !isFinite(value)) {
-    return '--';
-  }
-  if (value >= 1000) {
-    const kValue = value / 1000;
-    const fixed = kValue >= 10 ? kValue.toFixed(0) : kValue.toFixed(1);
-    const display = fixed.endsWith('.0') ? fixed.slice(0, -2) : fixed;
-    return `${display}k`;
-  }
-  return `${value}`;
-}
-
-/**
- * 构建首页统计卡片数据
- * @param {IApiGetStatsOverviewRes | undefined} overviewStats 接口返回的概览统计（可选）
- * @returns {HeroStatItem[]} 首页统计卡片数据
- */
-function buildHeroStats(overviewStats?: IApiGetStatsOverviewRes): HeroStatItem[] {
-  return heroStatsConfig.map((item) => {
-    const value = overviewStats ? formatCount(overviewStats[item.key]) : '--';
-    return {
-      label: item.label,
-      value,
-      highlight: item.highlight,
-    };
-  });
-}
-
 Page({
   /**
    * 页面的初始数据
@@ -80,7 +15,7 @@ Page({
   data: {
     systemInfo: app.globalData.systemInfo,
     keyword: '',
-    heroStats: buildHeroStats(),
+    statsOverview: {} as Partial<IApiGetStatsOverviewRes>,
     displayCourseList: [] as IApiGetCoursesHotRes,
   },
 
@@ -137,7 +72,7 @@ Page({
     }
 
     if (getStatsOverviewRes.status === 'fulfilled') {
-      Object.assign(setData, { heroStats: buildHeroStats(getStatsOverviewRes.value) });
+      Object.assign(setData, { statsOverview: getStatsOverviewRes.value });
     }
 
     this.setData(setData);

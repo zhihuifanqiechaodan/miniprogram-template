@@ -34,11 +34,18 @@
       </view>
 
       <view class="stats">
-        <block wx:for="{{heroStats}}" wx:key="label">
-          <view class="stats-item">
-            <com-course-stat-card label="{{item.label}}" value="{{item.value}}" highlight="{{item.highlight}}" />
-          </view>
-        </block>
+        <view class="stats-item">
+          <text class="stats-label">已收录</text>
+          <text class="stats-value">{{statsModule.formatCount(statsOverview.courseCount)}}</text>
+        </view>
+        <view class="stats-item highlight">
+          <text class="stats-label">真实评价</text>
+          <text class="stats-value">{{statsModule.formatCount(statsOverview.reviewCount)}}</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-label">用户</text>
+          <text class="stats-value">{{statsModule.formatCount(statsOverview.registeredUserCount)}}</text>
+        </view>
       </view>
     </view>
     <view class="section-bar">
@@ -65,3 +72,32 @@
 </view>
 
 <van-toast id="van-toast" />
+
+<!-- prettier-ignore -->
+<wxs module="statsModule">
+  function formatCount(value) {
+    if (value === undefined || value === null || value === '') {
+      return '--';
+    }
+
+    var numberValue = +value;
+    if (numberValue !== numberValue) {
+      return '--';
+    }
+
+    if (numberValue >= 1000) {
+      var kValue = numberValue / 1000;
+      var fixed = kValue >= 10 ? kValue.toFixed(0) : kValue.toFixed(1);
+      if (fixed.indexOf('.0') === fixed.length - 2) {
+        fixed = fixed.slice(0, fixed.length - 2);
+      }
+      return fixed + 'k';
+    }
+
+    return '' + numberValue;
+  }
+
+  module.exports = {
+    formatCount: formatCount,
+  };
+</wxs>
