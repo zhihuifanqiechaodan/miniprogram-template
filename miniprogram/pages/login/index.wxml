@@ -44,9 +44,11 @@
         />
       </view>
 
-      <van-button block color="#4f46e5" custom-class="login-button" bind:click="handleLogin"> 登录 </van-button>
+      <van-button block color="#4f46e5" custom-class="login-button" catch:click="handleLogin"> 登录 </van-button>
     </view>
 
-    <text class="login-page__demo" bindtap="handleDemoLogin">点击登录直接进入演示模式</text>
+    <text class="login-page__demo" catch:tap="handleDemoLogin">点击登录直接进入演示模式</text>
   </view>
 </view>
+
+<van-toast id="van-toast" />

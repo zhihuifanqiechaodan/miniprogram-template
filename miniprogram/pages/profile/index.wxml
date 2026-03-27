@@ -65,7 +65,7 @@
               hover-class="menu-item-hover"
               hover-stay-time="80"
               data-type="{{menu.type}}"
-              bindtap="handleNavigate"
+              catch:tap="handleNavigate"
             >
               <view class="menu-left">
                 <view class="menu-icon-wrap {{menu.tone}}">
@@ -81,3 +81,5 @@
     </view>
   </scroll-view>
 </view>
+
+<van-toast id="van-toast" />

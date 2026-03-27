@@ -30,7 +30,7 @@
           bindinput="handleKeywordInput"
           bindconfirm="handleSearch"
         />
-        <view class="search-button" bindtap="handleSearch">搜索</view>
+        <view class="search-button" catch:tap="handleSearch">搜索</view>
       </view>
 
       <view class="stats">
@@ -46,7 +46,7 @@
         <van-icon name="fire" class="section-icon" />
         <text class="section-text">热门推荐</text>
       </view>
-      <view class="section-action" bindtap="handleResetFilter">
+      <view class="section-action" catch:tap="handleResetFilter">
         <text class="section-action-text">全部</text>
         <van-icon name="arrow" class="section-action-icon" />
       </view>
@@ -68,9 +68,11 @@
           </view>
           <text class="empty-title">没找到相关课程</text>
           <text class="empty-text">试试课程代码、学校简称或英文名关键词</text>
-          <view class="empty-button" bindtap="handleResetFilter">查看全部课程</view>
+          <view class="empty-button" catch:tap="handleResetFilter">查看全部课程</view>
         </view>
       </view>
     </scroll-view>
   </view>
 </view>
+
+<van-toast id="van-toast" />

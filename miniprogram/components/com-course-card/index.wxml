@@ -1,4 +1,4 @@
-<view class="course-card" bindtap="handleTap">
+<view class="course-card" catch:tap="handleTap">
   <view class="header">
     <view class="meta">
       <view class="badge" style="background: {{course.badgeColor}};">{{course.badgeText}}</view>

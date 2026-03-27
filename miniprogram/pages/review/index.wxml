@@ -35,7 +35,7 @@
                       hover-class="star-button--hover"
                       data-rating-key="{{rating.key}}"
                       data-star-value="{{starValue}}"
-                      bindtap="handleRatingTap"
+                      catch:tap="handleRatingTap"
                     >
                       <van-icon
                         name="{{starValue <= rating.value ? 'star' : 'star-o'}}"
@@ -58,13 +58,13 @@
                 class="tag-chip {{tag.active ? 'tag-chip--active' : ''}}"
                 hover-class="tag-chip--hover"
                 data-tag-text="{{tag.text}}"
-                bindtap="handleTagTap"
+                catch:tap="handleTagTap"
               >
                 <text class="tag-chip__text">{{tag.text}}</text>
               </view>
             </block>
 
-            <view class="tag-chip tag-chip--add" hover-class="tag-chip--hover" bindtap="handleAddTag">
+            <view class="tag-chip tag-chip--add" hover-class="tag-chip--hover" catch:tap="handleAddTag">
               <van-icon name="plus" class="tag-add-icon" />
               <text class="tag-chip__text">添加</text>
             </view>
@@ -91,13 +91,13 @@
           <view
             class="anonymous-switch {{isAnonymous ? 'anonymous-switch--active' : ''}}"
             hover-class="anonymous-switch--hover"
-            bindtap="handleAnonymousToggle"
+            catch:tap="handleAnonymousToggle"
           >
             <view class="anonymous-switch__thumb {{isAnonymous ? 'anonymous-switch__thumb--active' : ''}}"></view>
           </view>
         </view>
 
-        <view class="submit-btn" hover-class="submit-btn--hover" bindtap="handleSubmit">
+        <view class="submit-btn" hover-class="submit-btn--hover" catch:tap="handleSubmit">
           <van-icon name="guide-o" class="submit-icon" />
           <text>提交评价</text>
         </view>
@@ -107,3 +107,5 @@
     </view>
   </scroll-view>
 </view>
+
+<van-toast id="van-toast" />

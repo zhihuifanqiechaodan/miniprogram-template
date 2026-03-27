@@ -36,8 +36,12 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index"
+  },
   "resolveAlias": {
     "@miniprogram/*": "/*",
+    "@api/*": "/api/*",
     "@vant/*": "/miniprogram_npm/@vant/*"
   },
   "requiredPrivateInfos": []

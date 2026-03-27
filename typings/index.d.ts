@@ -15,9 +15,7 @@ declare global {
         | null;
       networkType: string;
       isConnected: boolean;
-      mutedStatus: boolean;
-      isAutoPlayVideo: boolean;
-      videoContextComponent: WechatMiniprogram.Component.TrivialInstance | null;
+      loadingRequestCount: number;
     };
     userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback;
   }

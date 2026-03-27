@@ -30,6 +30,38 @@ export const buildUrl = (route: RouteConfig, params?: Record<string, string | nu
   }
   return url;
 };
+
+/**
+ * @method showLoading 显示全局加载中提示
+ * @returns {void} 无返回值
+ */
+export const showLoading = () => {
+  const app = getApp<IAppOption>();
+  if (app.globalData.loadingRequestCount === 0) {
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      loadingType: 'spinner',
+      duration: 0,
+    });
+  }
+  app.globalData.loadingRequestCount += 1;
+};
+
+/**
+ * @method hideLoading 隐藏全局加载中提示
+ * @returns {void} 无返回值
+ */
+export const hideLoading = () => {
+  const app = getApp<IAppOption>();
+  if (app.globalData.loadingRequestCount <= 0) {
+    return;
+  }
+  app.globalData.loadingRequestCount -= 1;
+  if (app.globalData.loadingRequestCount === 0) {
+    Toast.clear();
+  }
+};
 /**
  * 页面跳转方法类型
  */

@@ -61,7 +61,9 @@
     </view>
   </view>
 
-  <view class="fab-button" bindtap="handleWriteReview">
+  <view class="fab-button" catch:tap="handleWriteReview">
     <text class="fab-icon">✎</text>
   </view>
 </view>
+
+<van-toast id="van-toast" />
