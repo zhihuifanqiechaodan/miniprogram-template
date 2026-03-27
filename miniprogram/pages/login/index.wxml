@@ -1,69 +1,52 @@
 <!-- pages/login/index.wxml -->
 <view class="page-container login-page">
-  <custom-nav-bar placeholder="{{true}}" show-home="{{true}}" custom-style="background: rgba(255, 255, 255, 0);" />
-
-  <view class="login-page__hero">
-    <view class="mascot">
-      <view class="mascot__arm mascot__arm--left"></view>
-      <view class="mascot__arm mascot__arm--right"></view>
-      <view class="mascot__body">
-        <view class="mascot__stripe mascot__stripe--top"></view>
-        <view class="mascot__stripe mascot__stripe--bottom"></view>
-      </view>
-      <view class="mascot__eye mascot__eye--left">
-        <view class="mascot__pupil"></view>
-      </view>
-      <view class="mascot__eye mascot__eye--right">
-        <view class="mascot__pupil"></view>
-      </view>
-      <view class="mascot__leg mascot__leg--left"></view>
-      <view class="mascot__leg mascot__leg--right"></view>
-      <view class="mascot__pencil"></view>
+  <view class="login-page__content">
+    <view class="login-page__logo">
+      <com-image
+        width="160rpx"
+        height="160rpx"
+        src="/assets/images/forum.svg"
+        mode="aspectFit"
+        show-loading="{{false}}"
+        show-error="{{false}}"
+        placeholder="{{false}}"
+      />
     </view>
+
     <text class="login-page__title">欢迎回来</text>
     <text class="login-page__subtitle">登录 IRBTree 小程序</text>
-  </view>
 
-  <view class="login-page__form">
-    <view class="login-field">
-      <van-field
-        custom-class="login-field__control"
-        input-class="login-field__input"
-        border="{{false}}"
-        clearable="{{true}}"
-        left-icon="manager-o"
-        value="{{account}}"
-        maxlength="30"
-        placeholder="请输入账号"
-        bind:input="handleAccountInput"
-      />
+    <view class="login-page__form">
+      <view class="login-field">
+        <van-field
+          custom-class="login-field__control"
+          input-class="login-field__input"
+          border="{{false}}"
+          clearable="{{true}}"
+          value="{{account}}"
+          maxlength="30"
+          placeholder="账号"
+          bind:input="handleAccountInput"
+        />
+      </view>
+
+      <view class="login-field">
+        <van-field
+          custom-class="login-field__control"
+          input-class="login-field__input"
+          border="{{false}}"
+          clearable="{{true}}"
+          type="password"
+          value="{{password}}"
+          maxlength="30"
+          placeholder="密码"
+          bind:input="handlePasswordInput"
+        />
+      </view>
+
+      <van-button block color="#4f46e5" custom-class="login-button" bind:click="handleLogin"> 登录 </van-button>
     </view>
 
-    <view class="login-field">
-      <van-field
-        custom-class="login-field__control"
-        input-class="login-field__input"
-        border="{{false}}"
-        clearable="{{true}}"
-        left-icon="lock"
-        type="password"
-        value="{{password}}"
-        maxlength="30"
-        placeholder="请输入密码"
-        bind:input="handlePasswordInput"
-      />
-    </view>
-
-    <van-button
-      round
-      block
-      color="linear-gradient(90deg, #5048ed 0%, #5341e7 100%)"
-      custom-class="login-button"
-      bind:click="handleLogin"
-    >
-      登录
-    </van-button>
+    <text class="login-page__demo" bindtap="handleDemoLogin">点击登录直接进入演示模式</text>
   </view>
-
-  <text class="login-page__demo" bindtap="handleDemoLogin">点击登录直接进入演示模式</text>
 </view>

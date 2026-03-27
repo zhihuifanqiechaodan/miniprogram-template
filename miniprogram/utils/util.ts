@@ -1,5 +1,5 @@
 import Toast from '@vant/weapp/toast/toast';
-import { Home, Review, Profile } from '@miniprogram/utils/router';
+import { Home, Review, Profile, RouteConfig } from '@miniprogram/utils/router';
 
 export const tabbarRoutes = [Home, Review, Profile];
 export const setTabBarSelected = () => {
@@ -13,122 +13,117 @@ export const setTabBarSelected = () => {
     });
   }
 };
-/**
- * @method navigateTo 封装navigateTo请求
- * @param {*} { url, events }
- */
-export const navigateTo = ({ url, events = {} }: { url: string; events?: any }) => {
-  return new Promise((resolve) => {
-    const { globalData } = getApp();
-    const { isConnected } = globalData;
-    // 有网络
-    if (isConnected) {
-      wx.navigateTo({
-        url,
-        events,
-        success: resolve,
-        fail: () => {
-          redirectTo({ url, events });
-        },
-      });
 
-      // 无网络
-    } else {
-      Toast('似乎已经断开了与互联网的连接');
-    }
-  });
+/**
+ * @method buildUrl 构建带参数的页面 URL
+ * @param {RouteConfig} route 路由配置对象
+ * @param {Record<string, string | number>} params URL 参数
+ * @returns {string} 拼接后的页面地址
+ */
+export const buildUrl = (route: RouteConfig, params?: Record<string, string | number>): string => {
+  let url = route.pagePath;
+  if (params) {
+    const queryString = Object.entries(params)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    url += `?${queryString}`;
+  }
+  return url;
 };
+/**
+ * 页面跳转方法类型
+ */
+type NavigateMethod = 'navigateTo' | 'redirectTo' | 'navigateBack' | 'switchTab' | 'reLaunch';
 
 /**
- * @method redirectTo 封装redirectTo请求
- * @param {*} { url, events }
+ * 通过 URL 跳转的页面参数
  */
-export const redirectTo = ({ url, events = {} }: { url: string; events?: any }) => {
+interface NavigateByUrlOptions {
+  type?: Exclude<NavigateMethod, 'navigateBack'>;
+  url: string;
+  events?: WechatMiniprogram.IAnyObject;
+}
+
+/**
+ * 返回上一页的参数
+ */
+interface NavigateBackOptions {
+  type: 'navigateBack';
+  delta?: number;
+}
+
+/**
+ * 页面跳转参数
+ */
+type NavigateOptions = NavigateByUrlOptions | NavigateBackOptions;
+
+/**
+ * @method navigateTo 封装页面跳转请求
+ * @param {NavigateOptions} options 跳转参数
+ * @returns {Promise<WechatMiniprogram.GeneralCallbackResult | void>} 跳转结果
+ */
+export const navigateTo = (options: NavigateOptions) => {
   return new Promise((resolve, reject) => {
     const { globalData } = getApp();
     const { isConnected } = globalData;
-    // 有网络
-    if (isConnected) {
+
+    if (!isConnected) {
+      Toast('似乎已经断开了与互联网的连接');
+      reject('似乎已经断开了与互联网的连接');
+      return;
+    }
+
+    if (options.type === 'navigateBack') {
+      wx.navigateBack({
+        delta: options.delta ?? 1,
+        success: resolve,
+        fail: reject,
+      });
+      return;
+    }
+
+    const { url } = options;
+
+    if (options.type === 'redirectTo') {
       wx.redirectTo({
         url,
-        events,
         success: resolve,
         fail: reject,
       });
-
-      // 无网络
-    } else {
-      Toast('似乎已经断开了与互联网的连接');
+      return;
     }
-  });
-};
 
-/**
- * @method navigateBack 封装navigateBack请求
- * @param {*} delta
- */
-export const navigateBack = (delta: number = 1) => {
-  return new Promise((resolve, reject) => {
-    const { globalData } = getApp();
-    const { isConnected } = globalData;
-    // 有网络
-    if (isConnected) {
-      wx.navigateBack({
-        delta,
-        success: resolve,
-        fail: reject,
-      });
-
-      // 无网络
-    } else {
-      Toast('似乎已经断开了与互联网的连接');
-    }
-  });
-};
-
-/**
- * @method switchTab 封装switchTab请求
- * @param {*} { url }
- */
-export const switchTab = ({ url }: { url: string }) => {
-  return new Promise((resolve, reject) => {
-    const { globalData } = getApp();
-    const { isConnected } = globalData;
-    // 有网络
-    if (isConnected) {
+    if (options.type === 'switchTab') {
       wx.switchTab({
         url,
         success: resolve,
         fail: reject,
       });
-
-      // 无网络
-    } else {
-      Toast('似乎已经断开了与互联网的连接');
+      return;
     }
-  });
-};
 
-/**
- * @method reLaunch 封装reLaunch请求
- * @param {*} { url }
- */
-export const reLaunch = ({ url }: { url: string }) => {
-  return new Promise((resolve, reject) => {
-    const { globalData } = getApp();
-    const { isConnected } = globalData;
-    // 有网络
-    if (isConnected) {
+    if (options.type === 'reLaunch') {
       wx.reLaunch({
         url,
         success: resolve,
         fail: reject,
       });
-
-      // 无网络
-    } else {
-      Toast('似乎已经断开了与互联网的连接');
+      return;
     }
+
+    wx.navigateTo({
+      url,
+      events: options.events ?? {},
+      success: resolve,
+      fail: () => {
+        navigateTo({
+          type: 'redirectTo',
+          url,
+        })
+          .then(resolve)
+          .catch(reject);
+      },
+    });
   });
 };
 

@@ -1,195 +1,66 @@
 .login-page {
-  justify-content: center;
   min-height: 100vh;
-  padding: 0 40rpx 80rpx;
+  justify-content: center;
+  padding: 48rpx;
   box-sizing: border-box;
-  background:
-    radial-gradient(circle at top, rgba(87, 72, 237, 0.08), transparent 34%),
-    linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
-  align-items: stretch;
+  background-color: #ffffff;
+  align-items: center;
 
-  &__hero {
+  &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 36rpx;
+    width: 100%;
+  }
+
+  &__logo {
+    width: 160rpx;
+    height: 160rpx;
+    margin-bottom: 16rpx;
   }
 
   &__title {
-    margin-top: 44rpx;
-    font-size: 62rpx;
+    margin-top: 0;
+    margin-bottom: 8rpx;
+    font-size: 40rpx;
     line-height: 1.2;
     font-weight: 700;
-    color: #1f2937;
+    color: #111827;
   }
 
   &__subtitle {
-    margin-top: 18rpx;
-    font-size: 34rpx;
-    color: #9ca3af;
+    margin-top: 0;
+    margin-bottom: 64rpx;
+    font-size: 28rpx;
+    color: #6b7280;
   }
 
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 38rpx;
-    margin-top: 88rpx;
+    gap: 32rpx;
+    width: 100%;
   }
 
   &__demo {
-    margin-top: 64rpx;
+    margin-top: 48rpx;
     text-align: center;
-    font-size: 30rpx;
-    color: #b8beca;
-  }
-}
-
-.mascot {
-  position: relative;
-  width: 180rpx;
-  height: 170rpx;
-
-  &__body {
-    position: absolute;
-    left: 30rpx;
-    top: 48rpx;
-    width: 120rpx;
-    height: 102rpx;
-    border-radius: 14rpx;
-    background: linear-gradient(180deg, #ffc51e 0%, #ffbf00 100%);
-    box-shadow: 0 14rpx 30rpx rgba(255, 191, 0, 0.18);
-  }
-
-  &__stripe {
-    position: absolute;
-    left: 18rpx;
-    width: 50rpx;
-    height: 6rpx;
-    border-radius: 999rpx;
-    background: rgba(255, 255, 255, 0.92);
-
-    &--top {
-      top: 34rpx;
-    }
-
-    &--bottom {
-      top: 58rpx;
-      width: 36rpx;
-    }
-  }
-
-  &__eye {
-    position: absolute;
-    top: 20rpx;
-    width: 46rpx;
-    height: 46rpx;
-    border: 4rpx solid #9a5d14;
-    border-radius: 50%;
-    background: #fff;
-
-    &--left {
-      left: 42rpx;
-    }
-
-    &--right {
-      right: 42rpx;
-    }
-  }
-
-  &__pupil {
-    position: absolute;
-    right: 10rpx;
-    top: 13rpx;
-    width: 12rpx;
-    height: 12rpx;
-    border-radius: 50%;
-    background: #4b2b0b;
-  }
-
-  &__arm {
-    position: absolute;
-    top: 82rpx;
-    width: 46rpx;
-    height: 4rpx;
-    background: #9a5d14;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: -10rpx;
-      width: 12rpx;
-      height: 12rpx;
-      border: 4rpx solid #9a5d14;
-      border-radius: 50%;
-      background: #fff;
-    }
-
-    &--left {
-      left: 4rpx;
-      transform: rotate(22deg);
-
-      &::before {
-        left: -2rpx;
-      }
-    }
-
-    &--right {
-      right: 8rpx;
-      width: 38rpx;
-      transform: rotate(-16deg);
-
-      &::before {
-        right: -4rpx;
-      }
-    }
-  }
-
-  &__leg {
-    position: absolute;
-    bottom: 0;
-    width: 30rpx;
-    height: 24rpx;
-    border: 4rpx solid #9a5d14;
-    border-top: 0;
-    border-radius: 0 0 8rpx 8rpx;
-
-    &--left {
-      left: 52rpx;
-      transform: skew(-8deg);
-    }
-
-    &--right {
-      right: 52rpx;
-      transform: skew(8deg);
-    }
-  }
-
-  &__pencil {
-    position: absolute;
-    right: 26rpx;
-    top: 58rpx;
-    width: 16rpx;
-    height: 70rpx;
-    border-radius: 999rpx;
-    transform: rotate(2deg);
-    background: linear-gradient(180deg, #4d80ff 0 34%, #ffdf65 34% 42%, #ff6b8a 42% 82%, #ffe4b3 82% 100%);
-    box-shadow: 0 8rpx 14rpx rgba(77, 128, 255, 0.18);
+    font-size: 24rpx;
+    color: #9ca3af;
   }
 }
 
 .login-field {
+  width: 100%;
   border-radius: 28rpx;
-  background: rgba(255, 255, 255, 0.96);
-  border: 2rpx solid #e7eaf1;
-  box-shadow:
-    inset 0 2rpx 0 rgba(255, 255, 255, 0.8),
-    0 10rpx 18rpx rgba(15, 23, 42, 0.03);
+  background-color: #f9fafb;
+  border: 2rpx solid #e5e7eb;
   overflow: hidden;
 }
 
 .login-field__control {
-  min-height: 104rpx !important;
-  padding: 0 24rpx !important;
+  min-height: 96rpx !important;
+  padding: 0 32rpx !important;
   background: transparent !important;
 }
 
@@ -199,10 +70,9 @@
 }
 
 .login-button {
-  height: 106rpx;
-  margin-top: 8rpx;
-  font-size: 38rpx;
-  font-weight: 700;
-  letter-spacing: 6rpx;
-  box-shadow: 0 14rpx 28rpx rgba(82, 68, 232, 0.28);
+  height: 96rpx;
+  border-radius: 24rpx !important;
+  font-size: 30rpx;
+  font-weight: 500;
+  box-shadow: 0 12rpx 24rpx rgba(79, 70, 229, 0.2);
 }

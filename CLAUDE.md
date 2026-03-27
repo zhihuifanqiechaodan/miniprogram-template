@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Agent Loading
+
+- 通用代理约定统一以根目录 `AGENTS.md` 为准。
+- 专项规范统一放在根目录 `skills/` 下，不在本文件中重复维护。
+- 仅当任务命中触发条件时，再读取对应的 `skills/*/SKILL.md`。
+
 ## Project Overview
 
 WeChat Mini Program (小程序) project using TypeScript, SCSS, and Vant Weapp UI components. Features include e-commerce functionality (products, cart, orders), user management, and cloud functions for backend API.
@@ -56,7 +62,7 @@ typings/              # TypeScript type definitions
 
 **API Calls**: All API requests go through `miniprogram/utils/request.ts` which wraps `wx.cloud.callFunction`. API modules in `api/` use `FunctionsType` enum to identify cloud functions.
 
-**Routing**: Use helpers from `miniprogram/utils/util.ts`: `navigateTo`, `redirectTo`, `switchTab`, `reLaunch`, `navigateBack`. All wrap native APIs with network connectivity checks.
+**Routing**: Use `navigateTo` from `miniprogram/utils/util.ts` as the unified routing helper. It wraps native APIs with network connectivity checks and supports `type: 'navigateTo' | 'redirectTo' | 'switchTab' | 'reLaunch' | 'navigateBack'`.
 
 **Global State**: `getApp().globalData` stores system info, network status, user state. Defined in `typings/index.d.ts` as `IAppOption`.
 
@@ -64,18 +70,18 @@ typings/              # TypeScript type definitions
 
 **Cloud Functions**: Each cloud function is identified by a `type` string. The `requestA` function in `request.ts` calls `mallFunctions` cloud function with `type` and `params`.
 
-**Page Routing**: All pages must be declared in `miniprogram/utils/router.ts` with a route config object containing `text` and `pagePath`. Use `buildUrl()` from router.ts combined with navigation helpers from util.ts.
+**Page Routing**: All pages must be declared in `miniprogram/utils/router.ts` with a route config object containing `text` and `pagePath`. Use `buildUrl()` and `navigateTo()` from `miniprogram/utils/util.ts` together with route configs from `router.ts`.
 
 ```typescript
-import { CourseDetail, buildUrl } from '@miniprogram/utils/router';
-import { navigateTo, switchTab } from '@miniprogram/utils/util';
+import { CourseDetail, Home } from '@miniprogram/utils/router';
+import { buildUrl, navigateTo } from '@miniprogram/utils/util';
 
 // 普通页面跳转（支持参数）
 const url = buildUrl(CourseDetail, { id: 1 });
 navigateTo({ url });
 
 // TabBar 页面跳转
-switchTab({ url: Home.pagePath });
+navigateTo({ type: 'switchTab', url: Home.pagePath });
 ```
 
 ### Path Aliases
@@ -94,7 +100,7 @@ switchTab({ url: Home.pagePath });
 - Use `wx.cloud.init()` in `app.ts` for cloud development
 - Network status tracked globally via `wx.onNetworkStatusChange`
 - Pages use `Component()` constructor (not options object)
-- Custom navigation via `custom-nav-bar` component with `navigationStyle: custom` in app.json
+- Custom navigation via `com-nav-bar` component with `navigationStyle: custom` in app.json
 - Use `wx.nextTick()` for DOM updates after data changes
 - Component properties use `type`, `value` pattern with optional `observer`
 - `getCurrentPages()` for navigating between existing pages
@@ -159,7 +165,7 @@ Page({
 
   // 事件处理函数
   handleSubmit() {},
-})
+});
 ```
 
 ```typescript
@@ -181,5 +187,5 @@ Component({
   lifetimes: {
     attached() {},
   },
-})
+});
 ```

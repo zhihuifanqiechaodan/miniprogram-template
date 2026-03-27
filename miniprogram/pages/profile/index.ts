@@ -1,3 +1,4 @@
+import { Review } from '@miniprogram/utils/router';
 import { navigateTo } from '@miniprogram/utils/util';
 
 // pages/profile/index.ts
@@ -6,10 +7,29 @@ const app: IAppOption = getApp();
 
 interface UserProfile {
   name: string;
-  avatar: string;
   initial: string;
   school: string;
   major: string;
+}
+
+interface ProfileStat {
+  label: string;
+  value: string;
+  showDivider: boolean;
+}
+
+type ProfileMenuType = 'favorites' | 'likes' | 'reviews' | 'settings' | 'about';
+
+interface ProfileMenuItem {
+  type: ProfileMenuType;
+  label: string;
+  icon: string;
+  tone: 'orange' | 'red' | 'blue' | 'gray';
+}
+
+interface ProfileMenuSection {
+  key: string;
+  items: ProfileMenuItem[];
 }
 
 Page({
@@ -20,11 +40,69 @@ Page({
     systemInfo: app.globalData.systemInfo,
     user: {
       name: 'Alex',
-      avatar: '',
       initial: 'A',
       school: 'UNSW',
       major: 'Computer Science',
     } as UserProfile,
+    statsList: [
+      {
+        label: '点赞',
+        value: '12',
+        showDivider: true,
+      },
+      {
+        label: '收藏',
+        value: '5',
+        showDivider: true,
+      },
+      {
+        label: '评价',
+        value: '3',
+        showDivider: false,
+      },
+    ] as ProfileStat[],
+    menuSections: [
+      {
+        key: 'interaction',
+        items: [
+          {
+            type: 'favorites',
+            label: '我的收藏',
+            icon: 'star-o',
+            tone: 'orange',
+          },
+          {
+            type: 'likes',
+            label: '我的点赞',
+            icon: 'like-o',
+            tone: 'red',
+          },
+          {
+            type: 'reviews',
+            label: '我的评价',
+            icon: 'comment-circle-o',
+            tone: 'blue',
+          },
+        ],
+      },
+      {
+        key: 'system',
+        items: [
+          {
+            type: 'settings',
+            label: '设置',
+            icon: 'setting-o',
+            tone: 'gray',
+          },
+          {
+            type: 'about',
+            label: '关于我们',
+            icon: 'info-o',
+            tone: 'gray',
+          },
+        ],
+      },
+    ] as ProfileMenuSection[],
   },
 
   /**
@@ -66,18 +144,20 @@ Page({
    * 导航到对应页面
    */
   handleNavigate(e: WechatMiniprogram.CustomEvent) {
-    const { type } = e.currentTarget.dataset;
+    const { type } = e.currentTarget.dataset as { type?: ProfileMenuType };
 
-    const pageMap: Record<string, string> = {
-      favorites: '/pages/favorites/index',
-      likes: '/pages/likes/index',
-      reviews: '/pages/review/index',
-      settings: '/pages/settings/index',
-    };
-
-    const url = pageMap[type];
-    if (url) {
-      navigateTo({ url });
+    if (!type) {
+      return;
     }
+
+    if (type === 'reviews') {
+      navigateTo({ type: 'switchTab', url: Review.pagePath });
+      return;
+    }
+
+    wx.showToast({
+      title: '功能开发中',
+      icon: 'none',
+    });
   },
 });

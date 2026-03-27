@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "custom-nav-bar": "/components/custom-nav-bar/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "com-nav-bar": "/components/com-nav-bar/index"
   },
   "disableScroll": true
 }

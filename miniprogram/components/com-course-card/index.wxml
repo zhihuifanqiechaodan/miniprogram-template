@@ -1,0 +1,28 @@
+<view class="course-card" bindtap="handleTap">
+  <view class="header">
+    <view class="meta">
+      <view class="badge" style="background: {{course.badgeColor}};">{{course.badgeText}}</view>
+
+      <view class="summary">
+        <text class="code">{{course.code}}</text>
+        <view class="school">{{course.school}}</view>
+      </view>
+    </view>
+
+    <view class="rating">
+      <view class="score-wrap">
+        <text class="score">{{course.rating}}</text>
+        <van-icon name="star" class="star" />
+      </view>
+      <text class="reviews">{{course.reviewCount}} 评价</text>
+    </view>
+  </view>
+
+  <text class="title">{{course.name}}</text>
+
+  <view class="tags">
+    <block wx:for="{{course.tags}}" wx:key="text">
+      <text class="tag {{item.tone}}">{{item.text}}</text>
+    </block>
+  </view>
+</view>

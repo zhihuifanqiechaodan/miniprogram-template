@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "custom-nav-bar": "/components/custom-nav-bar/index",
+    "com-image": "/components/com-image/index",
     "van-button": "/miniprogram_npm/@vant/weapp/button/index",
     "van-field": "/miniprogram_npm/@vant/weapp/field/index"
   }

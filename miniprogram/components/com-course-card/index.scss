@@ -1,0 +1,148 @@
+.course-card {
+  padding: 28rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  border: 2rpx solid #edf1f7;
+  background: #ffffff;
+  box-shadow: 0 18rpx 30rpx rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:active {
+    transform: scale(0.985);
+    box-shadow: 0 12rpx 22rpx rgba(15, 23, 42, 0.08);
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16rpx;
+  }
+
+  .meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .badge {
+    width: 82rpx;
+    height: 82rpx;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18rpx;
+    border-radius: 22rpx;
+    font-size: 24rpx;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .summary {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .code {
+    max-width: 100%;
+    font-size: 30rpx;
+    line-height: 1.24;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .school {
+    margin-top: 10rpx;
+    padding: 4rpx 14rpx;
+    border-radius: 999rpx;
+    border: 2rpx solid #e5e7eb;
+    background: #f8fafc;
+    font-size: 18rpx;
+    line-height: 1.2;
+    color: #64748b;
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .score-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .score {
+    font-size: 26rpx;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #f59e0b;
+  }
+
+  .star {
+    margin-left: 4rpx;
+    font-size: 24rpx !important;
+    color: #f59e0b !important;
+  }
+
+  .reviews {
+    margin-top: 8rpx;
+    font-size: 20rpx;
+    line-height: 1.2;
+    color: #94a3b8;
+  }
+
+  .title {
+    display: block;
+    margin-top: 18rpx;
+    font-size: 24rpx;
+    line-height: 1.5;
+    color: #64748b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12rpx;
+    margin-top: 18rpx;
+  }
+
+  .tag {
+    padding: 6rpx 14rpx;
+    border-radius: 14rpx;
+    border: 2rpx solid transparent;
+    font-size: 18rpx;
+    line-height: 1.2;
+    font-weight: 600;
+
+    &.neutral {
+      border-color: #e5e7eb;
+      background: #f8fafc;
+      color: #4b5563;
+    }
+
+    &.danger {
+      border-color: #fecaca;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    &.success {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+      color: #15803d;
+    }
+  }
+}

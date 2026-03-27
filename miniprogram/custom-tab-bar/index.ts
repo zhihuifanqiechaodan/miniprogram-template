@@ -1,4 +1,4 @@
-import { switchTab, tabbarRoutes } from '@miniprogram/utils/util';
+import { navigateTo, tabbarRoutes } from '@miniprogram/utils/util';
 
 Component({
   data: {
@@ -8,7 +8,7 @@ Component({
   methods: {
     switchTab(e: WechatMiniprogram.TouchEvent) {
       const { pagePath, index } = e.currentTarget.dataset;
-      switchTab({ url: pagePath });
+      navigateTo({ type: 'switchTab', url: pagePath });
       this.setData({
         selected: index,
       });

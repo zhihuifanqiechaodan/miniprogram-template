@@ -1,17 +1,9 @@
 // pages/home/index.ts
 export {};
-import { CourseDetail, buildUrl } from '@miniprogram/utils/router';
-import { navigateTo } from '@miniprogram/utils/util';
+import { CourseDetail } from '@miniprogram/utils/router';
+import { courseCatalog, courseStats } from '@miniprogram/data/course';
+import { buildUrl, navigateTo } from '@miniprogram/utils/util';
 const app: IAppOption = getApp();
-
-interface CourseItem {
-  id: number;
-  index: string;
-  code: string;
-  name: string;
-  rating: string;
-  bgColor: string;
-}
 
 Page({
   /**
@@ -19,13 +11,9 @@ Page({
    */
   data: {
     systemInfo: app.globalData.systemInfo,
-    courseList: [
-      { id: 1, index: '9021', code: 'COMP9021', name: 'Principles of Programming', rating: '4.8', bgColor: '#E3F2FD' },
-      { id: 2, index: '9024', code: 'COMP9024', name: 'Data Structures and', rating: '4.6', bgColor: '#FCE4EC' },
-      { id: 3, index: '9331', code: 'COMP9331', name: 'Computer Networks', rating: '4.5', bgColor: '#FFF3E0' },
-      { id: 4, index: '9311', code: 'COMP9311', name: 'Database Systems', rating: '4.7', bgColor: '#F3E5F5' },
-      { id: 5, index: '9315', code: 'COMP9315', name: 'Database Systems', rating: '4.4', bgColor: '#E8F5E9' },
-    ] as CourseItem[],
+    keyword: '',
+    heroStats: courseStats,
+    displayCourseList: courseCatalog,
   },
 
   /**
@@ -64,10 +52,67 @@ Page({
   onReachBottom() {},
 
   /**
+   * 更新搜索关键字
+   * @param {WechatMiniprogram.Input} e 输入事件
+   * @returns {void} 无返回值
+   */
+  handleKeywordInput(e: WechatMiniprogram.Input) {
+    const keyword = e.detail.value;
+
+    this.setData({
+      keyword,
+    });
+
+    if (!keyword.trim()) {
+      this.setData({
+        displayCourseList: courseCatalog,
+      });
+    }
+  },
+
+  /**
+   * 根据输入关键字筛选课程
+   * @returns {void} 无返回值
+   */
+  handleSearch() {
+    const normalizedKeyword = this.data.keyword.trim().toUpperCase();
+
+    if (!normalizedKeyword) {
+      this.setData({
+        displayCourseList: courseCatalog,
+      });
+      return;
+    }
+
+    const displayCourseList = courseCatalog.filter((course) => {
+      return [course.code, course.school, course.name.toUpperCase()].some((field) =>
+        field.toUpperCase().includes(normalizedKeyword)
+      );
+    });
+
+    this.setData({
+      displayCourseList,
+    });
+  },
+
+  /**
+   * 重置课程筛选状态
+   * @returns {void} 无返回值
+   */
+  handleResetFilter() {
+    this.setData({
+      keyword: '',
+      displayCourseList: courseCatalog,
+    });
+  },
+
+  /**
    * 课程卡片点击事件
+   * @param {WechatMiniprogram.CustomEvent<{ id: number }>} e 自定义点击事件
+   * @returns {void} 无返回值
    */
   handleCourseTap(e: WechatMiniprogram.CustomEvent<{ id: number }>) {
-    const { id } = e.currentTarget.dataset;
+    const { id } = e.detail;
     const url = buildUrl(CourseDetail, { id });
     navigateTo({ url });
   },

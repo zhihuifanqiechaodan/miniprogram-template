@@ -1,0 +1,4 @@
+<!--components/com-iconfont/index.wxml-->
+<wxs src="/utils/wxs.wxs" module="computed" />
+
+<view class="iconfont {{icon}} external-com-iconfont" style="font-size: {{size}}; color: {{color}};" />

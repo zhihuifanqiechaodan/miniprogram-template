@@ -1,6 +1,7 @@
 <!-- pages/course-detail/index.wxml -->
 <view class="page-container">
-  <custom-nav-bar
+  <com-nav-bar
+    placeholder="{{true}}"
     showBack="{{true}}"
     title="课程详情"
     custom-style="background: rgba(255, 255, 255, 1);"
@@ -11,14 +12,13 @@
       <text class="course-code">{{course.code}}</text>
       <text class="course-name">{{course.name}}</text>
       <view class="tag-list">
-        <block wx:for="{{course.tags}}" wx:key="index">
-          <text class="tag-item">{{item}}</text>
+        <block wx:for="{{course.tags}}" wx:key="text">
+          <text class="tag-item tag-item-{{item.tone}}">{{item.text}}</text>
         </block>
       </view>
-    </view>
-
-    <view class="description-card" wx:if="{{course}}">
-      <text class="description-text">{{course.description}}</text>
+      <view class="description-card">
+        <text class="description-text">{{course.description}}</text>
+      </view>
     </view>
 
     <view class="rating-card" wx:if="{{course}}">
@@ -29,38 +29,35 @@
           <text class="star-icon">★</text>
         </view>
       </view>
-      <view class="progress-section">
-        <view class="progress-item">
-          <view class="progress-label-row">
-            <text class="progress-label">Workload</text>
+      <view class="rating-metric-list">
+        <block wx:for="{{course.ratingItems}}" wx:key="key">
+          <view class="rating-metric-item">
+            <text class="metric-label">{{item.label}}</text>
+            <view class="metric-bar">
+              <view class="metric-bar-fill metric-bar-fill-{{item.tone}}" style="width: {{item.percent + '%'}}"></view>
+            </view>
+            <text class="metric-value">{{item.displayValue}}</text>
           </view>
-          <view class="progress-track">
-            <view class="progress-fill workload" style="width: {{course.workloadPercent + '%'}}"></view>
-          </view>
-        </view>
-        <view class="progress-item">
-          <view class="progress-label-row">
-            <text class="progress-label">Grading</text>
-          </view>
-          <view class="progress-track">
-            <view class="progress-fill grading" style="width: {{course.gradingPercent + '%'}}"></view>
-          </view>
-        </view>
+        </block>
       </view>
     </view>
 
-    <view class="reviews-section" wx:if="{{course.reviews.length}}">
+    <view class="reviews-section" wx:if="{{course && course.reviews.length}}">
       <text class="reviews-title">精选评价</text>
-      <block wx:for="{{course.reviews}}" wx:key="id">
-        <view class="review-item">
-          <view class="review-header">
-            <view class="avatar-wrap">{{item.avatar}}</view>
-            <text class="review-author">{{item.author}}</text>
-            <text class="review-date">{{item.date}}</text>
+      <view class="review-list">
+        <block wx:for="{{course.reviews}}" wx:key="id">
+          <view class="review-item">
+            <view class="review-header">
+              <view class="review-user">
+                <view class="avatar-wrap">{{item.avatar}}</view>
+                <text class="review-author">{{item.author}}</text>
+              </view>
+              <text class="review-date">{{item.date}}</text>
+            </view>
+            <text class="review-content">{{item.content}}</text>
           </view>
-          <text class="review-content">{{item.content}}</text>
-        </view>
-      </block>
+        </block>
+      </view>
     </view>
   </view>
 

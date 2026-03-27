@@ -1,0 +1,4 @@
+<view class="course-stat-card {{highlight ? 'highlight' : ''}}">
+  <text class="label">{{label}}</text>
+  <text class="value">{{value}}</text>
+</view>

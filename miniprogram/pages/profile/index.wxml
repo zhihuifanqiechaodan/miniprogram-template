@@ -1,59 +1,83 @@
 <!-- pages/profile/index.wxml -->
-<view class="tabbar-page-container">
-  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
-  <view class="content-wrapper">
-    <!-- 用户信息头部 -->
-    <view class="user-header">
-      <view class="user-avatar">
-        <text>A</text>
+<view class="tabbar-page-container profile-page">
+  <com-nav-bar
+    placeholder="{{true}}"
+    custom-style="background: linear-gradient(180deg, rgba(246, 248, 252, 0.98) 0%, rgba(246, 248, 252, 0.92) 100%);"
+  />
+
+  <scroll-view class="content-scroll" scroll-y enable-flex show-scrollbar="{{false}}">
+    <view class="content-wrapper">
+      <view class="profile-card">
+        <view class="profile-card-decor"></view>
+
+        <view class="profile-main">
+          <view class="profile-avatar-wrap">
+            <view class="profile-avatar">
+              <text>{{user.initial}}</text>
+            </view>
+            <view class="profile-vip-icon">
+              <van-icon name="vip-card" class="profile-vip-mark" />
+            </view>
+          </view>
+
+          <view class="profile-info">
+            <view class="name-row">
+              <text class="profile-name">{{user.name}}</text>
+              <view class="verified-tag">
+                <van-icon name="passed" class="verified-icon" />
+                <text>已认证</text>
+              </view>
+              <view class="member-tag">
+                <text class="member-text">VIP</text>
+                <van-icon name="arrow" class="member-arrow" />
+              </view>
+            </view>
+
+            <view class="meta-column">
+              <view class="meta-row">
+                <van-icon name="wap-home-o" class="meta-icon" />
+                <text>{{user.school}}</text>
+              </view>
+              <view class="meta-row secondary">
+                <van-icon name="notes-o" class="meta-icon" />
+                <text>{{user.major}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="stats-row">
+          <block wx:for="{{statsList}}" wx:key="label" wx:for-item="stat">
+            <view class="stats-item">
+              <text class="stats-value">{{stat.value}}</text>
+              <text class="stats-label">{{stat.label}}</text>
+            </view>
+            <view wx:if="{{stat.showDivider}}" class="stats-divider"></view>
+          </block>
+        </view>
       </view>
-      <view class="user-info">
-        <text class="user-name">Alex</text>
-        <text class="user-subtitle">UNSW · Computer Science</text>
-      </view>
+
+      <block wx:for="{{menuSections}}" wx:key="key" wx:for-item="section">
+        <view class="menu-card">
+          <block wx:for="{{section.items}}" wx:key="type" wx:for-item="menu">
+            <view
+              class="menu-item"
+              hover-class="menu-item-hover"
+              hover-stay-time="80"
+              data-type="{{menu.type}}"
+              bindtap="handleNavigate"
+            >
+              <view class="menu-left">
+                <view class="menu-icon-wrap {{menu.tone}}">
+                  <van-icon name="{{menu.icon}}" class="menu-icon" />
+                </view>
+                <text class="menu-label">{{menu.label}}</text>
+              </view>
+              <van-icon name="arrow" class="menu-arrow" />
+            </view>
+          </block>
+        </view>
+      </block>
     </view>
-
-    <!-- 功能列表 -->
-    <view class="menu-list">
-      <view class="menu-item" bindtap="handleNavigate" data-type="favorites">
-        <view class="menu-left">
-          <view class="icon-box favorite">
-            <text class="icon-star">★</text>
-          </view>
-          <text class="menu-label">我的收藏</text>
-        </view>
-        <text class="menu-arrow">></text>
-      </view>
-
-      <view class="menu-item" bindtap="handleNavigate" data-type="likes">
-        <view class="menu-left">
-          <view class="icon-box like">
-            <text class="icon-heart">♥</text>
-          </view>
-          <text class="menu-label">我的点赞</text>
-        </view>
-        <text class="menu-arrow">></text>
-      </view>
-
-      <view class="menu-item" bindtap="handleNavigate" data-type="reviews">
-        <view class="menu-left">
-          <view class="icon-box review">
-            <text class="icon-review">💬</text>
-          </view>
-          <text class="menu-label">我的评价</text>
-        </view>
-        <text class="menu-arrow">></text>
-      </view>
-
-      <view class="menu-item" bindtap="handleNavigate" data-type="settings">
-        <view class="menu-left">
-          <view class="icon-box settings">
-            <text class="icon-settings">⚙</text>
-          </view>
-          <text class="menu-label">设置</text>
-        </view>
-        <text class="menu-arrow">></text>
-      </view>
-    </view>
-  </view>
+  </scroll-view>
 </view>

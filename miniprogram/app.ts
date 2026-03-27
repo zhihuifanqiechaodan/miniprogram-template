@@ -1,4 +1,4 @@
-import { getNetworkType, getSystemInfoSync, reLaunch } from '@miniprogram/utils/util';
+import { getNetworkType, getSystemInfoSync, navigateTo } from '@miniprogram/utils/util';
 import { Home } from '@miniprogram/utils/router';
 
 // app.ts
@@ -40,7 +40,8 @@ App<IAppOption>({
     });
   },
   onPageNotFound() {
-    reLaunch({
+    navigateTo({
+      type: 'reLaunch',
       url: Home.pagePath,
     });
   },

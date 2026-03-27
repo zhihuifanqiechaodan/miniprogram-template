@@ -1,37 +1,109 @@
 <!-- pages/review/index.wxml -->
-<view class="tabbar-page-container">
-  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
-  <view class="content-wrapper">
-    <view class="review-card">
-      <view class="page-title">写点评</view>
+<view class="tabbar-page-container review-page">
+  <com-nav-bar placeholder="{{true}}" custom-style="background: rgba(249, 250, 251, 1);" />
 
-      <view class="form-item">
-        <view class="form-label">课程代码</view>
-        <picker mode="selector" range="{{courseList}}" range-key="name" bindchange="onCourseChange">
-          <view class="picker-box {{selectedCourse ? '' : 'placeholder'}}">
-            <text>{{selectedCourse.name || '请选择课程...'}}</text>
-            <view class="picker-arrow"></view>
+  <scroll-view class="content-scroll" scroll-y enable-flex show-scrollbar="{{false}}">
+    <view class="content-wrapper">
+      <view class="form-card">
+        <view class="form-section">
+          <text class="form-label">选择课程</text>
+          <view class="search-box">
+            <van-icon name="search" class="search-icon" />
+            <input
+              class="course-input"
+              type="text"
+              value="{{courseCode}}"
+              maxlength="{{16}}"
+              placeholder="输入课程代码 (e.g. COMP9021)"
+              placeholder-class="course-input-placeholder"
+              cursor-spacing="32"
+              bindinput="handleCourseCodeInput"
+            />
           </view>
-        </picker>
-      </view>
-
-      <view class="form-item">
-        <view class="form-label">评价内容</view>
-        <view class="textarea-box">
-          <textarea
-            placeholder="写下你的真实感受..."
-            placeholder-class="textarea-placeholder"
-            maxlength="{{500}}"
-            bindinput="onContentChange"
-            value="{{content}}"
-          ></textarea>
-          <text class="textarea-count">{{content.length}}/500</text>
         </view>
-      </view>
 
-      <view class="submit-btn" bindtap="handleSubmit">
-        <text>提交评价</text>
+        <view class="form-section">
+          <text class="form-label">维度评分</text>
+          <view class="rating-panel">
+            <block wx:for="{{ratingList}}" wx:key="key" wx:for-item="rating">
+              <view class="rating-row">
+                <text class="rating-name">{{rating.label}}</text>
+                <view class="rating-stars">
+                  <block wx:for="{{starOptions}}" wx:key="*this" wx:for-item="starValue">
+                    <view
+                      class="star-button"
+                      hover-class="star-button--hover"
+                      data-rating-key="{{rating.key}}"
+                      data-star-value="{{starValue}}"
+                      bindtap="handleRatingTap"
+                    >
+                      <van-icon
+                        name="{{starValue <= rating.value ? 'star' : 'star-o'}}"
+                        class="rating-star {{starValue <= rating.value ? 'rating-star--active' : ''}}"
+                      />
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </view>
+          <text class="rating-tip">点击星星进行评分</text>
+        </view>
+
+        <view class="form-section">
+          <text class="form-label">课程标签</text>
+          <view class="tag-list">
+            <block wx:for="{{tagList}}" wx:key="text" wx:for-item="tag">
+              <view
+                class="tag-chip {{tag.active ? 'tag-chip--active' : ''}}"
+                hover-class="tag-chip--hover"
+                data-tag-text="{{tag.text}}"
+                bindtap="handleTagTap"
+              >
+                <text class="tag-chip__text">{{tag.text}}</text>
+              </view>
+            </block>
+
+            <view class="tag-chip tag-chip--add" hover-class="tag-chip--hover" bindtap="handleAddTag">
+              <van-icon name="plus" class="tag-add-icon" />
+              <text class="tag-chip__text">添加</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="form-section">
+          <text class="form-label">详细评价</text>
+          <view class="textarea-box">
+            <textarea
+              class="review-textarea"
+              maxlength="{{500}}"
+              value="{{content}}"
+              placeholder="这门课的体验如何？作业难吗？给分怎么样？..."
+              placeholder-class="review-placeholder"
+              bindinput="handleContentChange"
+            ></textarea>
+            <text class="textarea-count">{{content.length}}/500</text>
+          </view>
+        </view>
+
+        <view class="option-row">
+          <text class="option-label">匿名发布</text>
+          <view
+            class="anonymous-switch {{isAnonymous ? 'anonymous-switch--active' : ''}}"
+            hover-class="anonymous-switch--hover"
+            bindtap="handleAnonymousToggle"
+          >
+            <view class="anonymous-switch__thumb {{isAnonymous ? 'anonymous-switch__thumb--active' : ''}}"></view>
+          </view>
+        </view>
+
+        <view class="submit-btn" hover-class="submit-btn--hover" bindtap="handleSubmit">
+          <van-icon name="guide-o" class="submit-icon" />
+          <text>提交评价</text>
+        </view>
+
+        <view class="bottom-space"></view>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

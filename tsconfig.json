@@ -21,6 +21,7 @@
     "outDir": "./dist",
     "paths": {
       "@miniprogram/*": ["./miniprogram/*"],
+      "@api/*": ["./api/*"],
       "@vant/*": ["./miniprogram/miniprogram_npm/@vant/*"],
       "@/*": ["./*"]
     }

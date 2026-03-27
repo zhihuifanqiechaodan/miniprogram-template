@@ -1,7 +1,15 @@
-import { switchTab } from '@miniprogram/utils/util';
+import { Home } from '@miniprogram/utils/router';
+import { navigateTo } from '@miniprogram/utils/util';
 
 // pages/login/index.ts
 export {};
+
+/**
+ * 输入框事件
+ */
+type FieldValueEvent = WechatMiniprogram.CustomEvent & {
+  detail: string;
+};
 
 Page({
   /**
@@ -49,23 +57,23 @@ Page({
 
   /**
    * 更新账号输入值
-   * @param {WechatMiniprogram.Input} e 输入事件
+   * @param {FieldValueEvent} e 输入事件
    * @returns {void} 无返回值
    */
-  handleAccountInput(e: WechatMiniprogram.Input) {
+  handleAccountInput(e: FieldValueEvent) {
     this.setData({
-      account: e.detail.value,
+      account: e.detail,
     });
   },
 
   /**
    * 更新密码输入值
-   * @param {WechatMiniprogram.Input} e 输入事件
+   * @param {FieldValueEvent} e 输入事件
    * @returns {void} 无返回值
    */
-  handlePasswordInput(e: WechatMiniprogram.Input) {
+  handlePasswordInput(e: FieldValueEvent) {
     this.setData({
-      password: e.detail.value,
+      password: e.detail,
     });
   },
 
@@ -90,7 +98,7 @@ Page({
     });
 
     setTimeout(() => {
-      switchTab({ url: '/pages/home/index' });
+      navigateTo({ type: 'switchTab', url: Home.pagePath });
     }, 300);
   },
 
@@ -105,7 +113,7 @@ Page({
     });
 
     setTimeout(() => {
-      switchTab({ url: '/pages/home/index' });
+      navigateTo({ type: 'switchTab', url: Home.pagePath });
     }, 300);
   },
 });

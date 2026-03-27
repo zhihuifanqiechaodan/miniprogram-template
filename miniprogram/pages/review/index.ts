@@ -1,99 +1,191 @@
-import { navigateBack } from '@miniprogram/utils/util';
+import { Home } from '@miniprogram/utils/router';
+import { navigateTo } from '@miniprogram/utils/util';
 
 // pages/review/index.ts
 export {};
-const app: IAppOption = getApp();
 
+/**
+ * 课程选项
+ */
 interface CourseItem {
   id: number;
   name: string;
   code: string;
 }
 
+/**
+ * 评分键名
+ */
+type RatingKey = 'difficulty' | 'homework' | 'grading' | 'harvest';
+
+/**
+ * 评分项
+ */
+interface RatingItem {
+  key: RatingKey;
+  label: string;
+  value: number;
+}
+
+/**
+ * 标签项
+ */
+interface TagItem {
+  text: string;
+  active: boolean;
+}
+
+const DEFAULT_COURSE_LIST: CourseItem[] = [
+  { id: 1, name: 'Software Construction', code: 'COMP9021' },
+  { id: 2, name: 'Database Systems', code: 'COMP9311' },
+  { id: 3, name: 'Computer Networks', code: 'COMP3331' },
+  { id: 4, name: 'Math 1A', code: 'MATH1131' },
+];
+
+const DEFAULT_RATING_LIST: RatingItem[] = [
+  { key: 'difficulty', label: '课程难度', value: 3 },
+  { key: 'homework', label: '作业多少', value: 4 },
+  { key: 'grading', label: '给分好坏', value: 2 },
+  { key: 'harvest', label: '收获大小', value: 5 },
+];
+
+const DEFAULT_TAG_LIST: TagItem[] = [
+  { text: '干货满满', active: true },
+  { text: '作业多', active: false },
+  { text: '给分好', active: false },
+  { text: '考试难', active: false },
+];
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    systemInfo: app.globalData.systemInfo,
-    // 课程列表（模拟数据，实际应从接口获取）
-    courseList: [
-      { id: 1, name: 'WEB前端开发', code: 'WEB001' },
-      { id: 2, name: 'Python数据分析', code: 'PY001' },
-      { id: 3, name: 'Java高级开发', code: 'JAVA001' },
-      { id: 4, name: '人工智能基础', code: 'AI001' },
-    ] as CourseItem[],
-    // 选中的课程
-    selectedCourse: null as CourseItem | null,
-    // 评价内容
+    courseList: DEFAULT_COURSE_LIST,
+    courseCode: '',
+    matchedCourse: null as CourseItem | null,
+    starOptions: [1, 2, 3, 4, 5],
+    ratingList: DEFAULT_RATING_LIST,
+    tagList: DEFAULT_TAG_LIST,
     content: '',
+    isAnonymous: false,
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 更新课程代码并尝试匹配课程
+   * @param {WechatMiniprogram.Input} e 输入事件
+   * @returns {void} 无返回值
    */
-  onLoad() {},
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {},
-
-  /**
-   * 课程选择变化
-   */
-  onCourseChange(e: WechatMiniprogram.CustomEvent) {
-    const index = e.detail.value;
+  handleCourseCodeInput(e: WechatMiniprogram.Input) {
+    const courseCode = e.detail.value.replace(/\s+/g, '').toUpperCase();
     const { courseList } = this.data;
+    const matchedCourse = courseList.find((courseItem) => courseItem.code === courseCode) ?? null;
+
     this.setData({
-      selectedCourse: courseList[index],
+      courseCode,
+      matchedCourse,
     });
   },
 
   /**
-   * 评价内容变化
+   * 更新指定评分项
+   * @param {WechatMiniprogram.BaseEvent} e 点击事件
+   * @returns {void} 无返回值
    */
-  onContentChange(e: WechatMiniprogram.CustomEvent) {
+  handleRatingTap(e: WechatMiniprogram.BaseEvent) {
+    const { ratingKey, starValue } = e.currentTarget.dataset as {
+      ratingKey?: RatingKey;
+      starValue?: number | string;
+    };
+
+    if (!ratingKey || !starValue) {
+      return;
+    }
+
+    const nextRatingList = this.data.ratingList.map((ratingItem) => {
+      return ratingItem.key === ratingKey
+        ? {
+            ...ratingItem,
+            value: Number(starValue),
+          }
+        : ratingItem;
+    });
+
+    this.setData({
+      ratingList: nextRatingList,
+    });
+  },
+
+  /**
+   * 切换课程标签选中状态
+   * @param {WechatMiniprogram.BaseEvent} e 点击事件
+   * @returns {void} 无返回值
+   */
+  handleTagTap(e: WechatMiniprogram.BaseEvent) {
+    const { tagText } = e.currentTarget.dataset as {
+      tagText?: string;
+    };
+
+    if (!tagText) {
+      return;
+    }
+
+    const nextTagList = this.data.tagList.map((tagItem) => {
+      return tagItem.text === tagText
+        ? {
+            ...tagItem,
+            active: !tagItem.active,
+          }
+        : tagItem;
+    });
+
+    this.setData({
+      tagList: nextTagList,
+    });
+  },
+
+  /**
+   * 提示自定义标签暂未开放
+   * @returns {void} 无返回值
+   */
+  handleAddTag() {
+    wx.showToast({
+      title: '自定义标签即将上线',
+      icon: 'none',
+    });
+  },
+
+  /**
+   * 更新评价内容
+   * @param {WechatMiniprogram.Input} e 输入事件
+   * @returns {void} 无返回值
+   */
+  handleContentChange(e: WechatMiniprogram.Input) {
     this.setData({
       content: e.detail.value,
     });
   },
 
   /**
-   * 提交评价
+   * 切换匿名发布状态
+   * @returns {void} 无返回值
+   */
+  handleAnonymousToggle() {
+    this.setData({
+      isAnonymous: !this.data.isAnonymous,
+    });
+  },
+
+  /**
+   * 提交课程评价
+   * @returns {void} 无返回值
    */
   handleSubmit() {
-    const { selectedCourse, content } = this.data;
+    const { courseCode, matchedCourse, ratingList, tagList, content, isAnonymous } = this.data;
 
-    // 验证
-    if (!selectedCourse) {
+    if (!courseCode.trim()) {
       wx.showToast({
-        title: '请选择课程',
+        title: '请输入课程代码',
         icon: 'none',
       });
       return;
@@ -107,10 +199,17 @@ Page({
       return;
     }
 
-    // TODO: 调用接口提交评价
     wx.showLoading({ title: '提交中...' });
 
-    // 模拟提交
+    console.log('submit review payload', {
+      courseCode,
+      courseName: matchedCourse?.name ?? '',
+      ratings: ratingList,
+      tags: tagList.filter((tagItem) => tagItem.active).map((tagItem) => tagItem.text),
+      content: content.trim(),
+      isAnonymous,
+    });
+
     setTimeout(() => {
       wx.hideLoading();
       wx.showToast({
@@ -118,10 +217,9 @@ Page({
         icon: 'success',
       });
 
-      // 返回上一页
       setTimeout(() => {
-        navigateBack();
-      }, 1500);
+        navigateTo({ type: 'switchTab', url: Home.pagePath });
+      }, 300);
     }, 1000);
   },
 });

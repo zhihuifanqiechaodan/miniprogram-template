@@ -1,34 +1,76 @@
 <!-- pages/home/index.wxml -->
-<view class="tabbar-page-container">
-  <custom-nav-bar placeholder="{{true}}" custom-style="background: rgba(255, 255, 255, 1);" />
-  <view class="content-wrapper">
-    <!-- 搜索栏 -->
-    <view class="search-bar">
-      <view class="search-box">
-        <van-icon name="search" class="search-icon" />
-        <input class="search-input" placeholder="搜索课程..." placeholder-class="search-placeholder" />
+<view class="tabbar-page-container home-page">
+  <com-nav-bar
+    placeholder="{{true}}"
+    custom-style="background: linear-gradient(180deg, rgba(245, 248, 255, 0.98) 0%, rgba(245, 248, 255, 0.9) 100%);"
+  />
+
+  <view class="content">
+    <view class="hero">
+      <view class="orb primary"></view>
+      <view class="orb accent"></view>
+
+      <view class="heading">
+        <text class="title">拒绝挂科</text>
+        <text class="title accent">选课不踩雷</text>
+      </view>
+      <text class="subtitle">澳洲留学生专属课程评价平台</text>
+
+      <view class="search-panel">
+        <view class="search-icon-wrap">
+          <van-icon name="search" class="search-icon" />
+        </view>
+        <input
+          class="search-input"
+          value="{{keyword}}"
+          placeholder="搜索课程代码 (e.g. COMP9021)..."
+          placeholder-class="search-placeholder"
+          confirm-type="search"
+          cursor-spacing="32"
+          bindinput="handleKeywordInput"
+          bindconfirm="handleSearch"
+        />
+        <view class="search-button" bindtap="handleSearch">搜索</view>
+      </view>
+
+      <view class="stats">
+        <block wx:for="{{heroStats}}" wx:key="label">
+          <view class="stats-item">
+            <com-course-stat-card label="{{item.label}}" value="{{item.value}}" highlight="{{item.highlight}}" />
+          </view>
+        </block>
       </view>
     </view>
-    <!-- 热门推荐标题 -->
-    <view class="section-title">
-      <van-icon name="fire" class="fire-icon" />
-      <text class="title-text">热门推荐</text>
+    <view class="section-bar">
+      <view class="section-title">
+        <van-icon name="fire" class="section-icon" />
+        <text class="section-text">热门推荐</text>
+      </view>
+      <view class="section-action" bindtap="handleResetFilter">
+        <text class="section-action-text">全部</text>
+        <van-icon name="arrow" class="section-action-icon" />
+      </view>
     </view>
-    <!-- 课程卡片列表 -->
-    <view class="course-list">
-      <block wx:for="{{courseList}}" wx:key="id">
-        <view class="course-card" data-id="{{item.id}}" bindtap="handleCourseTap">
-          <view class="course-index" style="background-color: {{item.bgColor}}"> {{item.index}} </view>
-          <view class="course-info">
-            <text class="course-code">{{item.code}}</text>
-            <text class="course-name">{{item.name}}</text>
+
+    <scroll-view class="scroll" scroll-y show-scrollbar="{{false}}">
+      <view class="list">
+        <block wx:if="{{displayCourseList.length}}">
+          <block wx:for="{{displayCourseList}}" wx:key="id">
+            <view class="course-item">
+              <com-course-card course="{{item}}" bind:cardtap="handleCourseTap" />
+            </view>
+          </block>
+        </block>
+
+        <view wx:else class="empty">
+          <view class="empty-icon-wrap">
+            <van-icon name="search" class="empty-icon" />
           </view>
-          <view class="course-rating">
-            <text class="rating-score">{{item.rating}}</text>
-            <van-icon name="star" class="star-icon" color="#FFC107" />
-          </view>
+          <text class="empty-title">没找到相关课程</text>
+          <text class="empty-text">试试课程代码、学校简称或英文名关键词</text>
+          <view class="empty-button" bindtap="handleResetFilter">查看全部课程</view>
         </view>
-      </block>
-    </view>
+      </view>
+    </scroll-view>
   </view>
 </view>
