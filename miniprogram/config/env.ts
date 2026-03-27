@@ -1,5 +1,5 @@
 export default {
   ENV: 'production',
   APPID: 'wxcb6d2816d7abe793',
-  BASE_URL: 'xxxx',
+  BASE_URL: 'https://guard-x.site/forum-test/api',
 };

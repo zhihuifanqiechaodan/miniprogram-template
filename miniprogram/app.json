@@ -41,7 +41,6 @@
   },
   "resolveAlias": {
     "@miniprogram/*": "/*",
-    "@api/*": "/api/*",
     "@vant/*": "/miniprogram_npm/@vant/*"
   },
   "requiredPrivateInfos": []

@@ -1,17 +1,19 @@
 <view class="course-card" catch:tap="handleTap">
   <view class="header">
     <view class="meta">
-      <view class="badge" style="background: {{course.badgeColor}};">{{course.badgeText}}</view>
+      <view class="badge" style="background: {{wxsModule.pickBadgeColor(course.code)}};">
+        {{wxsModule.extractDigits(course.code)}}
+      </view>
 
       <view class="summary">
         <text class="code">{{course.code}}</text>
-        <view class="school">{{course.school}}</view>
+        <view class="school">{{course.schoolAbbr}}</view>
       </view>
     </view>
 
     <view class="rating">
       <view class="score-wrap">
-        <text class="score">{{course.rating}}</text>
+        <text class="score">{{course.courseRating}}</text>
         <van-icon name="star" class="star" />
       </view>
       <text class="reviews">{{course.reviewCount}} 评价</text>
@@ -21,8 +23,57 @@
   <text class="title">{{course.name}}</text>
 
   <view class="tags">
-    <block wx:for="{{course.tags}}" wx:key="text">
-      <text class="tag {{item.tone}}">{{item.text}}</text>
+    <block wx:for="{{course.topTags}}" wx:key="*this">
+      <text class="tag {{wxsModule.pickTagTone(item, index)}}">{{item}}</text>
     </block>
   </view>
 </view>
+
+<!-- prettier-ignore -->
+<wxs module="wxsModule">
+  var BADGE_COLORS = ['#DBEAFE', '#FEE2E2', '#FFEDD5', '#E0E7FF', '#DCFCE7', '#F3E8FF'];
+  var TAG_TONES = ['neutral', 'danger', 'success'];
+  var badgeColorCache = {};
+  var toneCache = {};
+
+  function extractDigits(code) {
+    if (code === undefined || code === null) {
+      return '';
+    }
+    var value = '' + code;
+    var result = '';
+    for (var i = 0; i < value.length; i++) {
+      var char = value.charAt(i);
+      if (char >= '0' && char <= '9') {
+        result += char;
+      }
+    }
+    return result;
+  }
+
+  function pickBadgeColor(seed) {
+    var key = '' + seed;
+    if (badgeColorCache[key]) {
+      return badgeColorCache[key];
+    }
+    var color = BADGE_COLORS[Math.floor(Math.random() * BADGE_COLORS.length)];
+    badgeColorCache[key] = color;
+    return color;
+  }
+
+  function pickTagTone(text, index) {
+    var key = '' + text + ':' + index;
+    if (toneCache[key]) {
+      return toneCache[key];
+    }
+    var tone = TAG_TONES[Math.floor(Math.random() * TAG_TONES.length)];
+    toneCache[key] = tone;
+    return tone;
+  }
+
+  module.exports = {
+    extractDigits: extractDigits,
+    pickBadgeColor: pickBadgeColor,
+    pickTagTone: pickTagTone,
+  };
+</wxs>

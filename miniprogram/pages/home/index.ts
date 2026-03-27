@@ -3,6 +3,8 @@ export {};
 import { CourseDetail } from '@miniprogram/utils/router';
 import { courseCatalog, courseStats } from '@miniprogram/data/course';
 import { buildUrl, navigateTo } from '@miniprogram/utils/util';
+import { getCoursesHot } from '@miniprogram/api/courses';
+import { IApiGetCoursesHotRes } from '@/typings/api-types';
 const app: IAppOption = getApp();
 
 Page({
@@ -13,13 +15,15 @@ Page({
     systemInfo: app.globalData.systemInfo,
     keyword: '',
     heroStats: courseStats,
-    displayCourseList: courseCatalog,
+    displayCourseList: [] as IApiGetCoursesHotRes,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    this.initData();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -50,6 +54,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {},
+  async initData() {
+    Promise.all([getCoursesHot({ limit: 10 })]).then(([getCoursesHotRes]) => {
+      this.setData({
+        displayCourseList: getCoursesHotRes,
+      });
+    });
+  },
 
   /**
    * 更新搜索关键字
