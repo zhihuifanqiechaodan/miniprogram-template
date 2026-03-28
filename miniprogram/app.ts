@@ -8,6 +8,8 @@ App<IAppOption>({
     networkType: '', // 网络类型
     isConnected: true, // 网络状态
     loadingRequestCount: 0, // Loading 请求计数（用于并发请求场景）
+    loginInfo: null, // 登录信息
+    userInfo: null, // 当前用户资料
   },
   async onLaunch() {
     const updateManager = wx.getUpdateManager();
@@ -28,6 +30,8 @@ App<IAppOption>({
     if (networkType == 'none') {
       this.globalData.isConnected = false;
     }
+    this.globalData.loginInfo = wx.getStorageSync('loginInfo');
+    this.globalData.userInfo = wx.getStorageSync('userInfo');
   },
   onShow() {
     // 监听网络状态变化事件

@@ -1,7 +1,7 @@
 /**
- * 登录用户信息
+ * 认证用户信息
  */
-interface IApiUser {
+export interface IApiUser {
   id: string; // 用户 ID（ULID）
   nickname: string; // 用户昵称
   email: string; // 用户邮箱
@@ -16,6 +16,11 @@ interface IApiUser {
   createdAt: string; // 创建时间（ISO）
   updatedAt: string; // 更新时间（ISO）
 }
+
+/**
+ * 获取当前用户资料响应数据
+ */
+export type IApiGetAuthMeRes = IApiUser;
 
 /**
  * 登录请求参数

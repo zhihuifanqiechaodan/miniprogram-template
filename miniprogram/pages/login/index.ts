@@ -1,8 +1,11 @@
+import { postAuthLogin } from '@miniprogram/api/auth';
 import { Home } from '@miniprogram/utils/router';
 import { navigateTo } from '@miniprogram/utils/util';
+import Toast from '@vant/weapp/toast/toast';
 
 // pages/login/index.ts
 export {};
+const app: IAppOption = getApp();
 
 /**
  * 输入框事件
@@ -16,8 +19,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    account: 'student',
-    password: '123456',
+    email: 'admin@gmail.com', // 登录邮箱
+    password: 'gi8TJRh9z85!U9yb!fMEMp', // 登录密码
   },
 
   /**
@@ -56,13 +59,13 @@ Page({
   onReachBottom() {},
 
   /**
-   * 更新账号输入值
+   * 更新邮箱输入值
    * @param {FieldValueEvent} e 输入事件
    * @returns {void} 无返回值
    */
-  handleAccountInput(e: FieldValueEvent) {
+  handleEmailInput(e: FieldValueEvent) {
     this.setData({
-      account: e.detail,
+      email: e.detail,
     });
   },
 
@@ -79,41 +82,22 @@ Page({
 
   /**
    * 提交登录并进入首页
-   * @returns {void} 无返回值
+   * @returns {Promise<void>} 无返回值
    */
-  handleLogin() {
-    const { account, password } = this.data;
-
-    if (!account.trim() || !password.trim()) {
-      wx.showToast({
-        title: '请输入账号和密码',
-        icon: 'none',
-      });
+  async handleLogin() {
+    const { email, password } = this.data;
+    if (!email.trim() || !password.trim()) {
+      Toast('请输入邮箱和密码');
       return;
     }
-
-    wx.showToast({
-      title: '登录成功',
-      icon: 'success',
+    const loginInfo = await postAuthLogin({
+      email: email.trim(),
+      password: password.trim(),
     });
-
-    setTimeout(() => {
-      navigateTo({ type: 'switchTab', url: Home.pagePath });
-    }, 300);
-  },
-
-  /**
-   * 直接进入演示模式
-   * @returns {void} 无返回值
-   */
-  handleDemoLogin() {
-    wx.showToast({
-      title: '进入演示模式',
-      icon: 'none',
-    });
-
-    setTimeout(() => {
-      navigateTo({ type: 'switchTab', url: Home.pagePath });
-    }, 300);
+    app.globalData.loginInfo = loginInfo;
+    app.globalData.userInfo = loginInfo.user;
+    wx.setStorageSync('loginInfo', loginInfo);
+    wx.setStorageSync('userInfo', loginInfo.user);
+    navigateTo({ type: 'switchTab', url: Home.pagePath });
   },
 });

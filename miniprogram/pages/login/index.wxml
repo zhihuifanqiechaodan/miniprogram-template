@@ -1,39 +1,43 @@
 <!-- pages/login/index.wxml -->
 <view class="page-container login-page">
-  <view class="login-page__content">
-    <view class="login-page__logo">
-      <com-image
-        width="160rpx"
-        height="160rpx"
-        src="/assets/images/forum.svg"
-        mode="aspectFit"
-        show-loading="{{false}}"
-        show-error="{{false}}"
-        placeholder="{{false}}"
-      />
+  <view class="content">
+    <view class="logo-wrap">
+      <view class="logo-box">
+        <com-image
+          width="160rpx"
+          height="160rpx"
+          src="/assets/images/forum.svg"
+          mode="aspectFit"
+          show-loading="{{false}}"
+          show-error="{{false}}"
+          placeholder="{{false}}"
+        />
+      </view>
     </view>
 
-    <text class="login-page__title">欢迎回来</text>
-    <text class="login-page__subtitle">登录 IRBTree 小程序</text>
+    <text class="title">欢迎回来</text>
+    <text class="subtitle">登录 IRBTree 小程序</text>
 
-    <view class="login-page__form">
-      <view class="login-field">
+    <view class="form">
+      <view class="field-card">
         <van-field
-          custom-class="login-field__control"
-          input-class="login-field__input"
+          custom-class="field-control"
+          input-class="field-input"
+          center="{{true}}"
           border="{{false}}"
           clearable="{{true}}"
-          value="{{account}}"
+          value="{{email}}"
           maxlength="30"
-          placeholder="账号"
-          bind:input="handleAccountInput"
+          placeholder="邮箱"
+          bind:input="handleEmailInput"
         />
       </view>
 
-      <view class="login-field">
+      <view class="field-card">
         <van-field
-          custom-class="login-field__control"
-          input-class="login-field__input"
+          custom-class="field-control"
+          input-class="field-input"
+          center="{{true}}"
           border="{{false}}"
           clearable="{{true}}"
           type="password"
@@ -44,10 +48,8 @@
         />
       </view>
 
-      <van-button block color="#4f46e5" custom-class="login-button" catch:click="handleLogin"> 登录 </van-button>
+      <van-button block color="#4f46e5" custom-class="submit-button" catch:click="handleLogin"> 登录 </van-button>
     </view>
-
-    <text class="login-page__demo" catch:tap="handleDemoLogin">点击登录直接进入演示模式</text>
   </view>
 </view>
 

@@ -26,14 +26,18 @@ const _request = async <T>({ method, url, data, header }: RequestParams): Promis
       if (canShowLoading) {
         showLoading();
       }
+      const requestHeader: Record<string, any> = {
+        version,
+        ...header,
+      };
+      if (app.globalData.loginInfo?.token && app.globalData.loginInfo?.tokenType) {
+        requestHeader.authorization = `${app.globalData.loginInfo.tokenType} ${app.globalData.loginInfo.token}`;
+      }
       wx.request({
         url,
         data,
         method,
-        header: {
-          version,
-          ...header,
-        },
+        header: requestHeader,
         success: (value) => {
           const { data, statusCode } = value;
           if (statusCode !== 200) {
