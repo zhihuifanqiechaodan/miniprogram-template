@@ -1,6 +1,6 @@
 <!-- pages/review/index.wxml -->
 <view class="tabbar-page-container review-page">
-  <com-nav-bar placeholder="{{true}}" custom-style="background: rgba(249, 250, 251, 1);" />
+  <com-nav-bar placeholder="{{true}}" custom-style="background: transparent;" />
 
   <scroll-view class="content-scroll" scroll-y enable-flex show-scrollbar="{{false}}">
     <view class="content-wrapper">
@@ -53,14 +53,14 @@
         <view class="form-section">
           <text class="form-label">课程标签</text>
           <view class="tag-list">
-            <block wx:for="{{tagList}}" wx:key="text" wx:for-item="tag">
+            <block wx:for="{{tagList}}" wx:key="id" wx:for-item="tag">
               <view
                 class="tag-chip {{tag.active ? 'tag-chip--active' : ''}}"
                 hover-class="tag-chip--hover"
-                data-tag-text="{{tag.text}}"
+                data-tag-id="{{tag.id}}"
                 catch:tap="handleTagTap"
               >
-                <text class="tag-chip__text">{{tag.text}}</text>
+                <text class="tag-chip__text">{{tag.name}}</text>
               </view>
             </block>
 

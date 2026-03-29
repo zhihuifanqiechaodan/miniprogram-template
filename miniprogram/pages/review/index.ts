@@ -1,5 +1,7 @@
 import { Home } from '@miniprogram/utils/router';
 import { navigateTo } from '@miniprogram/utils/util';
+import { getTags } from '@miniprogram/api/tags';
+import { IApiGetTagsItem } from '@/typings/api-types';
 
 // pages/review/index.ts
 export {};
@@ -27,14 +29,6 @@ interface RatingItem {
   value: number;
 }
 
-/**
- * 标签项
- */
-interface TagItem {
-  text: string;
-  active: boolean;
-}
-
 const DEFAULT_COURSE_LIST: CourseItem[] = [
   { id: 1, name: 'Software Construction', code: 'COMP9021' },
   { id: 2, name: 'Database Systems', code: 'COMP9311' },
@@ -49,13 +43,6 @@ const DEFAULT_RATING_LIST: RatingItem[] = [
   { key: 'harvest', label: '收获大小', value: 5 },
 ];
 
-const DEFAULT_TAG_LIST: TagItem[] = [
-  { text: '干货满满', active: true },
-  { text: '作业多', active: false },
-  { text: '给分好', active: false },
-  { text: '考试难', active: false },
-];
-
 Page({
   /**
    * 页面的初始数据
@@ -66,9 +53,35 @@ Page({
     matchedCourse: null as CourseItem | null,
     starOptions: [1, 2, 3, 4, 5],
     ratingList: DEFAULT_RATING_LIST,
-    tagList: DEFAULT_TAG_LIST,
+    tagList: [] as IApiGetTagsItem[],
     content: '',
     isAnonymous: false,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad() {
+    this.initData();
+  },
+
+  /**
+   * @method initData 初始化页面数据
+   * @returns {Promise<void>} 无返回值
+   */
+  async initData() {
+    const [getTagsRes] = await Promise.allSettled([getTags({ limit: 100 })]);
+    const setData = {};
+
+    if (getTagsRes.status === 'fulfilled') {
+      const tagList = getTagsRes.value.items
+        .filter((tagItem) => tagItem.deletedAt === null)
+        .map((tagItem) => ({ ...tagItem, active: false }));
+
+      Object.assign(setData, { tagList });
+    }
+
+    this.setData(setData);
   },
 
   /**
@@ -122,16 +135,16 @@ Page({
    * @returns {void} 无返回值
    */
   handleTagTap(e: WechatMiniprogram.BaseEvent) {
-    const { tagText } = e.currentTarget.dataset as {
-      tagText?: string;
+    const { tagId } = e.currentTarget.dataset as {
+      tagId?: string;
     };
 
-    if (!tagText) {
+    if (!tagId) {
       return;
     }
 
     const nextTagList = this.data.tagList.map((tagItem) => {
-      return tagItem.text === tagText
+      return tagItem.id === tagId
         ? {
             ...tagItem,
             active: !tagItem.active,
@@ -205,7 +218,7 @@ Page({
       courseCode,
       courseName: matchedCourse?.name ?? '',
       ratings: ratingList,
-      tags: tagList.filter((tagItem) => tagItem.active).map((tagItem) => tagItem.text),
+      tags: tagList.filter((tagItem) => tagItem.active).map((tagItem) => tagItem.name),
       content: content.trim(),
       isAnonymous,
     });
