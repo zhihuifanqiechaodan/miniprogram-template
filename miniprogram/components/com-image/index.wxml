@@ -19,21 +19,20 @@
     style="background-color: {{loadingBackground}};"
     class="image-loading {{round ? 'image-round' : ''}}"
   >
-    <image
-      wx:if="{{placeholder}}"
-      mode="widthFix"
-      src="/assets/images/common/fabrique_logo.png"
-      lazy-load="{{lazyLoad}}"
-      class="placeholder_bg_logo"
-    />
+    <view wx:if="{{placeholder}}" class="image-skeleton">
+      <view class="image-skeleton-shimmer"></view>
+      <view class="image-skeleton-block image-skeleton-thumb"></view>
+      <view class="image-skeleton-block image-skeleton-line image-skeleton-line-short"></view>
+      <view class="image-skeleton-block image-skeleton-line"></view>
+    </view>
   </view>
   <view wx:if="{{ error && showError }}" class="image-error {{round ? 'image-round' : ''}}">
-    <image
-      mode="widthFix"
-      src="/assets/images/common/fabrique_logo.png"
-      lazy-load="{{lazyLoad}}"
-      class="placeholder_bg_logo"
-    />
+    <view class="image-skeleton">
+      <view class="image-skeleton-shimmer"></view>
+      <view class="image-skeleton-block image-skeleton-thumb"></view>
+      <view class="image-skeleton-block image-skeleton-line image-skeleton-line-short"></view>
+      <view class="image-skeleton-block image-skeleton-line"></view>
+    </view>
   </view>
 </view>
 

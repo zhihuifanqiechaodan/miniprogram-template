@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "com-nav-bar": "/components/com-nav-bar/index"
+    "com-nav-bar": "/components/com-nav-bar/index",
+    "com-image": "/components/com-image/index"
   },
   "disableScroll": true
 }

@@ -1,10 +1,7 @@
 <!-- pages/profile/index.wxml -->
+<wxs src="/utils/wxs.wxs" module="commModule" />
 <view class="tabbar-page-container profile-page">
-  <com-nav-bar
-    placeholder="{{true}}"
-    custom-style="background: linear-gradient(180deg, rgba(246, 248, 252, 0.98) 0%, rgba(246, 248, 252, 0.92) 100%);"
-  />
-
+  <com-nav-bar placeholder="{{true}}" custom-style="background: transparent;" />
   <scroll-view class="content-scroll" scroll-y enable-flex show-scrollbar="{{false}}">
     <view class="content-wrapper">
       <view class="profile-card">
@@ -12,8 +9,14 @@
 
         <view class="profile-main">
           <view class="profile-avatar-wrap">
-            <view class="profile-avatar">
-              <text>{{user.initial}}</text>
+            <com-image
+              wx:if="{{userInfo && userInfo.avatarUrl}}"
+              src="{{userInfo.avatarUrl}}"
+              class="profile-avatar"
+              radius="50%"
+            />
+            <view wx:else class="profile-avatar">
+              <text>{{userInfo && userInfo.nickname ? commModule.slice(userInfo.nickname, 1) : ''}}</text>
             </view>
             <view class="profile-vip-icon">
               <van-icon name="vip-card" class="profile-vip-mark" />
@@ -22,12 +25,12 @@
 
           <view class="profile-info">
             <view class="name-row">
-              <text class="profile-name">{{user.name}}</text>
-              <view class="verified-tag">
+              <text class="profile-name">{{userInfo && userInfo.nickname ? userInfo.nickname : ''}}</text>
+              <view wx:if="{{userInfo && userInfo.isSchoolVerified}}" class="verified-tag">
                 <van-icon name="passed" class="verified-icon" />
                 <text>已认证</text>
               </view>
-              <view class="member-tag">
+              <view wx:if="{{userInfo && userInfo.status === 'normal'}}" class="member-tag">
                 <text class="member-text">VIP</text>
                 <van-icon name="arrow" class="member-arrow" />
               </view>
@@ -36,11 +39,11 @@
             <view class="meta-column">
               <view class="meta-row">
                 <van-icon name="wap-home-o" class="meta-icon" />
-                <text>{{user.school}}</text>
+                <text>{{userInfo && userInfo.schoolId ? userInfo.schoolId : ''}}</text>
               </view>
               <view class="meta-row secondary">
                 <van-icon name="notes-o" class="meta-icon" />
-                <text>{{user.major}}</text>
+                <text>{{userInfo && userInfo.bio ? userInfo.bio : ''}}</text>
               </view>
             </view>
           </view>

@@ -1,17 +1,11 @@
+import { IApiUser } from '@/typings/api-types';
+import { getAuthMe } from '@miniprogram/api/auth';
 import { Review } from '@miniprogram/utils/router';
 import { navigateTo } from '@miniprogram/utils/util';
 
 // pages/profile/index.ts
 export {};
 const app: IAppOption = getApp();
-
-interface UserProfile {
-  name: string;
-  initial: string;
-  school: string;
-  major: string;
-}
-
 interface ProfileStat {
   label: string;
   value: string;
@@ -38,12 +32,6 @@ Page({
    */
   data: {
     systemInfo: app.globalData.systemInfo,
-    user: {
-      name: 'Alex',
-      initial: 'A',
-      school: 'UNSW',
-      major: 'Computer Science',
-    } as UserProfile,
     statsList: [
       {
         label: '点赞',
@@ -103,6 +91,7 @@ Page({
         ],
       },
     ] as ProfileMenuSection[],
+    userInfo: null as IApiUser | null,
   },
 
   /**
@@ -118,7 +107,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    if (app.globalData.userInfo) {
+      this.initData();
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -158,6 +151,12 @@ Page({
     wx.showToast({
       title: '功能开发中',
       icon: 'none',
+    });
+  },
+  async initData() {
+    const userInfo = await getAuthMe();
+    this.setData({
+      userInfo,
     });
   },
 });
