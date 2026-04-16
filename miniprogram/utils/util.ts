@@ -38,11 +38,9 @@ export const buildUrl = (route: RouteConfig, params?: Record<string, string | nu
 export const showLoading = () => {
   const app = getApp<IAppOption>();
   if (app.globalData.loadingRequestCount === 0) {
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-      loadingType: 'spinner',
-      duration: 0,
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
     });
   }
   app.globalData.loadingRequestCount += 1;
@@ -59,7 +57,7 @@ export const hideLoading = () => {
   }
   app.globalData.loadingRequestCount -= 1;
   if (app.globalData.loadingRequestCount === 0) {
-    Toast.clear();
+    wx.hideLoading();
   }
 };
 /**

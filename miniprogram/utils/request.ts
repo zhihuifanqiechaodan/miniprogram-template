@@ -39,6 +39,9 @@ const _request = async <T>({ method, url, data, header }: RequestParams): Promis
         method,
         header: requestHeader,
         success: (value) => {
+          if (canShowLoading) {
+            hideLoading();
+          }
           const { data, statusCode } = value;
           if (statusCode !== 200) {
             Toast(`服务请求错误，状态码：${statusCode}`);
@@ -48,13 +51,11 @@ const _request = async <T>({ method, url, data, header }: RequestParams): Promis
           resolve(data as T);
         },
         fail(reason) {
-          Toast(reason.errMsg);
-          reject(reason.errMsg);
-        },
-        complete: () => {
           if (canShowLoading) {
             hideLoading();
           }
+          Toast(reason.errMsg);
+          reject(reason.errMsg);
         },
       });
     } else {
