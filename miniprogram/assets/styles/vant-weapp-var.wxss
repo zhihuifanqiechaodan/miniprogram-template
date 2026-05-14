@@ -97,7 +97,7 @@ page {
   --button-normal-font-size: var(--font-size-md);
   --button-large-height: 100rpx;
   --button-default-color: var(--text-color);
-  --button-default-height: 88rpx;
+  --button-default-height: 80rpx;
   --button-default-font-size: var(--font-size-lg);
   --button-default-background-color: var(--white);
   --button-default-border-color: var(--border-color);

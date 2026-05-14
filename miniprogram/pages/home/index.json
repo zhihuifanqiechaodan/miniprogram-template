@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
     "com-nav-bar": "/components/com-nav-bar/index",
-    "com-course-card": "/components/com-course-card/index"
+    "com-course-card": "/components/com-course-card/index",
+    "com-broken-network": "/components/com-broken-network/index"
   },
   "disableScroll": true
 }

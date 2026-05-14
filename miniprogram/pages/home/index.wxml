@@ -69,6 +69,7 @@
 </view>
 
 <van-toast id="van-toast" />
+<com-broken-network show="{{brokenNetworkStatus}}" />
 
 <!-- prettier-ignore -->
 <wxs module="statsModule">

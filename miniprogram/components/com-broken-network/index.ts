@@ -8,6 +8,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    show: {
+      type: Boolean,
+      value: false,
+    },
     message: {
       type: String,
       value: '似乎已断开与互联网的连接',
@@ -36,7 +40,7 @@ Component({
       await checkNetwork();
       const currentPage = getCurrentPageInfo();
       currentPage?.setData({
-        brokenNetwork: false,
+        brokenNetworkStatus: false,
       });
       currentPage?.initData?.();
     },

@@ -1,5 +1,9 @@
 <!--components/com-broken-network/index.wxml-->
-<view style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;" class="custom-broken-network">
+<view
+  wx:if="{{show}}"
+  style="width: {{systemInfo.screenWidth}}px; height: {{systemInfo.screenHeight}}px;"
+  class="custom-broken-network"
+>
   <view class="message">
     <text space="nbsp">{{message}}</text>
   </view>
