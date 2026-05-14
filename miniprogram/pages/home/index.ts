@@ -13,10 +13,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    systemInfo: app.globalData.systemInfo,
-    keyword: '',
-    statsOverview: {} as Partial<IApiGetStatsOverviewRes>,
-    displayCourseList: [] as IApiGetCoursesHotRes,
+    brokenNetworkStatus: false, // 是否显示断网提示
+    systemInfo: app.globalData.systemInfo, // 设备信息
+    keyword: '', // 搜索关键字
+    statsOverview: {} as Partial<IApiGetStatsOverviewRes>, // 首页概览统计
+    displayCourseList: [] as IApiGetCoursesHotRes, // 显示的课程列表
   },
 
   /**
@@ -61,21 +62,15 @@ Page({
    * @returns {Promise<void>} 无返回值
    */
   async initData() {
-    const [getCoursesHotRes, getStatsOverviewRes] = await Promise.allSettled([
+    const [getCoursesHotRes, getStatsOverviewRes] = await Promise.all([
       getCoursesHot({ limit: 10 }),
       getStatsOverview(),
     ]);
-    const setData = {};
 
-    if (getCoursesHotRes.status === 'fulfilled') {
-      Object.assign(setData, { displayCourseList: getCoursesHotRes.value });
-    }
-
-    if (getStatsOverviewRes.status === 'fulfilled') {
-      Object.assign(setData, { statsOverview: getStatsOverviewRes.value });
-    }
-
-    this.setData(setData);
+    this.setData({
+      displayCourseList: getCoursesHotRes,
+      statsOverview: getStatsOverviewRes,
+    });
   },
 
   /**

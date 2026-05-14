@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "课程详情",
   "usingComponents": {
     "com-nav-bar": "/components/com-nav-bar/index"
   },

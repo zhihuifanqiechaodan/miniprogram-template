@@ -70,18 +70,12 @@ Page({
    * @returns {Promise<void>} 无返回值
    */
   async initData() {
-    const [getTagsRes] = await Promise.allSettled([getTags({ limit: 100 })]);
-    const setData = {};
+    const [getTagsRes] = await Promise.all([getTags({ limit: 100 })]);
+    const tagList = getTagsRes.items
+      .filter((tagItem) => tagItem.deletedAt === null)
+      .map((tagItem) => ({ ...tagItem, active: false }));
 
-    if (getTagsRes.status === 'fulfilled') {
-      const tagList = getTagsRes.value.items
-        .filter((tagItem) => tagItem.deletedAt === null)
-        .map((tagItem) => ({ ...tagItem, active: false }));
-
-      Object.assign(setData, { tagList });
-    }
-
-    this.setData(setData);
+    this.setData({ tagList });
   },
 
   /**
